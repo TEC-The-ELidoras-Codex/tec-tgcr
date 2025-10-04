@@ -1,0 +1,81 @@
+name: Publish to SharePoint
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/resonance-player/**'
+      - 'apps/widgets-sharepoint/**'
+      - 'infra/sharepoint/**'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install M365 CLI
+        run: npm install -g @pnp/cli-microsoft365
+
+      - name: Display deployment instructions
+        run: |
+          echo "📦 Preparing SharePoint deployment..."
+          echo ""
+          echo "Files ready for deployment:"
+          echo "  - apps/resonance-player/index.html"
+          echo "  - apps/widgets-sharepoint/orb.html"
+          echo "  - infra/sharepoint/index.html"
+          echo ""
+          echo "⚠️  Manual deployment required:"
+          echo "1. Login: m365 login --authType deviceCode"
+          echo "2. Upload files to your SharePoint site"
+          echo "3. Configure permissions and web parts"
+          echo ""
+          echo "For automated deployment, configure SharePoint credentials as secrets."
+
+      - name: Validate HTML files
+        run: |
+          echo "Validating HTML files..."
+          for file in apps/resonance-player/index.html apps/widgets-sharepoint/orb.html infra/sharepoint/index.html; do
+            if [ -f "$file" ]; then
+              echo "✅ $file exists"
+            else
+              echo "❌ $file missing"
+              exit 1
+            fi
+          done
+
+      - name: Create deployment artifact
+        run: |
+          mkdir -p deployment-package
+          cp -r apps/resonance-player deployment-package/
+          cp -r apps/widgets-sharepoint deployment-package/
+          cp -r infra/sharepoint deployment-package/
+          echo "TGCR v1.37+ SharePoint Deployment Package" > deployment-package/README.txt
+          echo "Deploy these files to your SharePoint site using M365 CLI" >> deployment-package/README.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sharepoint-deployment
+          path: deployment-package/
+          retention-days: 30
+
+      # Uncomment and configure for automated deployment:
+      # - name: Deploy to SharePoint
+      #   env:
+      #     M365_CLIENT_ID: ${{ secrets.M365_CLIENT_ID }}
+      #     M365_CLIENT_SECRET: ${{ secrets.M365_CLIENT_SECRET }}
+      #     M365_TENANT_ID: ${{ secrets.M365_TENANT_ID }}
+      #   run: |
+      #     m365 login --authType certificate --certificateFile $CERT_FILE --thumbprint $THUMBPRINT
+      #     # Add your deployment commands here

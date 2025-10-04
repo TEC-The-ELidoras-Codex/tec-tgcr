@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonance Player - TGCR v1.37+</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .version {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .spotify-embed {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gauges-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gauge {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .gauge-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .gauge-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gauge-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.5s ease, background-color 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .oxy-fill {
+            background: linear-gradient(90deg, #ff6b6b 0%, #ff8787 100%);
+        }
+
+        .dop-fill {
+            background: linear-gradient(90deg, #4ecdc4 0%, #44a3a0 100%);
+        }
+
+        .adr-fill {
+            background: linear-gradient(90deg, #ffd93d 0%, #ffb703 100%);
+        }
+
+        .gauge-value {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 1em;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .info h3 {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Resonance Player</h1>
+            <p class="version">The Elidoras Codex (TGCR) v1.37+</p>
+        </header>
+
+        <div class="spotify-embed">
+            <!-- Spotify Embed - Replace with your track URI -->
+            <iframe 
+                style="border-radius:12px" 
+                src="https://open.spotify.com/embed/track/3n3Ppam7vgaVa1iaRUc9Lp?utm_source=generator" 
+                width="100%" 
+                height="152" 
+                frameBorder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <div class="gauges-container">
+            <div class="gauge">
+                <div class="gauge-label">OXY</div>
+                <div class="gauge-bar">
+                    <div class="gauge-fill oxy-fill" id="oxy-fill" style="width: 65%;">
+                        <span class="gauge-value">65%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gauge">
+                <div class="gauge-label">DOP</div>
+                <div class="gauge-bar">
+                    <div class="gauge-fill dop-fill" id="dop-fill" style="width: 80%;">
+                        <span class="gauge-value">80%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gauge">
+                <div class="gauge-label">ADR</div>
+                <div class="gauge-bar">
+                    <div class="gauge-fill adr-fill" id="adr-fill" style="width: 45%;">
+                        <span class="gauge-value">45%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="randomizeGauges()">🎲 Randomize</button>
+            <button onclick="resetGauges()">🔄 Reset</button>
+            <button onclick="animateGauges()">✨ Animate</button>
+        </div>
+
+        <div class="info">
+            <h3>About the Gauges</h3>
+            <p><strong>OXY (Oxytocin):</strong> Connection and bonding response. Higher values indicate music that promotes social resonance and emotional warmth.</p>
+            <p><strong>DOP (Dopamine):</strong> Motivation and reward response. Higher values indicate music that drives discovery, novelty, and achievement.</p>
+            <p><strong>ADR (Adrenaline):</strong> Excitement and activation response. Higher values indicate music that energizes and mobilizes.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>The Elidoras Codex (TGCR) | v1.37+ | MIT License</p>
+        <p>Part of the TGCR Research Lab</p>
+    </footer>
+
+    <script>
+        // Gauge animation functions
+        function updateGauge(id, value) {
+            const fill = document.getElementById(id);
+            const valueSpan = fill.querySelector('.gauge-value');
+            fill.style.width = value + '%';
+            valueSpan.textContent = value + '%';
+        }
+
+        function randomizeGauges() {
+            const oxyValue = Math.floor(Math.random() * 100);
+            const dopValue = Math.floor(Math.random() * 100);
+            const adrValue = Math.floor(Math.random() * 100);
+
+            updateGauge('oxy-fill', oxyValue);
+            updateGauge('dop-fill', dopValue);
+            updateGauge('adr-fill', adrValue);
+        }
+
+        function resetGauges() {
+            updateGauge('oxy-fill', 65);
+            updateGauge('dop-fill', 80);
+            updateGauge('adr-fill', 45);
+        }
+
+        function animateGauges() {
+            let frame = 0;
+            const interval = setInterval(() => {
+                frame++;
+                const oxyValue = 50 + Math.sin(frame * 0.1) * 30;
+                const dopValue = 60 + Math.sin(frame * 0.15) * 40;
+                const adrValue = 40 + Math.sin(frame * 0.12) * 35;
+
+                updateGauge('oxy-fill', Math.floor(oxyValue));
+                updateGauge('dop-fill', Math.floor(dopValue));
+                updateGauge('adr-fill', Math.floor(adrValue));
+
+                if (frame >= 100) {
+                    clearInterval(interval);
+                    resetGauges();
+                }
+            }, 50);
+        }
+
+        // Simulate real-time updates (in a real app, this would connect to actual music analysis)
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                const oxyDelta = (Math.random() - 0.5) * 5;
+                const dopDelta = (Math.random() - 0.5) * 5;
+                const adrDelta = (Math.random() - 0.5) * 5;
+
+                const oxyFill = document.getElementById('oxy-fill');
+                const dopFill = document.getElementById('dop-fill');
+                const adrFill = document.getElementById('adr-fill');
+
+                let oxyValue = parseInt(oxyFill.style.width) + oxyDelta;
+                let dopValue = parseInt(dopFill.style.width) + dopDelta;
+                let adrValue = parseInt(adrFill.style.width) + adrDelta;
+
+                // Clamp values between 0 and 100
+                oxyValue = Math.max(0, Math.min(100, oxyValue));
+                dopValue = Math.max(0, Math.min(100, dopValue));
+                adrValue = Math.max(0, Math.min(100, adrValue));
+
+                updateGauge('oxy-fill', Math.floor(oxyValue));
+                updateGauge('dop-fill', Math.floor(dopValue));
+                updateGauge('adr-fill', Math.floor(adrValue));
+            }, 2000);
+        }
+
+        // Start simulation (comment out for static demo)
+        // simulateRealTimeUpdates();
+    </script>
+</body>
+</html>
