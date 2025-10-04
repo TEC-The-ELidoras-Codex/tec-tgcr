@@ -1,0 +1,64 @@
+overview:
+  tagline: "TEC weaves myth, machine, and meaning into a living open-source cosmology."
+  pillars:
+    - Research & Theory
+    - Development & Pipelines
+    - Branding & Media
+    - Community & Outreach
+    - Professional Growth
+
+research:
+  tgcr_whitepapers:
+    description: "Foundational documents articulating the Theory of General Contextual Resonance as the fifth force."
+    key_assets:
+      - entropic_codex.pdf
+      - tgcr_manifesto.md
+  archetypal_systems:
+    description: "Pantheon Engine glyphs, archetypes, and symbolic mappings used across TEC projects."
+
+engineering:
+  agents:
+    arcadia:
+      focus: "Algorithmic resonance projections from audio and telemetry."
+    airth:
+      focus: "Research guard and synthesis sentinel for TGCR."
+  pipelines:
+    voice_studio:
+      focus: "Voice imprint editing for TEC narrators."
+    spotify_mapping:
+      focus: "Transforming Spotify analytics into resonance markers."
+
+branding:
+  palette:
+    nexus_purple: "#6A00F4"
+    digital_teal: "#00D5C4"
+    cyber_gold: "#F2C340"
+    deep_space_blue: "#0B1E3B"
+    prismatic_white: "#EDEDED"
+  fonts:
+    header: "Astron"
+    sub: "Orbitron"
+    body: "Roboto"
+    tagline: "Cinzel"
+  motifs:
+    - fractal geometry
+    - cosmic gradients
+    - resonance glyphs
+
+community:
+  teams:
+    - name: "Team Killjoy"
+      link: "https://teams.microsoft.com/l/channel/..."
+    - name: "TEC_SECOPS"
+      link: "https://teams.microsoft.com/l/channel/..."
+  sharepoint:
+    site: "https://elidorascodex.sharepoint.com/sites/ElidorascodexTGCR"
+
+professional:
+  resume_assets:
+    - "Angelo Resume (microsoft Git Hub Ready).docx"
+    - "Angelo_Resume_Portfolio.pdf"
+  cadence:
+    weekly_focus:
+      - "TEC Agent Suite development"
+      - "7-Eleven shift alignment"

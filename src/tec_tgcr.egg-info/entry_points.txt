@@ -1,0 +1,2 @@
+[console_scripts]
+tec-agent = tec_tgcr.cli:app
