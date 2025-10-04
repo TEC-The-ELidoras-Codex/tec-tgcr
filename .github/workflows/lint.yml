@@ -1,0 +1,130 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Check Markdown files
+        run: |
+          echo "Checking Markdown files..."
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            echo "Checking $file"
+            # Basic check that file is not empty
+            if [ ! -s "$file" ]; then
+              echo "❌ Empty file: $file"
+              exit 1
+            fi
+          done
+          echo "✅ All Markdown files validated"
+
+      - name: Check HTML files
+        run: |
+          echo "Checking HTML files..."
+          find apps -name "*.html" -o -name "*.htm" | while read file; do
+            echo "Checking $file"
+            # Basic check for DOCTYPE
+            if ! grep -q "<!DOCTYPE" "$file"; then
+              echo "⚠️  Missing DOCTYPE in $file"
+            fi
+            # Check for basic HTML structure
+            if ! grep -q "<html" "$file"; then
+              echo "❌ Invalid HTML structure in $file"
+              exit 1
+            fi
+          done
+          echo "✅ All HTML files validated"
+
+      - name: Check YAML files
+        run: |
+          echo "Checking YAML files..."
+          find .github -name "*.yml" -o -name "*.yaml" | while read file; do
+            echo "Checking $file"
+            # Basic YAML syntax check using Python
+            python3 -c "import yaml; yaml.safe_load(open('$file'))" || {
+              echo "❌ Invalid YAML in $file"
+              exit 1
+            }
+          done
+          echo "✅ All YAML files validated"
+
+      - name: Check for required files
+        run: |
+          echo "Checking for required repository files..."
+          required_files=(
+            "README.md"
+            "LICENSE"
+            "CONTRIBUTING.md"
+            "CODE_OF_CONDUCT.md"
+          )
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing required file: $file"
+              exit 1
+            else
+              echo "✅ Found $file"
+            fi
+          done
+
+      - name: Check directory structure
+        run: |
+          echo "Checking directory structure..."
+          required_dirs=(
+            "apps"
+            "agents"
+            "docs"
+            "infra"
+            ".github/workflows"
+          )
+          for dir in "${required_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Missing required directory: $dir"
+              exit 1
+            else
+              echo "✅ Found $dir"
+            fi
+          done
+
+      - name: Check version markers
+        run: |
+          echo "Checking for version markers in documentation..."
+          # Check that key files have version markers
+          if ! grep -r "v1.37+" docs/ > /dev/null; then
+            echo "⚠️  Some documentation may be missing version markers"
+          else
+            echo "✅ Version markers present"
+          fi
+
+      - name: Lint summary
+        run: |
+          echo ""
+          echo "================================"
+          echo "✅ Linting completed successfully!"
+          echo "================================"
+          echo ""
+          echo "Repository structure validated"
+          echo "Files checked:"
+          echo "  - Markdown files"
+          echo "  - HTML files"
+          echo "  - YAML workflows"
+          echo "  - Required repository files"
+          echo ""
+          echo "TGCR v1.37+ | Quality Assured by Airth 🛡️"

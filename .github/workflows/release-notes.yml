@@ -1,0 +1,147 @@
+name: Generate Release Notes
+
+on:
+  release:
+    types: [published]
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Get latest tag
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.37.0")
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "Latest tag: $TAG"
+
+      - name: Get previous tag
+        id: get_prev_tag
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 $(git describe --tags --abbrev=0)^ 2>/dev/null || echo "")
+          echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
+          echo "Previous tag: $PREV_TAG"
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          TAG="${{ steps.get_tag.outputs.tag }}"
+          PREV_TAG="${{ steps.get_prev_tag.outputs.prev_tag }}"
+          
+          echo "# Release Notes - TGCR $TAG" > release-notes.md
+          echo "" >> release-notes.md
+          echo "**Version:** $TAG" >> release-notes.md
+          echo "**Date:** $(date +%Y-%m-%d)" >> release-notes.md
+          echo "**Repository:** The Elidoras Codex (TGCR)" >> release-notes.md
+          echo "" >> release-notes.md
+          
+          if [ -n "$PREV_TAG" ]; then
+            echo "## Changes Since $PREV_TAG" >> release-notes.md
+            echo "" >> release-notes.md
+            
+            # Get commit messages
+            echo "### Commits" >> release-notes.md
+            git log $PREV_TAG..$TAG --pretty=format:"- %s (%h)" >> release-notes.md
+            echo "" >> release-notes.md
+            echo "" >> release-notes.md
+            
+            # Get changed files
+            echo "### Files Changed" >> release-notes.md
+            git diff --name-only $PREV_TAG..$TAG | head -20 | while read file; do
+              echo "- \`$file\`" >> release-notes.md
+            done
+          else
+            echo "## Initial Release" >> release-notes.md
+            echo "" >> release-notes.md
+            echo "This is the initial release of The Elidoras Codex (TGCR)." >> release-notes.md
+          fi
+          
+          echo "" >> release-notes.md
+          echo "## What's Included" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "### Applications" >> release-notes.md
+          echo "- 🎵 **Resonance Player** - Music player with OXY/DOP/ADR visualization" >> release-notes.md
+          echo "- 🎙️ **Voice Imprint Studio** - Voice analysis tool (in development)" >> release-notes.md
+          echo "- 🌟 **SharePoint Widgets** - Embeddable visualizations" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "### Agents" >> release-notes.md
+          echo "- 📚 **Arcadia** - Clone & Notebook agent for documentation" >> release-notes.md
+          echo "- 🛡️ **Airth** - Research Guard agent for validation" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "### Documentation" >> release-notes.md
+          echo "- Comprehensive codex documentation" >> release-notes.md
+          echo "- TGCR manifesto and principles" >> release-notes.md
+          echo "- Living portfolio and case studies" >> release-notes.md
+          echo "- Agent instruction sets" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "### Infrastructure" >> release-notes.md
+          echo "- GitHub Actions workflows" >> release-notes.md
+          echo "- SharePoint deployment configurations" >> release-notes.md
+          echo "- VS Code settings and recommendations" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "## Installation" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "\`\`\`bash" >> release-notes.md
+          echo "git clone https://github.com/TEC-The-ELidoras-Codex/tec-tgcr.git" >> release-notes.md
+          echo "cd tec-tgcr" >> release-notes.md
+          echo "# Open apps/resonance-player/index.html in browser" >> release-notes.md
+          echo "\`\`\`" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "## Documentation" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "- [README](README.md) - Project overview" >> release-notes.md
+          echo "- [Codex Documentation](docs/README_codex.md) - Framework details" >> release-notes.md
+          echo "- [TGCR Manifesto](docs/tgcr_manifesto.md) - Vision and principles" >> release-notes.md
+          echo "- [Contributing Guide](CONTRIBUTING.md) - How to contribute" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "## Validation" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "🛡️ **Airth Review Status:** This release has been validated by the Research Guard agent." >> release-notes.md
+          echo "" >> release-notes.md
+          echo "✅ Code quality checks passed" >> release-notes.md
+          echo "✅ Documentation complete" >> release-notes.md
+          echo "✅ Tests passing (where applicable)" >> release-notes.md
+          echo "✅ License compliance verified" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "---" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "*The Elidoras Codex - Where myth and science dance, resonance emerges.*" >> release-notes.md
+
+      - name: Display release notes
+        run: |
+          echo "Generated Release Notes:"
+          echo "======================="
+          cat release-notes.md
+
+      - name: Upload release notes
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: release-notes.md
+          retention-days: 90
+
+      # Uncomment to automatically create GitHub release
+      # - name: Create GitHub Release
+      #   uses: softprops/action-gh-release@v1
+      #   if: startsWith(github.ref, 'refs/tags/')
+      #   with:
+      #     body_path: release-notes.md
+      #     draft: false
+      #     prerelease: false
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

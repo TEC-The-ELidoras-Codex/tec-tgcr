@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonance Orb - TGCR Widget</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .widget-container {
+            text-align: center;
+        }
+
+        .orb-canvas {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .orb {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(102, 126, 234, 0.8), 
+                rgba(118, 75, 162, 0.9));
+            box-shadow: 
+                0 0 60px rgba(102, 126, 234, 0.6),
+                inset 0 0 60px rgba(255, 255, 255, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .orb::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 255, 255, 0.8), 
+                transparent);
+            top: 20px;
+            left: 40px;
+            filter: blur(10px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 60px rgba(102, 126, 234, 0.6),
+                    inset 0 0 60px rgba(255, 255, 255, 0.3);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 100px rgba(102, 126, 234, 0.8),
+                    inset 0 0 80px rgba(255, 255, 255, 0.5);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        .orb-label {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .orb-status {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .resonance-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        /* Embeddable version - minimal styling */
+        .embed-mode {
+            background: transparent;
+        }
+
+        .embed-mode .widget-container {
+            background: transparent;
+        }
+
+        .embed-mode .orb-label,
+        .embed-mode .orb-status {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <div class="orb-canvas">
+            <div class="orb">
+                <div class="resonance-value" id="resonance-value">87</div>
+            </div>
+        </div>
+        <div class="orb-label">Resonance Orb</div>
+        <div class="orb-status">TGCR v1.37+ | Active</div>
+    </div>
+
+    <script>
+        // Simulate resonance value changes
+        function updateResonance() {
+            const value = document.getElementById('resonance-value');
+            const currentValue = parseInt(value.textContent);
+            const delta = (Math.random() - 0.5) * 10;
+            let newValue = currentValue + delta;
+            
+            // Clamp between 0 and 100
+            newValue = Math.max(0, Math.min(100, newValue));
+            
+            value.textContent = Math.floor(newValue);
+            
+            // Update orb color based on value
+            const orb = document.querySelector('.orb');
+            if (newValue > 70) {
+                orb.style.background = 'radial-gradient(circle at 30% 30%, rgba(102, 234, 126, 0.8), rgba(75, 162, 118, 0.9))';
+            } else if (newValue > 40) {
+                orb.style.background = 'radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.9))';
+            } else {
+                orb.style.background = 'radial-gradient(circle at 30% 30%, rgba(234, 102, 126, 0.8), rgba(162, 75, 118, 0.9))';
+            }
+        }
+
+        // Update every 2 seconds
+        setInterval(updateResonance, 2000);
+
+        // Check if in embed mode (can be controlled via URL parameter)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('embed') === 'true') {
+            document.body.classList.add('embed-mode');
+        }
+    </script>
+</body>
+</html>
