@@ -1,0 +1,77 @@
+name: Publish to SharePoint
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'apps/**'
+      - 'infra/sharepoint/**'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          cd infra/sharepoint
+          npm install
+          
+      - name: Build portfolio
+        run: |
+          npm run build:portfolio
+          
+      - name: Build documentation
+        run: |
+          npm run build:docs
+          
+      - name: Authenticate to SharePoint
+        env:
+          SHAREPOINT_CLIENT_ID: ${{ secrets.SHAREPOINT_CLIENT_ID }}
+          SHAREPOINT_CLIENT_SECRET: ${{ secrets.SHAREPOINT_CLIENT_SECRET }}
+          TENANT_ID: ${{ secrets.TENANT_ID }}
+        run: |
+          cd infra/sharepoint
+          npm run auth
+          
+      - name: Upload to SharePoint
+        env:
+          SHAREPOINT_SITE_URL: ${{ secrets.SHAREPOINT_SITE_URL }}
+        run: |
+          cd infra/sharepoint
+          npm run upload
+          
+      - name: Update SharePoint pages
+        run: |
+          cd infra/sharepoint
+          npm run update-pages
+          
+      - name: Notify Teams
+        if: success()
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{"text":"✅ SharePoint published successfully for commit ${{ github.sha }}"}' \
+            $TEAMS_WEBHOOK_URL
+            
+      - name: Notify failure
+        if: failure()
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{"text":"❌ SharePoint publish failed for commit ${{ github.sha }}"}' \
+            $TEAMS_WEBHOOK_URL

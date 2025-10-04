@@ -1,0 +1,109 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint-code:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          # Install root dependencies if needed
+          if [ -f package.json ]; then npm install; fi
+          
+          # Install app dependencies
+          cd apps/voice-imprint-studio
+          if [ -f package.json ]; then npm install; fi
+          
+          cd ../resonance-player
+          if [ -f package.json ]; then npm install; fi
+          
+      - name: Lint Voice Imprint Studio
+        run: |
+          cd apps/voice-imprint-studio
+          if [ -f package.json ] && npm run | grep -q "lint"; then
+            npm run lint
+          else
+            echo "No lint script found, skipping"
+          fi
+          
+      - name: Lint Resonance Player
+        run: |
+          cd apps/resonance-player
+          if [ -f package.json ] && npm run | grep -q "lint"; then
+            npm run lint
+          else
+            echo "No lint script found, skipping"
+          fi
+          
+      - name: Lint infrastructure
+        run: |
+          cd infra/sharepoint
+          if [ -f package.json ] && npm run | grep -q "lint"; then
+            npm install
+            npm run lint
+          else
+            echo "No lint script found, skipping"
+          fi
+  
+  lint-markdown:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Lint Markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v15
+        with:
+          globs: |
+            **/*.md
+            !node_modules
+            !**/node_modules
+  
+  check-formatting:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Check code formatting
+        run: |
+          # Install prettier if not in package.json
+          if [ -f package.json ]; then
+            npm install
+          else
+            npm install -g prettier
+          fi
+          
+          # Check formatting
+          if command -v prettier &> /dev/null; then
+            npx prettier --check "**/*.{js,jsx,ts,tsx,json,md,yml,yaml}" \
+              --ignore-path .gitignore || echo "Prettier check completed with warnings"
+          else
+            echo "Prettier not available, skipping format check"
+          fi

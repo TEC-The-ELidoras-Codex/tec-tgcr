@@ -1,0 +1,108 @@
+name: Generate Release Notes
+
+on:
+  release:
+    types: [created, published]
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to generate release notes for'
+        required: false
+
+jobs:
+  generate-notes:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Get tag information
+        id: tag-info
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          
+          # Get previous tag
+          PREV_TAG=$(git describe --tags --abbrev=0 $TAG^ 2>/dev/null || echo "")
+          echo "prev_tag=$PREV_TAG" >> $GITHUB_OUTPUT
+          
+      - name: Generate changelog
+        id: changelog
+        run: |
+          TAG="${{ steps.tag-info.outputs.tag }}"
+          PREV_TAG="${{ steps.tag-info.outputs.prev_tag }}"
+          
+          echo "# Release Notes for $TAG" > RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "## Changes" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          
+          if [ -n "$PREV_TAG" ]; then
+            # Get commits between tags
+            git log $PREV_TAG..$TAG --pretty=format:"- %s (%h)" >> RELEASE_NOTES.md
+          else
+            # First release, get all commits
+            git log $TAG --pretty=format:"- %s (%h)" >> RELEASE_NOTES.md
+          fi
+          
+          echo "" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "## Components" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "- Voice Imprint Studio" >> RELEASE_NOTES.md
+          echo "- Resonance Player" >> RELEASE_NOTES.md
+          echo "- Arcadia Agent (Creative Intelligence)" >> RELEASE_NOTES.md
+          echo "- Airth Agent (Technical Intelligence)" >> RELEASE_NOTES.md
+          echo "- SharePoint Integration" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "---" >> RELEASE_NOTES.md
+          echo "*The Elidoras Codex - Where myth meets science* 🎵" >> RELEASE_NOTES.md
+          
+      - name: Create or update release
+        if: github.event_name != 'workflow_dispatch'
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: RELEASE_NOTES.md
+          tag_name: ${{ steps.tag-info.outputs.tag }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Upload release notes artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: RELEASE_NOTES.md
+          
+      - name: Update documentation
+        run: |
+          # Copy release notes to docs
+          mkdir -p docs/releases
+          cp RELEASE_NOTES.md docs/releases/${{ steps.tag-info.outputs.tag }}.md
+          
+      - name: Commit release notes to docs
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/releases/
+          git diff --staged --quiet || git commit -m "docs: Add release notes for ${{ steps.tag-info.outputs.tag }}"
+          git push origin HEAD:main || echo "No changes to push"
