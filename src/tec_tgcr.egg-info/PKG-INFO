@@ -69,3 +69,13 @@ python -m tec_tgcr.cli chat "Help me plan a TEC build sprint"
 
 ---
 Looking for the original planning mural? Check `docs/archive/planning_scratchpad.md` for the full preserved canvas, SharePoint publishing flow, and Spotify pipeline sketches.
+
+## Applications & Demos
+
+| Module | Description |
+| --- | --- |
+| [/apps/voice-imprint-studio](apps/voice-imprint-studio/README.md) | React/Vite starter that edits and exports voice profile manifests for Arcadia/Airth. |
+| [/apps/resonance-player](apps/resonance-player/index.html) | Static HTML demo that calls the ARCADIA resonance API and visualises OXY/DOP/ADR gauges. |
+| [/apps/widgets-sharepoint](apps/widgets-sharepoint/README.md) | Embeddable snippets (cursor-following TEC orb, future cards) for SharePoint/Teams pages. |
+
+Each module stays framework-agnostic so you can host it on SharePoint, Azure Static Web Apps, or any static bucket. Extend these demos as the agent ecosystem expands.

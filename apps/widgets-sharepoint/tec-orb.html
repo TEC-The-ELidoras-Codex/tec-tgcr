@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>TEC Orb Widget</title>
+  <style>
+    body { margin: 0; background: transparent; }
+    #tec-orb {
+      width: 140px; height: 140px;
+      filter: drop-shadow(0 0 18px rgba(106, 0, 244, 0.55));
+    }
+  </style>
+</head>
+<body>
+  <svg id="tec-orb" viewBox="0 0 200 200">
+    <defs>
+      <radialGradient id="orb-gradient" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#00D5C4" />
+        <stop offset="60%" stop-color="#6A00F4" />
+        <stop offset="100%" stop-color="#0B1E3B" />
+      </radialGradient>
+      <linearGradient id="orb-ring" x1="0" x2="1">
+        <stop offset="0%" stop-color="#F2C340" />
+        <stop offset="100%" stop-color="#EDEDED" />
+      </linearGradient>
+    </defs>
+    <circle cx="100" cy="100" r="60" fill="url(#orb-gradient)" />
+    <circle cx="100" cy="100" r="80" fill="none" stroke="url(#orb-ring)" stroke-width="4" stroke-dasharray="10 8" />
+    <path d="M100 40 C130 60, 130 140, 100 160 C70 140, 70 60, 100 40 Z" fill="none" stroke="#EDEDED" stroke-width="4" />
+    <circle cx="100" cy="100" r="8" fill="#F2C340" />
+  </svg>
+  <script>
+    (function followCursor() {
+      const orb = document.getElementById('tec-orb');
+      let x = 0, y = 0, tx = 0, ty = 0;
+      window.addEventListener('mousemove', (event) => {
+        tx = event.clientX; ty = event.clientY;
+      });
+      function tick() {
+        x += (tx - x) * 0.1;
+        y += (ty - y) * 0.1;
+        orb.style.transform = `translate(${x - 100}px, ${y - 100}px)`;
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>

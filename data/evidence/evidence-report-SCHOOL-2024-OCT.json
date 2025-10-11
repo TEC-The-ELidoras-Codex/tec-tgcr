@@ -1,0 +1,387 @@
+{
+  "case_id": "SCHOOL-2024-OCT",
+  "processing_date": "2025-10-10T20:51:59.742209",
+  "summary": "EVIDENCE PROCESSING SUMMARY\n\nTimeline Analysis:\n- Total events processed: 23\n- Critical events: 1\n- Important events: 12\n- Participants identified: 70\n\nKey Participants:\nThat's, Dad, Bernadi, Arena Provocate, Please, Not, Evaluation. Before, Imagine, Display, Manifestation  # Limit to first 10\n\nKey Issues Identified:\n- Timeline/Deadline Issues\n- Service Provision\n- Communication Issues\n- Special Education Services\n\nCritical Events Timeline:\n- No timestamp: Manifestation determination meeting usually happens after 10 days of suspension. So, this would be a...\n\nProcessing completed on: 2025-10-10 20:51:59\n\nThis automated analysis provides a structured view of the evidence timeline.\nFor legal proceedings, human review and verification is recommended.",
+  "participants": [
+    "That's",
+    "Dad",
+    "Bernadi",
+    "Arena Provocate",
+    "Please",
+    "Not",
+    "Evaluation. Before",
+    "Imagine",
+    "Display",
+    "Manifestation",
+    "That,",
+    "MFA",
+    "Well,",
+    "Like,",
+    "Mark,",
+    "Before",
+    "Okay. That's",
+    "unknown",
+    "Sore. Are",
+    "Why",
+    "Uh,",
+    "Dan",
+    "Now,",
+    "Gaddad. Do",
+    "So? If",
+    "Bears. Yeah,",
+    "Punished",
+    "Literally. When",
+    "Because",
+    "Okay,",
+    "Best",
+    "Yes. Okay.",
+    "Have",
+    "Okay, I",
+    "Post",
+    "Weren't",
+    "Provocate",
+    "There",
+    "His",
+    "All",
+    "But. Display",
+    "Here's",
+    "We've",
+    "And,",
+    "Left. There",
+    "Are",
+    "When I",
+    "Okay. Um.",
+    "So, I",
+    "We're",
+    "They",
+    "I'm",
+    "What? Left.",
+    "So,",
+    "No,",
+    "Well, I,",
+    "Wow,",
+    "It's",
+    "Um. Have",
+    "Yeah, I",
+    "Yeah,",
+    "Continue",
+    "Oh,",
+    "You",
+    "How",
+    "District, I",
+    "Dawn",
+    "Submitted",
+    "Statement,",
+    "Spinners"
+  ],
+  "key_issues": [
+    "Timeline/Deadline Issues",
+    "Service Provision",
+    "Communication Issues",
+    "Special Education Services"
+  ],
+  "source_files": [
+    "data\\evidence\\Oct 10 at 10-47 AM.txt",
+    "data\\evidence\\Oct 10 at 8-58 AM.txt",
+    "data\\evidence\\5766995064506706048.amr"
+  ],
+  "timeline": [
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "I don't know how many fucking times and it's always where we have our argument where they messed up is that they expected us. To the left us to out to dry with it, but then, when actually something happened, they swiftly. And, you know, deliberately? Punished him but didn't help us in the process before during her afterwards.",
+      "participants": [
+        "And,",
+        "Punished"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 10-47 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "How do they not have it on record about his anxiety and sensory process? Dad is another issue they have records issues. That's why I called the foia request. I want every piece of information that they've ever gotten. They don't like that. I said that, I know. Submitted him. I know that, like all this stuff is done, I know for a fact that you've sent every possible thing that you could ever give to them back when we were together.",
+      "participants": [
+        "That's",
+        "Dad",
+        "How",
+        "They",
+        "Submitted"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 10-47 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "It's literally what they call black people slaves. Okay. That's what we call the little days called the property they were called niggers. That's why they called themselves nigga now to take the back the word as much as they could. But it is. Literally. When I say you are lucky that you?",
+      "participants": [
+        "That's",
+        "It's",
+        "When I",
+        "Okay. That's",
+        "Literally. When"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 10-47 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "The party stuff that got left, like your sisters little. And the table that we had. Oh, and the um, my other. What? Left. There was a lot. It's all in our trunk. Yeah, a lot of it. That was sweating. His son was in my face, all fucking time. I was so angry, but was I?",
+      "participants": [
+        "There",
+        "His",
+        "It's",
+        "Yeah,",
+        "Left. There",
+        "Oh,",
+        "What? Left."
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 10-47 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Yeah, kids survival. That's cool. Oh, for Bears. Yeah, if you made a bear everything, don't climate tree because, yeah. Best kids survival book? Yeah, I know all. I know a lot of them. You know what I hate? If it works with this to regenerating, well, you're still in a meeting.",
+      "participants": [
+        "Best",
+        "That's",
+        "Yeah, I",
+        "Yeah,",
+        "Oh,",
+        "You",
+        "Bears. Yeah,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 10-47 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "So this was a culmination of all of that. This was somebody backed into a corner and used the only thing they had left was, which was the most violent words he had, so that is all very helpful information to know. As far as whether or not? Statement, or the threat is played.",
+      "participants": [
+        "Statement,"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "District, I know. Do you have the police report I don't? I don't have anything. But Mr Gaddad. Do you happen to have a copy of the police report? I do what you have to get it needs and names. That's why I filed the foia request. Now, that's why I filed the forehead request.",
+      "participants": [
+        "Gaddad. Do",
+        "That's",
+        "District, I",
+        "Now,"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "I do. Here's the topic, which I will guess we're gonna really need to use particular. The area that was violated. Is that what you need to say you need to see the whole code, uh, the whole? For the record, he said, they never called us.",
+      "participants": [
+        "Here's"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Like, you guys should have, like the police, only called you to get our phone number. Why was the school notified before the parents were even notified. That is, like, with his having the disability that should have never happened. Sore. Are you asking a question or are you just? I mean asking why this?",
+      "participants": [
+        "Sore. Are",
+        "Are",
+        "Why",
+        "Like,"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Yeah, I mean, I'm asking why the school didn't call us first and then decided to do that. So? If you have questions about how it was handled, I'm sure Mr Bernadi would be happy to talk to you about those afterwards. But for purposes of the hearing, do you have any statement you'd like to make about the facts about what occur?",
+      "participants": [
+        "Yeah, I",
+        "Bernadi",
+        "I'm",
+        "So? If"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Manifestation determination meeting usually happens after 10 days of suspension. So, this would be an emergency manifestation determination meeting my understanding. So, a manifestation determination has to take place before a disciplinary change in placement and occur correct, so the disciplinary change in placement is when you get to that 10-day Mark, right?",
+      "participants": [
+        "Manifestation",
+        "So,",
+        "Mark,"
+      ],
+      "significance": "critical",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Yeah, your friends would never be in trouble here. All this meeting. All this talk stays pretty secret just between us, so they would never get in trouble, but you why there's something you want to say? We're about what happened? You can say it here. It won't.",
+      "participants": [
+        "You",
+        "Yeah,",
+        "All",
+        "We're"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "So the purpose of this meeting is to determine if? But. Display was our behavior was a caused by his disability. And um, if so, or if? Please rules.",
+      "participants": [
+        "But. Display",
+        "Display",
+        "Please"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "So, I guess I would just like to. For this sake of time, what you're talking about is possibly having additional supports. In a plan. Well, I, I think possibly even an additional diagnosis. I think we've, um, inquesting, right. Weren't here for the previous meeting, but um, I don't think you really understands.",
+      "participants": [
+        "So, I",
+        "Weren't",
+        "Well, I,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Okay, so now the information gave, and like Dan said it to our. Okay, so it should. It's not updated yet. Okay, I can check your phone number. Is that what you're concerned about the phone number? Yeah, I just wanted to make sure before I left that everything was up to date in.",
+      "participants": [
+        "Dan",
+        "Okay, I",
+        "It's",
+        "Yeah, I",
+        "Okay,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "So he needs to have that revealed Dawn before any? Well, that's the purpose of this meeting. Okay, determine that, so if we said no, if we said it's not a manifestation? Uh, if you disagree, you can do a.",
+      "participants": [
+        "Dawn",
+        "Uh,",
+        "Well,",
+        "Okay,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Not that you cannot continue any additional punishment to that. Because parents have formally requested. The full comprehension of the valuation, so you cannot move forward. I don't have that in writing, we don't have. No, no, we have that in the law. We don't have this group. That, is that you have disciplinary.",
+      "participants": [
+        "No,",
+        "That,",
+        "Not",
+        "Because"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Post another server. You don't have a set of question room posted in your classroom. Are there? Is there requirement for a classroom management plan just, uh, we went over. Imagine the plan early in the year in the westside home. Okay, and like they're submitted to, you have to have one MFA with the district with your principal.",
+      "participants": [
+        "Post",
+        "Imagine",
+        "MFA",
+        "Are",
+        "You",
+        "Okay,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Okay, answer to is our agree on the answer to was the conducting question, the direct result of the school district's failure to implement the 504. Wow, yes, that the beginning that the plan is being called. Well, was it, though. I guess the fidget Spinners were not being. It doesn't say that he needs to have them at all times.",
+      "participants": [
+        "Spinners",
+        "Wow,",
+        "Well,",
+        "Okay,"
+      ],
+      "significance": "informational",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Continue to receive Arena Provocate public education according to their plan. And another thing, right? So, we're not making that decision today about what happens with the discipline that's going to be the other team. So, we'll conclude this meeting. I haven't had 10 days of suspension. That's my understanding. We've only had right, so that's just.",
+      "participants": [
+        "That's",
+        "Arena Provocate",
+        "Provocate",
+        "We've",
+        "Continue",
+        "So,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Evaluation. Before anything move forward, we want yes, and the parents made a formal request. For a full company or anything, it's evaluated right at the at the station so we could just have that on record here because they might meeting was not recorded correct. Yes. Okay. Um. Have requested a full evaluation.",
+      "participants": [
+        "Evaluation. Before",
+        "Um. Have",
+        "Before",
+        "Okay. Um.",
+        "Have",
+        "Yes. Okay."
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": null,
+      "event_type": "action",
+      "description": "Well, women's decision is made of by handed down to the primary job. We don't have another meeting, though, no right, you just yeah, then you'll receive.",
+      "participants": [
+        "Well,"
+      ],
+      "significance": "important",
+      "source_file": "Oct 10 at 8-58 AM.txt"
+    },
+    {
+      "timestamp": "2025-10-10T20:44:15.303901",
+      "event_type": "audio_recording",
+      "description": "Audio recording created: 5766995064506706048.amr",
+      "participants": [
+        "unknown"
+      ],
+      "significance": "important",
+      "source_file": "5766995064506706048.amr"
+    }
+  ]
+}

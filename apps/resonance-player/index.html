@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TEC • Resonance Player</title>
+  <style>
+    :root {
+      --purple: #6A00F4;
+      --teal: #00D5C4;
+      --gold: #F2C340;
+      --blue: #0B1E3B;
+      --white: #EDEDED;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0B1E3B 0%, #000 100%);
+      color: var(--white);
+      font: 16px/1.6 "Inter", "Segoe UI", sans-serif;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font: 700 28px/1 Orbitron, sans-serif;
+      margin: 0;
+      letter-spacing: 0.6px;
+    }
+    .panel {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .panel { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: rgba(11, 30, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    label { font-size: 13px; opacity: 0.85; display: block; margin-bottom: 6px; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(11, 30, 59, 0.8);
+      color: var(--white);
+    }
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.primary { background: var(--purple); color: var(--white); }
+    button.ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--white);
+    }
+    .row { display: flex; gap: 12px; margin-top: 12px; }
+    iframe { border-radius: 12px; width: 100%; height: 352px; border: 0; }
+    .dials { display: flex; gap: 18px; flex-wrap: wrap; }
+    .dial {
+      position: relative; width: 140px; height: 140px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(var(--teal) 0deg, #1a2744 0deg);
+      box-shadow: 0 0 0 6px rgba(11, 30, 59, 0.9), inset 0 0 25px rgba(0, 0, 0, 0.6);
+    }
+    .dial span { font: 700 28px/1 Orbitron, sans-serif; }
+    .dial::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -26px;
+      font: 600 12px Orbitron, sans-serif;
+      letter-spacing: 0.5px;
+      color: rgba(160, 250, 230, 0.8);
+    }
+    pre {
+      white-space: pre-wrap;
+      background: rgba(11, 30, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 16px;
+      max-height: 240px;
+      overflow: auto;
+    }
+    footer { opacity: 0.65; margin-top: 24px; font-size: 12px; }
+    #tec-orb {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 96px;
+      height: 96px;
+      pointer-events: none;
+      filter: drop-shadow(0 0 12px rgba(106, 0, 244, 0.6));
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <svg width="32" height="32" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="orb" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#00D5C4" />
+            <stop offset="60%" stop-color="#6A00F4" />
+            <stop offset="100%" stop-color="#0B1E3B" />
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="90" fill="url(#orb)" />
+        <path d="M100 40C130 60 130 140 100 160 70 140 70 60 100 40Z" fill="none" stroke="#EDEDED" stroke-width="6" />
+      </svg>
+      <div>
+        <h1>TEC • Resonance Player</h1>
+        <p>Embed Spotify tracks, fetch audio features via the ARCADIA API, and map them into OXY / DOP / ADR resonance space.</p>
+      </div>
+    </header>
+
+    <div class="panel">
+      <div class="card">
+        <label for="track">Spotify track URL or ID</label>
+        <input id="track" type="text" placeholder="https://open.spotify.com/track/0hHzFiG0FLRJ7N4GwJZzzk" />
+        <div class="row">
+          <button id="load" class="primary">Load & Analyse</button>
+          <button id="copy" class="ghost">Copy JSON</button>
+        </div>
+        <div id="player" style="margin-top: 14px;"></div>
+      </div>
+
+      <div class="card">
+        <div class="dials">
+          <div class="dial" id="dial-oxy" data-label="OXY"><span>0</span></div>
+          <div class="dial" id="dial-dop" data-label="DOP"><span>0</span></div>
+          <div class="dial" id="dial-adr" data-label="ADR"><span>0</span></div>
+        </div>
+        <h3>Resonance payload</h3>
+        <pre id="payload">No data yet. Paste a track link and click “Load & Analyse”.</pre>
+      </div>
+    </div>
+
+    <footer>Configure the ARCADIA endpoint in `scripts/resonance-player.js` or swap in your favourite backend. Palette: Nexus Purple • Digital Teal • Cyber Gold • Deep Space Blue.</footer>
+  </div>
+
+  <svg id="tec-orb" viewBox="0 0 200 200">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#00D5C4" />
+        <stop offset="60%" stop-color="#6A00F4" />
+        <stop offset="100%" stop-color="#0B1E3B" />
+      </radialGradient>
+      <linearGradient id="ring" x1="0" x2="1">
+        <stop offset="0%" stop-color="#F2C340" />
+        <stop offset="100%" stop-color="#EDEDED" />
+      </linearGradient>
+    </defs>
+    <circle cx="100" cy="100" r="60" fill="url(#g1)" />
+    <circle cx="100" cy="100" r="80" fill="none" stroke="url(#ring)" stroke-width="4" stroke-dasharray="8 6" />
+    <path d="M100 40 C130 60,130 140,100 160 C70 140,70 60,100 40 Z" fill="none" stroke="#EDEDED" stroke-width="3" />
+    <circle cx="100" cy="100" r="6" fill="#F2C340" />
+  </svg>
+
+  <script>
+    const input = document.getElementById('track');
+    const loadBtn = document.getElementById('load');
+    const copyBtn = document.getElementById('copy');
+    const player = document.getElementById('player');
+    const payloadEl = document.getElementById('payload');
+    const dials = {
+      OXY: document.getElementById('dial-oxy'),
+      DOP: document.getElementById('dial-dop'),
+      ADR: document.getElementById('dial-adr'),
+    };
+
+    const API_ENDPOINT = 'http://localhost:3000/resonance'; // Point at your ARCADIA service
+
+    function setDial(dial, value) {
+      const span = dial.querySelector('span');
+      span.textContent = value.toString();
+      dial.style.background = `conic-gradient(var(--teal) 0deg, var(--teal) ${value * 3.6}deg, #1a2744 ${value * 3.6}deg)`;
+    }
+
+    function updateEmbed(urlOrId) {
+      const match = urlOrId.match(/[0-9A-Za-z]{22}/);
+      if (!match) {
+        player.innerHTML = '<p>Provide a full Spotify URL or 22-character track ID.</p>';
+        return match;
+      }
+      const trackId = match[0];
+      player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+      return trackId;
+    }
+
+    async function fetchResonance(trackId) {
+      payloadEl.textContent = 'Loading…';
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ trackIds: [trackId] }),
+        });
+        if (!response.ok) {
+          throw new Error(await response.text());
+        }
+        const data = await response.json();
+        payloadEl.textContent = JSON.stringify(data, null, 2);
+        const projection = data.out?.[0]?.resonance || data[0]?.resonance;
+        if (projection) {
+          Object.entries(projection).forEach(([key, value]) => {
+            if (dials[key]) {
+              setDial(dials[key], value);
+            }
+          });
+        }
+      } catch (error) {
+        payloadEl.textContent = `Error: ${error}`;
+      }
+    }
+
+    loadBtn.addEventListener('click', () => {
+      const trackId = updateEmbed(input.value.trim());
+      if (trackId) {
+        fetchResonance(trackId);
+      }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(payloadEl.textContent || '').then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => (copyBtn.textContent = 'Copy JSON'), 1200);
+      });
+    });
+
+    (function initOrb() {
+      const orb = document.getElementById('tec-orb');
+      let x = window.innerWidth - 120;
+      let y = window.innerHeight - 120;
+      let tx = x;
+      let ty = y;
+      window.addEventListener('mousemove', (event) => {
+        tx = event.clientX + 20;
+        ty = event.clientY + 20;
+      });
+      function tick() {
+        x += (tx - x) * 0.08;
+        y += (ty - y) * 0.08;
+        orb.style.transform = `translate(${x}px, ${y}px)`;
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>
