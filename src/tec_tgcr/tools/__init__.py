@@ -8,6 +8,7 @@ from .llm import LLMResponder
 from .financial import AzureFinancialMonitor, CostAnomaly, RefundEvidence
 from .evidence import EvidenceProcessor, TimelineEvent, EvidenceReport
 from .integration import TECToolIntegration
+from .research import ResearchTool
 
 __all__ = [
 	"KnowledgeLookupTool",
@@ -22,4 +23,5 @@ __all__ = [
 	"TimelineEvent",
 	"EvidenceReport", 
 	"TECToolIntegration",
+	"ResearchTool",
 ]

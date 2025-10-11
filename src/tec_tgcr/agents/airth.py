@@ -5,11 +5,13 @@ from pathlib import Path
 from typing import Iterable, List, Optional
 
 from ..config import AgentConfig
+from ..tools.base import Tool
 from ..tools.knowledge_lookup import KnowledgeLookupTool
 from ..tools.llm import LLMResponder
 from ..tools.schedule import ScheduleTool
 from ..tools.sharepoint import SharePointPublisherTool
 from ..tools.spotify_resonance import SpotifyResonanceTool
+from ..tools.research import ResearchTool
 
 DEFAULT_SESSIONS = [
     {"label": "Mon–Fri", "window": "10:00–12:00 Eastern — TEC Agent build sprints"},
@@ -38,9 +40,10 @@ class AirthResearchGuard:
         self.sharepoint_tool = self._init_sharepoint_tool()
         self.spotify_tool = self._init_spotify_tool()
         self.llm_tool = self._init_llm_tool()
+        self.research_tool: Optional[Tool] = self._init_research_tool()
 
         self._tools: List[object] = [self.knowledge_tool, self.schedule_tool]
-        for tool in (self.sharepoint_tool, self.spotify_tool, self.llm_tool):
+        for tool in (self.sharepoint_tool, self.spotify_tool, self.llm_tool, self.research_tool):
             if tool is not None:
                 self._tools.append(tool)
 
@@ -73,6 +76,14 @@ class AirthResearchGuard:
             if llm_response:
                 sections.append(f"LLM Synthesis:\n{llm_response}")
 
+        # Research routing
+        research_settings = self.config.tool_settings.get("research", {})
+        research_keywords = research_settings.get("keywords", ["research", "search", "web", "sources", "citations"])
+        if self.research_tool and any(keyword in message_lower for keyword in research_keywords):
+            research_result = self.research_tool.run(message)
+            if research_result:
+                sections.append(f"Research Findings:\n{research_result}")
+
         if not sections:
             sections.append(self._craft_lore_hint(message_lower))
             sections.append(self.knowledge_tool.run(message))
@@ -98,6 +109,7 @@ class AirthResearchGuard:
         manifest_tools.append(self._manifest_entry(self.sharepoint_tool, "sharepoint_publish", "Publish static assets to SharePoint using the Microsoft 365 CLI."))
         manifest_tools.append(self._manifest_entry(self.spotify_tool, "spotify_resonance", "Project Spotify audio features into OXY/DOP/ADR resonance scores."))
         manifest_tools.append(self._manifest_entry(self.llm_tool, "llm_responder", "Summon an LLM insight block when deeper synthesis is requested."))
+        manifest_tools.append(self._manifest_entry(self.research_tool, "web_research", "Perform web research and return cited findings from reputable sources."))
 
         knowledge_overview = self._knowledge_cache.get("overview", {}) if isinstance(self._knowledge_cache, dict) else {}
         pillars = knowledge_overview.get("pillars", [])
@@ -190,4 +202,16 @@ class AirthResearchGuard:
             temperature=settings.get("temperature", 0.4),
             api_key=settings.get("api_key"),
             endpoint=settings.get("endpoint"),
+        )
+
+    def _init_research_tool(self) -> Optional[ResearchTool]:
+        settings = self.config.tool_settings.get("research", {})
+        if not settings:
+            return None
+        return ResearchTool(
+            provider=settings.get("provider", "bing"),
+            endpoint=settings.get("endpoint"),
+            api_key=settings.get("api_key"),
+            max_results=settings.get("max_results", 5),
+            market=settings.get("market", "en-US"),
         )

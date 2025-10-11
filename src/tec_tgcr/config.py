@@ -43,6 +43,14 @@ def _default_tool_settings() -> Dict[str, Dict[str, Any]]:
             "max_tokens": 600,
             "temperature": 0.4,
         },
+        "research": {
+            "provider": "bing",
+            "endpoint": "https://api.bing.microsoft.com/v7.0/search",
+            "api_key": None,
+            "max_results": 5,
+            "market": "en-US",
+            "keywords": ["research", "search", "web", "sources", "citations"],
+        },
     }
 
 
