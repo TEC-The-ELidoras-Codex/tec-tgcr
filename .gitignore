@@ -1,0 +1,38 @@
+# Root ignores
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.build/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Node/JS
+node_modules/
+**/node_modules/
+**/build/
+**/.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+secrets/
+*.key
+*.pem
+*.p12
+*.cer
+
+# AI workflow artifacts
+ai-workflow/*.json
+ai-workflow/output/
+ai-workflow/generated/
+
+# VS Code
+.vscode/

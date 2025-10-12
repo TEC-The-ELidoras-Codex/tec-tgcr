@@ -4,8 +4,8 @@
 It is designed for quick execution in environments like Codebase, GitHub Codespaces, or local shells where a single command is preferred.
 
 ## Features
-- Print the Airth activation prompt (`prompt`)
-- Show the Airth term pack (`terms`)
+- Print the LuminAI activation prompt (`prompt`)
+- Show the LuminAI term pack (`terms`)
 - Run financial anomaly detection (`financial`)
 - Process evidence folders (`evidence`)
 - Execute integration workflows (`integrate`)
@@ -16,7 +16,7 @@ It is designed for quick execution in environments like Codebase, GitHub Codespa
 # Show activation prompt
 python tec_agent_runner.py prompt
 
-# List Airth term pack (pretty JSON)
+# List LuminAI term pack (pretty JSON)
 python tec_agent_runner.py terms --pretty
 
 # Detect anomalies and generate evidence

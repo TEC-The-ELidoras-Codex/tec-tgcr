@@ -11,6 +11,8 @@ from rich.prompt import Prompt
 
 from .agents.airth import AirthResearchGuard
 from .config import AgentConfig
+from .integrations.civitai import CivitaiClient
+from .integrations.worldanvil import WorldAnvilClient
 from .session import ConversationSession
 
 console = Console()
@@ -62,6 +64,22 @@ def manifest(output: Path = typer.Argument(Path("agent_manifest.json"))) -> None
     manifest_data = agent.manifest()
     output.write_text(json.dumps(manifest_data, indent=2))
     console.print(f"Manifest exported to [bold]{output}[/bold]")
+
+
+@app.command()
+def civitai_search(query: str = typer.Argument(...), limit: int = 10) -> None:
+    """Search Civitai models (requires CIVITAI_API_KEY for full access)."""
+    client = CivitaiClient()
+    results = client.list_models(query=query, limit=limit)
+    console.print_json(data=results)
+
+
+@app.command()
+def worldanvil_me() -> None:
+    """Test World Anvil authentication and print account info."""
+    client = WorldAnvilClient()
+    me = client.get_me()
+    console.print_json(data=me)
 
 
 if __name__ == "__main__":

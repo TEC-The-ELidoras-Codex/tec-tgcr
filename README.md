@@ -302,7 +302,34 @@ tec-tgcr/
 
 ---
 
-## 🔄 Workflow Examples
+## � Secrets and Environment
+
+This repo uses a root `.env` file (git-ignored). Copy `.env.example` to `.env` and fill in your keys. Values with spaces are supported—wrap in quotes:
+
+```env
+CIVITAI_API_KEY="my key with spaces"
+WORLDANVIL_API_KEY="long secret token"
+CHECKPOINT_FOLDER="C:\\Users\\Ghedd\\checkpoints"
+```
+
+Recommended storage:
+- Bitwarden Secrets Manager (local and CI)
+- GitHub Secrets for CI workflows only
+- Windows Credential Manager for local scripts
+
+CLI quick checks:
+
+```bash
+# Verify Civitai auth (lists models)
+python -m tec_tgcr.cli civitai_search "Illustrious"
+
+# Verify World Anvil auth
+python -m tec_tgcr.cli worldanvil_me
+```
+
+---
+
+## �🔄 Workflow Examples
 
 ### 1. Azure Cost Anomaly Response
 ```bash

@@ -1,0 +1,56 @@
+/* Global Styles for LuminAI Interface */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000;
+  color: #e6f3ff;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #ff69b4, #00ffff);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ff1493, #00bfff);
+}
+
+/* Selection Colors */
+::selection {
+  background: rgba(0, 255, 255, 0.3);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: rgba(0, 255, 255, 0.3);
+  color: #fff;
+}

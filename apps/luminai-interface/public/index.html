@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="LuminAI - Illuminating Algorithmic Intelligence through TEC. A cosmic celestial student interface powered by AIRTH and enhanced by the Theory of General Contextual Resonance."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Fonts for Cosmic Theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta Tags for LuminAI -->
+    <meta property="og:title" content="LuminAI - Cosmic AI Interface" />
+    <meta property="og:description" content="Experience the cosmic brilliance of LuminAI, where algorithmic intelligence meets celestial wonder through TEC's Theory of General Contextual Resonance." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tec-the-elidoras-codex.github.io/tec-tgcr/" />
+    
+    <title>LuminAI - Illuminating Algorithmic Intelligence through TEC</title>
+    
+    <style>
+      /* Loading Animation */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, #0a0a2e 0%, #000 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 3px solid rgba(0, 255, 255, 0.1);
+        border-top: 3px solid #00ffff;
+        border-radius: 50%;
+        animation: cosmic-spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes cosmic-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        color: #00ffff;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        animation: loading-pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes loading-pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      
+      .loading-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this cosmic LuminAI interface.</noscript>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Initializing Cosmic Resonance...</div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+      // Hide loading screen after React app loads
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(function() {
+              loadingScreen.style.display = 'none';
+            }, 500);
+          }
+        }, 1000); // Show loading for at least 1 second for cosmic effect
+      });
+    </script>
+  </body>
+</html>

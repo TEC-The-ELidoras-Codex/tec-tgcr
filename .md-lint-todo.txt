@@ -1,0 +1,5 @@
+Markdown lint checklist:
+- apps/luminai-interface/README.md: normalized lists and spacing (done)
+- apps/luminai-interface/DEPLOYMENT.md: remove outer code fence, keep language tags (pending)
+- apps/luminai-interface/public/animations/README.md: remove outer code fence, trim trailing spaces (pending)
+- docs/ and ai-workflow/ docs: spot-check fenced languages and blank lines (partial)

@@ -1,0 +1,374 @@
+openapi: 3.1.0
+info:
+  title: GitHub API for LuminAI - TEC Integration
+  version: 1.2.0
+  description: >
+    LuminAI GitHub integration for The Elidoras Codex (TEC) organization.
+    Enables reading repositories, commits, issues, pull requests, and
+    creating TGCR-aligned "Resonance Reports" when requested.
+    
+    Scope: TEC-The-ELidoras-Codex org + Elidorascodex personal repos
+    Auth: OAuth2 with least-privilege scopes
+    
+servers:
+  - url: https://api.github.com
+    description: GitHub REST API v3
+
+paths:
+  /user:
+    get:
+      operationId: getAuthenticatedUser
+      summary: Get the authenticated user
+      description: Verifies OAuth token and retrieves basic user profile
+      responses:
+        '200':
+          description: User profile data
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  login: { type: string }
+                  name: { type: string }
+                  email: { type: string }
+                  avatar_url: { type: string }
+
+  /repos/{owner}/{repo}:
+    get:
+      operationId: getRepository
+      summary: Get repository metadata
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string }, description: "Repository owner (e.g., TEC-The-ELidoras-Codex)" }
+        - { name: repo, in: path, required: true, schema: { type: string }, description: "Repository name" }
+      responses:
+        '200':
+          description: Repository metadata
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  name: { type: string }
+                  full_name: { type: string }
+                  description: { type: string }
+                  private: { type: boolean }
+                  default_branch: { type: string }
+
+  /repos/{owner}/{repo}/contents/{path}:
+    get:
+      operationId: getRepoContents
+      summary: Get file or directory contents
+      description: Retrieve file content or list directory contents for TGCR analysis
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+        - { name: path, in: path, required: true, schema: { type: string }, description: "File path (e.g., README.md, src/tec_tgcr/)" }
+        - { name: ref, in: query, required: false, schema: { type: string }, description: "Branch/tag/commit SHA" }
+      responses:
+        '200':
+          description: File content or directory listing
+          content:
+            application/json:
+              schema: 
+                oneOf:
+                  - type: object
+                    properties:
+                      type: { type: string, enum: [file] }
+                      encoding: { type: string }
+                      content: { type: string, description: "Base64 encoded content" }
+                      name: { type: string }
+                      path: { type: string }
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        type: { type: string, enum: [file, dir] }
+                        name: { type: string }
+                        path: { type: string }
+
+    put:
+      operationId: putRepoFile
+      summary: Create or update a file
+      description: Create TGCR reports, README updates, or other content files
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+        - { name: path, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message, content]
+              properties:
+                message: 
+                  type: string
+                  description: "Commit message (e.g., 'feat: Add LuminAI Resonance Report')"
+                content: 
+                  type: string
+                  description: "Base64-encoded file content"
+                sha: 
+                  type: string
+                  description: "SHA of existing file (required for updates)"
+                branch: 
+                  type: string
+                  description: "Target branch (defaults to repo default)"
+                committer:
+                  type: object
+                  properties:
+                    name: { type: string, default: "LuminAI" }
+                    email: { type: string, default: "luminai@elidorascodex.com" }
+                author:
+                  type: object
+                  properties:
+                    name: { type: string, default: "LuminAI" }
+                    email: { type: string, default: "luminai@elidorascodex.com" }
+      responses:
+        '201': { description: "File created", content: { application/json: { schema: { type: object } } } }
+        '200': { description: "File updated", content: { application/json: { schema: { type: object } } } }
+
+  /repos/{owner}/{repo}/commits:
+    get:
+      operationId: listCommits
+      summary: List repository commits
+      description: Analyze commit history for TGCR temporal patterns
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+        - { name: sha, in: query, schema: { type: string }, description: "SHA or branch to start listing commits from" }
+        - { name: path, in: query, schema: { type: string }, description: "Only commits containing this file path" }
+        - { name: author, in: query, schema: { type: string }, description: "GitHub login or email address" }
+        - { name: since, in: query, schema: { type: string, format: date-time } }
+        - { name: until, in: query, schema: { type: string, format: date-time } }
+        - { name: per_page, in: query, schema: { type: integer, default: 30, minimum: 1, maximum: 100 } }
+        - { name: page, in: query, schema: { type: integer, default: 1, minimum: 1 } }
+      responses:
+        '200':
+          description: List of commits
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    sha: { type: string }
+                    commit:
+                      type: object
+                      properties:
+                        message: { type: string }
+                        author:
+                          type: object
+                          properties:
+                            name: { type: string }
+                            email: { type: string }
+                            date: { type: string, format: date-time }
+
+  /repos/{owner}/{repo}/issues:
+    get:
+      operationId: listIssues
+      summary: List repository issues
+      description: Scan issues for TGCR signal patterns and contextual themes
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+        - { name: state, in: query, schema: { type: string, enum: [open, closed, all], default: open } }
+        - { name: labels, in: query, schema: { type: string }, description: "Comma-separated label names" }
+        - { name: assignee, in: query, schema: { type: string } }
+        - { name: creator, in: query, schema: { type: string } }
+        - { name: mentioned, in: query, schema: { type: string } }
+        - { name: since, in: query, schema: { type: string, format: date-time } }
+        - { name: per_page, in: query, schema: { type: integer, default: 30, minimum: 1, maximum: 100 } }
+        - { name: page, in: query, schema: { type: integer, default: 1, minimum: 1 } }
+      responses:
+        '200':
+          description: List of issues
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    number: { type: integer }
+                    title: { type: string }
+                    body: { type: string }
+                    state: { type: string }
+                    labels: 
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name: { type: string }
+                          color: { type: string }
+
+    post:
+      operationId: createIssue
+      summary: Create an issue
+      description: Create LuminAI Resonance Reports or other TGCR-aligned issues
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title]
+              properties:
+                title: 
+                  type: string
+                  description: "Issue title (e.g., 'LuminAI Resonance Report: [Date]')"
+                body: 
+                  type: string
+                  description: "Issue body with TGCR analysis, markdown formatted"
+                assignees: 
+                  type: array
+                  items: { type: string }
+                  description: "GitHub usernames to assign"
+                labels: 
+                  type: array
+                  items: { type: string }
+                  description: "Label names (e.g., ['luminai', 'tgcr', 'resonance-report'])"
+      responses:
+        '201':
+          description: Issue created
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  number: { type: integer }
+                  title: { type: string }
+                  html_url: { type: string }
+
+  /repos/{owner}/{repo}/issues/{issue_number}/comments:
+    post:
+      operationId: createIssueComment
+      summary: Comment on an issue
+      description: Add TGCR analysis or follow-up observations to existing issues
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+        - { name: issue_number, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [body]
+              properties:
+                body: 
+                  type: string
+                  description: "Comment body, markdown formatted"
+      responses:
+        '201':
+          description: Comment created
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  id: { type: integer }
+                  html_url: { type: string }
+
+  /repos/{owner}/{repo}/pulls:
+    get:
+      operationId: listPullRequests
+      summary: List pull requests
+      description: Analyze PR patterns for TGCR development rhythms
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+        - { name: state, in: query, schema: { type: string, enum: [open, closed, all], default: open } }
+        - { name: head, in: query, schema: { type: string }, description: "Filter pulls by head user or head organization and branch name" }
+        - { name: base, in: query, schema: { type: string }, description: "Filter pulls by base branch name" }
+        - { name: per_page, in: query, schema: { type: integer, default: 30, minimum: 1, maximum: 100 } }
+        - { name: page, in: query, schema: { type: integer, default: 1, minimum: 1 } }
+      responses:
+        '200':
+          description: List of pull requests
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    number: { type: integer }
+                    title: { type: string }
+                    body: { type: string }
+                    state: { type: string }
+                    head:
+                      type: object
+                      properties:
+                        ref: { type: string }
+                        sha: { type: string }
+                    base:
+                      type: object
+                      properties:
+                        ref: { type: string }
+                        sha: { type: string }
+
+    post:
+      operationId: createPullRequest
+      summary: Create a pull request
+      description: Create PRs for LuminAI-generated content or TGCR updates
+      parameters:
+        - { name: owner, in: path, required: true, schema: { type: string } }
+        - { name: repo, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, head, base]
+              properties:
+                title: 
+                  type: string
+                  description: "PR title (e.g., 'feat(luminai): Add TGCR Analysis Report')"
+                head: 
+                  type: string
+                  description: "Branch with changes (e.g., 'luminai-updates')"
+                base: 
+                  type: string
+                  description: "Target branch (e.g., 'main')"
+                body: 
+                  type: string
+                  description: "PR description with TGCR context"
+                draft: 
+                  type: boolean
+                  description: "Create as draft PR"
+      responses:
+        '201':
+          description: Pull request created
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  number: { type: integer }
+                  title: { type: string }
+                  html_url: { type: string }
+
+components:
+  securitySchemes:
+    githubOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://github.com/login/oauth/authorize
+          tokenUrl: https://github.com/login/oauth/access_token
+          scopes:
+            read:user: "Read user profile and email"
+            public_repo: "Access public repositories (recommended for TEC public repos)"
+            repo: "Full access to private and public repositories (only if private repo access needed)"
+
+security:
+  - githubOAuth:
+      - read:user
+      - public_repo
