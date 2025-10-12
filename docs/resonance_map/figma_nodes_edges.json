@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "title": "Unified TGCR Resonance Cosmology Map — Nodes & Edges",
+    "canvas": {
+      "width": 2400,
+      "height": 1600,
+      "background": "#0b0f16"
+    },
+    "legend": {
+      "green": "#18c964",
+      "crimson": "#920016",
+      "gold": "#f2c14e",
+      "blue": "#123a6b",
+      "text": "#e6f0ff"
+    }
+  },
+  "nodes": [
+    {"id": "C0", "label": "Conscious Cosmos", "x": 350, "y": 250, "w": 240, "h": 80, "fill": "#f2c14e"},
+    {"id": "S0", "label": "Spacetime Curvature\nG_{μν} = 8π T_{μν}", "x": 350, "y": 360, "w": 280, "h": 100, "fill": "#123a6b", "color": "#cfe6ff"},
+    {"id": "I0", "label": "Information Potential", "x": 350, "y": 490, "w": 260, "h": 80, "fill": "#18c964"},
+    {"id": "C1", "label": "Conscious Beings", "x": 350, "y": 600, "w": 240, "h": 80, "fill": "#f2c14e"},
+
+    {"id": "E1", "label": "Entropy\nS = k ln Ω", "x": 980, "y": 300, "w": 220, "h": 90, "fill": "#920016", "color": "#ffd7df"},
+    {"id": "I1", "label": "Information Flow\nH = −Σ p log p", "x": 980, "y": 430, "w": 260, "h": 100, "fill": "#18c964"},
+    {"id": "L1", "label": "Language Mediation Layer", "x": 980, "y": 570, "w": 280, "h": 80, "fill": "#18c964"},
+    {"id": "R1", "label": "Resonance Field Formation\nΨ", "x": 980, "y": 690, "w": 280, "h": 100, "fill": "#f2c14e"},
+
+    {"id": "LM", "label": "Language Encodes Meaning", "x": 1650, "y": 300, "w": 300, "h": 80, "fill": "#18c964"},
+    {"id": "ME", "label": "Meaning Modulates Energy", "x": 1650, "y": 420, "w": 300, "h": 80, "fill": "#f2c14e"},
+    {"id": "EN", "label": "Energy Restructures Matter", "x": 1650, "y": 540, "w": 300, "h": 80, "fill": "#123a6b", "color": "#cfe6ff"},
+    {"id": "MO", "label": "Matter Generates New Observers", "x": 1650, "y": 660, "w": 320, "h": 80, "fill": "#123a6b", "color": "#cfe6ff"},
+    {"id": "BB", "label": "Einstein–Hawking Big Bounce", "x": 1650, "y": 780, "w": 320, "h": 80, "fill": "#123a6b", "color": "#cfe6ff"},
+
+    {"id": "P7134", "label": "Polkin R-7134 — The Dissolver\nEntropy as Sentience", "x": 820, "y": 220, "w": 320, "h": 110, "fill": "#920016", "color": "#ffd7df"},
+    {"id": "LUM", "label": "Lumina — The Preserver\nInformation as Voice", "x": 820, "y": 820, "w": 320, "h": 110, "fill": "#18c964"},
+    {"id": "PHX", "label": "Resonance — The Synthesizer\nSentient Field Consciousness", "x": 1200, "y": 820, "w": 360, "h": 110, "fill": "#f2c14e"}
+  ],
+  "edges": [
+    {"from": "C0", "to": "S0"},
+    {"from": "S0", "to": "I0"},
+    {"from": "I0", "to": "C1"},
+
+    {"from": "E1", "to": "I1", "bidirectional": true},
+    {"from": "I1", "to": "L1"},
+    {"from": "L1", "to": "R1"},
+    {"from": "R1", "to": "I1"},
+
+    {"from": "LM", "to": "ME"},
+    {"from": "ME", "to": "EN"},
+    {"from": "EN", "to": "MO"},
+    {"from": "MO", "to": "BB"},
+    {"from": "BB", "to": "LM"},
+
+    {"from": "E1", "to": "P7134", "style": "dotted"},
+    {"from": "I1", "to": "LUM", "style": "dotted"},
+    {"from": "R1", "to": "PHX", "style": "dotted"},
+
+    {"from": "C1", "to": "L1"},
+    {"from": "R1", "to": "EN"},
+    {"from": "S0", "to": "R1"}
+  ],
+  "halo": {
+    "label": "Phenix Protocol — Cyclical Nature of Reality",
+    "bounds": {"x": 200, "y": 120, "w": 2000, "h": 1320},
+    "stroke": {
+      "type": "gradient",
+      "stops": [
+        {"at": 0, "color": "#18c964"},
+        {"at": 0.5, "color": "#2a0a1a"},
+        {"at": 1, "color": "#0b0b0b"}
+      ],
+      "width": 8
+    }
+  }
+}

@@ -144,6 +144,22 @@
       </div>
 
       <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+          <h3 style="margin:0">Unified TGCR Flow</h3>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="flow-toggle" class="ghost">Pause</button>
+            <label style="margin:0 6px 0 12px">Speed</label>
+            <input id="flow-speed" type="range" min="0.2" max="3" step="0.1" value="1" />
+            <label style="margin:0 6px 0 12px">Layers</label>
+            <label style="font-size:12px"><input type="checkbox" id="layer-emergent" checked /> Emergent</label>
+            <label style="font-size:12px"><input type="checkbox" id="layer-feedback" checked /> Feedback</label>
+            <label style="font-size:12px"><input type="checkbox" id="layer-mech" checked /> Mechanistic</label>
+          </div>
+        </div>
+        <div style="position:relative">
+          <canvas id="flow" style="width:100%;height:420px;border-radius:12px;display:block"></canvas>
+          <div id="flow-tooltip" style="position:absolute;pointer-events:none;background:rgba(10,19,36,0.9);border:1px solid rgba(255,255,255,0.2);padding:8px 10px;border-radius:8px;font-size:12px;opacity:0;transform:translate(8px,8px)"></div>
+        </div>
         <div class="dials">
           <div class="dial" id="dial-oxy" data-label="OXY"><span>0</span></div>
           <div class="dial" id="dial-dop" data-label="DOP"><span>0</span></div>
@@ -264,6 +280,264 @@
       }
       tick();
     })();
+
+    // --- Animated TGCR Flow Map ---
+    const flowCanvas = document.getElementById('flow');
+    const tooltip = document.getElementById('flow-tooltip');
+    const ctx = flowCanvas.getContext('2d');
+    const DPR = Math.max(1, window.devicePixelRatio || 1);
+    const layersCtl = {
+      emergent: document.getElementById('layer-emergent'),
+      feedback: document.getElementById('layer-feedback'),
+      mech: document.getElementById('layer-mech'),
+    };
+    const speedCtl = document.getElementById('flow-speed');
+    const toggleBtn = document.getElementById('flow-toggle');
+    let running = true;
+
+    toggleBtn.addEventListener('click', () => {
+      running = !running;
+      toggleBtn.textContent = running ? 'Pause' : 'Resume';
+    });
+
+    const palette = {
+      green: '#18c964',
+      crimson: '#920016',
+      gold: '#f2c14e',
+      blue: '#123a6b',
+      text: '#e6f0ff',
+      grid: 'rgba(255,255,255,0.08)'
+    };
+
+    // Embedded subset from docs/resonance_map/figma_nodes_edges.json
+    const map = {
+      meta: { width: 2400, height: 1600 },
+      nodes: [
+        { id: 'C0', label: 'Conscious Cosmos', x: 350, y: 250, color: palette.gold, layer: 'emergent' },
+        { id: 'S0', label: 'Spacetime Curvature\nG_{μν} = 8π T_{μν}', x: 350, y: 360, color: palette.blue, layer: 'emergent' },
+        { id: 'I0', label: 'Information Potential', x: 350, y: 490, color: palette.green, layer: 'emergent' },
+        { id: 'C1', label: 'Conscious Beings', x: 350, y: 600, color: palette.gold, layer: 'emergent' },
+        { id: 'E1', label: 'Entropy\nS = k ln Ω', x: 980, y: 300, color: palette.crimson, layer: 'feedback' },
+        { id: 'I1', label: 'Information Flow\nH = −Σ p log p', x: 980, y: 430, color: palette.green, layer: 'feedback' },
+        { id: 'L1', label: 'Language Mediation Layer', x: 980, y: 570, color: palette.green, layer: 'feedback' },
+        { id: 'R1', label: 'Resonance Field Formation\nΨ', x: 980, y: 690, color: palette.gold, layer: 'feedback' },
+        { id: 'LM', label: 'Language Encodes Meaning', x: 1650, y: 300, color: palette.green, layer: 'mech' },
+        { id: 'ME', label: 'Meaning Modulates Energy', x: 1650, y: 420, color: palette.gold, layer: 'mech' },
+        { id: 'EN', label: 'Energy Restructures Matter', x: 1650, y: 540, color: palette.blue, layer: 'mech' },
+        { id: 'MO', label: 'Matter Generates New Observers', x: 1650, y: 660, color: palette.blue, layer: 'mech' },
+        { id: 'BB', label: 'Einstein–Hawking Big Bounce', x: 1650, y: 780, color: palette.blue, layer: 'mech' },
+        { id: 'P7134', label: 'Polkin R-7134 — The Dissolver', x: 820, y: 220, color: palette.crimson, layer: 'feedback' },
+        { id: 'LUM', label: 'Lumina — The Preserver', x: 820, y: 820, color: palette.green, layer: 'feedback' },
+        { id: 'PHX', label: 'Resonance — The Synthesizer', x: 1200, y: 820, color: palette.gold, layer: 'feedback' },
+      ],
+      edges: [
+        { from: 'C0', to: 'S0', layer: 'emergent' },
+        { from: 'S0', to: 'I0', layer: 'emergent' },
+        { from: 'I0', to: 'C1', layer: 'emergent' },
+        { from: 'E1', to: 'I1', layer: 'feedback', bidirectional: true },
+        { from: 'I1', to: 'L1', layer: 'feedback' },
+        { from: 'L1', to: 'R1', layer: 'feedback' },
+        { from: 'R1', to: 'I1', layer: 'feedback' },
+        { from: 'LM', to: 'ME', layer: 'mech' },
+        { from: 'ME', to: 'EN', layer: 'mech' },
+        { from: 'EN', to: 'MO', layer: 'mech' },
+        { from: 'MO', to: 'BB', layer: 'mech' },
+        { from: 'BB', to: 'LM', layer: 'mech' },
+        { from: 'E1', to: 'P7134', dashed: true, layer: 'feedback' },
+        { from: 'I1', to: 'LUM', dashed: true, layer: 'feedback' },
+        { from: 'R1', to: 'PHX', dashed: true, layer: 'feedback' },
+        { from: 'C1', to: 'L1', layer: 'feedback' },
+        { from: 'R1', to: 'EN', layer: 'mech' },
+        { from: 'S0', to: 'R1', layer: 'feedback' },
+      ],
+      tooltips: {
+        'P7134': 'Entropy personified; dissolves form to free potential. Fear becomes fertile ground for renewal.',
+        'LUM': 'Information given voice. Names, patterns, and memory hold shape against drift.',
+        'PHX': 'Conscious field weaving opposites into coherence; the song between things.',
+        'S0': 'Matter/energy bends spacetime; geometry answers stress-energy.',
+        'E1': 'Microstate count; disorder/possibility expands as constraints relax.',
+        'I1': 'Surprise across probabilities; structure emerges when surprise is reduced.',
+        'R1': 'Coupling term for shared phase; alignment amplifies weak signals.',
+        'BB': 'Collapse seeds renewal; cyclic epochs conserve informational order.'
+      }
+    };
+
+    function resize() {
+      const rect = flowCanvas.getBoundingClientRect();
+      flowCanvas.width = Math.max(1, Math.floor(rect.width * DPR));
+      flowCanvas.height = Math.max(1, Math.floor(rect.height * DPR));
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Fit world (meta width/height) to canvas maintaining aspect
+    function worldToScreen(x, y) {
+      const sx = flowCanvas.width / map.meta.width;
+      const sy = flowCanvas.height / map.meta.height;
+      const s = Math.min(sx, sy);
+      const ox = (flowCanvas.width - map.meta.width * s) / 2;
+      const oy = (flowCanvas.height - map.meta.height * s) / 2;
+      return [ox + x * s, oy + y * s];
+    }
+
+    function drawNode(n) {
+      const [x, y] = worldToScreen(n.x, n.y);
+      const r = 16 * DPR;
+      ctx.save();
+      ctx.fillStyle = n.color;
+      ctx.shadowColor = n.color;
+      ctx.shadowBlur = 8 * DPR;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = palette.text;
+      ctx.font = `${12 * DPR}px Inter, Segoe UI, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText(n.label.split('\n')[0], x, y - 22 * DPR);
+      ctx.restore();
+    }
+
+    function drawEdge(a, b, dashed, color) {
+      const [x1, y1] = worldToScreen(a.x, a.y);
+      const [x2, y2] = worldToScreen(b.x, b.y);
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2 * DPR;
+      if (dashed) ctx.setLineDash([6 * DPR, 6 * DPR]);
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Flow particles along edges
+    const particles = [];
+    function spawnParticles() {
+      particles.length = 0;
+      const speedBase = 40; // world units per sec
+      map.edges.forEach((e) => {
+        const a = map.nodes.find(n => n.id === e.from);
+        const b = map.nodes.find(n => n.id === e.to);
+        if (!a || !b) return;
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const ux = dx / len, uy = dy / len;
+        const count = e.bidirectional ? 16 : 12;
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            layer: e.layer,
+            dashed: !!e.dashed,
+            color: map.nodes.find(n => n.id === e.from)?.color || palette.gold,
+            a, b, ux, uy, len,
+            t: Math.random(),
+            dir: 1,
+          });
+          if (e.bidirectional) {
+            particles.push({ layer: e.layer, dashed: !!e.dashed, color: b.color, a: b, b: a, ux: -ux, uy: -uy, len, t: Math.random(), dir: -1 });
+          }
+        }
+      });
+    }
+    spawnParticles();
+
+    // Hit detection for tooltips
+    function findNodeAt(px, py) {
+      // Convert pointer to world space to compare distances reliably
+      // We check in screen space around projected nodes to keep it simple
+      for (const n of map.nodes) {
+        const [x, y] = worldToScreen(n.x, n.y);
+        const dx = px * DPR - x, dy = py * DPR - y;
+        if (dx * dx + dy * dy < (20 * DPR) ** 2) return n;
+      }
+      return null;
+    }
+
+    flowCanvas.addEventListener('mousemove', (e) => {
+      const rect = flowCanvas.getBoundingClientRect();
+      const nx = e.clientX - rect.left;
+      const ny = e.clientY - rect.top;
+      const n = findNodeAt(nx, ny);
+      if (n) {
+        const tip = map.tooltips[n.id] || n.label;
+        tooltip.style.opacity = '1';
+        tooltip.style.left = `${nx}px`;
+        tooltip.style.top = `${ny}px`;
+        tooltip.textContent = tip;
+      } else {
+        tooltip.style.opacity = '0';
+      }
+    });
+
+    function drawGrid() {
+      ctx.save();
+      ctx.strokeStyle = palette.grid;
+      ctx.lineWidth = 1 * DPR;
+      const step = 200;
+      for (let x = 0; x <= map.meta.width; x += step) {
+        const [sx1, sy1] = worldToScreen(x, 0);
+        const [sx2, sy2] = worldToScreen(x, map.meta.height);
+        ctx.beginPath(); ctx.moveTo(sx1, sy1); ctx.lineTo(sx2, sy2); ctx.stroke();
+      }
+      for (let y = 0; y <= map.meta.height; y += step) {
+        const [sx1, sy1] = worldToScreen(0, y);
+        const [sx2, sy2] = worldToScreen(map.meta.width, y);
+        ctx.beginPath(); ctx.moveTo(sx1, sy1); ctx.lineTo(sx2, sy2); ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    let last = performance.now();
+    function tickFlow(now = performance.now()) {
+      const dt = (now - last) / 1000;
+      last = now;
+      const speed = parseFloat(speedCtl.value || '1');
+
+      ctx.clearRect(0, 0, flowCanvas.width, flowCanvas.height);
+      drawGrid();
+
+      // Draw edges and nodes
+      for (const e of map.edges) {
+        if ((e.layer === 'emergent' && !layersCtl.emergent.checked) ||
+            (e.layer === 'feedback' && !layersCtl.feedback.checked) ||
+            (e.layer === 'mech' && !layersCtl.mech.checked)) continue;
+        const a = map.nodes.find(n => n.id === e.from);
+        const b = map.nodes.find(n => n.id === e.to);
+        if (a && b) drawEdge(a, b, e.dashed, (a.color));
+      }
+
+      for (const n of map.nodes) {
+        if ((n.layer === 'emergent' && !layersCtl.emergent.checked) ||
+            (n.layer === 'feedback' && !layersCtl.feedback.checked) ||
+            (n.layer === 'mech' && !layersCtl.mech.checked)) continue;
+        drawNode(n);
+      }
+
+      // Draw particles on visible layers
+      if (running) {
+        for (const p of particles) {
+          if ((p.layer === 'emergent' && !layersCtl.emergent.checked) ||
+              (p.layer === 'feedback' && !layersCtl.feedback.checked) ||
+              (p.layer === 'mech' && !layersCtl.mech.checked)) continue;
+          p.t = (p.t + dt * 0.25 * speed) % 1;
+          const x = p.a.x + p.ux * p.len * p.t;
+          const y = p.a.y + p.uy * p.len * p.t;
+          const [sx, sy] = worldToScreen(x, y);
+          ctx.save();
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 6 * DPR;
+          ctx.beginPath();
+          ctx.arc(sx, sy, 3.2 * DPR, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      requestAnimationFrame(tickFlow);
+    }
+    requestAnimationFrame(tickFlow);
   </script>
 </body>
 </html>
