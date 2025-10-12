@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>TEC • Resonance Player</title>
   <style>
     :root {
@@ -110,6 +110,55 @@
       pointer-events: none;
       filter: drop-shadow(0 0 12px rgba(106, 0, 244, 0.6));
     }
+
+    /* Layout refinements and moved inline styles */
+    #player { margin-top: 14px; }
+    .flow-controls {
+      display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;
+    }
+    .flow-controls h3 { margin: 0; }
+    .flow-controls .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .flow-label { margin:0 6px 0 12px; }
+    .flow-small { font-size: 12px; }
+    .flow-stage { position: relative; }
+  #flow { width: 100%; height: 420px; border-radius: 12px; display: block; background: #000; }
+    #flow-tooltip {
+      position:absolute;pointer-events:none;background:rgba(10,19,36,0.9);
+      border:1px solid rgba(255,255,255,0.2);padding:8px 10px;border-radius:8px;font-size:12px;opacity:0;
+      transform: translate(8px,8px);
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      .wrap { padding: 16px; }
+      .panel { grid-template-columns: 1fr; }
+      #flow { height: 60dvh !important; }
+      iframe { height: 260px; }
+    }
+
+    /* Fullscreen fallback mode for the flow card */
+    .fullscreen-flow {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      border-radius: 0 !important;
+      background: radial-gradient(1200px 800px at 50% 50%, rgba(18,58,107,0.6), rgba(0,0,0,0.95));
+    }
+    .fullscreen-flow #flow {
+      width: 100vw !important;
+      height: 100dvh !important;
+      border-radius: 0 !important;
+    }
+    .fullscreen-flow .flow-controls {
+      position: absolute;
+      top: 8px; left: 8px; right: 8px;
+      display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+      background: rgba(11,30,59,0.6);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px; padding: 10px;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
   </style>
 </head>
 <body>
@@ -140,25 +189,47 @@
           <button id="load" class="primary">Load & Analyse</button>
           <button id="copy" class="ghost">Copy JSON</button>
         </div>
-        <div id="player" style="margin-top: 14px;"></div>
+  <div id="player"></div>
       </div>
 
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px">
-          <h3 style="margin:0">Unified TGCR Flow</h3>
-          <div style="display:flex;gap:8px;align-items:center">
+      <div class="card" id="flow-card">
+        <div class="flow-controls">
+          <h3>Unified TGCR Flow</h3>
+          <div class="row">
             <button id="flow-toggle" class="ghost">Pause</button>
-            <label style="margin:0 6px 0 12px">Speed</label>
-            <input id="flow-speed" type="range" min="0.2" max="3" step="0.1" value="1" />
-            <label style="margin:0 6px 0 12px">Layers</label>
-            <label style="font-size:12px"><input type="checkbox" id="layer-emergent" checked /> Emergent</label>
-            <label style="font-size:12px"><input type="checkbox" id="layer-feedback" checked /> Feedback</label>
-            <label style="font-size:12px"><input type="checkbox" id="layer-mech" checked /> Mechanistic</label>
+            <button id="flow-fullscreen" class="ghost" title="Toggle fullscreen">Fullscreen</button>
+            <label class="flow-label">Speed</label>
+            <input id="flow-speed" type="range" min="0.2" max="3" step="0.1" value="1" aria-label="Flow particle speed" title="Flow particle speed" />
+            <label class="flow-label">Spin</label>
+            <label class="flow-small"><input type="checkbox" id="flow-spin" /> On</label>
+            <input id="flow-spin-speed" type="range" min="0" max="1.5" step="0.05" value="0.3" aria-label="Scene spin speed" title="Scene spin speed" />
+            <label class="flow-label">Orbit</label>
+            <label class="flow-small"><input type="checkbox" id="flow-orbit" checked /> On</label>
+            <input id="flow-orbit-speed" type="range" min="0" max="2" step="0.05" value="0.4" aria-label="Node orbit speed" title="Node orbit speed" />
+            <label class="flow-label">Physics</label>
+            <label class="flow-small"><input type="checkbox" id="phys-enabled" checked /> On</label>
+            <label class="flow-small">G</label>
+            <input id="phys-G" type="range" min="0" max="0.005" step="0.0001" value="0.0007" title="Gravitational constant" />
+            <label class="flow-small">Damp</label>
+            <input id="phys-damp" type="range" min="0" max="0.2" step="0.005" value="0.02" title="Velocity damping" />
+            <label class="flow-small">ResK</label>
+            <input id="phys-resK" type="range" min="-0.005" max="0.005" step="0.0001" value="0.0005" title="Resonant coupling strength" />
+            <label class="flow-small">Soft</label>
+            <input id="phys-soft" type="range" min="20" max="400" step="10" value="80" title="Softening length" />
+            <label class="flow-small">dt</label>
+            <input id="phys-timescale" type="range" min="0.2" max="3" step="0.1" value="1" title="Time scale" />
+            <label class="flow-small"><input type="checkbox" id="phys-pin-phx" /> Pin PHX</label>
+            <button id="phys-bang" class="ghost" title="Re-initialize with inflation">Big Bang</button>
+            <span id="phys-stats" class="flow-small" style="opacity:.8;margin-left:8px"></span>
+            <label class="flow-label">Layers</label>
+            <label class="flow-small"><input type="checkbox" id="layer-emergent" checked /> Emergent</label>
+            <label class="flow-small"><input type="checkbox" id="layer-feedback" checked /> Feedback</label>
+            <label class="flow-small"><input type="checkbox" id="layer-mech" checked /> Mechanistic</label>
           </div>
         </div>
-        <div style="position:relative">
-          <canvas id="flow" style="width:100%;height:420px;border-radius:12px;display:block"></canvas>
-          <div id="flow-tooltip" style="position:absolute;pointer-events:none;background:rgba(10,19,36,0.9);border:1px solid rgba(255,255,255,0.2);padding:8px 10px;border-radius:8px;font-size:12px;opacity:0;transform:translate(8px,8px)"></div>
+        <div class="flow-stage">
+          <canvas id="flow"></canvas>
+          <div id="flow-tooltip"></div>
         </div>
         <div class="dials">
           <div class="dial" id="dial-oxy" data-label="OXY"><span>0</span></div>
@@ -203,7 +274,21 @@
       ADR: document.getElementById('dial-adr'),
     };
 
-    const API_ENDPOINT = 'http://localhost:3000/resonance'; // Point at your ARCADIA service
+    // Dynamic API endpoint
+    // - In production on elidorascodex.com, call the WordPress REST route
+    // - If ?api=<url> is present, use that (handy for staging)
+    // - Otherwise default to local ARCADIA for dev
+    function getApiEndpoint() {
+      const params = new URLSearchParams(location.search);
+      const override = params.get('api');
+      if (override) return override;
+      const host = (location.hostname || '').toLowerCase();
+      if (host.endsWith('elidorascodex.com')) {
+        return `${location.origin}/wp-json/tec/v1/resonance`;
+      }
+      return 'http://localhost:3000/resonance';
+    }
+    const API_ENDPOINT = getApiEndpoint();
 
     function setDial(dial, value) {
       const span = dial.querySelector('span');
@@ -282,7 +367,8 @@
     })();
 
     // --- Animated TGCR Flow Map ---
-    const flowCanvas = document.getElementById('flow');
+  const flowCanvas = document.getElementById('flow');
+  const flowCard = document.getElementById('flow-card');
     const tooltip = document.getElementById('flow-tooltip');
     const ctx = flowCanvas.getContext('2d');
     const DPR = Math.max(1, window.devicePixelRatio || 1);
@@ -291,13 +377,56 @@
       feedback: document.getElementById('layer-feedback'),
       mech: document.getElementById('layer-mech'),
     };
-    const speedCtl = document.getElementById('flow-speed');
+  const speedCtl = document.getElementById('flow-speed');
     const toggleBtn = document.getElementById('flow-toggle');
+  const fullscreenBtn = document.getElementById('flow-fullscreen');
+    const spinCtl = document.getElementById('flow-spin');
+    const spinSpeedCtl = document.getElementById('flow-spin-speed');
+  const orbitCtl = document.getElementById('flow-orbit');
+  const orbitSpeedCtl = document.getElementById('flow-orbit-speed');
+  const physEnabledCtl = document.getElementById('phys-enabled');
+  const physGCtl = document.getElementById('phys-G');
+  const physDampCtl = document.getElementById('phys-damp');
+  const physResKCtl = document.getElementById('phys-resK');
+  const physSoftCtl = document.getElementById('phys-soft');
+  const physTimeCtl = document.getElementById('phys-timescale');
+  const physPinPhxCtl = document.getElementById('phys-pin-phx');
+  const physBangBtn = document.getElementById('phys-bang');
+  const physStatsEl = document.getElementById('phys-stats');
     let running = true;
+    let spinAngle = 0;
 
     toggleBtn.addEventListener('click', () => {
       running = !running;
       toggleBtn.textContent = running ? 'Pause' : 'Resume';
+    });
+
+    // Fullscreen support with CSS fallback for iOS older versions
+    function inFullscreen() {
+      return document.fullscreenElement === flowCard || document.webkitFullscreenElement === flowCard;
+    }
+    function requestFs() {
+      const el = flowCard;
+      if (el.requestFullscreen) return el.requestFullscreen();
+      if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+      return Promise.reject();
+    }
+    function exitFs() {
+      if (document.exitFullscreen) return document.exitFullscreen();
+      if (document.webkitExitFullscreen) return document.webkitExitFullscreen();
+      return Promise.reject();
+    }
+    function toggleFullscreen() {
+      if (inFullscreen()) {
+        exitFs().catch(() => flowCard.classList.remove('fullscreen-flow'));
+      } else {
+        requestFs().catch(() => flowCard.classList.add('fullscreen-flow'));
+      }
+    }
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', () => {
+      if (!inFullscreen()) flowCard.classList.remove('fullscreen-flow');
+      resize();
     });
 
     const palette = {
@@ -362,6 +491,24 @@
       }
     };
 
+    // Physics: augment nodes with mass, velocity, force, and dipole moment
+    function initPhysicsState() {
+      for (const n of map.nodes) {
+        const base = n.layer === 'mech' ? 2.2 : n.layer === 'feedback' ? 1.4 : 1.0;
+        n.mass = base * (0.85 + Math.random()*0.3);
+        if (n.id === 'PHX') n.mass *= 1.6;
+        if (n.id === 'P7134') n.mass *= 1.2;
+        if (n.id === 'LUM') n.mass *= 1.3;
+        n.x = n.x ?? n.bx ?? n.wx ?? 0; n.y = n.y ?? n.by ?? n.wy ?? 0;
+        n.vx = n.vx ?? 0; n.vy = n.vy ?? 0;
+        n.fx = 0; n.fy = 0;
+        const ang = Math.random()*Math.PI*2; const mag = 1 * (0.6 + Math.random()*0.8);
+        n.mx = Math.cos(ang)*mag; n.my = Math.sin(ang)*mag;
+        n.phase = Math.random()*Math.PI*2;
+      }
+    }
+    initPhysicsState();
+
     function resize() {
       const rect = flowCanvas.getBoundingClientRect();
       flowCanvas.width = Math.max(1, Math.floor(rect.width * DPR));
@@ -380,17 +527,206 @@
       return [ox + x * s, oy + y * s];
     }
 
+    function rotateWorld(x, y, angle) {
+      if (!angle) return [x, y];
+      const cx = map.meta.width / 2;
+      const cy = map.meta.height / 2;
+      const dx = x - cx;
+      const dy = y - cy;
+      const c = Math.cos(angle);
+      const s = Math.sin(angle);
+      return [cx + dx * c - dy * s, cy + dx * s + dy * c];
+    }
+
+    function mapPoint(x, y) {
+      const [xr, yr] = spinCtl.checked ? rotateWorld(x, y, spinAngle) : [x, y];
+      return worldToScreen(xr, yr);
+    }
+
+    // Initialize base positions and orbital parameters
+    function ensureOrbitInit() {
+      const cx = map.meta.width / 2;
+      const cy = map.meta.height / 2;
+      for (const n of map.nodes) {
+        if (n.bx === undefined) {
+          n.bx = n.x; n.by = n.y;
+          // radius relative to orbit center if defined, else global center
+          const centerIdInit = orbitCenters[n.id];
+          const centerNodeInit = centerIdInit ? map.nodes.find(m => m.id === centerIdInit) : null;
+          const ccx = centerNodeInit ? centerNodeInit.x : cx;
+          const ccy = centerNodeInit ? centerNodeInit.y : cy;
+          const dx = n.bx - ccx; const dy = n.by - ccy;
+          n._radius = Math.hypot(dx, dy);
+          n._angle = Math.atan2(dy, dx);
+          n._spin = Math.random() * Math.PI * 2; // self spin angle
+          // self spin rate varies subtly per layer
+          n._spinRate = (n.layer === 'mech' ? 1.2 : n.layer === 'feedback' ? 0.9 : 0.6) * (0.6 + Math.random() * 0.4);
+          n.wx = n.bx; n.wy = n.by; // world-space current
+        }
+      }
+    }
+
+    // Assign simple orbit centers to convey "rotate around each other"
+    const orbitCenters = {
+      'E1': 'P7134',
+      'I1': 'LUM',
+      'L1': 'LUM',
+      'R1': 'PHX',
+      'S0': 'R1',
+      'EN': 'R1', 'MO': 'R1', 'BB': 'R1', 'LM': 'R1', 'ME': 'R1'
+    };
+
+    function layerSpeedFactor(layer) {
+      if (layer === 'emergent') return 0.6;
+      if (layer === 'feedback') return 0.8;
+      if (layer === 'mech') return 1.0;
+      return 0.7; // pantheon/other
+    }
+
+    function updateNodePositions(dt) {
+      ensureOrbitInit();
+      const cx = map.meta.width / 2;
+      const cy = map.meta.height / 2;
+      const orbitSpeed = parseFloat(orbitSpeedCtl.value || '0');
+      for (const n of map.nodes) {
+        // advance self spin regardless of orbit
+        n._spin = (n._spin + dt * n._spinRate) % (Math.PI * 2);
+        if (orbitCtl.checked && n._radius > 0 && orbitSpeed > 0) {
+          // choose center: another node if defined, else global center
+          const centerId = orbitCenters[n.id];
+          const centerNode = centerId ? map.nodes.find(m => m.id === centerId) : null;
+          const cxn = centerNode ? (centerNode.wx ?? centerNode.x) : cx;
+          const cyn = centerNode ? (centerNode.wy ?? centerNode.y) : cy;
+          n._angle = (n._angle + dt * orbitSpeed * layerSpeedFactor(n.layer)) % (Math.PI * 2);
+          n.wx = cxn + Math.cos(n._angle) * n._radius;
+          n.wy = cyn + Math.sin(n._angle) * n._radius;
+        } else {
+          n.wx = n.bx; n.wy = n.by;
+        }
+      }
+    }
+
+    // --- N-body + Resonant coupling physics ---
+    let gravitySign = 1; // 1 = attraction, -1 = repulsion
+    let inflationTimer = 0; // seconds of repulsive inflation after Big Bang
+    function computeForces() {
+      const G = parseFloat(physGCtl.value || '0.0007');
+      const ResK = parseFloat(physResKCtl.value || '0');
+      const soft = parseFloat(physSoftCtl.value || '80');
+      const eps2 = soft*soft;
+      for (const n of map.nodes) { n.fx = 0; n.fy = 0; }
+      for (let i=0;i<map.nodes.length;i++) {
+        for (let j=i+1;j<map.nodes.length;j++) {
+          const a = map.nodes[i], b = map.nodes[j];
+          const dx = b.x - a.x, dy = b.y - a.y;
+          const r2 = dx*dx + dy*dy + eps2;
+          const invR = 1/Math.sqrt(r2);
+          const invR2 = 1/r2;
+          const ux = dx*invR, uy = dy*invR;
+          const Fg = gravitySign * G * a.mass * b.mass * invR2;
+          let fx = Fg * ux, fy = Fg * uy;
+          if (ResK !== 0) {
+            const dotm = a.mx*b.mx + a.my*b.my;
+            const Fr = ResK * dotm * invR2;
+            fx += Fr * ux; fy += Fr * uy;
+          }
+          a.fx += fx; a.fy += fy;
+          b.fx -= fx; b.fy -= fy;
+        }
+      }
+    }
+
+    function integrate(dt) {
+      const damp = parseFloat(physDampCtl.value || '0');
+      const pinPhx = physPinPhxCtl.checked;
+      const bounds = map.meta;
+      for (const n of map.nodes) {
+        if (pinPhx && n.id === 'PHX') {
+          n.x = bounds.width/2; n.y = bounds.height/2; n.vx = 0; n.vy = 0; n.wx = n.x; n.wy = n.y; continue;
+        }
+        const ax = n.fx / n.mass;
+        const ay = n.fy / n.mass;
+        n.vx += ax * dt; n.vy += ay * dt;
+        n.vx *= (1 - damp * dt);
+        n.vy *= (1 - damp * dt);
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        const loss = 0.9;
+        if (n.x < 0) { n.x = 0; n.vx = Math.abs(n.vx)*loss; }
+        if (n.x > bounds.width) { n.x = bounds.width; n.vx = -Math.abs(n.vx)*loss; }
+        if (n.y < 0) { n.y = 0; n.vy = Math.abs(n.vy)*loss; }
+        if (n.y > bounds.height) { n.y = bounds.height; n.vy = -Math.abs(n.vy)*loss; }
+        n.wx = n.x; n.wy = n.y;
+      }
+    }
+
+    function computeEnergy() {
+      const G = parseFloat(physGCtl.value || '0.0007');
+      const ResK = parseFloat(physResKCtl.value || '0');
+      const soft = parseFloat(physSoftCtl.value || '80');
+      const eps2 = soft*soft;
+      let KE=0, PE=0, RE=0;
+      for (const n of map.nodes) KE += 0.5 * n.mass * (n.vx*n.vx + n.vy*n.vy);
+      for (let i=0;i<map.nodes.length;i++) {
+        for (let j=i+1;j<map.nodes.length;j++) {
+          const a = map.nodes[i], b = map.nodes[j];
+          const dx = b.x - a.x, dy = b.y - a.y;
+          const r = Math.sqrt(dx*dx + dy*dy + eps2);
+          PE += gravitySign * (-G * a.mass * b.mass) / r;
+          if (ResK !== 0) {
+            const dotm = a.mx*b.mx + a.my*b.my;
+            RE += -ResK * dotm / r;
+          }
+        }
+      }
+      const E = KE + PE + RE;
+      physStatsEl.textContent = `E=${E.toFixed(4)} KE=${KE.toFixed(4)} PE=${PE.toFixed(4)} RE=${RE.toFixed(4)}`;
+    }
+
+    function bigBang() {
+      const cx = map.meta.width/2, cy = map.meta.height/2;
+      for (const n of map.nodes) {
+        n.x = cx + (Math.random()-0.5)*80;
+        n.y = cy + (Math.random()-0.5)*80;
+        const ang = Math.random()*Math.PI*2;
+        const speed = 120 + Math.random()*60;
+        n.vx = Math.cos(ang)*speed; n.vy = Math.sin(ang)*speed;
+        const a = Math.random()*Math.PI*2; const m = 1 * (0.6 + Math.random()*0.8);
+        n.mx = Math.cos(a)*m; n.my = Math.sin(a)*m;
+        n.wx = n.x; n.wy = n.y;
+      }
+      gravitySign = -1; // repulsive during inflation
+      inflationTimer = 3.0; // seconds
+    }
+    physBangBtn.addEventListener('click', bigBang);
+
     function drawNode(n) {
-      const [x, y] = worldToScreen(n.x, n.y);
+      const [x, y] = mapPoint(n.wx, n.wy);
       const r = 16 * DPR;
       ctx.save();
-      ctx.fillStyle = n.color;
+      // Draw black hole core
+      ctx.fillStyle = '#000';
       ctx.shadowColor = n.color;
-      ctx.shadowBlur = 8 * DPR;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.shadowBlur = 10 * DPR;
+      ctx.beginPath(); ctx.arc(x, y, r * 0.75, 0, Math.PI * 2); ctx.fill();
+
+      // Accretion disk: rotating dashed ring in node color
       ctx.shadowBlur = 0;
+      ctx.strokeStyle = n.color;
+      ctx.lineWidth = 6 * DPR;
+      ctx.setLineDash([12 * DPR, 12 * DPR]);
+      // animate dash offset by self spin
+      ctx.lineDashOffset = -n._spin * 40 * DPR;
+      ctx.beginPath(); ctx.arc(x, y, r * 1.05, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Subtle inner glow ring
+      ctx.globalAlpha = 0.35;
+      ctx.strokeStyle = n.color;
+      ctx.lineWidth = 2 * DPR;
+      ctx.beginPath(); ctx.arc(x, y, r * 0.9, 0, Math.PI * 2); ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Label
       ctx.fillStyle = palette.text;
       ctx.font = `${12 * DPR}px Inter, Segoe UI, sans-serif`;
       ctx.textAlign = 'center';
@@ -399,8 +735,8 @@
     }
 
     function drawEdge(a, b, dashed, color) {
-      const [x1, y1] = worldToScreen(a.x, a.y);
-      const [x2, y2] = worldToScreen(b.x, b.y);
+      const [x1, y1] = mapPoint(a.wx, a.wy);
+      const [x2, y2] = mapPoint(b.wx, b.wy);
       ctx.save();
       ctx.strokeStyle = color;
       ctx.lineWidth = 2 * DPR;
@@ -447,17 +783,20 @@
       // Convert pointer to world space to compare distances reliably
       // We check in screen space around projected nodes to keep it simple
       for (const n of map.nodes) {
-        const [x, y] = worldToScreen(n.x, n.y);
+        const [x, y] = mapPoint(n.wx ?? n.x, n.wy ?? n.y);
         const dx = px * DPR - x, dy = py * DPR - y;
         if (dx * dx + dy * dy < (20 * DPR) ** 2) return n;
       }
       return null;
     }
 
-    flowCanvas.addEventListener('mousemove', (e) => {
+    function handlePointer(e) {
       const rect = flowCanvas.getBoundingClientRect();
-      const nx = e.clientX - rect.left;
-      const ny = e.clientY - rect.top;
+      const hasTouch = !!(e.touches && e.touches[0]);
+      const cx = hasTouch ? e.touches[0].clientX : (e.clientX || 0);
+      const cy = hasTouch ? e.touches[0].clientY : (e.clientY || 0);
+      const nx = cx - rect.left;
+      const ny = cy - rect.top;
       const n = findNodeAt(nx, ny);
       if (n) {
         const tip = map.tooltips[n.id] || n.label;
@@ -468,23 +807,90 @@
       } else {
         tooltip.style.opacity = '0';
       }
-    });
+    }
+    flowCanvas.addEventListener('pointermove', handlePointer, { passive: true });
+    flowCanvas.addEventListener('mousemove', handlePointer, { passive: true });
+    flowCanvas.addEventListener('touchstart', handlePointer, { passive: true });
+    flowCanvas.addEventListener('touchmove', handlePointer, { passive: true });
 
     function drawGrid() {
       ctx.save();
-      ctx.strokeStyle = palette.grid;
+      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
       ctx.lineWidth = 1 * DPR;
       const step = 200;
       for (let x = 0; x <= map.meta.width; x += step) {
-        const [sx1, sy1] = worldToScreen(x, 0);
-        const [sx2, sy2] = worldToScreen(x, map.meta.height);
+        const [sx1, sy1] = mapPoint(x, 0);
+        const [sx2, sy2] = mapPoint(x, map.meta.height);
         ctx.beginPath(); ctx.moveTo(sx1, sy1); ctx.lineTo(sx2, sy2); ctx.stroke();
       }
       for (let y = 0; y <= map.meta.height; y += step) {
-        const [sx1, sy1] = worldToScreen(0, y);
-        const [sx2, sy2] = worldToScreen(map.meta.width, y);
+        const [sx1, sy1] = mapPoint(0, y);
+        const [sx2, sy2] = mapPoint(map.meta.width, y);
         ctx.beginPath(); ctx.moveTo(sx1, sy1); ctx.lineTo(sx2, sy2); ctx.stroke();
       }
+      ctx.restore();
+    }
+
+    // Emergent fusion sparks (new properties when pairs interact)
+  const emergents = [];
+  let emergentCooldown = 0;
+    function hexToRgb(h) {
+      const c = h.replace('#','');
+      const n = parseInt(c.length === 3 ? c.split('').map(x=>x+x).join('') : c, 16);
+      return { r: (n>>16)&255, g: (n>>8)&255, b: n&255 };
+    }
+    function mixColor(a, b) {
+      const A = hexToRgb(a), B = hexToRgb(b);
+      const r = Math.round((A.r+B.r)/2), g = Math.round((A.g+B.g)/2), bch = Math.round((A.b+B.b)/2);
+      return `rgb(${r},${g},${bch})`;
+    }
+    function spawnEmergent() {
+      if (emergents.length > 30) return;
+      // pick two nodes from different layers if possible
+      const n1 = map.nodes[Math.floor(Math.random()*map.nodes.length)];
+      let n2 = map.nodes[Math.floor(Math.random()*map.nodes.length)];
+      for (let i=0;i<8 && n2.layer===n1.layer;i++) n2 = map.nodes[Math.floor(Math.random()*map.nodes.length)];
+      const x = (n1.wx + n2.wx)/2, y = (n1.wy + n2.wy)/2;
+      const color = mixColor(n1.color, n2.color);
+      const angle = Math.random()*Math.PI*2;
+      const speed = 60 + Math.random()*80; // world units/sec
+      emergents.push({ x, y, vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed, life: 1.4 + Math.random()*0.8, color, r: 6 + Math.random()*4 });
+    }
+
+    function updateEmergents(dt) {
+      emergentCooldown -= dt;
+      if (running && emergentCooldown <= 0) {
+        spawnEmergent();
+        emergentCooldown = 0.25 + Math.random()*0.6; // 0.25-0.85s between spawns
+      }
+      for (let i = emergents.length - 1; i >= 0; i--) {
+        const e = emergents[i];
+        e.life -= dt;
+        if (e.life <= 0) { emergents.splice(i,1); continue; }
+        e.x += e.vx * dt; e.y += e.vy * dt;
+        // slight drag
+        e.vx *= (1 - 0.4 * dt);
+        e.vy *= (1 - 0.4 * dt);
+      }
+    }
+
+    function drawEmergents() {
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      for (const e of emergents) {
+        const [sx, sy] = mapPoint(e.x, e.y);
+        const alpha = Math.max(0, Math.min(1, e.life));
+        const rad = e.r * DPR * (1 + (1 - alpha));
+        // glow
+        ctx.fillStyle = e.color;
+        ctx.globalAlpha = 0.12 * alpha;
+        ctx.beginPath(); ctx.arc(sx, sy, rad * 2.2, 0, Math.PI*2); ctx.fill();
+        // core
+        ctx.globalAlpha = 0.85 * alpha;
+        ctx.beginPath(); ctx.arc(sx, sy, rad * 0.6, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
       ctx.restore();
     }
 
@@ -493,9 +899,31 @@
       const dt = (now - last) / 1000;
       last = now;
       const speed = parseFloat(speedCtl.value || '1');
+      const spinSpeed = parseFloat(spinSpeedCtl.value || '0'); // radians per second
+      if (spinCtl.checked) {
+        spinAngle = (spinAngle + dt * spinSpeed) % (Math.PI * 2);
+      }
 
-      ctx.clearRect(0, 0, flowCanvas.width, flowCanvas.height);
-      drawGrid();
+  // Physics or scripted orbit update
+  const usePhysics = physEnabledCtl.checked;
+  if (usePhysics) {
+    let dtScaled = dt * parseFloat(physTimeCtl.value || '1');
+    if (running) {
+      if (inflationTimer > 0) { inflationTimer -= dtScaled; if (inflationTimer <= 0) gravitySign = 1; }
+      computeForces();
+      integrate(dtScaled);
+      computeEnergy();
+    }
+  } else {
+    updateNodePositions(dt);
+    physStatsEl.textContent = '';
+  }
+
+  ctx.clearRect(0, 0, flowCanvas.width, flowCanvas.height);
+  drawGrid();
+
+  // emergent sparks update
+  updateEmergents(dt);
 
       // Draw edges and nodes
       for (const e of map.edges) {
@@ -514,16 +942,25 @@
         drawNode(n);
       }
 
-      // Draw particles on visible layers
-      if (running) {
+      // draw emergent sparks above nodes but below particles for contrast
+      drawEmergents();
+
+  // Draw particles on visible layers (skip during physics)
+  if (running && !usePhysics) {
         for (const p of particles) {
           if ((p.layer === 'emergent' && !layersCtl.emergent.checked) ||
               (p.layer === 'feedback' && !layersCtl.feedback.checked) ||
               (p.layer === 'mech' && !layersCtl.mech.checked)) continue;
           p.t = (p.t + dt * 0.25 * speed) % 1;
-          const x = p.a.x + p.ux * p.len * p.t;
-          const y = p.a.y + p.uy * p.len * p.t;
-          const [sx, sy] = worldToScreen(x, y);
+          // Recompute along current edge based on latest node world positions
+          const ax = p.a.wx, ay = p.a.wy;
+          const bx = p.b.wx, by = p.b.wy;
+          const dx = bx - ax, dy = by - ay;
+          const len = Math.hypot(dx, dy) || 1;
+          const ux = dx / len, uy = dy / len;
+          const x = ax + ux * len * p.t;
+          const y = ay + uy * len * p.t;
+          const [sx, sy] = mapPoint(x, y);
           ctx.save();
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
