@@ -77,3 +77,23 @@ The WordPress plugin runs inside your WP host; its config should live with the s
 - [ ] Front-end: no Spotify secrets in bundled JS.
 - [ ] GitHub: Actions secrets added; referenced via `${{ secrets.NAME }}` in workflows.
 - [ ] Local: `.env` exists; never committed.
+
+## SharePoint / Microsoft Graph app registration (for future integration)
+
+If you plan to integrate SharePoint or Graph API calls:
+
+1. In Microsoft Entra ID → App registrations → New registration
+	- Name your app, choose "Accounts in this organizational directory only"
+	- Record Application (client) ID and Directory (tenant) ID
+2. Certificates & secrets → New client secret
+	- Record the Value (you'll never see it again)
+3. API permissions → Add a permission → Microsoft Graph
+	- Recommended least privilege: Sites.Selected (Application permission)
+	- Alternative broad: Files.ReadWrite.All (Application) if absolutely necessary
+	- Grant admin consent
+4. Optional: Authentication → Add a Redirect URI if you'll run delegated auth flows
+5. Store values:
+	- In GitHub Actions: `SHAREPOINT_CLIENT_ID`, `SHAREPOINT_TENANT_ID`, `SHAREPOINT_CLIENT_SECRET`
+	- In WordPress (if needed server-side): define constants in `wp-config.php` and keep calls server-side
+
+For Sites.Selected, you must assign site permissions per site using Microsoft Graph to approve the app for specific sites.
