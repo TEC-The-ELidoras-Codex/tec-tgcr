@@ -62,3 +62,13 @@ add_shortcode('tec_resonance_player_hint', function () {
     <?php
     return ob_get_clean();
 });
+
+// Shortcode: [tec_resonance_player height="1100px"]
+add_shortcode('tec_resonance_player', function ($atts) {
+    $atts = shortcode_atts(['height' => '1100px'], $atts, 'tec_resonance_player');
+    $src = esc_url( plugins_url('public/player.html', __FILE__) );
+    $h = preg_replace('/[^0-9.%vh]/', '', $atts['height']);
+    if (!$h) $h = '1100px';
+    $style = sprintf('width:100%%;height:%s;border:0;border-radius:12px;overflow:hidden;', esc_attr($h));
+    return sprintf('<iframe src="%s" style="%s" loading="lazy" referrerpolicy="no-referrer"></iframe>', $src, $style);
+});

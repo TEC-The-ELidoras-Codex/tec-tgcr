@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>TEC • Resonance Player (WP)</title>
+  <style>html,body{margin:0;height:100%;background:#000} iframe{border:0;width:100%;height:100%}</style>
+</head>
+<body>
+  <!-- We reuse the app’s player HTML hosted at /apps/resonance-player/index.html if accessible; else fallback to the REST-only mini UI -->
+  <script>
+    (async function(){
+      const preferred = location.origin + '/apps/resonance-player/index.html';
+      try{
+        const r = await fetch(preferred, {method:'HEAD', mode:'no-cors'});
+        // Even if opaque, try to load it
+        document.body.innerHTML = '<iframe src="'+preferred+'"></iframe>';
+      }catch(e){
+        // Minimal fallback inline UI pointing at /wp-json/tec/v1/resonance
+        const html = `
+        <div style="color:#e6f0ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;padding:16px">
+          <h2 style="margin-top:0">TEC • Resonance Player</h2>
+          <p>Paste a Spotify track ID and click Analyse.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input id="tid" placeholder="0hHzFiG0FLRJ7N4GwJZzzk" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:#0b1e3b;color:#fff" />
+            <button id="go" style="padding:10px 14px;border-radius:8px;border:0;background:#6A00F4;color:#fff;font-weight:600">Analyse</button>
+          </div>
+          <pre id="out" style="margin-top:12px;background:#0b1e3b;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:12px;white-space:pre-wrap"></pre>
+        </div>`;
+        document.body.innerHTML = html;
+        const $ = id => document.getElementById(id);
+        const API = location.origin + '/wp-json/tec/v1/resonance';
+        $('go').onclick = async () => {
+          const id = ($('tid').value||'').trim();
+          if(!id){$('out').textContent='Enter a track ID';return;}
+          $('out').textContent = 'Loading…';
+          try{
+            const res = await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({trackIds:[id]})});
+            $('out').textContent = await res.text();
+          }catch(err){ $('out').textContent = 'Error: '+err; }
+        };
+      }
+    })();
+  </script>
+</body>
+<\html>

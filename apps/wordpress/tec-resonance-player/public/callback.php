@@ -25,7 +25,7 @@
   </head>
 <body>
   <div class="card">
-    <h1>Spotify Callback</h1>
+    <h1>TEC Resonance Callback Active</h1>
     <p>Redirect received. If implementing PKCE, your front-end can read these params and exchange the code server-side.</p>
     <pre id="dump">{}<\/pre>
   </div>

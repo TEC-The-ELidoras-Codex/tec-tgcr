@@ -6,6 +6,16 @@ if (!defined('ABSPATH')) { exit; }
 class Resonance_Rest {
     public static function register_routes() {
         register_rest_route('tec/v1', '/resonance', [
+            [
+                'methods' => 'GET',
+                'callback' => function() {
+                    return new \WP_REST_Response([
+                        'ok' => true,
+                        'usage' => 'POST JSON {"trackIds":["<spotify_track_id>"]} to this endpoint',
+                    ], 200);
+                },
+                'permission_callback' => '__return_true',
+            ],
             'methods' => 'POST',
             'callback' => [__CLASS__, 'handle_resonance'],
             'permission_callback' => '__return_true', // Public – only returns computed features

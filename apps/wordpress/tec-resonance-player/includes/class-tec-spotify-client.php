@@ -10,11 +10,23 @@ class Spotify_Client {
     private $token_expires_at = 0;
 
     public function __construct($client_id = null, $client_secret = null) {
-        $this->client_id = $client_id ?: (\defined('TEC_SPOTIFY_CLIENT_ID') ? \constant('TEC_SPOTIFY_CLIENT_ID') : '');
-        $this->client_secret = $client_secret ?: (\defined('TEC_SPOTIFY_CLIENT_SECRET') ? \constant('TEC_SPOTIFY_CLIENT_SECRET') : '');
+        // Prefer TEC_* constants, fallback to generic SPOTIFY_* if set
+        $cid = '';
+        if (\defined('TEC_SPOTIFY_CLIENT_ID')) { $cid = \constant('TEC_SPOTIFY_CLIENT_ID'); }
+        elseif (\defined('SPOTIFY_CLIENT_ID')) { $cid = \constant('SPOTIFY_CLIENT_ID'); }
+
+        $cs = '';
+        if (\defined('TEC_SPOTIFY_CLIENT_SECRET')) { $cs = \constant('TEC_SPOTIFY_CLIENT_SECRET'); }
+        elseif (\defined('SPOTIFY_CLIENT_SECRET')) { $cs = \constant('SPOTIFY_CLIENT_SECRET'); }
+
+        $this->client_id = $client_id ?: $cid;
+        $this->client_secret = $client_secret ?: $cs;
     }
 
     private function ensure_token() {
+        if (empty($this->client_id) || empty($this->client_secret)) {
+            throw new \Exception('Spotify credentials missing: set TEC_SPOTIFY_CLIENT_ID/TEC_SPOTIFY_CLIENT_SECRET (or SPOTIFY_CLIENT_ID/SPOTIFY_CLIENT_SECRET) in wp-config.php');
+        }
         if (time() < $this->token_expires_at - 30 && $this->token) return;
         $resp = \wp_remote_post('https://accounts.spotify.com/api/token', [
             'timeout' => 15,
@@ -28,7 +40,10 @@ class Spotify_Client {
         if (\is_wp_error($resp)) throw new \Exception('Spotify token error: ' . $resp->get_error_message());
         $code = \wp_remote_retrieve_response_code($resp);
         $body = json_decode(\wp_remote_retrieve_body($resp), true);
-        if ($code !== 200 || empty($body['access_token'])) throw new \Exception('Spotify token failed: ' . \wp_remote_retrieve_body($resp));
+        if ($code !== 200 || empty($body['access_token'])) {
+            $msg = isset($body['error_description']) ? $body['error_description'] : \wp_remote_retrieve_body($resp);
+            throw new \Exception('Spotify token failed: ' . $msg);
+        }
         $this->token = $body['access_token'];
         $this->token_expires_at = time() + intval($body['expires_in'] ?? 3600);
     }
