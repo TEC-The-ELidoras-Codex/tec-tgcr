@@ -1,0 +1,2 @@
+Billing dispute for Azure charges totaling USD 224.80 on 2025-09-28 through 2025-09-30 in subscription 89d36e9a-a518-4151-95b3-087ec1b88ec5 (tenant 7d290c31-2df1-4e76-ab86-e26f12753bde). Resources appeared without our action, were deleted the same day, and no usage occurred afterwards. Our billing account is now inactive. Please review the attached bundle: daily cost CSV, narrative, and evidence folders. We request a full refund and billing reactivation before our M365 renewals (11/3 and 11/10).
+Support ID: YQAT-E6IU-BG7-PGB.

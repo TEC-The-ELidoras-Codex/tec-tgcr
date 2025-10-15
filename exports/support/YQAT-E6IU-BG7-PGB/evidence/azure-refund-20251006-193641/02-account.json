@@ -1,0 +1,16 @@
+{
+  "environmentName": "AzureCloud",
+  "homeTenantId": "7d290c31-2df1-4e76-ab86-e26f12753bde",
+  "id": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+  "isDefault": true,
+  "managedByTenants": [],
+  "name": "TECAzure Subscription",
+  "state": "Enabled",
+  "tenantDefaultDomain": "Elidorascodex.com",
+  "tenantDisplayName": "TEC - The Elidoras Codex",
+  "tenantId": "7d290c31-2df1-4e76-ab86-e26f12753bde",
+  "user": {
+    "name": "Kaznakalpha@Elidorascodex.com",
+    "type": "user"
+  }
+}

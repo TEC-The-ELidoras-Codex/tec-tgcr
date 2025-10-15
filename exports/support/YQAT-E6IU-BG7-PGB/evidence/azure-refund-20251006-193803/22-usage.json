@@ -1,0 +1,134 @@
+[
+  {
+    "billableQuantity": "None",
+    "consumedService": "Microsoft.KeyVault",
+    "costCenter": "",
+    "id": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/providers/Microsoft.Consumption/usageDetails/14b1e2f6-ec8a-1d88-72e5-0f09e350ee43",
+    "instanceName": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/resourceGroups/TEC_Resouce/providers/Microsoft.KeyVault/managedHSMs/Teckeys",
+    "invoiceId": "",
+    "meterDetails": null,
+    "meterId": "74a72b91-1389-578c-b534-d4c204e6e37d",
+    "name": "14b1e2f6-ec8a-1d88-72e5-0f09e350ee43",
+    "pretaxCost": "None",
+    "product": "Key Vault HSM Pool - Standard B1 - US East",
+    "subscriptionGuid": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+    "subscriptionName": "TECAzure Subscription",
+    "tags": {
+      "TEC": "CopilotAgentSPO"
+    },
+    "type": "Microsoft.Consumption/usageDetails",
+    "usageEnd": null,
+    "usageQuantity": "None",
+    "usageStart": null
+  },
+  {
+    "billableQuantity": "None",
+    "consumedService": "Microsoft.KeyVault",
+    "costCenter": "",
+    "id": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/providers/Microsoft.Consumption/usageDetails/6b154c13-e36e-9647-fbd4-fccb917bcf47",
+    "instanceName": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/resourceGroups/TEC_Resouce/providers/Microsoft.KeyVault/managedHSMs/Teckeys",
+    "invoiceId": "",
+    "meterDetails": null,
+    "meterId": "74a72b91-1389-578c-b534-d4c204e6e37d",
+    "name": "6b154c13-e36e-9647-fbd4-fccb917bcf47",
+    "pretaxCost": "None",
+    "product": "Key Vault HSM Pool - Standard B1 - US East",
+    "subscriptionGuid": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+    "subscriptionName": "TECAzure Subscription",
+    "tags": {
+      "TEC": "CopilotAgentSPO"
+    },
+    "type": "Microsoft.Consumption/usageDetails",
+    "usageEnd": null,
+    "usageQuantity": "None",
+    "usageStart": null
+  },
+  {
+    "billableQuantity": "None",
+    "consumedService": "Microsoft.KeyVault",
+    "costCenter": "",
+    "id": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/providers/Microsoft.Consumption/usageDetails/54993c3a-2f1b-009b-bdfb-102c5887332d",
+    "instanceName": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/resourceGroups/TEC_Resouce/providers/Microsoft.KeyVault/managedHSMs/Teckeys",
+    "invoiceId": "",
+    "meterDetails": null,
+    "meterId": "74a72b91-1389-578c-b534-d4c204e6e37d",
+    "name": "54993c3a-2f1b-009b-bdfb-102c5887332d",
+    "pretaxCost": "None",
+    "product": "Key Vault HSM Pool - Standard B1 - US East",
+    "subscriptionGuid": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+    "subscriptionName": "TECAzure Subscription",
+    "tags": {
+      "TEC": "CopilotAgentSPO"
+    },
+    "type": "Microsoft.Consumption/usageDetails",
+    "usageEnd": null,
+    "usageQuantity": "None",
+    "usageStart": null
+  },
+  {
+    "billableQuantity": "None",
+    "consumedService": "Microsoft.KeyVault",
+    "costCenter": "",
+    "id": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/providers/Microsoft.Consumption/usageDetails/4ce6c0c9-85d9-0070-caa3-21dba0934212",
+    "instanceName": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/resourceGroups/TEC_Resouce/providers/Microsoft.KeyVault/managedHSMs/Teckeys",
+    "invoiceId": "",
+    "meterDetails": null,
+    "meterId": "74a72b91-1389-578c-b534-d4c204e6e37d",
+    "name": "4ce6c0c9-85d9-0070-caa3-21dba0934212",
+    "pretaxCost": "None",
+    "product": "Key Vault HSM Pool - Standard B1 - US East",
+    "subscriptionGuid": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+    "subscriptionName": "TECAzure Subscription",
+    "tags": {
+      "TEC": "CopilotAgentSPO"
+    },
+    "type": "Microsoft.Consumption/usageDetails",
+    "usageEnd": null,
+    "usageQuantity": "None",
+    "usageStart": null
+  },
+  {
+    "billableQuantity": "None",
+    "consumedService": "Microsoft.KeyVault",
+    "costCenter": "",
+    "id": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/providers/Microsoft.Consumption/usageDetails/ceb4e4a7-dd64-3008-6089-11e030665922",
+    "instanceName": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/resourceGroups/TEC_Resouce/providers/Microsoft.KeyVault/managedHSMs/Teckeys",
+    "invoiceId": "",
+    "meterDetails": null,
+    "meterId": "74a72b91-1389-578c-b534-d4c204e6e37d",
+    "name": "ceb4e4a7-dd64-3008-6089-11e030665922",
+    "pretaxCost": "None",
+    "product": "Key Vault HSM Pool - Standard B1 - US East",
+    "subscriptionGuid": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+    "subscriptionName": "TECAzure Subscription",
+    "tags": {
+      "TEC": "CopilotAgentSPO"
+    },
+    "type": "Microsoft.Consumption/usageDetails",
+    "usageEnd": null,
+    "usageQuantity": "None",
+    "usageStart": null
+  },
+  {
+    "billableQuantity": "None",
+    "consumedService": "Microsoft.KeyVault",
+    "costCenter": "",
+    "id": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/providers/Microsoft.Consumption/usageDetails/0ec56c73-c69b-4d51-129c-9f43f617d5fa",
+    "instanceName": "/subscriptions/89d36e9a-a518-4151-95b3-087ec1b88ec5/resourceGroups/TEC_Resouce/providers/Microsoft.KeyVault/managedHSMs/Teckeys",
+    "invoiceId": "",
+    "meterDetails": null,
+    "meterId": "74a72b91-1389-578c-b534-d4c204e6e37d",
+    "name": "0ec56c73-c69b-4d51-129c-9f43f617d5fa",
+    "pretaxCost": "None",
+    "product": "Key Vault HSM Pool - Standard B1 - US East",
+    "subscriptionGuid": "89d36e9a-a518-4151-95b3-087ec1b88ec5",
+    "subscriptionName": "TECAzure Subscription",
+    "tags": {
+      "TEC": "CopilotAgentSPO"
+    },
+    "type": "Microsoft.Consumption/usageDetails",
+    "usageEnd": null,
+    "usageQuantity": "None",
+    "usageStart": null
+  }
+]

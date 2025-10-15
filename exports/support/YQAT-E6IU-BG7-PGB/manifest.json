@@ -1,0 +1,137 @@
+[
+  {
+    "path": "cost-analysis.csv",
+    "size": 267,
+    "sha256": "DD2B391038FCD78EC0FFEF9AC4BE1DE6BD5F12C87495A7519B9DF07A535EB08C"
+  },
+  {
+    "path": "MICROSOFT-SUPPORT-BILLING-DISPUTE-YQAT-E6IU-BG7-PGB.md",
+    "size": 8546,
+    "sha256": "35D944468660A1327759D72030B825FF161BEB2CEFBFA5DBED8E636C129854CC"
+  },
+  {
+    "path": "PORTAL-MESSAGE.txt",
+    "size": 534,
+    "sha256": "79A305D5D58343BD408107ED2C339CFCFB7DF3FB57DBB47E0EF88A0B5507EBED"
+  },
+  {
+    "path": "README.md",
+    "size": 831,
+    "sha256": "DB84E2BA9CBF57BD7F63CC152C43D65F19422BC9E4B8DCFB8EF2DFD65911D44B"
+  },
+  {
+    "path": "docs\\m365-cost-analysis-2025-10-15.md",
+    "size": 2608,
+    "sha256": "763893323D0F4D81ED492EDA4493A9941E36B48BEC5366323F00A64B6F9C018E"
+  },
+  {
+    "path": "docs\\REPOSITORY-AUDIT-2025-10-15.md",
+    "size": 5852,
+    "sha256": "D722C78371DBD4DB770157B7C4EBD4889B363CC29256DB333321D4B1658841AC"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\02-account.json",
+    "size": 496,
+    "sha256": "802263381BDDD5764E82B4C81F081BF333F1AD4D9E1FC2CE5C345002CF044017"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\10-resources.json",
+    "size": 4,
+    "sha256": "A5338D955B09046EC0B16F3A9625B7955C763AAE07DC722E474E6078745F932F"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\11-resources-deleted.json",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\20-cost-daily.json",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\21-cost-by-resourcegroup.json",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\22-usage.json",
+    "size": 5753,
+    "sha256": "73FB4C89D99394DB807A9AA891739796ACA9791D59F317F5A36CBAE90B14A5A3"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\25-cost-by-service.txt",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\30-activity-log.json",
+    "size": 236472,
+    "sha256": "87B1E47F82F308101978EC15A1D784516A991811D4CB331FB462D3C84AA56050"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\Collect-AzureRefundEvidence.ps1",
+    "size": 5347,
+    "sha256": "01DDBB794F287BB468D348199AB910582DB9C1A149F1925A4BBD5E85FC35F122"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\README.txt",
+    "size": 920,
+    "sha256": "07BBF0CD1C8FC6D62620083C9B48A3D6F8799C973F1C7DCB42DCF0A4D86BF90B"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193641\\run.log",
+    "size": 1246,
+    "sha256": "9EFEE5030EC0DAF6672249E5F42690BCEAB091C9798D31F26A8E0BDFB6AC4B83"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\02-account.json",
+    "size": 496,
+    "sha256": "802263381BDDD5764E82B4C81F081BF333F1AD4D9E1FC2CE5C345002CF044017"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\10-resources.json",
+    "size": 4,
+    "sha256": "A5338D955B09046EC0B16F3A9625B7955C763AAE07DC722E474E6078745F932F"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\11-resources-deleted.json",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\20-cost-daily.json",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\21-cost-by-resourcegroup.json",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\22-usage.json",
+    "size": 5753,
+    "sha256": "73FB4C89D99394DB807A9AA891739796ACA9791D59F317F5A36CBAE90B14A5A3"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\25-cost-by-service.txt",
+    "size": 0,
+    "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\30-activity-log.json",
+    "size": 236472,
+    "sha256": "87B1E47F82F308101978EC15A1D784516A991811D4CB331FB462D3C84AA56050"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\README.txt",
+    "size": 920,
+    "sha256": "7C64431A8D0D986B2F2A827E128B6BAB4B16E4852D7F2302A905190B4B8D9165"
+  },
+  {
+    "path": "evidence\\azure-refund-20251006-193803\\run.log",
+    "size": 1246,
+    "sha256": "3CC499C9BBFE7339254E970F7FEE1BABDEC55B2FA887E26C921AB4259EDB526C"
+  }
+]
