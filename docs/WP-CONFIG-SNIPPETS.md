@@ -53,12 +53,12 @@ define('AZURE_OPENAI_DEPLOYMENT_NAME', 'gpt-4o-mini');
 
 ## Quick verification
 
-After adding constants and activating plugins:
+After adding constants and activating plugins (replace Elidorascodex.com with your domain if different):
 
 - Resonance Player routes:
-  - GET /wp-json/tec/v1/resonance (returns usage hint)
-  - POST /wp-json/tec/v1/resonance (body: {"trackIds":["3n3Ppam7vgaVa1iaRUc9Lp"]})
+  - GET <https://Elidorascodex.com/wp-json/tec/v1/resonance> (returns usage hint)
+  - POST <https://Elidorascodex.com/wp-json/tec/v1/resonance> (body: {"trackIds":["3n3Ppam7vgaVa1iaRUc9Lp"]})
 - LuminAI Agent route:
-  - POST /wp-json/tec/v1/agent (body: {"messages":[{"role":"user","content":"Hello"}]})
+  - POST <https://Elidorascodex.com/wp-json/tec/v1/agent> (body: {"messages":[{"role":"user","content":"Hello"}]})
 
 If these 404, see `docs/WORDPRESS-REST-DEBUG.md`.

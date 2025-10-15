@@ -30,17 +30,17 @@ You should see:
 
 ## 4) Direct test requests
 
-Test in a browser or with curl/PowerShell:
+Test in a browser or with curl/PowerShell (replace Elidorascodex.com with your domain if different):
 
 - Ping:
-  - GET <https://YOURDOMAIN/wp-json/tec-tgcr/v1/ping>
+  - GET <https://Elidorascodex.com/wp-json/tec-tgcr/v1/ping>
 - Citation:
-  - GET <https://YOURDOMAIN/wp-json/tec-tgcr/v1/citation?persona=luminai>
+  - GET <https://Elidorascodex.com/wp-json/tec-tgcr/v1/citation?persona=luminai>
 - Resonance:
-  - GET <https://YOURDOMAIN/wp-json/tec/v1/resonance>
-  - POST <https://YOURDOMAIN/wp-json/tec/v1/resonance> with JSON body {"trackIds":["3n3Ppam7vgaVa1iaRUc9Lp"]}
+  - GET <https://Elidorascodex.com/wp-json/tec/v1/resonance>
+  - POST <https://Elidorascodex.com/wp-json/tec/v1/resonance> with JSON body {"trackIds":["3n3Ppam7vgaVa1iaRUc9Lp"]}
 - Agent:
-  - POST <https://YOURDOMAIN/wp-json/tec/v1/agent> with JSON body {"messages":[{"role":"user","content":"Hello"}]}
+  - POST <https://Elidorascodex.com/wp-json/tec/v1/agent> with JSON body {"messages":[{"role":"user","content":"Hello"}]}
 
 ## 5) Common causes of 404
 
