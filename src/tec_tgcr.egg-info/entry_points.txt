@@ -1,2 +1,3 @@
 [console_scripts]
 tec-agent = tec_tgcr.cli:app
+tec-env-check = tec_tgcr.scripts.env_check:main
