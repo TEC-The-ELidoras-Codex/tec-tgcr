@@ -34,8 +34,12 @@ ai-workflow/*.json
 ai-workflow/output/
 ai-workflow/generated/
 
-# VS Code
+# VS Code (track selected configuration files for cross-device unity)
 .vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # Data dumps and evidence (keep small samples under data/samples/)
 data/evidence/

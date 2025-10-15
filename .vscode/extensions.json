@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy",
+    "ms-vscode.powershell",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml",
+    "bierner.markdown-preview-github-styles",
+    "eamodio.gitlens"
+  ]
+}

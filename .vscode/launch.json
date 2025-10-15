@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/launch.json",
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: tec_tgcr.cli chat",
+      "type": "python",
+      "request": "launch",
+      "module": "tec_tgcr.cli",
+      "args": [
+        "chat",
+        "Calibrate Arcadia for a resonance briefing"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "PowerShell: Pack support bundle",
+      "type": "PowerShell",
+      "request": "launch",
+      "script": "${workspaceFolder}/scripts/pack_support_bundle.ps1",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass"
+      ]
+    }
+  ]
+}

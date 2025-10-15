@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.store/schemas/json/vscode/tasks.json",
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Python: Run pytest",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "-q"],
+      "problemMatcher": ["$pytest-python"],
+      "group": "test"
+    },
+    {
+      "label": "Support: Pack bundle",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/pack_support_bundle.ps1"
+      ]
+    },
+    {
+      "label": "CLI: tec-agent chat",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "-m",
+        "tec_tgcr.cli",
+        "chat",
+        "Calibrate Arcadia for a resonance briefing"
+      ]
+    },
+    {
+      "label": "Setup: Bootstrap env (.venv)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/bootstrap.ps1"
+      ]
+    }
+  ]
+}

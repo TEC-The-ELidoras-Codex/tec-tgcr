@@ -1,0 +1,34 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Use project venv by default (Windows path)
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+
+  // Testing
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestArgs": ["tests", "-q"],
+  "python.testing.autoTestDiscoverOnSaveEnabled": true,
+
+  // Type checking & analysis
+  "python.analysis.typeCheckingMode": "basic",
+
+  // Terminal
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "path": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+    },
+    "pwsh": {
+      "path": "C:/Program Files/PowerShell/7/pwsh.exe",
+      "icon": "terminal-powershell"
+    }
+  },
+
+  // Debug
+  "debug.console.closeOnEnd": false
+}
