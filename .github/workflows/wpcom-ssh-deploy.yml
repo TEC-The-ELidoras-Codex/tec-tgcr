@@ -1,0 +1,29 @@
+name: WP.com SSH Deploy (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.WPCOM_SSH_PRIVATE_KEY }}
+
+      - name: Add known host
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ secrets.WPCOM_SSH_PORT || 22 }}" "${{ secrets.WPCOM_SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Rsync plugin to target
+        env:
+          SSH_HOST: ${{ secrets.WPCOM_SSH_HOST }}
+          SSH_PORT: ${{ secrets.WPCOM_SSH_PORT || 22 }}
+          SSH_USER: ${{ secrets.WPCOM_SSH_USER }}
+          SSH_TARGET: ${{ secrets.WPCOM_SSH_TARGET }}
+        run: |
+          rsync -az --delete -e "ssh -p $SSH_PORT" apps/wordpress/tec-tgcr/ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"

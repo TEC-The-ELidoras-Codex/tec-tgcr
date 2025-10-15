@@ -1,0 +1,31 @@
+name: Publish to WordPress.com
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-artifact:
+    name: Build wpcom artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage plugin files
+        run: |
+          set -e
+          STAGE=.wpcom-dist
+          PLUGIN=apps/wordpress/tec-tgcr
+          mkdir -p "$STAGE"
+          rsync -a --delete "$PLUGIN"/ "$STAGE"/
+          echo "Staged files:" && find "$STAGE" -maxdepth 2 -type f | wc -l
+
+      - name: Upload artifact for WordPress.com
+        uses: actions/upload-artifact@v4
+        with:
+          name: wpcom
+          path: .wpcom-dist
+          if-no-files-found: error
+          retention-days: 1

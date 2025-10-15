@@ -97,3 +97,92 @@ If you plan to integrate SharePoint or Graph API calls:
 	- In WordPress (if needed server-side): define constants in `wp-config.php` and keep calls server-side
 
 For Sites.Selected, you must assign site permissions per site using Microsoft Graph to approve the app for specific sites.
+
+---
+
+## WordPress.com deploy: connect, artifact, SSH (optional)
+
+There are two supported ways to deploy code to your WordPress.com site.
+
+### A) Simple “artifact” deployments (recommended)
+
+What it does: WordPress.com pulls a GitHub Actions artifact named `wpcom` from this repo and places it into your destination directory (configured in the WP.com UI).
+
+Repo status: We ship `.github/workflows/wpcom.yml`. It uploads `apps/wordpress/tec-tgcr/` as `wpcom` on every push to `main` (and manual runs).
+
+Steps on WordPress.com (Site → Hosting → Deployments → Connect a repository):
+
+1) Select repository: `TEC-The-ELidoras-Codex/tec-tgcr`.
+2) Deployment branch: `main`.
+3) Destination directory: `/wp-content/plugins/tec-tgcr`.
+4) Deployment mode: Simple.
+5) Choose “Create new workflow” if prompted (we already committed one). Ensure artifact name is `wpcom`.
+6) Save. After your next push, the plugin will deploy to that folder. Proof-of-life route will be:
+	- `https://YOURDOMAIN/wp-json/tec-tgcr/v1/ping`
+
+No secrets are required for this mode; WP.com pulls from GitHub directly.
+
+### B) SSH deployments (manual, optional)
+
+Use when you need to push files yourself, or for non‑standard hosts. We ship `.github/workflows/wpcom-ssh-deploy.yml` which syncs `apps/wordpress/tec-tgcr/` to a remote path.
+
+Required GitHub Secrets:
+
+- `WPCOM_SSH_HOST` → e.g., `ssh.wp.com`
+- `WPCOM_SSH_PORT` → optional, default `22`
+- `WPCOM_SSH_USER` → e.g., `elidorascodexdotcom.wordpress.com`
+- `WPCOM_SSH_PRIVATE_KEY` → contents of your private key (PEM). Add passphrase only if your runner supports it.
+- `WPCOM_SSH_TARGET` → absolute path, e.g., `/wp-content/plugins/tec-tgcr`
+
+Run it manually in GitHub Actions (workflow dispatch). It performs an rsync:
+
+`apps/wordpress/tec-tgcr/` → `$WPCOM_SSH_USER@$WPCOM_SSH_HOST:$WPCOM_SSH_TARGET/`
+
+Local SSH test from Windows PowerShell (adjust username/host):
+
+```powershell
+ssh elidorascodexdotcom.wordpress.com@ssh.wp.com
+```
+
+If connection succeeds, you can list the target directory and verify the plugin files exist.
+
+---
+
+## GitHub Secrets Cheat Sheet
+
+Add in GitHub → Settings → Secrets and variables → Actions (organization or repo scope as appropriate).
+
+Core (builds/tests):
+- `OPENAI_API_KEY` — used by notebooks/tests or agents during CI.
+- `LUMINAI_API_URL` — base URL for your WP agent proxy, e.g., `https://elidorascodex.com/wp-json/tec/v1/agent`.
+
+WordPress.com SSH (optional):
+- `WPCOM_SSH_HOST` = `ssh.wp.com`
+- `WPCOM_SSH_USER` = `elidorascodexdotcom.wordpress.com`
+- `WPCOM_SSH_PORT` = `22` (optional)
+- `WPCOM_SSH_PRIVATE_KEY` = private key text (PEM)
+- `WPCOM_SSH_TARGET` = `/wp-content/plugins/tec-tgcr`
+
+Microsoft Graph (if used):
+- `SHAREPOINT_CLIENT_ID`, `SHAREPOINT_TENANT_ID`, `SHAREPOINT_CLIENT_SECRET`
+
+Front-end only (safe for public build envs):
+- Avoid placing sensitive tokens here unless the app runs server-side. Prefer the WP proxy for calls that require secrets.
+
+WordPress server constants (in `wp-config.php` — not GitHub):
+
+```php
+define('TEC_SPOTIFY_CLIENT_ID', '...');
+define('TEC_SPOTIFY_CLIENT_SECRET', '...');
+// Optional OpenAI/Azure keys for server-side agent if used on WP
+define('TEC_OPENAI_API_KEY', '...');
+// Azure variant
+// define('AZURE_OPENAI_ENDPOINT', 'https://<name>.openai.azure.com');
+// define('AZURE_OPENAI_KEY', '...');
+// define('AZURE_OPENAI_DEPLOYMENT_NAME', 'gpt-4o-mini');
+```
+
+Verification:
+- WP.com Deployments page shows successful runs.
+- Visit `/wp-json/tec-tgcr/v1/ping` to confirm plugin is active.
+- No secrets are printed in browser console or page source.
