@@ -186,3 +186,44 @@ Verification:
 - WP.com Deployments page shows successful runs.
 - Visit `/wp-json/tec-tgcr/v1/ping` to confirm plugin is active.
 - No secrets are printed in browser console or page source.
+
+### WP.com SSH quick-setup (your site details)
+
+From Hosting → Settings → SFTP/SSH on WordPress.com:
+
+- Host: `ssh.wp.com` → set GitHub secret `WPCOM_SSH_HOST=ssh.wp.com`
+- User: `elidorascodexdotcom.wordpress.com` → set `WPCOM_SSH_USER=elidorascodexdotcom.wordpress.com`
+- Port: `22` → set `WPCOM_SSH_PORT=22`
+- Target path: `/wp-content/plugins/tec-tgcr` → set `WPCOM_SSH_TARGET=/wp-content/plugins/tec-tgcr`
+
+Generate an SSH key on Windows and add the private key to GitHub Secrets:
+
+```powershell
+# Create a new keypair (ed25519 recommended)
+ssh-keygen -t ed25519 -C "wpcom-deploy" -f "$env:USERPROFILE\.ssh\wpcom_deploy"
+
+# Print the public key (record it for reference)
+Get-Content "$env:USERPROFILE\.ssh\wpcom_deploy.pub"
+
+# Copy the private key into GitHub secret WPCOM_SSH_PRIVATE_KEY
+Get-Content "$env:USERPROFILE\.ssh\wpcom_deploy" | Set-Clipboard
+```
+
+Run the manual SSH workflow:
+
+1) GitHub → Actions → "WP.com SSH Deploy (manual)" → Run workflow.
+2) Confirm logs show rsync to `$WPCOM_SSH_USER@$WPCOM_SSH_HOST:$WPCOM_SSH_TARGET/`.
+3) Verify files on the host via SSH:
+
+```powershell
+ssh elidorascodexdotcom.wordpress.com@ssh.wp.com
+ls -la /wp-content/plugins/tec-tgcr
+```
+
+Verification checklist (SSH mode):
+
+- [ ] Workflow completed successfully.
+- [ ] Files exist at `/wp-content/plugins/tec-tgcr`.
+- [ ] Endpoint `https://YOURDOMAIN/wp-json/tec-tgcr/v1/ping` returns `{ ok: true }`.
+- [ ] Shortcode `[tec_tgcr_ping]` renders a link to the ping route.
+- [ ] PD citations endpoint works: `https://YOURDOMAIN/wp-json/tec-tgcr/v1/citation?persona=luminai`.

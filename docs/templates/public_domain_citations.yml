@@ -1,0 +1,63 @@
+# Public-domain citations and aphorisms for personas
+# Each entry keeps metadata for provenance and filtering.
+# Fields: id, personas, text, author, work, year, source_url, public_domain, tags
+
+- id: shakespeare_hamlet_thinking
+  personas: [luminai, arcadia]
+  text: "There is nothing either good or bad, but thinking makes it so."
+  author: William Shakespeare
+  work: Hamlet (Act 2, Scene 2)
+  year: 1603
+  source_url: https://www.gutenberg.org/ebooks/1524
+  public_domain: true
+  tags: [mindset, perception]
+
+- id: newton_shoulders_of_giants
+  personas: [airth, arcadia]
+  text: "If I have seen further it is by standing on the shoulders of Giants."
+  author: Isaac Newton
+  work: Letter to Robert Hooke
+  year: 1675
+  source_url: https://web.archive.org/web/20160405012139/https://www.newtonproject.ox.ac.uk/view/texts/normalized/THEM0005
+  public_domain: true
+  tags: [science, humility]
+
+- id: franklin_well_done
+  personas: [faerhee, airth]
+  text: "Well done is better than well said."
+  author: Benjamin Franklin
+  work: Poor Richard's Almanack
+  year: 1737
+  source_url: https://www.gutenberg.org/ebooks/26877
+  public_domain: true
+  tags: [action, discipline]
+
+- id: kjv_prove_all_things
+  personas: [arcadia, faerhee, airth]
+  text: "Prove all things; hold fast that which is good."
+  author: King James Bible (KJV)
+  work: 1 Thessalonians 5:21
+  year: 1611
+  source_url: https://www.kingjamesbibleonline.org/1-Thessalonians-5-21/
+  public_domain: true
+  tags: [method, rigor]
+
+- id: galileo_measurable
+  personas: [airth]
+  text: "Measure what is measurable, and make measurable what is not so."
+  author: Galileo Galilei (attributed)
+  work: Attributed saying
+  year: 1630
+  source_url: https://en.wikiquote.org/wiki/Galileo_Galilei
+  public_domain: true
+  tags: [measurement, empiricism]
+
+- id: shelley_fearless
+  personas: [luminai, arcadia]
+  text: "Beware; for I am fearless, and therefore powerful."
+  author: Mary Wollstonecraft Shelley
+  work: Frankenstein; or, The Modern Prometheus
+  year: 1818
+  source_url: https://www.gutenberg.org/ebooks/84
+  public_domain: true
+  tags: [courage, voice]
