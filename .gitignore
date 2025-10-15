@@ -80,3 +80,9 @@ coverage.xml
 # Misc caches
 .cache/
 .parcel-cache/
+
+# Todo scaffolds and temporary task files
+todo/
+.todo/
+.git/todo/
+tasks.json
