@@ -42,7 +42,8 @@ Site → Hosting → Deployments → Connect a repository:
 - Repository: `TEC-The-ELidoras-Codex/tec-tgcr`
 - Branch: `main`
 - Destination: `/wp-content/plugins/tec-tgcr`
-- Mode: **Simple**
+- Mode: **Advanced** (for full control)
+- **Deployment workflow**: `wpcom.yml` ⚠️ **MUST use this workflow, not wpcom-sftp-deploy.yml**
 - Artifact name: `wpcom`
 
 ### 3. Verify Deployment
@@ -68,6 +69,29 @@ The plugin is minimal and self-contained. You do NOT need:
 - ❌ Database setup
 - ❌ Theme modifications
 - ❌ Custom post types or taxonomies
+
+---
+
+## Troubleshooting WordPress.com Deployment Errors
+
+### Error: "The workflow is triggered on push"
+**Cause**: You selected a workflow that only runs on `workflow_dispatch` (manual trigger).
+**Fix**: In WordPress.com → Deployments → Manage repository:
+- Change **Deployment workflow** from `wpcom-sftp-deploy.yml` to `wpcom.yml`
+- This workflow is triggered on push to `main` and creates the required artifact.
+
+### Error: "The uploaded artifact has the required name"
+**Cause**: The selected workflow doesn't create an artifact named `wpcom`.
+**Fix**: Same as above—use `wpcom.yml` which creates the artifact.
+
+### Quick Fix Steps
+1. Go to WordPress.com → Your Site → Hosting → Deployments
+2. Click "Manage a repository" on your existing connection
+3. Under "Pick your deployment mode", ensure **Advanced** is selected
+4. Change **Deployment workflow** dropdown to: `wpcom.yml`
+5. **Artifact name** should be: `wpcom`
+6. Click **Update** (or **Save**)
+7. Push a commit or manually run "Publish to WordPress.com" workflow in GitHub Actions
 
 ---
 
