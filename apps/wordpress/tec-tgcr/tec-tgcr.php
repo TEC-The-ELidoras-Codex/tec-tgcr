@@ -2,7 +2,7 @@
 /*
 Plugin Name: TEC TGCR – Agent & Tools Bootstrap
 Description: Minimal bootstrap plugin for TEC on WordPress.com. Provides a proof‑of‑life REST route and a safe place to extend.
-Version: 0.1.0
+Version: 0.1.1
 Author: TEC – The ELidoras Codex
 */
 

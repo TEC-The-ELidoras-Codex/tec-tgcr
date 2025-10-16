@@ -1,4 +1,9 @@
-"""SharePoint publishing integration for TEC agents."""
+"""SharePoint publishing integration for TEC agents.
+
+Dry-run by default. Produces Microsoft 365 CLI commands and can execute them
+only when explicitly forced.
+"""
+from __future__ import annotations
 from __future__ import annotations
 
 import json
@@ -40,6 +45,10 @@ class SharePointPublisherTool:
             str(file_path),
             "--overwrite",
         ]
+
+    def login_command(self) -> str:
+        """Return the device code login command for convenience."""
+        return "m365 login --authType deviceCode"
 
     def run(self, query: str) -> str:
         """Execute (or preview) SharePoint uploads based on configured files."""
