@@ -40,6 +40,7 @@ Expected: tests pass quietly.
 - Artifact name: `wpcom`
 
 On WordPress.com → Hosting → Deployments → Manage repository:
+
 - Repository: TEC-The-ELidoras-Codex/tec-tgcr
 - Branch: main
 - Deployment workflow: `wpcom.yml`
