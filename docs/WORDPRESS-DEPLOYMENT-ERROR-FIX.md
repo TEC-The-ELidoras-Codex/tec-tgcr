@@ -1,7 +1,7 @@
 # WordPress.com Deployment Error — Troubleshooting Guide
 
-**Error Status:** Deployment failed after 4 seconds  
-**Commit:** `2bb8c08` (chore: repo hygiene + WP deploy readiness)  
+**Error Status:** Deployment failed after 4 seconds
+**Commit:** `2bb8c08` (chore: repo hygiene + WP deploy readiness)
 **Date:** October 16, 2025
 
 ---
@@ -63,20 +63,24 @@ Your screenshot shows you have SSH/SFTP secrets configured (`WPCOM_SFTP_*`, `WPC
 **Check:** Go to GitHub → Actions → "Publish to WordPress.com" → Latest run
 
 **Look for:**
+
 - Green checkmark on "Upload artifact for WordPress.com" step
 - Artifact `wpcom` should be listed in the run summary
 
 **If artifact upload failed:**
+
 - The workflow itself has an issue (unlikely, as it's been validated)
 - GitHub Actions artifact storage quota exceeded (very unlikely)
 
 ### 2. WordPress.com Can't Access the Artifact
 
 **Symptoms:**
+
 - Workflow completes successfully on GitHub
 - WordPress.com shows "Error" immediately (within 4 seconds)
 
 **Fix:**
+
 - Ensure the WordPress.com app has permission to access your GitHub repo
 - Re-authorize the GitHub connection in WordPress.com
 
@@ -84,6 +88,7 @@ Your screenshot shows you have SSH/SFTP secrets configured (`WPCOM_SFTP_*`, `WPC
 
 **Check:**
 The artifact must have this exact structure:
+
 ```
 .wpcom-dist/
 └── tec-tgcr.php  (NOT in a subdirectory!)
@@ -92,6 +97,7 @@ The artifact must have this exact structure:
 Our workflow copies `apps/wordpress/tec-tgcr/.` to `.wpcom-dist/`, which is correct.
 
 **Verify locally:**
+
 ```powershell
 # Simulate the workflow staging
 $STAGE = ".wpcom-dist"
@@ -103,6 +109,7 @@ Get-ChildItem -LiteralPath $STAGE -Recurse | Select-Object FullName
 ```
 
 Expected output:
+
 ```
 .wpcom-dist\tec-tgcr.php
 ```
@@ -112,6 +119,7 @@ Expected output:
 **Symptom:** WordPress.com can't write to `/wp-content/plugins/tec-tgcr`
 
 **Unlikely on WordPress.com hosting** (they manage permissions), but if this is a custom/managed hosting setup:
+
 - Ensure `/wp-content/plugins/` is writable
 - Check if `tec-tgcr` folder already exists with locked permissions
 
