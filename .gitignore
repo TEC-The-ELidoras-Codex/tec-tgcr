@@ -51,6 +51,15 @@ data/**/*.csv
 docs/exports/
 docs/archive/
 
+# Build/distribution artifacts (root-level)
+dist/
+exports/
+.wpcom-dist/
+
+# Generated plugin archives
+exports/wp-plugin/**/*.zip
+*.wpcom.zip
+
 # App build outputs
 apps/**/dist/
 apps/**/build/
