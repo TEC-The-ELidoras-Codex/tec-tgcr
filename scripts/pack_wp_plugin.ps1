@@ -46,7 +46,8 @@ New-Item -ItemType Directory -Force -Path $outDir   | Out-Null
 
 # Copy plugin contents to staging under folder 'tec-tgcr' so the ZIP has correct top-level folder
 Write-Host "[pack] Copying files to stage..."
-Copy-Item -LiteralPath (Join-Path $pluginPath '*') -Destination $stageDir -Recurse -Force
+# Use -Path so the wildcard expands; -LiteralPath would treat '*' literally
+Copy-Item -Path (Join-Path $pluginPath '*') -Destination $stageDir -Recurse -Force
 
 $zipPath = Join-Path $outDir ("tec-tgcr-$version.zip")
 if (Test-Path $zipPath) { Remove-Item -LiteralPath $zipPath -Force }
@@ -56,7 +57,9 @@ Write-Host "[pack] Creating ZIP at: $zipPath"
 Compress-Archive -LiteralPath $stageDir -DestinationPath $zipPath -Force
 
 # Basic sanity check: ensure main file exists inside the zip
-$zip = [IO.Compression.ZipFile]::OpenRead($zipPath)
+# Ensure compression assembly is available for ZipFile static methods
+try { Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction Stop } catch { }
+$zip = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
 try {
     $entry = $zip.Entries | Where-Object { $_.FullName -match '^tec-tgcr/tec-tgcr\.php$' }
     if (-not $entry) { throw "ZIP missing expected file 'tec-tgcr/tec-tgcr.php'" }
