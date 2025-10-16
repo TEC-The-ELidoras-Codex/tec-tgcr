@@ -31,11 +31,14 @@ jobs:
             exit 1
           fi
           rm -rf "$STAGE"
-          mkdir -p "$STAGE"
-          cp -R "$PLUGIN"/. "$STAGE"/
+          # WordPress.com extracts the artifact into the site root. We must mirror the site structure.
+          mkdir -p "$STAGE/wp-content/plugins/tec-tgcr"
+          echo "Staging plugin into $STAGE/wp-content/plugins/tec-tgcr"
+          cp -R "$PLUGIN"/. "$STAGE/wp-content/plugins/tec-tgcr"/
           COUNT=$(find "$STAGE" -type f | wc -l)
           echo "Staged files count: $COUNT"
-          find "$STAGE" -maxdepth 2 -type f | sed -e 's/^/ - /'
+          echo "Artifact tree (depth 3):"
+          find "$STAGE" -maxdepth 3 -type f | sed -e 's/^/ - /'
 
       - name: Upload artifact for WordPress.com
         uses: actions/upload-artifact@v4
