@@ -90,6 +90,10 @@ coverage.xml
 **/*.mp4
 **/*.mov
 
+# 3D model binaries (keep out of repo; upload to WP Media Library or CDN)
+**/*.glb
+**/*.gltf
+
 # Misc caches
 .cache/
 .parcel-cache/
