@@ -34,6 +34,18 @@
       ]
     },
     {
+      "label": "Pack: WordPress plugin ZIP",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/pack_wp_plugin.ps1"
+      ]
+    },
+    {
       "label": "Setup: Bootstrap env (.venv)",
       "type": "shell",
       "command": "pwsh",
