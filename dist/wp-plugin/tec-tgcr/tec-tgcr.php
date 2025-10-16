@@ -2,7 +2,7 @@
 /*
 Plugin Name: TEC Agent Stack
 Description: The Elidoras Codex agent framework with REST API endpoints for citations, resonance tracking, and myth-science integration.
-Version: 1.0.0
+Version: 1.0.1
 Author: The Elidoras Codex
 Plugin URI: https://elidorascodex.com
 */
@@ -10,7 +10,8 @@ Plugin URI: https://elidorascodex.com
 if (!defined('ABSPATH')) { exit; }
 
 add_action('rest_api_init', function () {
-    register_rest_route('tec-tgcr/v1', '/ping', [
+    // Primary namespace with dash
+    register_rest_route('tec-tgcr/v1', 'ping', [
         'methods'  => 'GET',
         'callback' => function () {
             return new WP_REST_Response([
@@ -23,7 +24,7 @@ add_action('rest_api_init', function () {
     ]);
 
     // Public-domain citation endpoint: /wp-json/tec-tgcr/v1/citation?persona=luminai
-    register_rest_route('tec-tgcr/v1', '/citation', [
+    register_rest_route('tec-tgcr/v1', 'citation', [
         'methods'  => 'GET',
         'callback' => function (WP_REST_Request $req) {
             $persona = sanitize_text_field($req->get_param('persona'));
@@ -73,6 +74,83 @@ add_action('rest_api_init', function () {
                 'text' => $quote['text'],
                 'meta' => $quote['meta'],
                 'public_domain' => true,
+            ], 200);
+        },
+        'permission_callback' => '__return_true',
+    ]);
+
+    // Debug endpoint to verify plugin route registration on production
+    register_rest_route('tec-tgcr/v1', 'debug', [
+        'methods'  => 'GET',
+        'callback' => function () {
+            return new WP_REST_Response([
+                'ok' => true,
+                'ns' => 'tec-tgcr/v1',
+                'version' => '1.0.1',
+                'plugin_file' => basename(__FILE__),
+                'plugin_dir' => basename(dirname(__FILE__)),
+                'home' => home_url('/'),
+            ], 200);
+        },
+        'permission_callback' => '__return_true',
+    ]);
+
+    // Secondary namespace with underscore for compatibility
+    register_rest_route('tec_tgcr/v1', 'ping', [
+        'methods'  => 'GET',
+        'callback' => function () {
+            return new WP_REST_Response([
+                'ok' => true,
+                'plugin' => 'tec_tgcr',
+                'time' => time(),
+            ], 200);
+        },
+        'permission_callback' => '__return_true',
+    ]);
+    register_rest_route('tec_tgcr/v1', 'citation', [
+        'methods'  => 'GET',
+        'callback' => function (WP_REST_Request $req) {
+            $persona = sanitize_text_field($req->get_param('persona'));
+            if (!$persona) { $persona = 'arcadia'; }
+
+            $pool = [
+                'arcadia' => [
+                    [ 'text' => 'There is nothing either good or bad, but thinking makes it so.', 'meta' => 'William Shakespeare, Hamlet (1603)' ],
+                    [ 'text' => 'Prove all things; hold fast that which is good.', 'meta' => 'KJV, 1 Thessalonians 5:21 (1611)' ],
+                ],
+                'luminai' => [
+                    [ 'text' => 'Beware; for I am fearless, and therefore powerful.', 'meta' => 'Mary W. Shelley, Frankenstein (1818)' ],
+                ],
+                'airth' => [
+                    [ 'text' => 'If I have seen further it is by standing on the shoulders of Giants.', 'meta' => 'Isaac Newton, Letter to Hooke (1675)' ],
+                    [ 'text' => 'Measure what is measurable, and make measurable what is not so.', 'meta' => 'Galileo Galilei (attributed)' ],
+                ],
+                'faerhee' => [
+                    [ 'text' => 'Well done is better than well said.', 'meta' => 'Benjamin Franklin, Poor Richard\'s Almanack (1737)' ],
+                ],
+            ];
+            $key = strtolower($persona);
+            $choices = isset($pool[$key]) ? $pool[$key] : $pool['arcadia'];
+            $quote = $choices[array_rand($choices)];
+            return new WP_REST_Response([
+                'persona' => $key,
+                'text' => $quote['text'],
+                'meta' => $quote['meta'],
+                'public_domain' => true,
+            ], 200);
+        },
+        'permission_callback' => '__return_true',
+    ]);
+    register_rest_route('tec_tgcr/v1', 'debug', [
+        'methods'  => 'GET',
+        'callback' => function () {
+            return new WP_REST_Response([
+                'ok' => true,
+                'ns' => 'tec_tgcr/v1',
+                'version' => '1.0.1',
+                'plugin_file' => basename(__FILE__),
+                'plugin_dir' => basename(dirname(__FILE__)),
+                'home' => home_url('/'),
             ], 200);
         },
         'permission_callback' => '__return_true',
