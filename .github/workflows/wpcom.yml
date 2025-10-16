@@ -14,13 +14,28 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Stage plugin files
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           STAGE=.wpcom-dist
           PLUGIN=apps/wordpress/tec-tgcr
+          echo "Verifying plugin path: $PLUGIN"
+          if [ ! -d "$PLUGIN" ]; then
+            echo "ERROR: Plugin directory not found: $PLUGIN" >&2
+            echo "apps/wordpress listing:" && ls -la apps/wordpress || true
+            exit 1
+          fi
+          if [ ! -f "$PLUGIN/tec-tgcr.php" ]; then
+            echo "ERROR: Missing main plugin file: $PLUGIN/tec-tgcr.php" >&2
+            echo "Files under $PLUGIN:" && find "$PLUGIN" -maxdepth 2 -type f -print || true
+            exit 1
+          fi
+          rm -rf "$STAGE"
           mkdir -p "$STAGE"
-          rsync -a --delete "$PLUGIN"/ "$STAGE"/
-          echo "Staged files:" && find "$STAGE" -maxdepth 2 -type f | wc -l
+          cp -R "$PLUGIN"/. "$STAGE"/
+          COUNT=$(find "$STAGE" -type f | wc -l)
+          echo "Staged files count: $COUNT"
+          find "$STAGE" -maxdepth 2 -type f | sed -e 's/^/ - /'
 
       - name: Upload artifact for WordPress.com
         uses: actions/upload-artifact@v4
