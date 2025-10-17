@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          STAGE=.wpcom-dist
+          STAGE="${{ github.workspace }}/.wpcom-dist"
           PLUGIN=apps/wordpress/tec-tgcr
           echo "Verifying plugin path: $PLUGIN"
           if [ ! -d "$PLUGIN" ]; then
@@ -35,15 +35,21 @@ jobs:
           mkdir -p "$STAGE/wp-content/plugins/tec-tgcr"
           echo "Staging plugin into $STAGE/wp-content/plugins/tec-tgcr"
           cp -R "$PLUGIN"/. "$STAGE/wp-content/plugins/tec-tgcr"/
+          # Hard assertions & verbose tree to aid diagnostics
+          if [ ! -f "$STAGE/wp-content/plugins/tec-tgcr/tec-tgcr.php" ]; then
+            echo "ERROR: Staged plugin missing expected entry file." >&2
+            echo "Tree under staged dir:" && find "$STAGE" -maxdepth 5 -print | sed -e 's/^/ - /' || true
+            exit 1
+          fi
           COUNT=$(find "$STAGE" -type f | wc -l)
           echo "Staged files count: $COUNT"
           echo "Artifact tree (depth 3):"
-          find "$STAGE" -maxdepth 3 -type f | sed -e 's/^/ - /'
+          find "$STAGE" -maxdepth 3 -type f | sed -e 's/^/ - /' || true
 
       - name: Upload artifact for WordPress.com
         uses: actions/upload-artifact@v4
         with:
           name: wpcom
-          path: .wpcom-dist
+          path: ${{ github.workspace }}/.wpcom-dist
           if-no-files-found: error
           retention-days: 1

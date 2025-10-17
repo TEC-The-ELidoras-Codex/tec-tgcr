@@ -54,6 +54,7 @@ engineering:
       focus: "Algorithmic resonance projections from audio and telemetry."
     airth:
       focus: "Research guard and synthesis sentinel for TGCR."
+      persona_doc: "docs/AGENT_AIRTH.md"
   pipelines:
     voice_studio:
       focus: "Voice imprint editing for TEC narrators."
@@ -78,6 +79,7 @@ branding:
     - resonance glyphs
   assets:
     brand_kit: "docs/brand/BrandKit.md"
+    spin_model: "docs/DESIGN_SPIN_MODEL.md"
     tokens:
       colors: "config/brand/tokens.colors.json"
       typography: "config/brand/tokens.typography.json"
@@ -103,6 +105,8 @@ community:
       link: "https://teams.microsoft.com/l/channel/..."
   sharepoint:
     site: "https://elidorascodex.sharepoint.com/sites/ElidorascodexTGCR"
+  wordpress_ops:
+    ops_doc: "docs/WORDPRESS_WPCOM_OPS.md"
 
 professional:
   resume_assets:

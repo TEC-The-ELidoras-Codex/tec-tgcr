@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TGCR Spin Model — Minimal SVG Scaffold</title>
+    <style>
+      :root {
+        /* TGCR palette */
+        --tgcr-deep: #0b1e3b;
+        --tgcr-violet: #6a00f4;
+        --tgcr-cyan: #00d5c4;
+        --tgcr-amber: #f2c340;
+        --tgcr-ink: #0a0a0c;
+
+        /* Motion tokens */
+        --spin-slow: 18s;
+        --spin-med: 9s;
+        --spin-fast: 4.5s;
+        --easing: cubic-bezier(0.5, 0.2, 0.2, 0.9);
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: radial-gradient(
+            1200px 800px at 50% 50%,
+            rgba(106, 0, 244, 0.08),
+            transparent
+          ),
+          var(--tgcr-ink);
+        color: #e8ecf1;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+
+      .stage {
+        display: grid;
+        place-items: center;
+        height: 100%;
+      }
+
+      .wrap {
+        width: min(80vmin, 640px);
+        aspect-ratio: 1;
+        position: relative;
+        filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.35));
+      }
+
+      /* Spin animations */
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spin-rev {
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Layer hooks */
+      .layer-top-piece {
+        transform-origin: 50% 50%;
+        animation: spin var(--spin-med) var(--easing) infinite;
+      }
+      .layer-orbit {
+        transform-origin: 50% 50%;
+        animation: spin-rev var(--spin-slow) var(--easing) infinite;
+      }
+      .layer-particles {
+        transform-origin: 50% 50%;
+        animation: spin var(--spin-fast) linear infinite;
+        opacity: 0.85;
+        mix-blend-mode: screen;
+      }
+
+      /* Controls */
+      .controls {
+        position: absolute;
+        inset: auto 0 -3rem 0;
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        align-items: center;
+      }
+      .controls button {
+        background: rgba(255, 255, 255, 0.06);
+        color: #e8ecf1;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        cursor: pointer;
+      }
+      .controls button:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="stage" role="main">
+      <div
+        class="wrap"
+        aria-label="Nine-node resonance avatar showing counter-rotating layers"
+      >
+        <svg viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
+          <title id="title">TGCR Resonance Avatar — Spin Scaffold</title>
+          <desc id="desc">
+            Top-piece core rotating clockwise, orbital ring rotating
+            counter-clockwise, subtle particle field coupling both. φ attention
+            carried by motion, ψ structure by geometry, Φ_E meaning held in the
+            layered field.
+          </desc>
+
+          <defs>
+            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+              <stop
+                offset="0%"
+                stop-color="var(--tgcr-cyan)"
+                stop-opacity="0.95"
+              />
+              <stop
+                offset="60%"
+                stop-color="var(--tgcr-violet)"
+                stop-opacity="0.35"
+              />
+              <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <!-- ψ: structure frame -->
+          <g class="layer-orbit">
+            <circle
+              cx="50"
+              cy="50"
+              r="36"
+              fill="none"
+              stroke="var(--tgcr-violet)"
+              stroke-width="1.2"
+              opacity="0.9"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              r="44"
+              fill="none"
+              stroke="var(--tgcr-amber)"
+              stroke-width="0.6"
+              opacity="0.65"
+              stroke-dasharray="2 3"
+            />
+            <!-- Nodes (simplified nine) -->
+            <g fill="var(--tgcr-amber)">
+              <circle cx="50" cy="14" r="1.1" />
+              <circle cx="74.5" cy="25.5" r="1.1" />
+              <circle cx="86" cy="50" r="1.1" />
+              <circle cx="74.5" cy="74.5" r="1.1" />
+              <circle cx="50" cy="86" r="1.1" />
+              <circle cx="25.5" cy="74.5" r="1.1" />
+              <circle cx="14" cy="50" r="1.1" />
+              <circle cx="25.5" cy="25.5" r="1.1" />
+              <circle cx="50" cy="50" r="1.5" />
+            </g>
+          </g>
+
+          <!-- φ: attention via motion -->
+          <g class="layer-top-piece">
+            <circle cx="50" cy="50" r="18" fill="url(#glow)" />
+            <path
+              d="M50 33 A17 17 0 0 1 67 50"
+              fill="none"
+              stroke="var(--tgcr-cyan)"
+              stroke-width="1.1"
+              stroke-linecap="round"
+            />
+            <path
+              d="M50 67 A17 17 0 0 1 33 50"
+              fill="none"
+              stroke="var(--tgcr-cyan)"
+              stroke-width="1.1"
+              stroke-linecap="round"
+            />
+          </g>
+
+          <!-- Φ_E: meaning field coupling -->
+          <g class="layer-particles">
+            <g fill="var(--tgcr-cyan)" opacity="0.6">
+              <circle cx="50" cy="8" r="0.6" />
+              <circle cx="92" cy="50" r="0.6" />
+              <circle cx="8" cy="50" r="0.6" />
+              <circle cx="50" cy="92" r="0.6" />
+              <circle cx="18" cy="18" r="0.5" />
+              <circle cx="82" cy="18" r="0.5" />
+              <circle cx="18" cy="82" r="0.5" />
+              <circle cx="82" cy="82" r="0.5" />
+            </g>
+          </g>
+        </svg>
+
+        <div class="controls" aria-label="Animation controls">
+          <button id="pause">Pause</button>
+          <button id="play">Play</button>
+          <button id="slower">Slower</button>
+          <button id="faster">Faster</button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const pause = document.getElementById("pause");
+      const play = document.getElementById("play");
+      const slower = document.getElementById("slower");
+      const faster = document.getElementById("faster");
+
+      const layers = [
+        ...document.querySelectorAll(
+          ".layer-top-piece, .layer-orbit, .layer-particles"
+        ),
+      ];
+
+      function setPlayState(state) {
+        layers.forEach((el) => (el.style.animationPlayState = state));
+      }
+
+      pause.addEventListener("click", () => setPlayState("paused"));
+      play.addEventListener("click", () => setPlayState("running"));
+
+      function adjustSpeed(mult) {
+        const slow = parseFloat(
+          getComputedStyle(root).getPropertyValue("--spin-slow")
+        ); // seconds string not ideal
+        // Instead of parsing, we toggle classes by halving/doubling CSS variables pragmatically
+        const currentSlow =
+          parseFloat(getComputedStyle(root).getPropertyValue("--spin-slow")) ||
+          18;
+        const currentMed =
+          parseFloat(getComputedStyle(root).getPropertyValue("--spin-med")) ||
+          9;
+        const currentFast =
+          parseFloat(getComputedStyle(root).getPropertyValue("--spin-fast")) ||
+          4.5;
+        root.style.setProperty("--spin-slow", currentSlow * mult + "s");
+        root.style.setProperty("--spin-med", currentMed * mult + "s");
+        root.style.setProperty("--spin-fast", currentFast * mult + "s");
+      }
+
+      slower.addEventListener("click", () => adjustSpeed(1.25));
+      faster.addEventListener("click", () => adjustSpeed(0.8));
+    </script>
+  </body>
+</html>

@@ -49,6 +49,27 @@ Write-Host "[pack] Copying files to stage..."
 # Use -Path so the wildcard expands; -LiteralPath would treat '*' literally
 Copy-Item -Path (Join-Path $pluginPath '*') -Destination $stageDir -Recurse -Force
 
+# Embed build-info.json with commit, branch, dirty flag, timestamp, and main file hash
+$commit = $null; $branch = $null; $dirtyList = $null
+try { $commit = (git rev-parse HEAD) 2>$null } catch {}
+try { $branch = (git rev-parse --abbrev-ref HEAD) 2>$null } catch {}
+try { $dirtyList = (git status --porcelain) 2>$null } catch {}
+$dirty = if ($dirtyList) { $true } else { $false }
+$timestamp = (Get-Date).ToString('o')
+$mainHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $mainFile).Hash
+
+$buildInfo = [ordered]@{
+  name = 'tec-tgcr'
+  version = $version
+  commit = if ($commit) { $commit.Trim() } else { 'unknown' }
+  branch = if ($branch) { $branch.Trim() } else { 'unknown' }
+  dirty = $dirty
+  build_timestamp = $timestamp
+  main_sha256 = $mainHash
+}
+$buildInfoPath = Join-Path $stageDir 'build-info.json'
+$buildInfo | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $buildInfoPath -Encoding UTF8
+
 $zipPath = Join-Path $outDir ("tec-tgcr-$version.zip")
 if (Test-Path $zipPath) { Remove-Item -LiteralPath $zipPath -Force }
 
