@@ -23,12 +23,14 @@ class LLMResponder:
         api_key: Optional[str] = None,
         endpoint: Optional[str] = None,
         http_client: Optional[httpx.Client] = None,
+        use_env_api_key: bool = False,
     ) -> None:
         self.provider = provider
         self.model = model
         self.max_tokens = max_tokens
         self.temperature = temperature
-        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        # Prefer explicit configuration; optionally fall back to environment if enabled.
+        self.api_key = api_key or (os.getenv("OPENAI_API_KEY") if use_env_api_key else None)
         self.endpoint = endpoint or self._default_endpoint(provider)
         self._client = http_client
 
@@ -45,6 +47,8 @@ class LLMResponder:
         headers = self._headers()
 
         try:
+            # At this point, availability has been checked; endpoint must be non-None.
+            assert self.endpoint is not None
             response = client.post(self.endpoint, json=payload, headers=headers, timeout=30.0)
             response.raise_for_status()
             return self._parse_response(response)

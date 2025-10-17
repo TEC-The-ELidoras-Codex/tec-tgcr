@@ -95,6 +95,26 @@ add_action('rest_api_init', function () {
         'permission_callback' => '__return_true',
     ]);
 
+    // Health endpoint for quick diagnostics
+    register_rest_route('tec-tgcr/v1', 'health', [
+        'methods'  => 'GET',
+        'callback' => function () {
+            global $wp_version;
+            return new WP_REST_Response([
+                'ok' => true,
+                'ns' => 'tec-tgcr/v1',
+                'plugin' => 'tec-tgcr',
+                'plugin_version' => '1.0.1',
+                'php_version' => PHP_VERSION,
+                'wp_version' => isset($wp_version) ? $wp_version : null,
+                'site_url' => site_url('/'),
+                'home_url' => home_url('/'),
+                'time' => time(),
+            ], 200);
+        },
+        'permission_callback' => '__return_true',
+    ]);
+
     // Secondary namespace with underscore for compatibility
     register_rest_route('tec_tgcr/v1', 'ping', [
         'methods'  => 'GET',

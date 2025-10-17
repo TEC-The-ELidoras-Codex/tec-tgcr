@@ -202,6 +202,7 @@ class AirthResearchGuard:
             temperature=settings.get("temperature", 0.4),
             api_key=settings.get("api_key"),
             endpoint=settings.get("endpoint"),
+            use_env_api_key=settings.get("use_env_api_key", False),
         )
 
     def _init_research_tool(self) -> Optional[ResearchTool]:

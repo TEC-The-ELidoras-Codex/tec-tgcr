@@ -42,6 +42,9 @@ def _default_tool_settings() -> Dict[str, Dict[str, Any]]:
             "model": "gpt-4o-mini",
             "max_tokens": 600,
             "temperature": 0.4,
+            # For deterministic tests, do not auto-read OPENAI_API_KEY by default.
+            # Set to true in real deployments to pick up env credentials.
+            "use_env_api_key": False,
         },
         "research": {
             "provider": "bing",

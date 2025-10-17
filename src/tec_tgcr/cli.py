@@ -14,6 +14,7 @@ from .config import AgentConfig
 from .integrations.civitai import CivitaiClient
 from .integrations.worldanvil import WorldAnvilClient
 from .session import ConversationSession
+from .tools.resonance_evaluator import compute_resonance_strength
 
 console = Console()
 app = typer.Typer(help="Operate the TEC conversational agents.")
@@ -84,3 +85,21 @@ def worldanvil_me() -> None:
 
 if __name__ == "__main__":
     app()
+
+
+@app.command()
+def resonance_evaluate(
+    phi: float = typer.Option(..., help="Temporal attention φ (0–1)"),
+    psi: float = typer.Option(..., help="Spatial/structural coherence ψ (0–1)"),
+    phi_e: float = typer.Option(..., help="Meaning potential Φ_E (0–1)"),
+) -> None:
+    """Evaluate resonance strength from TGCR variables.
+
+    Returns a single score in [0, 1] using a weighted geometric mean.
+    """
+
+    strength = compute_resonance_strength(phi, psi, phi_e)
+    console.print(f"Resonance strength: [bold]{strength:.3f}[/bold]")
+    console.print(f"φ (attention): {phi:.3f}")
+    console.print(f"ψ (structure): {psi:.3f}")
+    console.print(f"Φ_E (meaning): {phi_e:.3f}")
