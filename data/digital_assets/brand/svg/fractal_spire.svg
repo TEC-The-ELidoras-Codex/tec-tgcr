@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Fractal Spire</title>
+  <desc>A recursive spire ascending, symbolizing ψ structural recursion with radial glow</desc>
+  <defs>
+    <radialGradient id="spire_glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6A00F4" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#6A00F4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spire_grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#6A00F4" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#00D5C4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F2C340" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <circle cx="128" cy="128" r="96" fill="url(#spire_glow)"/>
+  <g fill="none" stroke="url(#spire_grad)" stroke-width="4">
+    <path d="M128 224 C128 180, 96 160, 96 128 C96 96, 128 76, 128 32"/>
+    <path d="M128 224 C128 180, 160 160, 160 128 C160 96, 128 76, 128 32"/>
+  </g>
+  <g fill="url(#spire_grad)">
+    <circle cx="128" cy="192" r="7" opacity="0.8"/>
+    <circle cx="112" cy="160" r="6" opacity="0.75"/>
+    <circle cx="144" cy="160" r="6" opacity="0.75"/>
+    <circle cx="128" cy="128" r="5" opacity="0.7"/>
+    <circle cx="120" cy="96" r="4" opacity="0.65"/>
+    <circle cx="136" cy="96" r="4" opacity="0.65"/>
+    <circle cx="128" cy="64" r="3" opacity="0.6"/>
+  </g>
+</svg>

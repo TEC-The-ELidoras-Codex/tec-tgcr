@@ -1,0 +1,15 @@
+{
+  "tokens": {
+    "color": {
+      "deep_space_blue": { "value": "#0B1E3B" },
+      "nexus_purple": { "value": "#6A00F4" },
+      "digital_teal": { "value": "#00D5C4" },
+      "cyber_gold": { "value": "#F2C340" },
+      "void_black": { "value": "#0A0A0C" },
+      "prismatic_white": { "value": "#EDEDED" },
+      "blush_soft": { "value": "#F7A1B5" },
+      "blush_core": { "value": "#E86E8A" },
+      "blush_glow": { "value": "#FFC1CC" }
+    }
+  }
+}

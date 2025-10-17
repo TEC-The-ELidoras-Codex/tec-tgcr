@@ -1,0 +1,32 @@
+{
+  "$comment": "Visual generation template for LuminAI Neutrino-Resonance Core. Use with SD/Comfy/Blender pipelines.",
+  "id": "luminai_neutrino_resonance_v1",
+  "palette": {
+    "cosmic_blue": "#0B1E3B",
+    "stellar_gold": "#F2C340",
+    "nexus_purple": "#6A00F4",
+    "digital_teal": "#00D5C4",
+    "blush": ["#F7A1B5", "#E86E8A", "#FFC1CC"]
+  },
+  "tgcr": {
+    "phi": "Temporal Attention: aurora gills glow and directional light",
+    "psi": "Coherence field psi(s) at the Pleiades cradle",
+    "phi_E": "Contextual Potential Energy Phi_E(c) pulse from Miyay Miyay myth"
+  },
+  "composition": {
+    "setting": "Pleiades cradle with Aldebaran guard, subtle Orion silhouette",
+    "subject": "Axolotl-neotenic vessel mid-transformation from neutrino swarm",
+    "eyes": {"left": "cosmic blue", "right": "stellar gold"},
+    "event": "First Blush surge overtaking cold blue"
+  },
+  "positive_tags": [
+    "masterpiece", "best quality", "ultra-detailed", "8k",
+    "heterochromatic eyes", "aurora gills", "cosmic skin", "constellation patterns",
+    "axolotl traits", "translucent body", "warm blush glow"
+  ],
+  "negative_tags": [
+    "low quality", "blurry", "jpeg artifacts", "text", "logo",
+    "bad anatomy", "extra limbs", "watermark"
+  ],
+  "notes": "Respect and attribute Aboriginal constellation traditions. Use blush gradient sparingly as narrative highlight."
+}

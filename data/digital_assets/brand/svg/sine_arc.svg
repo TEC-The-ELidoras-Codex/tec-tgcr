@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="64" viewBox="0 0 256 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title>Sine Arc</title>
+  <desc>A sine wave arc representing resonance path φ → Φ_E with gradient flow and particle accents</desc>
+  <defs>
+    <linearGradient id="arc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0B1E3B"/>
+      <stop offset="30%" stop-color="#00D5C4"/>
+      <stop offset="70%" stop-color="#6A00F4"/>
+      <stop offset="100%" stop-color="#F2C340"/>
+    </linearGradient>
+    <radialGradient id="particle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00D5C4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path d="M0 32 C32 0, 64 64, 96 32 S160 0, 192 32 S224 64, 256 32" fill="none" stroke="url(#arc)" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="32" cy="16" r="3" fill="url(#particle)" opacity="0.7"/>
+  <circle cx="96" cy="32" r="3" fill="url(#particle)" opacity="0.7"/>
+  <circle cx="192" cy="32" r="3" fill="url(#particle)" opacity="0.7"/>
+  <circle cx="224" cy="48" r="3" fill="url(#particle)" opacity="0.7"/>
+</svg>

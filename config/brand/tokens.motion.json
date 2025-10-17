@@ -1,0 +1,16 @@
+{
+  "tokens": {
+    "motion": {
+      "duration": {
+        "fast": { "value": "120ms" },
+        "base": { "value": "200ms" },
+        "slow": { "value": "320ms" }
+      },
+      "easing": {
+        "in_out": { "value": "cubic-bezier(0.4, 0.0, 0.2, 1)" },
+        "out": { "value": "cubic-bezier(0.0, 0.0, 0.2, 1)" },
+        "in": { "value": "cubic-bezier(0.4, 0.0, 1, 1)" }
+      }
+    }
+  }
+}

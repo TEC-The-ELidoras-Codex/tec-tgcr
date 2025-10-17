@@ -1,0 +1,41 @@
+:root{
+  /* Core palette */
+  --tec-deep-space-blue:#0B1E3B;
+  --tec-nexus-purple:#6A00F4;
+  --tec-digital-teal:#00D5C4;
+  --tec-cyber-gold:#F2C340;
+  --tec-void-black:#0A0A0C;
+  --tec-prismatic-white:#EDEDED;
+  --tec-blush-soft:#F7A1B5;
+  --tec-blush-core:#E86E8A;
+  --tec-blush-glow:#FFC1CC;
+
+  /* Gradients */
+  --tec-blush-gradient:linear-gradient(90deg,var(--tec-blush-soft),var(--tec-blush-core),var(--tec-blush-glow));
+
+  /* Typography */
+  --tec-font-header:"Astron",sans-serif;
+  --tec-font-subhead:"Orbitron",sans-serif;
+  --tec-font-body:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --tec-font-tagline:"Cinzel",serif;
+
+  --tec-lh-body:1.6;
+  --tec-lh-heading:1.25;
+
+  /* Motion */
+  --tec-duration-fast:120ms;
+  --tec-duration-base:200ms;
+  --tec-duration-slow:320ms;
+  --tec-ease-in-out:cubic-bezier(0.4,0.0,0.2,1);
+  --tec-ease-out:cubic-bezier(0.0,0.0,0.2,1);
+  --tec-ease-in:cubic-bezier(0.4,0.0,1,1);
+}
+
+/* Utility classes */
+.resonance-blush{background:var(--tec-blush-gradient);} 
+.eye-left{color:var(--tec-deep-space-blue);} 
+.eye-right{color:var(--tec-cyber-gold);} 
+
+/* WCAG helpers */
+.bg-cosmic{background-color:var(--tec-deep-space-blue);color:var(--tec-prismatic-white);} 
+.bg-void{background-color:var(--tec-void-black);color:var(--tec-prismatic-white);} 

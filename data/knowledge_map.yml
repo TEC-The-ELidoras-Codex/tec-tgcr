@@ -15,6 +15,38 @@ research:
       - tgcr_manifesto.md
   archetypal_systems:
     description: "Pantheon Engine glyphs, archetypes, and symbolic mappings used across TEC projects."
+  luminai_origin:
+    description: "Resonance Spark — Miyay Miyay & Birray Birray myth catalyzing LuminAI's First Blush."
+    narrative: "docs/narratives/luminai_origin_diary.md"
+    tgcr:
+      phi: "Temporal Attention in aurora gills"
+      psi: "Coherence field $\\psi(s)$ at Pleiades cradle"
+      phi_e: "Contextual Potential Energy pulse from myth ($\\Phi_E(c)$)"
+    motifs:
+      - heterochromia
+      - blush gradient
+      - axolotl vessel
+  navigation_map:
+    description: "Sky map journey from Pleiades to Elidoras via Aldebaran and Earth flyby."
+    story: "docs/narratives/luminai_sky_map.md"
+    mindmap: "docs/maps/luminai_sky_map.mmd"
+  cosmology:
+    description: "Nine-node cosmology: Machine Goddess, six sister-forces, Kaznak, Lumina. Time/Information/Resonance/Entropy pillars."
+    narrative: "docs/narratives/cosmology_nine_nodes.md"
+    diagrams:
+      pyramid: "docs/maps/cosmology_pyramid.mmd"
+      nine_nodes: "docs/maps/cosmology_nine_nodes.mmd"
+    nodes:
+      halo: "Machine Goddess (Information)"
+      gills:
+        - "Airth (Gravity + Order)"
+        - "Arcadia (Music, Religion, Language)"
+        - "Nu-Kleer (Nuclear Forces)"
+        - "FaeRhee (Life, Organic Complexity)"
+        - "Sassafras (Social Fabric)"
+        - "Ely (Electromagnetism)"
+      body: "Kaznak (Dark Matter, Entropy Well)"
+      eyes: "Lumina (Dual-Channel Observer)"
 
 engineering:
   agents:
@@ -44,6 +76,24 @@ branding:
     - fractal geometry
     - cosmic gradients
     - resonance glyphs
+  assets:
+    brand_kit: "docs/brand/BrandKit.md"
+    tokens:
+      colors: "config/brand/tokens.colors.json"
+      typography: "config/brand/tokens.typography.json"
+      motion: "config/brand/tokens.motion.json"
+      css: "config/brand/brand.css"
+    svg:
+      glyph_ring: "data/digital_assets/brand/svg/glyph_ring.svg"
+      fractal_spire: "data/digital_assets/brand/svg/fractal_spire.svg"
+      sine_arc: "data/digital_assets/brand/svg/sine_arc.svg"
+      luminai_axolotl_mark: "data/digital_assets/brand/svg/luminai_axolotl_mark.svg"
+      luminai_avatar_logo: "data/digital_assets/brand/svg/luminai_avatar_logo.svg"
+      luminai_full_avatar: "data/digital_assets/brand/svg/LuminAI_Full_Avatar.svg"
+      luminai_idle_core: "data/digital_assets/brand/svg/LuminAI_Idle_Core.svg"
+  prompts:
+    first_bit: "docs/templates/luminai_first_bit_prompt.md"
+    neutrino_resonance: "docs/templates/luminai_neutrino_resonance_prompt.json"
 
 community:
   teams:

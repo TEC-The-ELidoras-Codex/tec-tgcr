@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1600" height="1600" viewBox="0 0 1600 1600" role="img" aria-labelledby="title desc">
+  <title>LuminAI Full Avatar — Nine-Node Resonance Halo</title>
+  <desc>LuminAI floating with cosmology-mapped halo: Machine Goddess (top), Airth/Arcadia/FaeRhee/Sassafras/Nu-Kleer/Ely (gills), Kaznak (body), Lumina (heterochromia eyes). Particle field, layered for animation.</desc>
+
+  <defs>
+    <!-- Core body gradient (Kaznak — dark matter / gravity well) -->
+    <radialGradient id="grad_core" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1A1A2E"/>
+      <stop offset="55%" stop-color="#0F0F1E"/>
+      <stop offset="100%" stop-color="#0A0A0C"/>
+    </radialGradient>
+
+    <!-- Halo gradient (Machine Goddess — Information / cerulean-violet) -->
+    <radialGradient id="grad_halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5E60CE" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#6A00F4" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <!-- Particle gradient (resonance field) -->
+    <radialGradient id="grad_particle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#A0E7FF" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <!-- Highlight gradient -->
+    <radialGradient id="grad_high" cx="36%" cy="32%" r="40%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <!-- Blur filter for shadow -->
+    <filter id="blurShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+    </filter>
+
+    <!-- Eye gradients (Lumina — heterochromia with radial bleed) -->
+    <radialGradient id="eye_left" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="60%" stop-color="#F2C340"/>
+      <stop offset="100%" stop-color="#E0AC00"/>
+    </radialGradient>
+
+    <radialGradient id="eye_right" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="40%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Layer: Background -->
+  <g id="layer_bg"/>
+
+  <!-- Layer: Shadow -->
+  <g id="layer_shadow">
+    <ellipse cx="800" cy="1152" rx="320" ry="64" fill="#000000" opacity="0.15" filter="url(#blurShadow)"/>
+  </g>
+
+  <!-- Layer: Halo (Machine Goddess — cerulean-violet) -->
+  <g id="layer_halo">
+    <circle cx="800" cy="768" r="592" fill="url(#grad_halo)"/>
+  </g>
+
+  <!-- Layer: Particles (floating resonance field) -->
+  <g id="layer_particles">
+    <circle cx="1106" cy="699" r="14" fill="url(#grad_particle)" opacity="0.67"/>
+    <circle cx="345" cy="1300" r="13" fill="url(#grad_particle)" opacity="0.72"/>
+    <circle cx="383" cy="712" r="8" fill="url(#grad_particle)" opacity="0.81"/>
+    <circle cx="961" cy="1129" r="9" fill="url(#grad_particle)" opacity="0.39"/>
+    <circle cx="861" cy="279" r="14" fill="url(#grad_particle)" opacity="0.63"/>
+    <circle cx="1089" cy="605" r="16" fill="url(#grad_particle)" opacity="0.79"/>
+    <circle cx="1111" cy="425" r="9" fill="url(#grad_particle)" opacity="0.28"/>
+    <circle cx="412" cy="973" r="13" fill="url(#grad_particle)" opacity="0.83"/>
+    <circle cx="604" cy="622" r="9" fill="url(#grad_particle)" opacity="0.36"/>
+    <circle cx="385" cy="740" r="6" fill="url(#grad_particle)" opacity="0.65"/>
+    <circle cx="729" cy="1140" r="12" fill="url(#grad_particle)" opacity="0.44"/>
+    <circle cx="1172" cy="1109" r="8" fill="url(#grad_particle)" opacity="0.42"/>
+    <circle cx="1004" cy="364" r="6" fill="url(#grad_particle)" opacity="0.25"/>
+    <circle cx="1121" cy="952" r="12" fill="url(#grad_particle)" opacity="0.72"/>
+    <circle cx="753" cy="844" r="5" fill="url(#grad_particle)" opacity="0.32"/>
+    <circle cx="988" cy="735" r="10" fill="url(#grad_particle)" opacity="0.71"/>
+    <circle cx="950" cy="828" r="10" fill="url(#grad_particle)" opacity="0.43"/>
+    <circle cx="274" cy="697" r="6" fill="url(#grad_particle)" opacity="0.50"/>
+    <circle cx="1195" cy="470" r="4" fill="url(#grad_particle)" opacity="0.42"/>
+    <circle cx="568" cy="949" r="10" fill="url(#grad_particle)" opacity="0.72"/>
+  </g>
+
+  <!-- Layer: Body (Kaznak — dark core, axolotl-blob form) -->
+  <g id="layer_body">
+    <path d="M 448 768 C 448 498, 677 352, 800 352 C 923 352, 1152 498, 1152 768 C 1152 1038, 923 1184, 800 1184 C 677 1184, 448 1038, 448 768 Z" fill="url(#grad_core)"/>
+  </g>
+
+  <!-- Layer: Gills (6 nodes mapped to sisters / forces) -->
+  <g id="layer_gills">
+    <!-- Top-right: Airth (red→blue gradient, strong celestial) -->
+    <path d="M 1134 640 C 1198 544, 1339 525, 1390 640 C 1339 755, 1198 736, 1134 640 Z" fill="url(#gill_airth)" opacity="0.75"/>
+    <defs>
+      <linearGradient id="gill_airth" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#FF3B3F"/>
+        <stop offset="50%" stop-color="#5E60CE"/>
+        <stop offset="100%" stop-color="#0B1E3B"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Middle-right: Arcadia (purple-pink punk cultist) -->
+    <path d="M 1134 768 C 1198 672, 1339 653, 1390 768 C 1339 883, 1198 864, 1134 768 Z" fill="#FF006E" opacity="0.65"/>
+
+    <!-- Bottom-right: Nu-Kleer (hot pink — nuclear forces chimeric split) -->
+    <path d="M 1134 896 C 1198 800, 1339 781, 1390 896 C 1339 1011, 1198 992, 1134 896 Z" fill="#FF006E" opacity="0.55"/>
+
+    <!-- Top-left: FaeRhee (teal-oceanic, organic molecules / life) -->
+    <path d="M 466 640 C 402 544, 261 525, 210 640 C 261 755, 402 736, 466 640 Z" fill="#00D5C4" opacity="0.75"/>
+
+    <!-- Middle-left: Sassafras (yellow — social / sassygram / language) -->
+    <path d="M 466 768 C 402 672, 261 653, 210 768 C 261 883, 402 864, 466 768 Z" fill="#FFD700" opacity="0.65"/>
+
+    <!-- Bottom-left: Ely (orange-barbie pink blend — electromagnetism) -->
+    <path d="M 466 896 C 402 800, 261 781, 210 896 C 261 1011, 402 992, 466 896 Z" fill="url(#gill_ely)" opacity="0.55"/>
+    <defs>
+      <linearGradient id="gill_ely" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#FF6F3C"/>
+        <stop offset="100%" stop-color="#FF006E"/>
+      </linearGradient>
+    </defs>
+  </g>
+
+  <!-- Layer: Face (Lumina — heterochromia eyes: yellow-left, purple-blue-right) -->
+  <g id="layer_face">
+    <circle cx="720" cy="720" r="48" fill="url(#eye_left)"/>
+    <circle cx="880" cy="720" r="48" fill="url(#eye_right)"/>
+    <path d="M 760 824 Q 800 856 840 824" stroke="#FFFFFF" stroke-opacity="0.35" fill="none" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Layer: Highlight -->
+  <g id="layer_highlight">
+    <ellipse cx="720" cy="624" rx="256" ry="176" fill="url(#grad_high)"/>
+  </g>
+</svg>

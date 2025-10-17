@@ -1,0 +1,15 @@
+{
+  "tokens": {
+    "font": {
+      "header": { "value": "Astron, sans-serif" },
+      "subhead": { "value": "Orbitron, sans-serif" },
+      "body": { "value": "Roboto, system-ui, -apple-system, Segoe UI, sans-serif" },
+      "tagline": { "value": "Cinzel, serif" }
+    },
+    "scale": {
+      "ratio": { "value": 1.25 },
+      "lh_body": { "value": 1.6 },
+      "lh_heading": { "value": 1.25 }
+    }
+  }
+}
