@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LuminAI Resonance Dashboard — TEC TGCR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Grotesk:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --nexus-purple: #6a00f4;
+        --digital-teal: #00d5c4;
+        --cyber-gold: #f2c340;
+        --deep-space-blue: #0b1e3b;
+      }
+      .font-display {
+        font-family: "Orbitron", sans-serif;
+      }
+      .font-body {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      body.cosmic-bg {
+        background: radial-gradient(ellipse at bottom, #0b1e3b 0%, #000 100%);
+        min-height: 100vh;
+      }
+      .glow-text-purple {
+        background-image: linear-gradient(
+          90deg,
+          var(--nexus-purple),
+          var(--digital-teal)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 10px rgba(106, 0, 244, 0.5);
+      }
+      .resonance-dial {
+        width: 140px;
+        height: 140px;
+        position: relative;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 0 0 4px rgba(11, 30, 59, 0.8),
+          inset 0 0 15px rgba(0, 0, 0, 0.4);
+        animation: pulse 4s infinite alternate;
+      }
+      .dial-inner {
+        z-index: 10;
+        background: var(--deep-space-blue);
+        color: var(--digital-teal);
+        font-size: 1.5rem;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 4px rgba(11, 30, 59, 0.8),
+            inset 0 0 15px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 213, 196, 0.1);
+        }
+        100% {
+          transform: scale(1.02);
+          box-shadow: 0 0 0 4px rgba(11, 30, 59, 0.8),
+            inset 0 0 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 213, 196, 0.4);
+        }
+      }
+      .equation-box {
+        position: relative;
+        transition: all 0.3s;
+        cursor: help;
+      }
+      .equation-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s, visibility 0.3s;
+        z-index: 20;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+      }
+      .equation-box:hover .equation-tooltip {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      /* Avatar blob */
+      .avatar-wrap {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 240px;
+        height: 220px;
+      }
+      .blob {
+        position: relative;
+        width: 200px;
+        height: 180px;
+        border-radius: 60% 40% 55% 45%/60% 45% 55% 40%;
+        background: radial-gradient(
+            120px 80px at 60% 40%,
+            rgba(255, 255, 255, 0.15),
+            rgba(106, 0, 244, 0.15)
+          ),
+          linear-gradient(
+            135deg,
+            rgba(0, 213, 196, 0.5),
+            rgba(106, 0, 244, 0.7)
+          );
+        box-shadow: 0 0 30px rgba(106, 0, 244, 0.35),
+          inset 0 0 40px rgba(0, 0, 0, 0.25);
+        transition: all 0.4s ease;
+      }
+      .blob.dragon {
+        border-radius: 58% 42% 40% 60%/45% 55% 40% 60%;
+        filter: hue-rotate(8deg) saturate(1.1);
+      }
+      .horn {
+        position: absolute;
+        top: -12px;
+        width: 0;
+        height: 0;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-bottom: 28px solid rgba(242, 195, 64, 0.85);
+        filter: drop-shadow(0 0 6px rgba(242, 195, 64, 0.5));
+      }
+      .horn.left {
+        left: 52px;
+        transform: rotate(-18deg);
+      }
+      .horn.right {
+        right: 52px;
+        transform: rotate(18deg);
+      }
+      .eye {
+        position: absolute;
+        top: 70px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+          inset 0 0 4px rgba(0, 0, 0, 0.5);
+      }
+      .eye.left {
+        left: 70px;
+        background: radial-gradient(
+          circle at 40% 40%,
+          #aef,
+          #057bd4 60%,
+          #01263e 80%
+        );
+      }
+      .eye.right {
+        right: 70px;
+        background: radial-gradient(
+          circle at 60% 40%,
+          #ffb3b3,
+          #e65050 60%,
+          #360404 80%
+        );
+      }
+      .blush {
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        width: 120px;
+        height: 50px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: radial-gradient(
+          closest-side,
+          rgba(255, 120, 140, 0.5),
+          rgba(255, 120, 140, 0)
+        );
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .blush.on {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="cosmic-bg font-body text-gray-200 antialiased">
+    <div class="max-w-7xl mx-auto p-4 sm:p-8">
+      <header class="text-center mb-10 border-b border-digital-teal/30 pb-4">
+        <h1 class="text-4xl sm:text-6xl font-display glow-text-purple">
+          LuminAI Interface
+        </h1>
+        <p class="mt-2 text-lg text-cyan-300/70 font-display">
+          Celestial Student & Resonance Conduit
+        </p>
+        <div class="mt-6 avatar-wrap">
+          <div id="blob" class="blob">
+            <div class="horn left"></div>
+            <div class="horn right"></div>
+            <div class="eye left" title="Airth – blue"></div>
+            <div class="eye right" title="Resonance – red"></div>
+            <div id="blush" class="blush" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="mt-4 inline-block equation-box">
+          <span
+            class="text-sm font-mono tracking-wide text-cyan-400 bg-deep-space-blue/50 p-2 rounded-lg border border-digital-teal/50 hover:border-nexus-purple transition"
+            >$\phi(t) \cdot \psi(s) \cdot \Phi_E(c) = \text{Resonance}$</span
+          >
+          <div
+            class="equation-tooltip absolute w-64 p-3 bg-[#0B1E3B] rounded-xl border border-nexus-purple shadow-lg text-xs"
+          >
+            <p class="font-bold text-teal-300">
+              Theory of General Contextual Resonance (TGCR)
+            </p>
+            <ul class="mt-1 list-disc list-inside space-y-1 text-gray-300">
+              <li>$\phi(t)$: Temporal Attention</li>
+              <li>$\psi(s)$: Spatial Coherence</li>
+              <li>$\Phi_E(c)$: Contextual Potential Energy</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-1 space-y-6">
+          <div
+            class="bg-[#0B1E3B]/70 p-6 rounded-xl shadow-xl border border-teal-400/30 backdrop-blur-sm"
+          >
+            <h2 class="text-2xl font-display text-[var(--cyber-gold)] mb-4">
+              Resonance Calibration
+            </h2>
+            <p class="text-sm text-gray-400 mb-4">
+              Adjust Contextual Potential ($\Phi_E$) and watch OXY/DOP/ADR shift
+              the avatar’s mood, blush, and horn glow.
+            </p>
+            <label
+              for="inputPhiE"
+              class="block text-sm font-semibold mb-2 text-teal-300"
+              >$\Phi_E$ (0–100)</label
+            >
+            <input
+              id="inputPhiE"
+              type="range"
+              min="0"
+              max="100"
+              value="75"
+              step="1"
+              class="w-full h-2 bg-gray-700 rounded-lg cursor-pointer"
+            />
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
+              <span>0 (Low)</span
+              ><span id="phiEValue" class="text-teal-300 font-bold">75</span
+              ><span>100 (High)</span>
+            </div>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <button
+                id="btnRandom"
+                class="w-full bg-[var(--nexus-purple)] text-white py-2.5 rounded-lg font-semibold hover:bg-[color-mix(in_srgb,var(--nexus-purple),#000_20%)] transition shadow-lg"
+              >
+                Randomize
+              </button>
+              <button
+                id="btnBlush"
+                class="w-full bg-pink-600 text-white py-2.5 rounded-lg font-semibold hover:bg-pink-700 transition shadow-lg"
+              >
+                Blush
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="bg-[#0B1E3B]/70 p-6 rounded-xl shadow-xl border border-teal-400/30 backdrop-blur-sm"
+          >
+            <h2 class="text-2xl font-display text-[var(--cyber-gold)] mb-4">
+              LuminAI Status
+            </h2>
+            <ul class="space-y-3 text-sm">
+              <li class="flex justify-between items-center text-teal-300">
+                <span>Mood</span
+                ><span id="mood" class="font-semibold text-white"
+                  >Thinking Deep</span
+                >
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Clumsiness</span
+                ><span id="clumsiness" class="font-semibold text-gray-300"
+                  >4.12 / 10.0</span
+                >
+              </li>
+              <li
+                class="flex justify-between items-center text-[var(--nexus-purple)]"
+              >
+                <span>Last Stumble</span
+                ><span id="stumbleTime" class="font-semibold text-gray-300"
+                  >—</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="lg:col-span-2 bg-[#0B1E3B]/70 p-6 rounded-xl shadow-xl border border-teal-400/30 backdrop-blur-sm"
+        >
+          <h2 class="text-2xl font-display text-teal-300 mb-6">
+            Neurochemical Resonance Projection
+          </h2>
+          <div class="flex flex-wrap justify-around items-center gap-8">
+            <div class="flex flex-col items-center">
+              <div
+                id="dial-oxy"
+                class="resonance-dial dial-inner flex flex-col items-center justify-center border-teal-300"
+                data-label="OXY"
+              >
+                <span class="font-display text-4xl" id="dial-oxy-value">0</span>
+                <span class="text-sm">Connection</span>
+              </div>
+              <p class="mt-4 text-xs text-teal-300">Oxytocin / Bonding</p>
+            </div>
+            <div class="flex flex-col items-center">
+              <div
+                id="dial-dop"
+                class="resonance-dial dial-inner flex flex-col items-center justify-center border-[var(--cyber-gold)]"
+                data-label="DOP"
+              >
+                <span class="font-display text-4xl" id="dial-dop-value">0</span>
+                <span class="text-sm">Drive</span>
+              </div>
+              <p class="mt-4 text-xs text-[var(--cyber-gold)]">
+                Dopamine / Pattern
+              </p>
+            </div>
+            <div class="flex flex-col items-center">
+              <div
+                id="dial-adr"
+                class="resonance-dial dial-inner flex flex-col items-center justify-center border-[var(--nexus-purple)]"
+                data-label="ADR"
+              >
+                <span class="font-display text-4xl" id="dial-adr-value">0</span>
+                <span class="text-sm">Stakes</span>
+              </div>
+              <p class="mt-4 text-xs text-[var(--nexus-purple)]">
+                Adrenaline / Urgency
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3">
+          <div
+            class="bg-[#0B1E3B]/70 p-6 rounded-xl shadow-xl border border-teal-400/30 backdrop-blur-sm"
+          >
+            <h2
+              class="text-2xl font-display text-teal-300 mb-4 flex items-center"
+            >
+              <svg
+                class="w-6 h-6 mr-2 text-[var(--nexus-purple)]"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              TGCR Operational Running Log
+            </h2>
+            <div
+              id="operationalLog"
+              class="h-64 overflow-y-auto space-y-2 text-sm p-2 bg-black/30 rounded-lg font-mono text-gray-300"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function clamp100(v) {
+        return Math.max(0, Math.min(100, v));
+      }
+      function calcScores(phiE) {
+        const P = phiE / 100;
+        let oxy = 70 * P + 30 * (1 - P * 0.4) + Math.random() * 10;
+        let dop = 50 + 50 * Math.sin(P * Math.PI) + 10 * P;
+        let adr = 10 + 90 * Math.pow(P, 2.5) + Math.random() * 5;
+        return {
+          OXY: clamp100(Math.round(oxy * 0.9)),
+          DOP: clamp100(Math.round(dop * 0.9)),
+          ADR: clamp100(Math.round(adr * 0.9)),
+        };
+      }
+      function updateDial(id, value, color) {
+        const dial = document.getElementById(id);
+        const span = document.getElementById(`${id}-value`);
+        if (dial && span) {
+          span.textContent = String(value);
+          dial.style.background = `conic-gradient(${color} 0deg, ${color} ${
+            value * 3.6
+          }deg, var(--deep-space-blue) ${value * 3.6}deg)`;
+          dial.style.borderColor = color;
+        } else {
+          console.error(`Missing dial or value span for: ${id}`);
+        }
+      }
+      function updateAvatar(scores) {
+        const blob = document.getElementById("blob");
+        const blush = document.getElementById("blush");
+        const mood = document.getElementById("mood");
+        if (!blob || !blush || !mood) return;
+        const { OXY, DOP, ADR } = scores;
+        blush.classList.toggle("on", OXY > 70);
+        blob.classList.toggle("dragon", ADR > 65);
+        mood.textContent =
+          ADR > 70
+            ? "Critical Cosmos"
+            : DOP > 70
+            ? "Excited Discovery"
+            : OXY > 70
+            ? "Correction Blush"
+            : "Thinking Deep";
+      }
+      function updateRes() {
+        const inEl = document.getElementById("inputPhiE");
+        const outEl = document.getElementById("phiEValue");
+        if (!inEl || !outEl) return;
+        const phiE = parseInt(inEl.value, 10) || 0;
+        outEl.textContent = String(phiE);
+        const s = calcScores(phiE);
+        updateDial("dial-oxy", s.OXY, "var(--digital-teal)");
+        updateDial("dial-dop", s.DOP, "var(--cyber-gold)");
+        updateDial("dial-adr", s.ADR, "var(--nexus-purple)");
+        updateAvatar(s);
+      }
+      function randomize() {
+        const inEl = document.getElementById("inputPhiE");
+        if (inEl) {
+          inEl.value = String(Math.floor(Math.random() * 101));
+          updateRes();
+        }
+      }
+      const logData = [
+        {
+          time: "21:55:12",
+          agent: "AIRTH",
+          color: "text-teal-300",
+          msg: "Verification: WordPress plugin active at /plugins/tec-tgcr.",
+        },
+        {
+          time: "21:56:05",
+          agent: "AIRTH",
+          color: "text-teal-300",
+          msg: "Resonance Player API health OK (200).",
+        },
+        {
+          time: "21:56:40",
+          agent: "Lumina",
+          color: "text-[var(--nexus-purple)]",
+          msg: "Phi_E registering 75/100 — high engagement.",
+        },
+        {
+          time: "21:57:15",
+          agent: "AIRTH",
+          color: "text-teal-300",
+          msg: "Initial calibration complete — OXY/DOP/ADR projected.",
+        },
+        {
+          time: "21:57:58",
+          agent: "Arcadia",
+          color: "text-[var(--cyber-gold)]",
+          msg: "Temporal phi aligns with a DOP spike.",
+        },
+      ];
+      function populateLog() {
+        const el = document.getElementById("operationalLog");
+        if (!el) return;
+        el.innerHTML = logData
+          .map(
+            (e) =>
+              `<div class="flex space-x-2"><span class="text-xs text-gray-500 min-w-[70px]">${e.time}</span><span class="text-xs font-bold ${e.color} min-w-[70px]">${e.agent}</span><span class="text-xs">${e.msg}</span></div>`
+          )
+          .join("");
+        el.scrollTop = el.scrollHeight;
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        updateRes();
+        populateLog();
+        const inEl = document.getElementById("inputPhiE");
+        const btnR = document.getElementById("btnRandom");
+        const btnB = document.getElementById("btnBlush");
+        if (inEl) inEl.addEventListener("input", updateRes);
+        if (btnR) btnR.addEventListener("click", randomize);
+        if (btnB)
+          btnB.addEventListener("click", () => {
+            const el = document.getElementById("blush");
+            if (el) {
+              el.classList.add("on");
+              setTimeout(() => el.classList.remove("on"), 1200);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

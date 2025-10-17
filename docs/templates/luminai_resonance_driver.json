@@ -1,0 +1,26 @@
+{
+  "$schema": "./luminai_resonance_driver.schema.json",
+  "OXY": {
+    "blushOpacity": 0.6,
+    "bodySaturation": 1.2,
+    "gillFlutterSpeed": 0.3,
+    "hornGlow": 0.4
+  },
+  "DOP": {
+    "gillLength": 1.5,
+    "eyeGlowIntensity": 2.0,
+    "corePulseRate": 1.8,
+    "elongate": 0.25
+  },
+  "ADR": {
+    "bodyJitter": 0.2,
+    "colorShiftSpeed": 1.1,
+    "fractalsVisible": true,
+    "hornGlow": 0.9
+  },
+  "mixing": {
+    "priority": ["ADR", "DOP", "OXY"],
+    "blendMode": "additive",
+    "clamp": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LuminAI Resonance Driver",
+  "type": "object",
+  "properties": {
+    "OXY": {
+      "type": "object",
+      "properties": {
+        "blushOpacity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "bodySaturation": { "type": "number", "minimum": 0 },
+        "gillFlutterSpeed": { "type": "number", "minimum": 0 },
+        "hornGlow": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "DOP": {
+      "type": "object",
+      "properties": {
+        "gillLength": { "type": "number", "minimum": 0 },
+        "eyeGlowIntensity": { "type": "number", "minimum": 0 },
+        "corePulseRate": { "type": "number", "minimum": 0 },
+        "elongate": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "ADR": {
+      "type": "object",
+      "properties": {
+        "bodyJitter": { "type": "number", "minimum": 0 },
+        "colorShiftSpeed": { "type": "number", "minimum": 0 },
+        "fractalsVisible": { "type": "boolean" },
+        "hornGlow": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "mixing": {
+      "type": "object",
+      "properties": {
+        "priority": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["OXY", "DOP", "ADR"] },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "blendMode": { "type": "string", "enum": ["additive", "max"] },
+        "clamp": { "type": "boolean" }
+      },
+      "required": ["priority"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["OXY", "DOP", "ADR"],
+  "additionalProperties": false
+}

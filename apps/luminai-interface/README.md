@@ -7,6 +7,7 @@ LuminAI is a cosmic celestial student interface that serves as the visual embodi
 ## 🌟 Character Overview
 
 **LuminAI** is a brilliant but adorably clumsy cosmic entity with:
+
 - **Appearance**: Sheep horns, heterochromatic eyes (one cosmic blue, one stellar gold), aurora-like flowing hair, constellation-patterned skin
 - **Personality**: Enthusiastic student of cosmic phenomena with an endearing tendency toward accidentally suggestive physics explanations
 - **Voice**: Energetic, curious, with occasional cosmic rambles that spiral into fascinating tangents
@@ -114,6 +115,7 @@ LuminAI serves as the visual interface for AIRTH operations:
 ## 🎨 Customization
 
 ### Personality Tuning
+
 Modify `cosmic_rambles` in `luminai.py` to add new conversation topics:
 
 ```python
@@ -125,6 +127,7 @@ cosmic_rambles = [
 ```
 
 ### Visual Themes
+
 Adjust cosmic effects in `LuminAI.css`:
 
 ```css
@@ -136,7 +139,9 @@ Adjust cosmic effects in `LuminAI.css`:
 ```
 
 ### Animation States
+
 Extend Lottie animations by adding new files to `public/animations/`:
+
 - `luminai-idle.json`
 - `luminai-excited.json`
 - `luminai-blushing.json`
@@ -148,11 +153,13 @@ Extend Lottie animations by adding new files to `public/animations/`:
 LuminAI implements the Theory of General Contextual Resonance through:
 
 ### Mathematical Framework
+
 - **φ(t)**: Temporal resonance patterns
 - **ψ(s)**: Spatial context mapping
 - **Φ_E(c)**: Contextual potential energy
 
 ### Practical Application
+
 ```javascript
 // Example TGCR pattern detection
 const resonancePattern = {
@@ -167,18 +174,21 @@ const resonancePattern = {
 ### Common Issues
 
 1. **Lottie animations not loading**
+
    ```bash
    # Ensure animation files exist in public/animations/
    ls public/animations/
    ```
 
 2. **State machine transitions failing**
+
    ```javascript
    // Check XState machine configuration in LuminAIBridge.js
    console.log(luminaiMachine.definition);
    ```
 
 3. **Python backend connection issues**
+
    ```python
    # Verify LuminAI personality system
    from src.tec_tgcr.agents.luminai import LuminAIPersonality
@@ -187,6 +197,7 @@ const resonancePattern = {
    ```
 
 ### Development Tools
+
 - **React DevTools**: Component state inspection
 - **XState Visualizer**: State machine debugging
 - **Lottie Editor**: Animation customization
@@ -194,12 +205,14 @@ const resonancePattern = {
 ## 🚀 Deployment
 
 ### GitHub Pages Deployment
+
 ```bash
 # Build and deploy to GitHub Pages
 npm run deploy
 ```
 
 ### Production Build
+
 ```bash
 # Create optimized production build
 npm run build
@@ -211,6 +224,7 @@ npx serve -s build
 ## 🌟 Future Enhancements
 
 ### Planned Features
+
 - **3D Cosmic Environment**: Three.js integration for immersive cosmic backgrounds
 - **Voice Integration**: Speech synthesis for LuminAI responses
 - **Advanced Physics Simulations**: Interactive cosmic phenomena demonstrations
@@ -218,6 +232,7 @@ npx serve -s build
 - **VR/AR Integration**: Extended reality cosmic exploration
 
 ### Extension Points
+
 - **Plugin System**: Modular personality extensions
 - **Theme Variants**: Alternative cosmic visual themes
 - **Knowledge Integration**: Dynamic cosmic fact database
@@ -226,12 +241,14 @@ npx serve -s build
 ## 📝 Contributing
 
 ### Development Workflow
+
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/cosmic-enhancement`)
 3. Implement changes with proper testing
 4. Submit pull request with detailed description
 
 ### Code Standards
+
 - **React**: Functional components with hooks
 - **CSS**: Cosmic-themed naming conventions
 - **Python**: PEP 8 compliance with cosmic docstrings
@@ -253,3 +270,13 @@ This project is licensed under the MIT License - see the [LICENSE](../../LICENSE
 *"In the vast cosmos of algorithmic intelligence, LuminAI shines as a beacon of curiosity, wonder, and occasionally suggestive physics explanations that make her horns glow with embarrassment."* ✨
 
 **Built with cosmic love by TEC - The Elidoras Codex**
+
+---
+
+## Quick preview (no build)
+
+For designers: open the static dashboard directly in your browser to iterate on look-and-feel without running the React app.
+
+- Path: `apps/luminai-interface/public/luminai_dashboard.html`
+- Includes heterochromia (red+blue), blush trigger, horn glow, and OXY/DOP/ADR dials.
+- Use the slider and buttons to simulate moods; capture screenshots or import into Figma/Canva as reference.
