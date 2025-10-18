@@ -24,10 +24,18 @@ Thumbs.db
 
 # Secrets
 secrets/
+.secrets/
+.keys/
+local.settings.json
+*.secret
+*.secrets
 *.key
 *.pem
 *.p12
 *.cer
+*.ppk
+wp-config.php
+wp-config-*.php
 
 # AI workflow artifacts
 ai-workflow/*.json
