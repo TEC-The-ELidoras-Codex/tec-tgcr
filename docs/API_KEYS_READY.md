@@ -1,4 +1,4 @@
-# 🔐 YOUR API KEYS ARE READY TO USE!
+# 🔐 YOUR API KEYS ARE READY TO USE
 
 **Status**: ✅ `.env.local` created and opened in VS Code
 
@@ -7,8 +7,8 @@
 ## ✨ What Just Happened
 
 1. ✅ **Created `.env.local`** from template
-2. ✅ **Opened in VS Code** for you to add your keys
-3. ✅ **Gitignored** (safe to edit, won't commit)
+1. ✅ **Opened in VS Code** for you to add your keys
+1. ✅ **Gitignored** (safe to edit, won't commit)
 
 ---
 
@@ -47,6 +47,7 @@ After saving `.env.local` with your real keys:
 ```
 
 This will:
+
 - ✅ Read `.env.local`
 - ✅ Set environment variables in current PowerShell session
 - ✅ Verify which keys loaded successfully
@@ -57,12 +58,14 @@ This will:
 ## 🧪 TEST: Verify Keys Work
 
 ### Test OpenAI
+
 ```powershell
 $headers = @{ "Authorization" = "Bearer $env:TEC_OPENAI_API_KEY" }
 Invoke-RestMethod -Uri "https://api.openai.com/v1/models" -Headers $headers
 ```
 
 ### Test Anthropic (Claude)
+
 ```powershell
 $headers = @{
     "x-api-key" = $env:ANTHROPIC_API_KEY
@@ -72,6 +75,7 @@ Invoke-RestMethod -Uri "https://api.anthropic.com/v1/messages" -Method POST -Hea
 ```
 
 ### Test WordPress.com
+
 ```powershell
 $cred = "yourusername:$env:TEC_WPCOM_API_PASS"
 $bytes = [System.Text.Encoding]::UTF8.GetBytes($cred)
@@ -131,10 +135,10 @@ python -c "import openai; print(openai.Model.list())"
 ## 💡 Pro Tips
 
 1. **Never** share `.env.local` in Discord/Slack/email
-2. **Always** use `load_env.ps1` instead of setting vars manually
-3. **Rotate keys every 90 days** (mark calendar)
-4. **Use GitHub Secrets** for CI/CD (not `.env.local`)
-5. **Skip Azure** until billing resolves (fuck Azure 💸)
+1. **Always** use `load_env.ps1` instead of setting vars manually
+1. **Rotate keys every 90 days** (mark calendar)
+1. **Use GitHub Secrets** for CI/CD (not `.env.local`)
+1. **Skip Azure** until billing resolves (fuck Azure 💸)
 
 ---
 
@@ -157,13 +161,13 @@ python -c "import openai; print(openai.Model.list())"
 
 ---
 
-## ✅ You're Ready!
+## ✅ You're Ready
 
 1. **Edit** `.env.local` (open in VS Code right now)
-2. **Paste your keys** (the real ones you sent me)
-3. **Save** the file
-4. **Run** `.\scripts\load_env.ps1`
-5. **Code** with API powers! 🚀
+1. **Paste your keys** (the real ones you sent me)
+1. **Save** the file
+1. **Run** `\.\scripts\load_env.ps1`
+1. **Code** with API powers! 🚀
 
 ---
 

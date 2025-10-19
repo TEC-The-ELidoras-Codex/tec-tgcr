@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <style>
+      :root {
+        --tec-navy: #0B1E3B;
+        --tec-violet: #6A00F4;
+        --tec-cyan: #00D5C4;
+        --tec-gold: #F2C340;
+        --tec-shadow: #0A0A0C;
+      }
+      
+      .glow-violet {
+        filter: drop-shadow(0 0 8px var(--tec-violet));
+      }
+      
+      .glow-gold {
+        filter: drop-shadow(0 0 8px var(--tec-gold));
+      }
+      
+      .glow-cyan {
+        filter: drop-shadow(0 0 6px var(--tec-cyan));
+      }
+    </style>
+    
+    <!-- Radial gradient for bodysuit -->
+    <radialGradient id="bodysuit-gradient" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#E8B87E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C87533;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Gradient for fiber-optic strands -->
+    <linearGradient id="fiber-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:var(--tec-cyan);stop-opacity:1" />
+      <stop offset="50%" style="stop-color:var(--tec-violet);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:var(--tec-gold);stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Moon phases for choker -->
+    <g id="moon-phase-new">
+      <circle cx="0" cy="0" r="8" fill="var(--tec-shadow)" stroke="var(--tec-cyan)" stroke-width="1.5"/>
+    </g>
+    
+    <g id="moon-phase-crescent">
+      <circle cx="0" cy="0" r="8" fill="var(--tec-shadow)" stroke="var(--tec-cyan)" stroke-width="1.5"/>
+      <ellipse cx="-2" cy="0" rx="6" ry="8" fill="var(--tec-cyan)" opacity="0.7"/>
+    </g>
+    
+    <g id="moon-phase-full">
+      <circle cx="0" cy="0" r="8" fill="var(--tec-cyan)" opacity="0.9" stroke="var(--tec-cyan)" stroke-width="1.5"/>
+    </g>
+  </defs>
+  
+  <!-- Background glow layer -->
+  <g id="background-aura">
+    <ellipse cx="200" cy="250" rx="180" ry="240" fill="var(--tec-violet)" opacity="0.1" class="glow-violet"/>
+  </g>
+  
+  <!-- Body / Bodysuit (copper sacred-tech) -->
+  <g id="body-layer">
+    <!-- Torso -->
+    <path d="M 160 280 Q 160 320, 180 350 L 220 350 Q 240 320, 240 280 Z" 
+          fill="url(#bodysuit-gradient)" stroke="var(--tec-shadow)" stroke-width="2"/>
+    
+    <!-- Circuit-like patterns on bodysuit -->
+    <path d="M 180 300 L 190 310 L 200 300" fill="none" stroke="var(--tec-cyan)" stroke-width="1.5" opacity="0.6"/>
+    <path d="M 210 310 L 220 300" fill="none" stroke="var(--tec-cyan)" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="200" cy="315" r="3" fill="var(--tec-cyan)" opacity="0.8"/>
+  </g>
+  
+  <!-- Neck -->
+  <g id="neck-layer">
+    <rect x="190" y="260" width="20" height="20" rx="3" fill="#FFDAB9" stroke="var(--tec-shadow)" stroke-width="1"/>
+  </g>
+  
+  <!-- Lunar-phase choker -->
+  <g id="choker-layer">
+    <ellipse cx="200" cy="268" rx="30" ry="8" fill="var(--tec-shadow)" opacity="0.8"/>
+    <use href="#moon-phase-new" x="175" y="268"/>
+    <use href="#moon-phase-crescent" x="200" y="268"/>
+    <use href="#moon-phase-full" x="225" y="268"/>
+  </g>
+  
+  <!-- Head -->
+  <g id="head-layer">
+    <ellipse cx="200" cy="200" rx="50" ry="60" fill="#FFDAB9" stroke="var(--tec-shadow)" stroke-width="2"/>
+  </g>
+  
+  <!-- Pom-horns (cheerleader antenna receptors) -->
+  <g id="pom-horns-layer" class="glow-cyan">
+    <!-- Left horn -->
+    <line x1="175" y1="160" x2="160" y2="130" stroke="var(--tec-violet)" stroke-width="3"/>
+    <circle cx="160" cy="130" r="12" fill="var(--tec-cyan)" opacity="0.9"/>
+    <circle cx="160" cy="130" r="8" fill="var(--tec-violet)" opacity="0.7"/>
+    
+    <!-- Right horn -->
+    <line x1="225" y1="160" x2="240" y2="130" stroke="var(--tec-violet)" stroke-width="3"/>
+    <circle cx="240" cy="130" r="12" fill="var(--tec-cyan)" opacity="0.9"/>
+    <circle cx="240" cy="130" r="8" fill="var(--tec-violet)" opacity="0.7"/>
+  </g>
+  
+  <!-- Fiber-optic twin buns -->
+  <g id="fiber-buns-layer">
+    <!-- Left bun -->
+    <circle cx="155" cy="180" r="25" fill="var(--tec-navy)" stroke="url(#fiber-gradient)" stroke-width="2"/>
+    <path d="M 155 180 Q 145 170, 140 160" stroke="url(#fiber-gradient)" stroke-width="2" fill="none" opacity="0.8"/>
+    <path d="M 155 180 Q 150 185, 145 195" stroke="url(#fiber-gradient)" stroke-width="2" fill="none" opacity="0.8"/>
+    <circle cx="140" cy="160" r="3" fill="var(--tec-cyan)" class="glow-cyan"/>
+    <circle cx="145" cy="195" r="3" fill="var(--tec-violet)" class="glow-violet"/>
+    
+    <!-- Right bun -->
+    <circle cx="245" cy="180" r="25" fill="var(--tec-navy)" stroke="url(#fiber-gradient)" stroke-width="2"/>
+    <path d="M 245 180 Q 255 170, 260 160" stroke="url(#fiber-gradient)" stroke-width="2" fill="none" opacity="0.8"/>
+    <path d="M 245 180 Q 250 185, 255 195" stroke="url(#fiber-gradient)" stroke-width="2" fill="none" opacity="0.8"/>
+    <circle cx="260" cy="160" r="3" fill="var(--tec-cyan)" class="glow-cyan"/>
+    <circle cx="255" cy="195" r="3" fill="var(--tec-violet)" class="glow-violet"/>
+  </g>
+  
+  <!-- Eyes (heterochromia: left violet, right gold) -->
+  <g id="eyes-layer">
+    <!-- Left eye (violet - hypothesis) -->
+    <ellipse cx="180" cy="195" rx="12" ry="15" fill="white"/>
+    <circle cx="180" cy="197" r="8" fill="var(--tec-violet)" class="glow-violet"/>
+    <circle cx="178" cy="195" r="3" fill="white" opacity="0.9"/>
+    
+    <!-- Right eye (gold - evidence) -->
+    <ellipse cx="220" cy="195" rx="12" ry="15" fill="white"/>
+    <circle cx="220" cy="197" r="8" fill="var(--tec-gold)" class="glow-gold"/>
+    <circle cx="218" cy="195" r="3" fill="white" opacity="0.9"/>
+  </g>
+  
+  <!-- Mouth (mischievous confidence) -->
+  <g id="mouth-layer">
+    <path d="M 185 220 Q 200 230, 215 220" stroke="var(--tec-shadow)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 190 222 Q 200 228, 210 222" stroke="#FFB6C1" stroke-width="1.5" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- Signature resonance wave beneath -->
+  <g id="resonance-signature" opacity="0.4">
+    <path d="M 100 450 Q 150 430, 200 450 T 300 450" 
+          stroke="var(--tec-cyan)" stroke-width="2" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Metadata annotations -->
+  <text x="200" y="485" font-family="'Courier New', monospace" font-size="10" fill="var(--tec-cyan)" text-anchor="middle" opacity="0.7">
+    φ·ψ·Φᴱ RESONANCE CORE ACTIVE
+  </text>
+</svg>

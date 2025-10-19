@@ -4,39 +4,39 @@ Keep credentials local and out of git. This repo already ignores `.env`, `.env.*
 
 ## Quick Start: Set Up Your API Keys
 
-1. **Copy the template**:
+1. **Copy the template**
 
-  ```bash
-  cp .env.example .env.local
-  ```
+```bash
+cp .env.example .env.local
+```
 
-2. **Edit `.env.local`** with your actual keys:
+1. **Edit `.env.local`** with your actual keys
 
-  ```bash
-  code .env.local
-  # Or: notepad .env.local
-  ```
+```bash
+code .env.local
+# Or: notepad .env.local
+```
 
-3. **Verify it's ignored by git**:
+1. **Verify it's ignored by git**
 
-  ```bash
-  git status
-  # .env.local should NOT appear in "Untracked files"
-  ```
+```bash
+git status
+# .env.local should NOT appear in "Untracked files"
+```
 
-4. **Load secrets in your terminal**:
+1. **Load secrets in your terminal**
 
-  ```powershell
-  # PowerShell
-  .\scripts\load_env.ps1
+```powershell
+# PowerShell
+.\scripts\load_env.ps1
 
-  # Or manually:
-  Get-Content .env.local | ForEach-Object {
-    if ($_ -match '^(?<k>[^#=]+)=(?<v>.*)$') {
-     [Environment]::SetEnvironmentVariable($Matches['k'].Trim(), $Matches['v'])
-    }
+# Or manually:
+Get-Content .env.local | ForEach-Object {
+  if ($_ -match '^(?<k>[^#=]+)=(?<v>.*)$') {
+    [Environment]::SetEnvironmentVariable($Matches['k'].Trim(), $Matches['v'])
   }
-  ```
+}
+```
 
 ## Your Current API Keys
 
@@ -92,7 +92,9 @@ if (Test-Path $envPath) {
 # WordPress.com (local testing)
 WPCOM_SSH_HOST=sftp.wp.com
 WPCOM_SSH_PORT=22
-WPCOM_SSH_USER=elidorascodexdotcom.wordpress.com
+WPCOM_SSH_USER=e
+
+lidorascodexdotcom.wordpress.com
 WPCOM_SSH_TARGET=/htdocs/wp-content/plugins/tec-tgcr
 
 # MS Entra ID / Graph (if used locally)

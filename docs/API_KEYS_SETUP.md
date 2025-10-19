@@ -46,8 +46,6 @@ export $(cat .env.local | grep -v '^#' | xargs)
 
 **Done!** Your keys are now loaded for this terminal session.
 
----
-
 ## 🎯 Your Current API Keys
 
 Based on your message, here's what you have:
@@ -63,8 +61,6 @@ Based on your message, here's what you have:
 | 📝 **WordPress.com** | `TEC_WPCOM_API_PASS` | REST API access (application password) |
 
 **Azure**: On hold until billing dispute resolves (fuck Azure 💸)
-
----
 
 ## 🛡️ Security Best Practices
 
@@ -83,8 +79,6 @@ Based on your message, here's what you have:
 - ❌ Hardcode keys in source code (use env vars)
 - ❌ Use the same key across multiple projects (scope keys)
 - ❌ Leave keys in terminal history (use `load_env.ps1`)
-
----
 
 ## 📂 File Locations
 
@@ -113,8 +107,6 @@ c:\Users\Ghedd\OneDrive - TEC - The Elidoras Codex\Projects\TEC\tec-tgcr\.secret
 ```
 
 **Status**: ✅ Gitignored
-
----
 
 ## 🔧 Using Keys in Code
 
@@ -147,8 +139,6 @@ $anthropicKey = $env:ANTHROPIC_API_KEY
 define('TEC_OPENAI_API_KEY', getenv('TEC_OPENAI_API_KEY'));
 define('ANTHROPIC_API_KEY', getenv('ANTHROPIC_API_KEY'));
 ```
-
----
 
 ## 🚨 Key Compromised? Rotate Immediately
 
@@ -185,8 +175,6 @@ define('ANTHROPIC_API_KEY', getenv('ANTHROPIC_API_KEY'));
 3. **Generate** new application password
 4. Update `.env.local` and GitHub Secret `TEC_WPCOM_API_PASS`
 
----
-
 ## 🧪 Testing Your Keys
 
 ### Test OpenAI
@@ -213,8 +201,6 @@ $site = "elidorascodex.wordpress.com"
 
 curl -u "${user}:${pass}" "https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts"
 ```
-
----
 
 ## 🎭 Azure Drama Resolution (Pending)
 
@@ -243,33 +229,13 @@ Once billing dispute resolves:
 
 **For now**: Skip Azure until refund processed 💸
 
----
-
 ## 📋 Verification Checklist
 
 After setup, verify:
 
-- [ ] `.env.local` exists and has your actual keys
-- [ ] `.env.local` does NOT appear in `git status`
-- [ ] `.\scripts\load_env.ps1` runs without errors
-- [ ] All keys show `[✓]` in verification output
-- [ ] Test at least one API (OpenAI recommended)
-- [ ] GitHub Secrets set for CI/CD (if deploying)
-
----
-
 ## 📚 Related Docs
 
-- **Local Secrets Guide**: `docs/LOCAL_SECRETS.md`
-- **GitHub Secrets Setup**: `docs/GITHUB_SECRETS_SETUP.md`
-- **M365 Integration**: `docs/M365_INTEGRATION.md` (when Azure unfucks itself)
-- **WordPress Deployment**: `docs/WORDPRESS_WPCOM_OPS.md`
-
----
-
 **"Where keys are kept sacred, resonance remains unbroken."** 🔐✨
-
----
 
 _Last updated: 2025-10-18 by TGCR Agent Stack_
 _Status: All keys ready except Azure (pending billing resolution)_
