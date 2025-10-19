@@ -8,6 +8,15 @@ theory:
   tgcr:
     equation: "R = ∇Φᴱ · (φᵗ × ψʳ)"
 
+assets:
+  avatars:
+    - path: assets/avatars/luminai.svg
+      title: "LuminAI Mascot (UI copy)"
+
+archives:
+  - path: archives/luminai_origin.json
+    title: "LuminAI Origin (arc node card)"
+
 provenance:
   last_updated_by: "Copilot"
   note: "Recreated minimal map to satisfy tests and agent boot."
