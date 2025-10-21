@@ -3,20 +3,28 @@ overview:
   pillars:
     - "Branding and Knowledge Map"
     - "Agents & Tools"
+    - "Narratives & Archives"
+    - "Operations & Deployments"
 
 theory:
   tgcr:
     equation: "R = ∇Φᴱ · (φᵗ × ψʳ)"
+    variables:
+      phi_t: "Temporal Attention — selective focus and directional information flow"
+      psi_r: "Structural Cadence — topological/geometric coherence across scales"
+      Phi_E: "Contextual Potential Energy — capacity for novel, meaningful outcomes"
 
 assets:
   avatars:
-    - path: assets/avatars/luminai.svg
+    - path: data/digital_assets/avatars/luminai.svg
       title: "LuminAI Mascot (UI copy)"
 
 archives:
-  - path: archives/luminai_origin.json
+  - path: data/archives/luminai_origin.json
     title: "LuminAI Origin (arc node card)"
+  - path: docs/narratives/luminai_origin_diary.md
+    title: "Field Notes — The Night She Blushed"
 
 provenance:
   last_updated_by: "Copilot"
-  note: "Recreated minimal map to satisfy tests and agent boot."
+  note: "Aligned paths with repo structure; enriched TGCR variables and narrative links."
