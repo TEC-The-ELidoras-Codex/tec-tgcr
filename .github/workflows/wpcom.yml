@@ -68,6 +68,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wpcom
-          path: ${{ github.workspace }}/.wpcom-dist
+          path: .wpcom-dist
           if-no-files-found: error
           retention-days: 1
+          include-hidden-files: true
