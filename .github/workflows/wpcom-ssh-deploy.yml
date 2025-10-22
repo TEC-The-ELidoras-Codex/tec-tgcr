@@ -40,17 +40,18 @@ jobs:
 
       - name: Add known host
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -p "${{ secrets.WPCOM_SSH_PORT || 22 }}" "${{ secrets.WPCOM_SSH_HOST }}" >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh || true
+          ssh-keyscan -p "${{ secrets.WPCOM_SSH_PORT }}" "${{ secrets.WPCOM_SSH_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Rsync plugin to target
         env:
           SSH_HOST: ${{ secrets.WPCOM_SSH_HOST }}
-          SSH_PORT: ${{ secrets.WPCOM_SSH_PORT || 22 }}
+          SSH_PORT: ${{ secrets.WPCOM_SSH_PORT }}
           SSH_USER: ${{ secrets.WPCOM_SSH_USER }}
           SSH_TARGET: ${{ secrets.WPCOM_SSH_TARGET }}
         run: |
-          rsync -az --delete -e "ssh -p $SSH_PORT" .wpcom-dist/wp-content/plugins/tec-tgcr/ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"
+          PORT="${SSH_PORT:-22}"
+          rsync -az --delete -e "ssh -p $PORT" .wpcom-dist/wp-content/plugins/tec-tgcr/ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"
 
       - name: Upload artifact for WordPress.com
         uses: actions/upload-artifact@v4
