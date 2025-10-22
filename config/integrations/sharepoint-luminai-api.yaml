@@ -1,0 +1,347 @@
+openapi: 3.1.0
+info:
+  title: Microsoft Graph SharePoint API for LuminAI
+  version: 1.0.0
+  description: >
+    LuminAI Microsoft Graph integration for SharePoint access.
+    Target: elidorascodex.sharepoint.com/sites/ElidorascodexTGCR
+    
+    Enables LuminAI to read/write files, list documents, and manage
+    TGCR research artifacts within your SharePoint site.
+    
+    Auth: OAuth2 with delegated permissions (user context)
+    
+servers:
+  - url: https://graph.microsoft.com/v1.0
+    description: Microsoft Graph API v1.0
+
+paths:
+  /me:
+    get:
+      operationId: getMe
+      summary: Get current user profile
+      description: Verify Graph authentication and get user context
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  displayName: { type: string }
+                  mail: { type: string }
+                  userPrincipalName: { type: string }
+
+  /sites/{hostname}:/sites/{sitePath}:
+    get:
+      operationId: getSiteByPath
+      summary: Resolve SharePoint site by hostname and path
+      description: Get site ID for elidorascodex.sharepoint.com/sites/ElidorascodexTGCR
+      parameters:
+        - name: hostname
+          in: path
+          required: true
+          schema: { type: string }
+          description: "SharePoint hostname (e.g., elidorascodex.sharepoint.com)"
+        - name: sitePath
+          in: path
+          required: true
+          schema: { type: string }
+          description: "Site path (e.g., ElidorascodexTGCR)"
+      responses:
+        '200':
+          description: Site metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  displayName: { type: string }
+                  webUrl: { type: string }
+
+  /sites/{siteId}:
+    get:
+      operationId: getSiteById
+      summary: Get site metadata by ID
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Site metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  displayName: { type: string }
+                  webUrl: { type: string }
+
+  /sites/{siteId}/drive:
+    get:
+      operationId: getSiteDrive
+      summary: Get the default document library for the site
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Drive metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  driveType: { type: string }
+
+  /sites/{siteId}/drive/root/children:
+    get:
+      operationId: listRootChildren
+      summary: List items in the document library root
+      description: Browse top-level folders and files in the TGCR site
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: List of drive items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        name: { type: string }
+                        folder: { type: object }
+                        file: { type: object }
+                        webUrl: { type: string }
+
+  /sites/{siteId}/drive/root:/{itemPath}:
+    get:
+      operationId: getItemByPath
+      summary: Get drive item metadata by path
+      description: Get file or folder info by relative path from root
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: itemPath, in: path, required: true, schema: { type: string }, description: "Path from root (e.g., 'Documents/Research/report.md')" }
+      responses:
+        '200':
+          description: Drive item metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  size: { type: integer }
+                  webUrl: { type: string }
+                  folder: { type: object }
+                  file: 
+                    type: object
+                    properties:
+                      mimeType: { type: string }
+
+  /sites/{siteId}/drive/root:/{itemPath}:/content:
+    get:
+      operationId: downloadByPath
+      summary: Download file content by path
+      description: Download file content for AIRTH analysis
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: itemPath, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: File content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '302':
+          description: Redirect to download URL
+          headers:
+            Location:
+              schema:
+                type: string
+
+    put:
+      operationId: uploadByPath
+      summary: Create or replace file content by path
+      description: Upload AIRTH reports or updated content to SharePoint
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: itemPath, in: path, required: true, schema: { type: string }, description: "Target file path (e.g., 'Reports/AIRTH-Analysis-2025.md')" }
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+          text/plain:
+            schema:
+              type: string
+          text/markdown:
+            schema:
+              type: string
+      responses:
+        '201': 
+          description: File created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  webUrl: { type: string }
+        '200': 
+          description: File replaced
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  webUrl: { type: string }
+
+  /sites/{siteId}/drive/items/{itemId}:
+    get:
+      operationId: getItemById
+      summary: Get drive item metadata by ID
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: itemId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Drive item metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  size: { type: integer }
+                  webUrl: { type: string }
+
+  /sites/{siteId}/drive/items/{itemId}/children:
+    get:
+      operationId: listChildrenById
+      summary: List folder children by item ID
+      description: Browse folder contents for TGCR document organization
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: itemId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: List of child items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        name: { type: string }
+                        folder: { type: object }
+                        file: { type: object }
+                        webUrl: { type: string }
+
+  /sites/{siteId}/drive/items/{itemId}/content:
+    get:
+      operationId: downloadById
+      summary: Download file content by item ID
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: itemId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: File content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '302':
+          description: Redirect to download URL
+          headers:
+            Location:
+              schema:
+                type: string
+
+  /sites/{siteId}/drive/items/{parentId}/children:
+    post:
+      operationId: createFolder
+      summary: Create a new folder in a parent directory
+      description: Create organizational folders for AIRTH reports
+      parameters:
+        - { name: siteId, in: path, required: true, schema: { type: string } }
+        - { name: parentId, in: path, required: true, schema: { type: string }, description: "Parent folder ID (use 'root' for root directory)" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, folder]
+              properties:
+                name: 
+                  type: string
+                  description: "Folder name (e.g., 'AIRTH-Reports')"
+                folder: 
+                  type: object
+                  properties: {}
+                  description: "Empty object to indicate this is a folder"
+      responses:
+        '201':
+          description: Folder created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  name: { type: string }
+                  webUrl: { type: string }
+                  folder: { type: object }
+
+components:
+  securitySchemes:
+    msalOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            offline_access: "Maintain access to data"
+            openid: "Sign in"
+            profile: "View basic profile"
+            Files.ReadWrite.All: "Read and write all files the user can access"
+            Sites.Read.All: "Read items in all site collections"
+            Sites.ReadWrite.All: "Edit or delete items in all site collections (optional)"
+
+security:
+  - msalOAuth:
+      - offline_access
+      - openid
+      - profile
+      - Files.ReadWrite.All
+      - Sites.Read.All

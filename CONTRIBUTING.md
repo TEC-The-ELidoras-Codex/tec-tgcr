@@ -23,6 +23,7 @@ Thank you for your interest in contributing to The Elidoras Codex! This project 
 ## Commit Message Guidelines
 
 We follow conventional commits:
+
 - `feat:` - New features
 - `fix:` - Bug fixes
 - `docs:` - Documentation changes

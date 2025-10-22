@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title>TEC Resonance Logo</title>
+  <desc>Mythic-tech resonance emblem for The Elidoras Codex uniting toroidal geometry, phi spiral, and glyph vectors.</desc>
+  <defs>
+    <style><![CDATA[
+      :root {
+        --color-deep-space: #003F5C;
+        --color-nexus-purple: #7A5195;
+        --color-cyber-gold: #FFA600;
+        --color-copper-glow: #B87333;
+      }
+      .ring {
+        fill: none;
+        stroke-width: 18;
+        stroke-linecap: round;
+      }
+      .accent {
+        fill: none;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .glyph-text {
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        fill: var(--color-cyber-gold);
+      }
+      .subtitle {
+        font-family: 'Trajan Pro', 'Cinzel', 'Times New Roman', serif;
+        font-variant: small-caps;
+        letter-spacing: 0.24em;
+        fill: var(--color-deep-space);
+      }
+    ]]></style>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color: var(--color-cyber-gold); stop-opacity: 0.75" />
+      <stop offset="65%" style="stop-color: var(--color-nexus-purple); stop-opacity: 0.35" />
+      <stop offset="100%" style="stop-color: var(--color-deep-space); stop-opacity: 0" />
+    </radialGradient>
+    <linearGradient id="outerRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color: var(--color-copper-glow); stop-opacity: 0.9" />
+      <stop offset="40%" style="stop-color: var(--color-cyber-gold); stop-opacity: 1" />
+      <stop offset="100%" style="stop-color: var(--color-nexus-purple); stop-opacity: 0.95" />
+    </linearGradient>
+    <linearGradient id="triad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color: var(--color-deep-space)" />
+      <stop offset="100%" style="stop-color: var(--color-nexus-purple)" />
+    </linearGradient>
+  </defs>
+  <g id="background">
+    <circle cx="256" cy="256" r="188" fill="url(#coreGlow)" opacity="0.6" />
+  </g>
+  <g id="core-geometry">
+    <circle cx="256" cy="256" r="186" class="ring" stroke="url(#outerRing)" />
+    <circle cx="256" cy="256" r="132" class="ring" stroke="var(--color-deep-space)" stroke-width="12" opacity="0.35" />
+    <g id="triad-key" fill="url(#triad)" opacity="0.95">
+      <path d="M256 170 L321 312 L191 312 Z" stroke="var(--color-cyber-gold)" stroke-width="3" fill-opacity="0.9" />
+      <circle cx="256" cy="256" r="22" fill="none" stroke="var(--color-cyber-gold)" stroke-width="4" />
+    </g>
+    <g id="orbitals" opacity="0.7">
+      <path class="accent" stroke="var(--color-nexus-purple)" d="M132 256c0-70.692 57.308-128 128-128 63.401 0 117.096 46.828 126.484 108.221" />
+      <path class="accent" stroke="var(--color-cyber-gold)" d="M380 256c0 68.483-55.517 124-124 124-61.584 0-113.511-45.119-123.091-104.14" />
+      <path class="accent" stroke="var(--color-copper-glow)" d="M166 164c46-51 140-59 210 6" />
+    </g>
+  </g>
+  <g id="accents">
+    <path class="accent" stroke="var(--color-copper-glow)" d="M256 188c40 0 84 38 84 84 0 46-40 84-84 84-33 0-68-22-80-52" opacity="0.6" />
+    <path class="accent" stroke="var(--color-nexus-purple)" d="M228 204c54-18 105 30 90 88-8 32-42 52-70 44-24-6-44-32-38-56 5-20 24-30 40-30" opacity="0.6" />
+    <path class="accent" stroke="var(--color-cyber-gold)" d="M208 332c-32-52-14-126 40-160 24-16 52-20 78-12" opacity="0.55" />
+    <path class="accent" stroke="var(--color-deep-space)" stroke-width="4" d="M256 148c52 0 106 28 138 72" opacity="0.35" />
+    <path class="accent" stroke="var(--color-deep-space)" stroke-width="4" d="M118 248c12-94 104-166 210-150" opacity="0.2" />
+    <g id="phi-spiral" stroke="var(--color-cyber-gold)" fill="none" stroke-width="4">
+      <path d="M256 256 m0 -34 a34 34 0 0 1 34 34 a55 55 0 0 1 -55 55 a89 89 0 0 1 -89 -89 a144 144 0 0 1 144 -144" opacity="0.75" />
+    </g>
+    <g id="vector-glyphs" font-size="20" fill="var(--color-cyber-gold)" font-family="'Cinzel', 'Times New Roman', serif" text-anchor="middle">
+      <text x="256" y="112">φᵗ</text>
+      <text x="120" y="278">ψʳ</text>
+      <text x="392" y="278">Φᴱ</text>
+    </g>
+    <g id="rings" opacity="0.6">
+      <circle cx="256" cy="200" r="32" class="accent" stroke="var(--color-nexus-purple)" />
+      <circle cx="210" cy="310" r="28" class="accent" stroke="var(--color-copper-glow)" />
+      <circle cx="302" cy="320" r="28" class="accent" stroke="var(--color-cyber-gold)" />
+    </g>
+  </g>
+  <g id="text" transform="translate(0,32)">
+    <text x="256" y="402" text-anchor="middle" font-size="72" class="glyph-text" font-family="'Trajan Pro', 'Cinzel', serif">TEC</text>
+    <text x="256" y="448" text-anchor="middle" font-size="22" class="subtitle">THE ELIDORAS CODEX</text>
+  </g>
+</svg>

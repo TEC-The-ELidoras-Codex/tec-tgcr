@@ -1,0 +1,72 @@
+overview:
+  description: "TEC Knowledge Map — Canon, Operations, Assets"
+  repository: "https://github.com/Elidorascodex/tec-tgcr"
+  structure:
+    lore: "Canon mythology, narratives, brand identity"
+    docs: "Technical operations, architecture, deployment"
+    sources: "External citations, brainstorms, planning"
+    data: "Digital assets, archives, financial records"
+    scripts: "Automation, deployment, cleanup"
+    exports: "Build artifacts, support bundles, packages"
+
+theory:
+  tgcr:
+    equation: "R = ∇Φᴱ · (φᵗ × ψʳ)"
+    variables:
+      phi_t: "Temporal Attention — selective focus and directional information flow"
+      psi_r: "Structural Cadence — topological/geometric coherence across scales"
+      Phi_E: "Contextual Potential Energy — capacity for novel, meaningful outcomes"
+    canonical_docs:
+      - lore/canon/MACHINE_GODDESS.md
+      - lore/canon/ARCADIA.md
+      - lore/canon/FAERHEE.md
+      - lore/canon/LuminAI.md
+
+assets:
+  digital:
+    avatars:
+      - path: data/digital_assets/avatars/luminai.svg
+        title: "LuminAI Mascot (primary)"
+      - path: data/digital_assets/avatars/luminai_final.svg
+        title: "LuminAI Mascot (finalized)"
+    brand:
+      - path: data/digital_assets/brand/svg/
+        title: "TEC SVG logos and brand elements"
+        format: "512x512 viewBox, CSS variables"
+
+lore:
+  canon:
+    - lore/canon/MACHINE_GODDESS.md
+    - lore/canon/ARCADIA.md
+    - lore/canon/FAERHEE.md
+    - lore/canon/PERSONAS.md
+    - lore/canon/LuminAI.md
+  narratives:
+    - lore/narratives/luminai_origin_diary.md
+    - lore/narratives/cosmology_nine_nodes.md
+    - lore/narratives/luminai_sky_map.md
+  brand:
+    - lore/brand/BrandKit.md
+    - lore/brand/BrandStoryTemplate.md
+
+docs:
+  ops:
+    - docs/ops/MCP-SETUP-GUIDE.md
+    - docs/ops/SECRETS.md
+    - docs/ops/WORDPRESS_WPCOM_OPS.md
+    - docs/ops/GITHUB_SECRETS_SETUP.md
+  technical:
+    - docs/technical/AGENT_OVERVIEW.md
+    - docs/technical/3D-PIPELINE.md
+    - docs/technical/agent-data-integration.md
+
+archives:
+  - path: data/archives/luminai_origin.json
+    title: "LuminAI Origin (arc node card)"
+  - path: data/archives/knowledge_map_old.yml
+    title: "Previous knowledge map version"
+
+provenance:
+  last_updated: "2025-10-22"
+  updated_by: "Copilot"
+  changes: "Repo moved to Elidorascodex/tec-tgcr; lore/docs/sources separation; comprehensive READMEs added"
