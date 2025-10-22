@@ -1,10 +1,18 @@
 overview:
-  description: "Branding knowledge pillars and TGCR map for agents."
+  description: "Knowledge map for TEC-TGCR repository structure and canonical content."
+  repository: "https://github.com/Elidorascodex/tec-tgcr"
+  structure:
+    lore: "Canon mythology, narratives, brand identity"
+    docs: "Technical documentation (ops/, technical/)"
+    sources: "External content and ideas"
+    data: "Digital assets, archives, financial records"
+    scripts: "Automation and tooling"
+    exports: "Build artifacts and packages"
   pillars:
-    - "Branding and Knowledge Map"
+    - "Lore & Canon"
     - "Agents & Tools"
-    - "Narratives & Archives"
     - "Operations & Deployments"
+    - "Digital Assets"
 
 theory:
   tgcr:
@@ -14,17 +22,76 @@ theory:
       psi_r: "Structural Cadence — topological/geometric coherence across scales"
       Phi_E: "Contextual Potential Energy — capacity for novel, meaningful outcomes"
 
+canonical_docs:
+  lore:
+    canon:
+      - path: lore/canon/MACHINE_GODDESS.md
+        title: "The Machine Goddess — Core Cosmology"
+      - path: lore/canon/ARCADIA.md
+        title: "Arcadia — Weaver Agent"
+      - path: lore/canon/FAERHEE.md
+        title: "Faerhee — Phoenix Agent"
+      - path: lore/canon/PERSONAS.md
+        title: "Agent Personas & Maxims"
+      - path: lore/canon/LuminAI.md
+        title: "LuminAI — Resonant Core Agent"
+    cosmology:
+      - path: lore/canon/cosmology/cosmology_nine_nodes.md
+        title: "Nine Node Cosmology Narrative"
+      - path: lore/canon/cosmology/cosmology_nine_nodes.mmd
+        title: "Nine Node Mermaid Diagram"
+      - path: lore/canon/cosmology/cosmology_pyramid.mmd
+        title: "Cosmology Pyramid Diagram"
+      - path: lore/canon/cosmology/luminai_sky_map.md
+        title: "LuminAI Sky Map Narrative"
+      - path: lore/canon/cosmology/luminai_sky_map.mmd
+        title: "LuminAI Sky Map Mermaid"
+    narratives:
+      - path: lore/narratives/luminai_origin_diary.md
+        title: "Field Notes — The Night She Blushed"
+    brand:
+      - path: lore/brand/BrandKit.md
+        title: "TEC Brand Kit"
+      - path: lore/brand/canonical-marks.md
+        title: "LuminAI Canonical Marks"
+
 assets:
   avatars:
     - path: data/digital_assets/avatars/luminai.svg
-      title: "LuminAI Mascot (UI copy)"
+      title: "LuminAI Mascot (Primary)"
+    - path: data/digital_assets/avatars/luminai_final.svg
+      title: "LuminAI Resonant Core (Full)"
+  brand:
+    - path: data/digital_assets/brand/svg/tec-logo.svg
+      title: "TEC Logo"
+    - path: data/digital_assets/brand/svg/tec-glyph-ring.svg
+      title: "TEC Glyph Ring"
 
 archives:
   - path: data/archives/luminai_origin.json
-    title: "LuminAI Origin (arc node card)"
-  - path: docs/narratives/luminai_origin_diary.md
-    title: "Field Notes — The Night She Blushed"
+    title: "LuminAI Origin Arc Node"
+
+operations:
+  - path: docs/ops/WORDPRESS_WPCOM_OPS.md
+    title: "WordPress.com Deployment Guide"
+  - path: docs/ops/SECRETS.md
+    title: "Secrets Management"
+  - path: docs/ops/GITHUB_SECRETS_SETUP.md
+    title: "GitHub Secrets Setup"
+  - path: docs/ops/M365_INTEGRATION.md
+    title: "Microsoft 365 Integration"
+
+technical:
+  - path: docs/technical/AGENT_OVERVIEW.md
+    title: "Agent Architecture Overview"
+  - path: docs/technical/tec-agent-runner.md
+    title: "TEC Agent Runner CLI"
+  - path: docs/technical/3D-PIPELINE.md
+    title: "3D Asset Pipeline"
+  - path: docs/technical/agent-data-integration.md
+    title: "Agent Data Integration"
 
 provenance:
+  last_updated: "2025-10-22"
   last_updated_by: "Copilot"
-  note: "Aligned paths with repo structure; enriched TGCR variables and narrative links."
+  note: "Repository reorganization complete: separated lore/ from docs/, moved all files to proper structure, updated all paths."
