@@ -17,34 +17,52 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          echo "=== Workspace: ${{ github.workspace }} ==="
+          echo "=== Current directory: $(pwd) ==="
+          echo "=== Listing workspace root ===" 
+          ls -la
+          echo "=== Listing apps/ ===" 
+          ls -la apps/ || echo "apps/ not found!"
+          echo "=== Listing apps/wordpress/ ==="
+          ls -la apps/wordpress/ || echo "apps/wordpress/ not found!"
+          
           STAGE="${{ github.workspace }}/.wpcom-dist"
-          PLUGIN=apps/wordpress/tec-tgcr
-          echo "Verifying plugin path: $PLUGIN"
+          PLUGIN="apps/wordpress/tec-tgcr"
+          
+          echo "=== Verifying plugin path: $PLUGIN ==="
           if [ ! -d "$PLUGIN" ]; then
             echo "ERROR: Plugin directory not found: $PLUGIN" >&2
-            echo "apps/wordpress listing:" && ls -la apps/wordpress || true
             exit 1
           fi
+          
+          echo "=== Listing plugin directory ==="
+          ls -la "$PLUGIN"
+          
           if [ ! -f "$PLUGIN/tec-tgcr.php" ]; then
             echo "ERROR: Missing main plugin file: $PLUGIN/tec-tgcr.php" >&2
-            echo "Files under $PLUGIN:" && find "$PLUGIN" -maxdepth 2 -type f -print || true
             exit 1
           fi
+          
+          echo "=== Creating staging directory ==="
           rm -rf "$STAGE"
-          # WordPress.com extracts the artifact into the site root. We must mirror the site structure.
           mkdir -p "$STAGE/wp-content/plugins/tec-tgcr"
-          echo "Staging plugin into $STAGE/wp-content/plugins/tec-tgcr"
+          
+          echo "=== Copying plugin files ==="
           cp -R "$PLUGIN"/. "$STAGE/wp-content/plugins/tec-tgcr"/
-          # Hard assertions & verbose tree to aid diagnostics
+          
+          echo "=== Verifying staged files ==="
+          ls -la "$STAGE/wp-content/plugins/tec-tgcr/"
+          
           if [ ! -f "$STAGE/wp-content/plugins/tec-tgcr/tec-tgcr.php" ]; then
             echo "ERROR: Staged plugin missing expected entry file." >&2
-            echo "Tree under staged dir:" && find "$STAGE" -maxdepth 5 -print | sed -e 's/^/ - /' || true
+            find "$STAGE" -type f
             exit 1
           fi
+          
           COUNT=$(find "$STAGE" -type f | wc -l)
-          echo "Staged files count: $COUNT"
-          echo "Artifact tree (depth 3):"
-          find "$STAGE" -maxdepth 3 -type f | sed -e 's/^/ - /' || true
+          echo "=== Staged files count: $COUNT ==="
+          echo "=== Artifact tree ==="
+          find "$STAGE" -type f
 
       - name: Upload artifact for WordPress.com
         uses: actions/upload-artifact@v4
