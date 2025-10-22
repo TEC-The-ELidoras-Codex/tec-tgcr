@@ -19,46 +19,46 @@ jobs:
           set -euo pipefail
           echo "=== Workspace: ${{ github.workspace }} ==="
           echo "=== Current directory: $(pwd) ==="
-          echo "=== Listing workspace root ===" 
+          echo "=== Listing workspace root ==="
           ls -la
-          echo "=== Listing apps/ ===" 
+          echo "=== Listing apps/ ==="
           ls -la apps/ || echo "apps/ not found!"
           echo "=== Listing apps/wordpress/ ==="
           ls -la apps/wordpress/ || echo "apps/wordpress/ not found!"
-          
+
           STAGE="${{ github.workspace }}/.wpcom-dist"
           PLUGIN="apps/wordpress/tec-tgcr"
-          
+
           echo "=== Verifying plugin path: $PLUGIN ==="
           if [ ! -d "$PLUGIN" ]; then
             echo "ERROR: Plugin directory not found: $PLUGIN" >&2
             exit 1
           fi
-          
+
           echo "=== Listing plugin directory ==="
           ls -la "$PLUGIN"
-          
+
           if [ ! -f "$PLUGIN/tec-tgcr.php" ]; then
             echo "ERROR: Missing main plugin file: $PLUGIN/tec-tgcr.php" >&2
             exit 1
           fi
-          
+
           echo "=== Creating staging directory ==="
           rm -rf "$STAGE"
           mkdir -p "$STAGE/wp-content/plugins/tec-tgcr"
-          
+
           echo "=== Copying plugin files ==="
           cp -R "$PLUGIN"/. "$STAGE/wp-content/plugins/tec-tgcr"/
-          
+
           echo "=== Verifying staged files ==="
           ls -la "$STAGE/wp-content/plugins/tec-tgcr/"
-          
+
           if [ ! -f "$STAGE/wp-content/plugins/tec-tgcr/tec-tgcr.php" ]; then
             echo "ERROR: Staged plugin missing expected entry file." >&2
             find "$STAGE" -type f
             exit 1
           fi
-          
+
           COUNT=$(find "$STAGE" -type f | wc -l)
           echo "=== Staged files count: $COUNT ==="
           echo "=== Artifact tree ==="
