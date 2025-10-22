@@ -1,6 +1,8 @@
 name: WP.com SSH Deploy (manual)
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -8,6 +10,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Stage plugin files
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="${{ github.workspace }}/.wpcom-dist"
+          PLUGIN=apps/wordpress/tec-tgcr
+          echo "Verifying plugin path: $PLUGIN"
+          if [ ! -d "$PLUGIN" ]; then
+            echo "ERROR: Plugin directory not found: $PLUGIN" >&2
+            exit 1
+          fi
+          if [ ! -f "$PLUGIN/tec-tgcr.php" ]; then
+            echo "ERROR: Missing main plugin file: $PLUGIN/tec-tgcr.php" >&2
+            exit 1
+          fi
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/wp-content/plugins/tec-tgcr"
+          echo "Staging plugin into $STAGE/wp-content/plugins/tec-tgcr"
+          cp -R "$PLUGIN"/. "$STAGE/wp-content/plugins/tec-tgcr"/
+          COUNT=$(find "$STAGE" -type f | wc -l)
+          echo "Staged files count: $COUNT"
 
       - name: Setup SSH key
         uses: webfactory/ssh-agent@v0.9.0
@@ -26,4 +50,12 @@ jobs:
           SSH_USER: ${{ secrets.WPCOM_SSH_USER }}
           SSH_TARGET: ${{ secrets.WPCOM_SSH_TARGET }}
         run: |
-          rsync -az --delete -e "ssh -p $SSH_PORT" apps/wordpress/tec-tgcr/ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"
+          rsync -az --delete -e "ssh -p $SSH_PORT" .wpcom-dist/wp-content/plugins/tec-tgcr/ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"
+
+      - name: Upload artifact for WordPress.com
+        uses: actions/upload-artifact@v4
+        with:
+          name: wpcom
+          path: ${{ github.workspace }}/.wpcom-dist
+          if-no-files-found: error
+          retention-days: 1
