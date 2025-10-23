@@ -1,6 +1,6 @@
 overview:
   description: "Knowledge map for TEC-TGCR repository structure and canonical content."
-  repository: "https://github.com/Elidorascodex/tec-tgcr"
+  repository: "https://github.com/TEC-The-ELidoras-Codex/tec-tgcr"
   structure:
     lore: "Canon mythology, narratives, brand identity"
     docs: "Technical documentation (ops/, technical/)"

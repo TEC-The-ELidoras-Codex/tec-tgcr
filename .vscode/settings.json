@@ -4,6 +4,17 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
+  // Language-specific formatting
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
   // Use project venv by default (Windows path)
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
 
@@ -16,6 +27,26 @@
 
   // Type checking & analysis
   "python.analysis.typeCheckingMode": "basic",
+
+  // Exclude build artifacts and generated outputs from Explorer and Search
+  "files.exclude": {
+    ".wpcom-dist": true,
+    "ai-workflow/output": true,
+    "exports/wp-plugin": true,
+    "dist": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.egg-info": true
+  },
+  "search.exclude": {
+    ".wpcom-dist": true,
+    "ai-workflow/output": true,
+    "exports/wp-plugin": true,
+    "dist": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/*.egg-info": true
+  },
 
   // Terminal
   "terminal.integrated.defaultProfile.windows": "PowerShell",
