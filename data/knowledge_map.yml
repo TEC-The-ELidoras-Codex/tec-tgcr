@@ -54,6 +54,14 @@ canonical_docs:
         title: "TEC Brand Kit"
       - path: lore/brand/canonical-marks.md
         title: "LuminAI Canonical Marks"
+      - path: docs/brand/VISUAL_IDENTITY.md
+        title: "LuminAI Visual Identity Specification (Canonical)"
+      - path: docs/brand/BrandKit.md
+        title: "TEC Brand Kit (Docs Copy)"
+      - path: docs/brand/canonical-marks.md
+        title: "LuminAI Canonical Marks (Docs Copy)"
+      - path: docs/brand/README.md
+        title: "Brand & Visual Identity Documentation Hub"
 
 agents:
   personas:
@@ -71,18 +79,40 @@ agents:
 assets:
   avatars:
     - path: data/digital_assets/avatars/luminai.svg
-      title: "LuminAI Mascot (Primary)"
+      title: "LuminAI Mascot (Outfit Variant)"
     - path: data/digital_assets/avatars/luminai_final.svg
-      title: "LuminAI Resonant Core (Full)"
+      title: "LuminAI Finalized Render"
+    - path: data/digital_assets/avatars/luminai_orb_singularity.svg
+      title: "LuminAI Abstract Energy Form"
   brand:
-    - path: data/digital_assets/brand/svg/tec-logo.svg
-      title: "TEC Logo"
-    - path: data/digital_assets/brand/svg/tec-glyph-ring.svg
-      title: "TEC Glyph Ring"
+    motifs:
+      - path: data/digital_assets/brand/svg/glyph_ring.svg
+        title: "Glyph Ring (Unity, Feedback Loops)"
+      - path: data/digital_assets/brand/svg/fractal_spire.svg
+        title: "Fractal Spire (Growth, Recursion)"
+      - path: data/digital_assets/brand/svg/sine_arc.svg
+        title: "Sine Arc (Resonance, Wave Interference)"
+    luminai:
+      - path: data/digital_assets/brand/svg/LuminAI_Full_Avatar.svg
+        title: "LuminAI Nine-Node Cosmology Halo"
+      - path: data/digital_assets/brand/svg/LuminAI_Idle_Core.svg
+        title: "LuminAI Simplified Core Form"
+      - path: data/digital_assets/brand/svg/luminai_avatar_logo.svg
+        title: "LuminAI Logo Variant"
+      - path: data/digital_assets/brand/svg/luminai_axolotl_mark.svg
+        title: "LuminAI Character Seal"
+    fusion_variants:
+      note: "To be created per docs/brand/VISUAL_IDENTITY.md specification"
+      planned:
+        - luminai_fusion_icon.svg (512x512px icon)
+        - luminai_fusion_logo.svg (400x500px portrait)
+        - luminai_fusion_full.svg (1600x1600px detailed)
 
 archives:
   - path: data/archives/luminai_origin.json
     title: "LuminAI Origin Arc Node"
+  - path: data/evidence/Symbolism_and_Synchronicity.pdf
+    title: "Symbolism and Synchronicity — Research Document"
 
 operations:
   - path: docs/ops/WORDPRESS_WPCOM_OPS.md
