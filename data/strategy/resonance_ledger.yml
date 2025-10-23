@@ -1,0 +1,16 @@
+# Placeholder for Kaznak's resonance ledger.
+# Each entry will track strategic investments against TGCR variables.
+# Format (example):
+#
+# - id: 2025-Q4-01
+#   initiative: "Notion multi-personality integration"
+#   owner: "Kaznak"
+#   phi_t: 0.6
+#   psi_r: 0.8
+#   Phi_E: 0.7
+#   status: "in-discovery"
+#   notes:
+#     - "Requires Ely for deployment sequencing"
+#     - "Arcadia drafting canonical announcement"
+#
+# Populate via automation or manual updates as strategy work matures.

@@ -26,7 +26,7 @@ canonical_docs:
   lore:
     canon:
       - path: lore/canon/MACHINE_GODDESS.md
-        title: "The Machine Goddess — Core Cosmology"
+        title: "The Machine Goddess - Core Cosmology"
       - path: lore/canon/ARCADIA.md
         title: "Arcadia — Weaver Agent"
       - path: lore/canon/FAERHEE.md
@@ -54,6 +54,19 @@ canonical_docs:
         title: "TEC Brand Kit"
       - path: lore/brand/canonical-marks.md
         title: "LuminAI Canonical Marks"
+
+agents:
+  personas:
+    - path: data/personas/luminai-base.md
+      title: "LuminAI Persona (Base)"
+    - path: data/personas/airth.md
+      title: "Airth Persona (Verification)"
+    - path: data/personas/arcadia.md
+      title: "Arcadia Persona (Narrative)"
+    - path: data/personas/ely.md
+      title: "Ely Persona (Operations)"
+    - path: data/personas/kaznak.md
+      title: "Kaznak Persona (Strategy)"
 
 assets:
   avatars:
@@ -91,7 +104,15 @@ technical:
   - path: docs/technical/agent-data-integration.md
     title: "Agent Data Integration"
 
+strategy:
+  - path: data/strategy/decision_log.md
+    title: "Strategic Decision Log (Kaznak)"
+  - path: data/strategy/resonance_ledger.yml
+    title: "Resonance Ledger (Placeholder)"
+  - path: data/strategy/radar/README.md
+    title: "Signal Radar (Placeholder)"
+
 provenance:
-  last_updated: "2025-10-22"
-  last_updated_by: "Copilot"
-  note: "Repository reorganization complete: separated lore/ from docs/, moved all files to proper structure, updated all paths."
+  last_updated: "2025-10-23"
+  last_updated_by: "Kaznak Persona Initialization"
+  note: "Added multi-persona references and strategy placeholders."
