@@ -163,6 +163,10 @@ operations:
     title: "Notion Workspace Setup Guide"
   - path: docs/ops/NOTION_SYNC.md
     title: "Notion - GitHub Sync Documentation"
+  - path: docs/ops/COPILOT_WORKFLOW.md
+    title: "Copilot Workflow — Resonant Stack v2.0"
+  - path: docs/ops/EXIT_MS365_TO_NOTION_ZOHO.md
+    title: "Exit Plan — M365 → Notion + Zoho (DNS & migration)"
 
 technical:
   - path: docs/technical/AGENT_OVERVIEW.md
@@ -204,11 +208,25 @@ templates:
       title: "Notion Template — Resonance Brief"
     - path: docs/templates/notion/Release_Summary.md
       title: "Notion Template — Release Summary"
+    - path: docs/templates/notion/Resonant_Stack_Template.md
+      title: "Notion Template — Resonant Stack (Project)"
   sharepoint:
     - path: docs/templates/sharepoint/Landing_Template.html
       title: "SharePoint Template — Landing Page"
     - path: docs/templates/sharepoint/Briefing_Pack.md
       title: "SharePoint Template — Briefing Pack"
+
+ai_workflow_outputs:
+  - path: ai-workflow/output/luminai_mascot_pony_sdxl.txt
+    title: "Prompt — LuminAI Mascot (Pony SDXL)"
+    note: "Use with SDXL/Pony Diffusion; aligns with TEC palette and heterochromia."
+
+canonical_docs:
+  framework:
+    - path: docs/GLOSSARY.md
+      title: "Glossary — Provenance vs Providence"
+    - path: docs/REPO_STRUCTURE.md
+      title: "Repository Structure Map"
 
 provenance:
   last_updated: "2025-10-26"
