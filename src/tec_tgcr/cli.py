@@ -15,6 +15,7 @@ from .integrations.civitai import CivitaiClient
 from .integrations.worldanvil import WorldAnvilClient
 from .session import ConversationSession
 from .tools.resonance_evaluator import compute_resonance_strength
+from .tools import notion as notion_tools
 
 console = Console()
 app = typer.Typer(help="Operate the TEC conversational agents.")
@@ -103,3 +104,28 @@ def resonance_evaluate(
     console.print(f"φ (attention): {phi:.3f}")
     console.print(f"ψ (structure): {psi:.3f}")
     console.print(f"Φ_E (meaning): {phi_e:.3f}")
+
+
+@app.command()
+def notion_health() -> None:
+    """Check Notion API connectivity.
+
+    Requires NOTION_TOKEN set and the integration shared with your workspace/pages.
+    """
+    ok, msg = notion_tools.health_check()
+    if ok:
+        console.print(f"[bold green]Notion health:[/bold green] {msg}")
+    else:
+        console.print(f"[bold red]Notion health failed:[/bold red] {msg}")
+        raise typer.Exit(code=1)
+
+
+@app.command()
+def notion_search(query: str = typer.Argument(None), page_size: int = 10) -> None:
+    """Search Notion for pages/databases (best-effort)."""
+    try:
+        data = notion_tools.search(query=query, page_size=page_size)
+        console.print_json(data=data)
+    except Exception as e:  # pragma: no cover - network path
+        console.print(f"[bold red]Search failed:[/bold red] {e}")
+        raise typer.Exit(code=1)
