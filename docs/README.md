@@ -6,6 +6,13 @@ Welcome to The Elidoras Codex documentation. This repository implements the **Th
 
 ---
 
+## 🧭 Start Here
+
+- TEC Hub — Core Navigation: [TEC_HUB.md](TEC_HUB.md)
+- Resonance Thesis — TGCR Core: [Resonance_Thesis.md](Resonance_Thesis.md)
+
+---
+
 ## 📖 Documentation Structure
 
 ### 🧬 **Core Theory** — Foundational TGCR Concepts
