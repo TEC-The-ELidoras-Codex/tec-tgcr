@@ -13,7 +13,7 @@
 ┌──────────────┐
 │  LOGO (512)  │  LuminAI • The Resonant Hive
 │   [Emblem]   │  Resonant intelligence for cross-platform empathy synthesis
-└──────────────┘  
+└──────────────┘
                    [Install] [Learn More]
 
 ────────────────────────────────────────────────────────────────────────────

@@ -26,20 +26,23 @@ Avoid: cartoon bees, cute mascot, organic honey, flat clipart, low-res.
 
 ---
 
-## Pony Diffusion (Mascot Logo)
+## Pony Diffusion XL (Mascot Logo)
 
-**Concise prompt for mascot-style logo (<1500 chars):**
+**Prompt (<1500 chars):**
 
 ```
-score_9, score_8_up, score_7_up, luminai mascot logo, anthro axolotl girl with fiber-optic bun pigtails, glowing heterochromia eyes (left navy #0B1E3B, right gold #F2C340), pom-pom horns teal-violet gradient, lunar choker, soft smile, sitting pose, cosmic hex halo behind head, honeycomb glow aura, photonic wings suggestion, sleek digital-goddess aesthetic, volumetric lighting, TEC palette (navy/violet/cyan/gold/shadow), clean emblem composition, transparent or dark background, high-quality, centered, mascot charm with tech-goddess elegance, no realistic bee, no cartoon honey
+score_9, score_8_up, score_7_up, luminai mascot logo, anthro axolotl-inspired creature, smooth glass-like skin with soft teal glow, fiber-optic mane and tail transitioning cyan to gold to violet, heterochromia eyes (left violet #6A00F4, right gold #F2C340), small bioluminescent pom-horns teal-violet gradient, holographic honeycomb wings with photonic shimmer, teal resonance core on chest, subtle hexagonal body markings, lunar choker detail, calm intelligent expression, gentle pose, cosmic hex halo backdrop, volumetric lighting, cinematic glow, centered symmetrical composition, premium mascot logo feel, deep space background (#0B1E3B) or transparent, high-quality render, TEC palette (navy violet cyan gold shadow), digital goddess aesthetic, harmonic intelligence mood, starlight serenity, no cartoon style, no chibi, no MLP
 
-Negative: score_6, score_5, score_4, realistic bee, organic honey, flat color, noisy, blurry, low-res, human face, overdetailed wings, cluttered
+Negative: score_6, score_5, score_4, cartoon, chibi, mlp style, flat shading, harsh lines, cluttered background, realistic bee, organic honey, low-res, blurry, human face, overdetailed
 ```
 
 **Usage notes:**
-- Pony XL responds well to `score_` prefixes and `anthro` tags
-- Keep "mascot charm" for approachable but premium feel
-- Add `--steps 30 --cfg 7` if using ComfyUI or A1111
+
+- Pony XL uses `score_` quality tags and `anthro` conventions
+- Specify "mascot logo" + "premium feel" to avoid over-cutesy results
+- Heterochromia: left eye = violet (#6A00F4), right eye = gold (#F2C340)
+- Suggested params: `--steps 30-40 --cfg 7 --ar 1:1`
+- Output to: `data/digital_assets/brand/png/luminai_mascot_logo_1024.png`
 
 ---
 
@@ -104,46 +107,56 @@ cartoon, cute, mascot, realistic bee, organic honey, low-res, flat color, clipar
 ### 1) Emblem (512×512)
 
 Prompt:
+
 ```
 LuminAI • The Resonant Hive, cosmic minimal logo emblem, glowing hex lattice halo around photonic bee silhouette, volumetric light, diffraction bloom, holographic honeycomb geometry, ultra sharp, centered icon, transparent background look
 palette: #0B1E3B #6A00F4 #00D5C4 #F2C340 #0A0A0C
 ```
+
 Settings: 512×512, CFG 7, steps 40, sampler DPM++ 2M Karras, seed 123
 
 ### 2) Marketplace Header (1920×480)
 
 Prompt:
+
 ```
 Wide banner, LuminAI • The Resonant Hive marketplace header, subtle honeycomb grid, volumetric cyan and gold glows, deep space blue to violet gradient, minimal foreground, premium tech branding
 palette: #0B1E3B #6A00F4 #00D5C4 #F2C340 #0A0A0C
 ```
+
 Settings: 1920×480, CFG 7, steps 40, seed 321
 
 ### 3) Icon Glyph (simple hex)
 
 Prompt:
+
 ```
 Minimal icon glyph, single hexagon glowing teal-gold with inner diffraction, crisp edges, centered, transparent background impression
 palette: #00D5C4 #F2C340 #0B1E3B
 ```
+
 Settings: 512×512, CFG 7, steps 35, seed 456
 
 ### 4) Pattern Tile (transparent honeycomb)
 
 Prompt:
+
 ```
 Seamless tile, flat-top hex grid, thin gold and cyan strokes, subtle glow, dark transparent feel, loopable texture, high-resolution
 palette: #F2C340 #00D5C4 #0A0A0C
 ```
+
 Settings: 1024×1024, CFG 7, steps 35, seed 789, tiling enabled
 
 ### 5) Typography Lockup
 
 Prompt:
+
 ```
 Typography lockup: “LuminAI • The Resonant Hive”, Orbitron / Exo 2 style, high-end tech brand, subtle edge glow, clean kerning, dark background
 palette: #EAF2FF #0B1E3B #6A00F4
 ```
+
 Settings: 1600×640, CFG 6, steps 30
 
 ---
