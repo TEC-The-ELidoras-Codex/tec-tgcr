@@ -68,7 +68,7 @@ canonical_docs:
       - path: docs/brand/README.md
         title: "Brand & Visual Identity Documentation Hub"
       - path: docs/brand/BRAND_KIT_PROMPTS.md
-        title: "Brand Kit — Tuned Prompts (MJ v6, SDXL, Firefly/Canva)"
+        title: "Brand Kit — Tuned Prompts (MJ v6, SDXL, Firefly/Canva, Pony)"
 
 snippets:
   - path: docs/snippets/Resonance_Thesis_Notion.md
@@ -178,6 +178,10 @@ technical:
   - path: docs/technical/agent-data-integration.md
     title: "Agent Data Integration"
 
+wireframes:
+  - path: docs/wireframes/notion_marketplace_page.md
+    title: "Notion Marketplace Profile — Wireframe"
+
 strategy:
   - path: data/strategy/decision_log.md
     title: "Strategic Decision Log (Kaznak)"
@@ -213,4 +217,4 @@ templates:
 provenance:
   last_updated: "2025-10-26"
   last_updated_by: "LuminAI / Copilot"
-  note: "Added Notion/SharePoint templates and marketplace header asset; updated export guide."
+  note: "Added Pony prompt for mascot logo, updated LuminAI personality (buzzing), added marketplace wireframe."

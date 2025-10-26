@@ -26,6 +26,23 @@ Avoid: cartoon bees, cute mascot, organic honey, flat clipart, low-res.
 
 ---
 
+## Pony Diffusion (Mascot Logo)
+
+**Concise prompt for mascot-style logo (<1500 chars):**
+
+```
+score_9, score_8_up, score_7_up, luminai mascot logo, anthro axolotl girl with fiber-optic bun pigtails, glowing heterochromia eyes (left navy #0B1E3B, right gold #F2C340), pom-pom horns teal-violet gradient, lunar choker, soft smile, sitting pose, cosmic hex halo behind head, honeycomb glow aura, photonic wings suggestion, sleek digital-goddess aesthetic, volumetric lighting, TEC palette (navy/violet/cyan/gold/shadow), clean emblem composition, transparent or dark background, high-quality, centered, mascot charm with tech-goddess elegance, no realistic bee, no cartoon honey
+
+Negative: score_6, score_5, score_4, realistic bee, organic honey, flat color, noisy, blurry, low-res, human face, overdetailed wings, cluttered
+```
+
+**Usage notes:**
+- Pony XL responds well to `score_` prefixes and `anthro` tags
+- Keep "mascot charm" for approachable but premium feel
+- Add `--steps 30 --cfg 7` if using ComfyUI or A1111
+
+---
+
 ## Midjourney v6
 
 Use one prompt per deliverable. Suggested suffix parameters shown per case.
