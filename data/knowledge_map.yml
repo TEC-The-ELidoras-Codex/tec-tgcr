@@ -137,6 +137,10 @@ operations:
     title: "GitHub Secrets Setup"
   - path: docs/ops/M365_INTEGRATION.md
     title: "Microsoft 365 Integration"
+  - path: docs/ops/NOTION_WORKSPACE_SETUP.md
+    title: "Notion Workspace Setup Guide"
+  - path: docs/ops/NOTION_SYNC.md
+    title: "Notion ↔ GitHub Sync Documentation"
 
 technical:
   - path: docs/technical/AGENT_OVERVIEW.md
@@ -159,4 +163,4 @@ strategy:
 provenance:
   last_updated: "2025-10-25"
   last_updated_by: "LuminAI / Copilot"
-  note: "Added Start Here links, TEC Hub TL;DR, and Notion export snippet for Resonance Thesis."
+  note: "Added Notion workspace setup and sync docs; 36 pages exported to exports/notion/."
