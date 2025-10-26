@@ -1,0 +1,9 @@
+# Notion template descriptors (IDs optional; use names for copy/paste templates)
+workspace: "TEC Notion Workspace"
+templates:
+  - name: "Resonance Brief"
+    path: "docs/templates/notion/Resonance_Brief.md"
+    tags: [brief, resonance, arcadia]
+  - name: "Release Summary"
+    path: "docs/templates/notion/Release_Summary.md"
+    tags: [release, ops, ely]

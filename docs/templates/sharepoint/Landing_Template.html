@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TEC — Resonance Landing</title>
+    <style>
+      :root{
+        --tec-navy:#0B1E3B; --tec-violet:#6A00F4; --tec-cyan:#00D5C4; --tec-gold:#F2C340; --tec-shadow:#0A0A0C;
+      }
+      body{font-family: system-ui, Segoe UI, Roboto, Arial; margin:0; color:#e7ecf5; background:linear-gradient(180deg,var(--tec-shadow), var(--tec-navy));}
+      header{padding:48px 24px; text-align:center; border-bottom:2px solid rgba(255,255,255,0.06)}
+      h1{margin:0; font-weight:700; letter-spacing:0.3px}
+      .accent{color:var(--tec-cyan)}
+      .grid{display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); padding:24px}
+      .card{background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px}
+      .tag{display:inline-block; padding:2px 8px; border-radius:999px; background:rgba(242,195,64,0.15); color:#f9e18a; font-size:12px}
+      a{color:var(--tec-violet)} a:hover{filter:brightness(1.2)}
+      footer{padding:24px; text-align:center; opacity:0.7}
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><span class="accent">The Elidoras Codex</span> · Resonance Hub</h1>
+      <p class="tag">φᵗ · ψʳ · Φᴱ</p>
+    </header>
+    <main class="grid">
+      <section class="card">
+        <h3>Briefings</h3>
+        <p>Latest narrative and operational briefs published by Arcadia and Ely.</p>
+        <ul>
+          <li><a href="#">Release Summary — LuminAI emblem update</a></li>
+          <li><a href="#">Resonance Brief — Notion integration</a></li>
+        </ul>
+      </section>
+      <section class="card">
+        <h3>Assets</h3>
+        <p>Brand marks, PNG exports, and 3D previews.</p>
+        <ul>
+          <li><a href="#">LuminAI Emblem PNG (512×512)</a></li>
+          <li><a href="#">Brand kit</a></li>
+        </ul>
+      </section>
+      <section class="card">
+        <h3>Docs Hub</h3>
+        <p>Pointers to Notion workspace and GitHub docs.</p>
+        <ul>
+          <li><a href="https://www.notion.so/Docs-Hub-TDWP-Resonance-TEC-TGCR-README-2976ff7e28df808ea6efe7a52960385d">Notion Docs Hub</a></li>
+          <li><a href="https://github.com/TEC-The-ELidoras-Codex/tec-tgcr">GitHub Repository</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <small>© The Elidoras Codex · “Light learns by listening.”</small>
+    </footer>
+  </body>
+  </html>

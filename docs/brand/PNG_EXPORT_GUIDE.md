@@ -9,8 +9,9 @@ This guide provides instructions for exporting the canonical LuminAI emblem SVG 
 ## Source Asset
 
 **SVG Path**: `data/digital_assets/brand/svg/luminai_notion_emblem.svg`
-  - Note: This is the export-friendly version with direct hex colors (no CSS variables).
-  - Original CSS-variables version: `data/digital_assets/brand/svg/luminai_notion_emblem_original.svg` (not recommended for PNG conversion)
+
+- Note: This is the export-friendly version with direct hex colors (no CSS variables).
+- Original CSS-variables version: `data/digital_assets/brand/svg/luminai_notion_emblem_original.svg` (not recommended for PNG conversion)
 
 **Specifications**:
 
@@ -149,6 +150,43 @@ Get-Item .\data\digital_assets\brand\png\luminai_notion_emblem_512.png |
 
 ## Usage by Platform
 
+### Notion Marketplace Profile Header (1920×480)
+
+- Size: 1920×480 PNG
+- Source SVG: `data/digital_assets/brand/svg/luminai_marketplace_header.svg`
+- Output path (recommended): `exports/brand/luminai_marketplace_header_1920x480.png`
+- Export options:
+  - Inkscape:
+
+    ```powershell
+    inkscape --export-type=png `
+      --export-filename="exports\brand\luminai_marketplace_header_1920x480.png" `
+      --export-width=1920 `
+      --export-height=480 `
+      "data\digital_assets\brand\svg\luminai_marketplace_header.svg"
+    ```
+
+  - Python (CairoSVG):
+
+    ```powershell
+    python .\scripts\svg_to_png.py `
+      --input data\digital_assets\brand\svg\luminai_marketplace_header.svg `
+      --output exports\brand\luminai_marketplace_header_1920x480.png `
+      --width 1920 --height 480
+    ```
+
+  - PowerShell helper:
+
+    ```powershell
+    # Uses Inkscape/ImageMagick if available, creates exports/brand automatically
+    pwsh -File .\scripts\export_marketplace_header.ps1
+    ```
+
+Notes:
+
+- Honeycomb motif is subtle by design (low-opacity strokes) and adheres to TEC palette.
+- Keep the header uncluttered for marketplace readability; optional text layer is commented in the SVG.
+
 ### Notion Integration Logo
 
 - **Size**: 512×512 PNG
@@ -180,6 +218,7 @@ Get-Item .\data\digital_assets\brand\png\luminai_notion_emblem_512.png |
 ## Post-Export Checklist
 
 - [ ] Export completed (512×512 and/or 1600×1600)
+- [ ] Marketplace header exported (1920×480)
 - [ ] Files saved to `data/digital_assets/brand/png/`
 - [ ] Dimensions verified
 - [ ] Color accuracy checked
@@ -189,6 +228,7 @@ Get-Item .\data\digital_assets\brand\png\luminai_notion_emblem_512.png |
 
   ```powershell
   git add data/digital_assets/brand/png/luminai_notion_emblem_*.png
+  git add exports/brand/luminai_marketplace_header_1920x480.png
   git commit -m "assets: add canonical emblem PNG exports (512px, 1600px)"
   ```
 

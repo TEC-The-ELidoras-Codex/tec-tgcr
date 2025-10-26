@@ -51,6 +51,7 @@ Based on your message, you have:
 | CoinMarketCap | `COINMC_API_KEY` | Crypto data for TEC ecosystem |
 | CoinDesk | `COINDESK_API_KEY` | Additional crypto data |
 | WordPress.com | `TEC_WPCOM_API_PASS` | REST API (application password) |
+| Notion | `NOTION_TOKEN` | Internal integration token for Notion API |
 
 **Azure keys**: Hold off until billing dispute resolves 💸
 
@@ -89,6 +90,9 @@ if (Test-Path $envPath) {
 ## Recommended variables
 
 ```env
+# Notion (workspace integration)
+NOTION_TOKEN=
+
 # WordPress.com (local testing)
 WPCOM_SSH_HOST=sftp.wp.com
 WPCOM_SSH_PORT=22
@@ -102,6 +106,23 @@ AZURE_TENANT_ID=
 AZURE_CLIENT_ID=
 AZURE_CLIENT_SECRET=
 ```
+
+## Verify Notion setup
+
+After adding `NOTION_TOKEN` and sharing your integration with the target pages/databases in Notion (Add connection → select your integration):
+
+```powershell
+# Health check (expects NOTION_TOKEN in the current session)
+.\.venv\Scripts\python.exe -m tec_tgcr.cli notion-health
+
+# Show configured Notion anchors (IDs/URLs)
+.\.venv\Scripts\python.exe -m tec_tgcr.cli notion-config
+
+# Quick search sanity check
+.\.venv\Scripts\python.exe -m tec_tgcr.cli notion-search "Machine Goddess"
+```
+
+If health fails, confirm both: 1) `NOTION_TOKEN` is loaded into your session, and 2) the integration is shared with the specific database/page in Notion.
 
 ## Notes
 

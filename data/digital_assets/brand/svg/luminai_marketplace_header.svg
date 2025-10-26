@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TEC Marketplace Header — 1920×480, honeycomb motif with OG TEC palette
+     Touches ψʳ (structure) with a consistent brand backdrop; evokes bee motif without overstatement. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="480" viewBox="0 0 1920 480">
+  <defs>
+    <!-- Palette -->
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0A0C"/>
+      <stop offset="55%" stop-color="#0B1E3B"/>
+      <stop offset="100%" stop-color="#6A00F4"/>
+    </linearGradient>
+
+    <!-- Subtle volumetric glows -->
+    <radialGradient id="glowLeft" cx="0.2" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="#00D5C4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#00D5C4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0.85" cy="0.2" r="0.7">
+      <stop offset="0%" stop-color="#F2C340" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#F2C340" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Honeycomb pattern (flat-top hex) -->
+    <!-- Hex side length s=20 → width=40, height=34.641016 -->
+    <pattern id="honeycomb" width="34.641016" height="30" patternUnits="userSpaceOnUse" patternTransform="translate(0,0)">
+      <!-- Row A: hex centered at (w/2, h/2) -->
+      <g stroke="#F2C340" stroke-opacity="0.18" fill="none" stroke-width="1">
+        <path d="M 17.320508,0 L 34.641016,10 L 34.641016,20 L 17.320508,30 L 0,20 L 0,10 Z"/>
+      </g>
+    </pattern>
+
+    <!-- Fine-line cyan overlay for depth -->
+    <pattern id="honeycombCyan" width="34.641016" height="30" patternUnits="userSpaceOnUse" patternTransform="translate(17.320508,15)">
+      <g stroke="#00D5C4" stroke-opacity="0.10" fill="none" stroke-width="0.8">
+        <path d="M 17.320508,0 L 34.641016,10 L 34.641016,20 L 17.320508,30 L 0,20 L 0,10 Z"/>
+      </g>
+    </pattern>
+
+    <!-- Grain for subtle texture -->
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="7" result="noise"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.08"/>
+      </feComponentTransfer>
+      <feBlend mode="overlay" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="480" fill="url(#bgGradient)"/>
+
+  <!-- Volumetric glows -->
+  <rect width="1920" height="480" fill="url(#glowLeft)"/>
+  <rect width="1920" height="480" fill="url(#glowRight)"/>
+
+  <!-- Honeycomb layers -->
+  <rect width="1920" height="480" fill="url(#honeycomb)"/>
+  <rect width="1920" height="480" fill="url(#honeycombCyan)"/>
+
+  <!-- Optional title block (commented) -->
+  <!--
+  <g font-family="'Segoe UI', system-ui, Roboto, Arial" transform="translate(80,300)">
+    <text x="0" y="0" font-size="44" fill="#EAF2FF" opacity="0.92">The Elidoras Codex</text>
+    <text x="0" y="36" font-size="20" fill="#EAF2FF" opacity="0.7">Resonance · φᵗ · ψʳ · Φᴱ</text>
+  </g>
+  -->
+
+  <!-- Grain texture for finish -->
+  <rect width="1920" height="480" fill="none" filter="url(#grain)"/>
+</svg>
