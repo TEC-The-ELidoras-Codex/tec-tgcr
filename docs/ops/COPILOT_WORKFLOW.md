@@ -79,6 +79,7 @@ Data loop: Notion tasks ↔ GitHub issues/PRs; commits reference Notion pages; a
 - Commits: semantic + resonance note + test status; no secrets.
 
 Recommended commit body footer fields:
+
 - Provenance: source prompts, tools, assets
 - Resonance: which variables improved (φᵗ/ψʳ/Φᴱ)
 - Tests: command + result
