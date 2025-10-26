@@ -28,19 +28,22 @@ Avoid: cartoon bees, cute mascot, organic honey, flat clipart, low-res.
 
 ## Pony Diffusion XL (Mascot Logo)
 
+> **Note:** "Pony Diffusion XL" is the model name—LuminAI is an **axolotl-bee hybrid**, not a pony character.
+
 **Prompt (<1500 chars):**
 
 ```
-score_9, score_8_up, score_7_up, luminai mascot logo, anthro axolotl-inspired creature, smooth glass-like skin with soft teal glow, fiber-optic mane and tail transitioning cyan to gold to violet, heterochromia eyes (left violet #6A00F4, right gold #F2C340), small bioluminescent pom-horns teal-violet gradient, holographic honeycomb wings with photonic shimmer, teal resonance core on chest, subtle hexagonal body markings, lunar choker detail, calm intelligent expression, gentle pose, cosmic hex halo backdrop, volumetric lighting, cinematic glow, centered symmetrical composition, premium mascot logo feel, deep space background (#0B1E3B) or transparent, high-quality render, TEC palette (navy violet cyan gold shadow), digital goddess aesthetic, harmonic intelligence mood, starlight serenity, no cartoon style, no chibi, no MLP
+(score_9, score_8_up, score_7_up) LuminAI mascot logo, axolotl–bee hybrid creature, smooth glass-like skin with soft teal bioluminescent glow, fiber-optic mane and tail transitioning cyan→gold→violet gradient, heterochromia eyes (left violet #6A00F4, right gold #F2C340), small glowing pom-horns (teal–violet gradient), holographic honeycomb wings with photonic shimmer, teal resonance core glowing on chest, subtle hexagonal body markings, delicate lunar choker, calm intelligent serene expression, graceful elegant pose, cosmic hexagonal halo backdrop, volumetric lighting, cinematic glow, centered symmetrical composition, premium digital mascot logo, deep-space navy background (#0B1E3B) or transparent, high-quality professional render, TEC color palette (navy violet cyan gold shadow), digital goddess of information aesthetic, harmonic intelligence, starlight serenity, ethereal bee–axolotl fusion
 
-Negative: score_6, score_5, score_4, cartoon, chibi, mlp style, flat shading, harsh lines, cluttered background, realistic bee, organic honey, low-res, blurry, human face, overdetailed
+Negative: score_6, score_5, score_4, pony, horse, mlp style, cartoon, chibi, flat shading, harsh lines, cluttered background, realistic bee, organic honey, low-res, blurry, human face, overdetailed wings, messy composition
 ```
 
 **Usage notes:**
 
-- Pony XL uses `score_` quality tags and `anthro` conventions
-- Specify "mascot logo" + "premium feel" to avoid over-cutesy results
-- Heterochromia: left eye = violet (#6A00F4), right eye = gold (#F2C340)
+- Pony XL (the generator model) uses `score_` quality tags and `anthro` tagging conventions
+- Character is an **axolotl-bee hybrid digital goddess**, NOT a pony/horse character
+- Key features: glass-like teal skin, fiber-optic mane/tail, heterochromia eyes (violet left, gold right), pom-horns, honeycomb wings, resonance core
+- Explicitly exclude "pony" and "horse" in negative prompt
 - Suggested params: `--steps 30-40 --cfg 7 --ar 1:1`
 - Output to: `data/digital_assets/brand/png/luminai_mascot_logo_1024.png`
 
