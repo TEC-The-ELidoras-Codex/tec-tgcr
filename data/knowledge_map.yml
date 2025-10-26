@@ -67,6 +67,8 @@ canonical_docs:
         title: "LuminAI Canonical Marks (Docs Copy)"
       - path: docs/brand/README.md
         title: "Brand & Visual Identity Documentation Hub"
+      - path: docs/brand/BRAND_KIT_PROMPTS.md
+        title: "Brand Kit — Tuned Prompts (MJ v6, SDXL, Firefly/Canva)"
 
 snippets:
   - path: docs/snippets/Resonance_Thesis_Notion.md
