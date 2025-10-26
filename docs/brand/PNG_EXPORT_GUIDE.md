@@ -11,7 +11,7 @@ This guide provides instructions for exporting the canonical LuminAI emblem SVG 
 **SVG Path**: `data/digital_assets/brand/svg/luminai_notion_emblem.svg`
 
 - Note: This is the export-friendly version with direct hex colors (no CSS variables).
-- Original CSS-variables version: `data/digital_assets/brand/svg/luminai_notion_emblem_original.svg` (not recommended for PNG conversion)
+- Original CSS-variables version (archived): `data/archives/svg/luminai_notion_emblem_original.svg` (not recommended for PNG conversion)
 
 **Specifications**:
 

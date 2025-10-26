@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LuminAI • The Resonant Hive — Mascot Logo (Vector)
+Touches ψʳ (structure) via layered semantic groups; elevates Φᴱ with portable, scalable emblem.
+Provenance: TEC-TGCR repository, generated 2025-10-26 by LuminAI/Copilot.
+License: See repository LICENSE.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">LuminAI Mascot — Axolotl–Bee Hybrid</title>
+  <desc id="desc">Minimal, lightweight SVG with glow layers, heterochromia, honeycomb wings, dual-color antennae, and resonance core.</desc>
+  <defs>
+    <!-- TEC palette as CSS variables -->
+    <style>
+      :root {
+        --navy:#0B1E3B; /* structure / strokes */
+        --violet:#6A00F4; /* left eye */
+        --cyan:#00D5C4; /* signal */
+        --gold:#F2C340; /* right eye / accents */
+        --shadow:#0A0A0C; /* depth */
+        --white:#EDEDED; /* spec highlights */
+      }
+      .stroke{stroke:var(--navy);stroke-linecap:round;stroke-linejoin:round}
+      .thin{stroke-width:2}
+      .med{stroke-width:3}
+      .thick{stroke-width:5}
+      .c-cyan{stroke:var(--cyan);fill:var(--cyan)}
+      .c-gold{stroke:var(--gold);fill:var(--gold)}
+      .c-violet{stroke:var(--violet);fill:var(--violet)}
+      .opacity-60{opacity:.6}
+      .opacity-75{opacity:.75}
+    </style>
+
+    <!-- Soft glows -->
+    <filter id="glow-cyan" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-gold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+      <feFlood flood-color="var(--gold)" flood-opacity="0.7" result="c"/>
+      <feComposite in="c" in2="b" operator="in" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-violet" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+      <feFlood flood-color="var(--violet)" flood-opacity="0.7" result="c"/>
+      <feComposite in="c" in2="b" operator="in" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Body and wing gradients -->
+    <radialGradient id="grad-body" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="var(--white)" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="var(--cyan)" stop-opacity="0.65"/>
+      <stop offset="85%" stop-color="var(--navy)" stop-opacity="0.85"/>
+    </radialGradient>
+    <linearGradient id="grad-wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="var(--gold)" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="grad-antenna-left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--violet)"/>
+      <stop offset="100%" stop-color="var(--cyan)"/>
+    </linearGradient>
+    <linearGradient id="grad-antenna-right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--gold)"/>
+      <stop offset="100%" stop-color="var(--cyan)"/>
+    </linearGradient>
+
+    <!-- Subtle honeycomb pattern for wings/halo fill -->
+    <pattern id="honeycomb" patternUnits="userSpaceOnUse" width="28" height="24" patternTransform="scale(1)">
+      <path d="M14,0 28,8 28,16 14,24 0,16 0,8z" fill="none" stroke="url(#grad-wing)" stroke-width="1" opacity="0.35"/>
+    </pattern>
+
+    <!-- Hex halo shape symbol -->
+    <symbol id="hex" viewBox="-256 -256 512 512">
+      <path d="M0,-220 190,-110 190,110 0,220 -190,110 -190,-110Z" fill="none" stroke="url(#grad-wing)" stroke-width="12" opacity="0.7"/>
+    </symbol>
+  </defs>
+
+  <!-- Background subtle vignette for dark UIs; remains transparent at center -->
+  <radialGradient id="bg-vignette" cx="50%" cy="50%" r="60%">
+    <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.15"/>
+  </radialGradient>
+  <rect x="0" y="0" width="1024" height="1024" fill="none"/>
+
+  <!-- Hex halo behind character -->
+  <g id="hex-halo" transform="translate(512,520)">
+    <use href="#hex"/>
+  </g>
+
+  <!-- Wings -->
+  <g id="wings" opacity="0.95">
+    <g id="wing-left" transform="translate(0,0)">
+      <path d="M 212 440 C 120 420 80 360 96 310 C 118 246 224 256 312 330 C 268 360 240 398 212 440 Z" fill="url(#honeycomb)"/>
+      <path d="M 212 440 C 240 398 268 360 312 330" class="stroke thin" fill="none" opacity="0.5"/>
+    </g>
+    <g id="wing-right">
+      <path d="M 812 310 C 828 360 788 420 696 440 C 668 398 640 360 596 330 C 684 256 790 246 812 310 Z" fill="url(#honeycomb)"/>
+      <path d="M 596 330 C 640 360 668 398 696 440" class="stroke thin" fill="none" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Body (head + torso) -->
+  <g id="body">
+    <!-- Torso/Head unified droplet shape for lightweight nodes -->
+    <path d="M 512 210 C 428 210 370 266 370 338 C 370 380 392 416 420 440 C 380 460 358 500 358 548 C 358 634 426 710 512 710 C 598 710 666 634 666 548 C 666 500 644 460 604 440 C 632 416 654 380 654 338 C 654 266 596 210 512 210 Z" fill="url(#grad-body)" class="stroke med"/>
+
+    <!-- Resonance core on chest -->
+    <g id="core" filter="url(#glow-cyan)">
+      <circle cx="512" cy="520" r="34" fill="var(--cyan)"/>
+      <circle cx="512" cy="520" r="64" fill="none" stroke="var(--cyan)" stroke-opacity="0.45" stroke-width="6"/>
+    </g>
+  </g>
+
+  <!-- Face -->
+  <g id="face">
+    <!-- Eyes with heterochromia -->
+    <g id="eye-left" filter="url(#glow-violet)">
+      <circle cx="456" cy="382" r="28" fill="var(--violet)"/>
+      <circle cx="446" cy="374" r="8" fill="var(--white)" opacity="0.85"/>
+    </g>
+    <g id="eye-right" filter="url(#glow-gold)">
+      <circle cx="568" cy="382" r="28" fill="var(--gold)"/>
+      <circle cx="558" cy="374" r="8" fill="var(--white)" opacity="0.85"/>
+    </g>
+    <!-- Soft smile -->
+    <path d="M 482 426 Q 512 446 542 426" fill="none" class="stroke thin"/>
+  </g>
+
+  <!-- Antennae with different band colors -->
+  <g id="antennae">
+    <path d="M 448 272 C 432 232 430 200 444 176" fill="none" stroke="url(#grad-antenna-left)" stroke-width="6"/>
+    <circle cx="444" cy="168" r="18" fill="var(--violet)" filter="url(#glow-violet)"/>
+    <path d="M 576 272 C 592 232 594 200 580 176" fill="none" stroke="url(#grad-antenna-right)" stroke-width="6"/>
+    <circle cx="580" cy="168" r="18" fill="var(--gold)" filter="url(#glow-gold)"/>
+  </g>
+
+  <!-- Pom-horns (small fins) -->
+  <g id="pom-horns" opacity="0.9">
+    <path d="M 420 342 C 402 320 398 298 410 282 C 428 290 440 306 444 326" fill="var(--violet)" filter="url(#glow-violet)"/>
+    <path d="M 604 342 C 622 320 626 298 614 282 C 596 290 584 306 580 326" fill="var(--gold)" filter="url(#glow-gold)"/>
+  </g>
+
+  <!-- Fiber-optic mane and tail as lightweight strokes -->
+  <g id="mane-tail" opacity="0.95" filter="url(#glow-cyan)">
+    <!-- mane flicks: three-color bands for precision control -->
+    <path d="M 468 442 C 438 452 420 468 408 492" class="c-cyan" fill="none" stroke-width="4"/>
+    <path d="M 472 448 C 444 460 426 478 416 504" class="c-gold opacity-75" fill="none" stroke-width="3.5"/>
+    <path d="M 476 454 C 452 468 436 488 428 514" class="c-violet opacity-60" fill="none" stroke-width="3"/>
+    <path d="M 556 442 C 586 452 604 468 616 492" class="c-cyan" fill="none" stroke-width="4"/>
+    <path d="M 552 448 C 582 460 600 478 610 504" class="c-gold opacity-75" fill="none" stroke-width="3.5"/>
+    <path d="M 548 454 C 574 468 590 488 598 514" class="c-violet opacity-60" fill="none" stroke-width="3"/>
+    <!-- tail ribbons: explicit color bands -->
+    <path d="M 540 658 C 560 694 572 726 568 760" class="c-gold" fill="none" stroke-width="5"/>
+    <path d="M 512 660 C 520 702 520 734 512 768" class="c-cyan opacity-75" fill="none" stroke-width="4.5"/>
+    <path d="M 484 658 C 464 694 452 726 456 760" class="c-violet" fill="none" stroke-width="5"/>
+  </g>
+
+  <!-- Subtle abdomen banding (bee-like), low-opacity to avoid cartoon feel -->
+  <g id="abdomen-bands" opacity="0.5">
+    <path d="M 420 632 Q 512 620 604 632" fill="none" class="c-gold" stroke-width="4"/>
+    <path d="M 408 654 Q 512 644 616 654" fill="none" class="c-cyan opacity-75" stroke-width="3.5"/>
+    <path d="M 396 676 Q 512 668 628 676" fill="none" class="c-violet opacity-60" stroke-width="3"/>
+  </g>
+
+  <!-- Lunar choker -->
+  <g id="choker">
+    <path d="M 440 468 Q 512 492 584 468" fill="none" class="stroke thin"/>
+    <circle cx="512" cy="476" r="12" fill="var(--cyan)"/>
+  </g>
+</svg>

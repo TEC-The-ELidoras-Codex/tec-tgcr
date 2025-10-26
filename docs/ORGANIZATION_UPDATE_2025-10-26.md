@@ -52,6 +52,13 @@ This update strengthens ψʳ (structure) through a standardized marketplace/bran
   pwsh -File .\scripts\publish_sharepoint.ps1 -Force
   ```
 
+## Cleanup
+
+- Repo reorg: moved top-level guides and configs into docs/ and config/; references auto-updated.
+- Legacy folders: removed root 'archives/' (duplicate of data/archives) and 'assets/' (avatar duplicates); canonicalized to data/digital_assets/.
+- Emblem variants: archived older 'luminai_notion_emblem_*' variants to data/archives/svg and updated docs/knowledge_map; keep 'luminai_notion_emblem.svg' as canonical.
+- Knowledge map: pruned stale PNG entries and non-existent exports to prevent broken links.
+
 ## Status
 
 - Tests: `pytest -q` — PASS

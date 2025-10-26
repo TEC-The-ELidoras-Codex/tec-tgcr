@@ -108,9 +108,9 @@ LuminAI serves as the visual interface for AIRTH operations:
 
 ### API Endpoints
 
-- **GitHub API**: `github-luminai-api.yaml` specification
-- **SharePoint API**: `sharepoint-luminai-api.yaml` specification
-- **Setup Guide**: `LUMINAI-API-SETUP-GUIDE.md`
+- **GitHub API**: `config/github-luminai-api.yaml` specification
+- **SharePoint API**: `config/sharepoint-luminai-api.yaml` specification
+- **Setup Guide**: `docs/LUMINAI-API-SETUP-GUIDE.md`
 
 ## 🎨 Customization
 
