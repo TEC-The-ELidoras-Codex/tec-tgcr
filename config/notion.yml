@@ -1,0 +1,22 @@
+# Notion integration configuration for TEC-TGCR
+# Touches Φᴱ (context) by linking external workspace anchors
+
+workspace:
+  # Optional human-friendly label
+  name: TEC Notion Workspace
+
+endpoints:
+  database:
+    id: "2986ff7e28df807091dbfa7519c34925"
+    # Optional: primary view id (useful for UI links)
+    view_id: "2986ff7e28df8069bf49000cf19305ce"
+    url: "https://www.notion.so/2986ff7e28df807091dbfa7519c34925?v=2986ff7e28df8069bf49000cf19305ce"
+    label: "Master Content Database"
+  pages:
+    - id: "2926ff7e28df804c8412e3dc4b8369ff"
+      title: "Machine_Goddess_Agent"
+      url: "https://www.notion.so/Machine_Goddess_Agent-2926ff7e28df804c8412e3dc4b8369ff"
+
+notes:
+  - "No workspace_id required when using a bearer token; the token scopes to the workspace."
+  - "Share the integration with the database/page for API access."

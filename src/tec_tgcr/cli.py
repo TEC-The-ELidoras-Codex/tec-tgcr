@@ -8,6 +8,7 @@ from typing import Optional
 import typer
 from rich.console import Console
 from rich.prompt import Prompt
+import yaml
 
 from .agents.airth import AirthResearchGuard
 from .config import AgentConfig
@@ -128,4 +129,18 @@ def notion_search(query: str = typer.Argument(None), page_size: int = 10) -> Non
         console.print_json(data=data)
     except Exception as e:  # pragma: no cover - network path
         console.print(f"[bold red]Search failed:[/bold red] {e}")
+        raise typer.Exit(code=1)
+
+
+@app.command()
+def notion_config(config_path: Path = Path("config/notion.yml")) -> None:
+    """Print configured Notion endpoints (IDs and URLs)."""
+    if not config_path.exists():
+        console.print(f"[bold yellow]No Notion config found:[/bold yellow] {config_path}")
+        raise typer.Exit(code=0)
+    try:
+        data = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
+        console.print_json(data=data)
+    except Exception as e:
+        console.print(f"[bold red]Failed to load Notion config:[/bold red] {e}")
         raise typer.Exit(code=1)

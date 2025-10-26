@@ -160,7 +160,19 @@ strategy:
   - path: data/strategy/radar/README.md
     title: "Signal Radar (Placeholder)"
 
+external:
+  notion:
+    database:
+      id: "2986ff7e28df807091dbfa7519c34925"
+      view_id: "2986ff7e28df8069bf49000cf19305ce"
+      url: "https://www.notion.so/2986ff7e28df807091dbfa7519c34925?v=2986ff7e28df8069bf49000cf19305ce"
+      title: "Master Content Database"
+    pages:
+      - id: "2926ff7e28df804c8412e3dc4b8369ff"
+        url: "https://www.notion.so/Machine_Goddess_Agent-2926ff7e28df804c8412e3dc4b8369ff"
+        title: "Machine_Goddess_Agent"
+
 provenance:
   last_updated: "2025-10-25"
   last_updated_by: "LuminAI / Copilot"
-  note: "Added Notion workspace setup and sync docs; 36 pages exported to exports/notion/."
+  note: "Registered Notion database/page anchors; Added Notion setup/sync docs; 36 pages exported to exports/notion/."
