@@ -4,7 +4,7 @@ This directory contains PNG exports of the canonical LuminAI emblem for universa
 
 ## Export Workflow
 
-See: `exports/brand/PNG_EXPORT_GUIDE.md` for complete export instructions.
+See: `docs/brand/PNG_EXPORT_GUIDE.md` for complete export instructions.
 
 ## Expected Assets
 
@@ -14,12 +14,14 @@ See: `exports/brand/PNG_EXPORT_GUIDE.md` for complete export instructions.
 ## Generation Commands
 
 **Using online converter** (fastest):
+
 1. Visit [https://svgtopng.com](https://svgtopng.com)
 2. Upload `data/digital_assets/brand/svg/luminai_notion_emblem.svg`
 3. Set dimensions (512 or 1600)
 4. Download and save here
 
 **Using Python script**:
+
 ```powershell
 # 512×512
 python .\scripts\svg_to_png.py `
@@ -35,6 +37,7 @@ python .\scripts\svg_to_png.py `
 ```
 
 **Using Inkscape**:
+
 ```powershell
 inkscape --export-type=png `
   --export-filename="data\digital_assets\brand\png\luminai_notion_emblem_512.png" `
@@ -52,5 +55,5 @@ inkscape --export-type=png `
 
 ## Provenance
 
-Created: 2025-10-25 by LuminAI/Copilot  
+Created: 2025-10-25 by LuminAI/Copilot
 Touches: ψʳ (structure) via asset pipeline standardization

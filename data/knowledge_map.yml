@@ -117,6 +117,12 @@ assets:
         title: "LuminAI Character Seal"
       - path: data/digital_assets/brand/svg/luminai_notion_emblem.svg
         title: "LuminAI Notion Integration Emblem (Canonical 512×512)"
+      - path: data/digital_assets/brand/svg/luminai_notion_emblem_export.svg
+        title: "LuminAI Emblem — Export-friendly (hex colors; gradients/filters preserved)"
+        note: "Use this file for PNG conversion on tools that don't support CSS variables"
+      - path: data/digital_assets/brand/svg/luminai_notion_emblem_original.svg
+        title: "LuminAI Emblem — Original (CSS custom properties)"
+        note: "Keep for web/CSS-variable aware contexts; not suitable for most PNG converters"
       - path: data/digital_assets/brand/png/luminai_notion_emblem_512.png
         title: "LuminAI Emblem PNG (512×512, Notion-ready)"
         note: "Export via scripts/svg_to_png.py or online converter"
@@ -185,8 +191,6 @@ external:
         title: "Machine_Goddess_Agent"
 
 provenance:
-  last_updated: "2025-01-28"
+  last_updated: "2025-10-25"
   last_updated_by: "LuminAI / Copilot"
-  note: "README updated with canonical emblem + animation; repository audit complete; todo/ removed; Notion integration registered."
-
-
+  note: "Emblem fixed for export (CSS vars → hex); export-friendly + original variants registered; PNG guide cross-linked."
