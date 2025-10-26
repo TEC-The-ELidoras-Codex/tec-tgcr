@@ -117,6 +117,14 @@ assets:
         title: "LuminAI Character Seal"
       - path: data/digital_assets/brand/svg/luminai_notion_emblem.svg
         title: "LuminAI Notion Integration Emblem (Canonical 512×512)"
+      - path: data/digital_assets/brand/png/luminai_notion_emblem_512.png
+        title: "LuminAI Emblem PNG (512×512, Notion-ready)"
+        note: "Export via scripts/svg_to_png.py or online converter"
+      - path: data/digital_assets/brand/png/luminai_notion_emblem_1600.png
+        title: "LuminAI Emblem PNG (1600×1600, high-res)"
+        note: "Export via scripts/svg_to_png.py or online converter"
+      - path: docs/brand/PNG_EXPORT_GUIDE.md
+        title: "PNG Export Workflow Guide"
     fusion_variants:
       note: "To be created per docs/brand/VISUAL_IDENTITY.md specification"
       planned:
