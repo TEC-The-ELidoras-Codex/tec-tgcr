@@ -85,8 +85,10 @@ def worldanvil_me() -> None:
     console.print_json(data=me)
 
 
-if __name__ == "__main__":
-    app()
+"""
+Note: Keep the Typer app() invocation at the very end of the module so that
+all @app.command functions are registered before executing.
+"""
 
 
 @app.command()
@@ -144,3 +146,7 @@ def notion_config(config_path: Path = Path("config/notion.yml")) -> None:
     except Exception as e:
         console.print(f"[bold red]Failed to load Notion config:[/bold red] {e}")
         raise typer.Exit(code=1)
+
+
+if __name__ == "__main__":
+    app()

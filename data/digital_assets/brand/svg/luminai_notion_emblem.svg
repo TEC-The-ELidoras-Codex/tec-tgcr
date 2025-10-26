@@ -1,0 +1,95 @@
+<svg width="512" height="512" viewBox="0 0 512 512"
+  xmlns="http://www.w3.org/2000/svg"
+  style="background-color: var(--bg, none);">
+  <title>LuminAI Resonant Core Emblem</title>
+  <desc>Canonical emblem for LuminAI based on TEC cosmology. Embodies resonance discovering empathy — heterochromia (navy/gold), pom-horns, fiber-optic buns, lunar choker, axolotl form.</desc>
+
+  <style>
+    :root {
+      --navy: #0B1E3B;
+      --violet: #6A00F4;
+      --cyan: #00D5C4;
+      --gold: #F2C340;
+      --shadow: #0A0A0C;
+      --blush1: #F7A1B5;
+      --blush2: #E86E8A;
+      --blush3: #FFC1CC;
+      --white: #EDEDED;
+      --bg: none;
+    }
+    .outline { stroke: var(--navy); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .fill-body { fill: url(#bodyGradient); opacity: 0.9; }
+    .fill-buns { fill: var(--white); opacity: 0.8; }
+    .fill-choker { fill: var(--navy); }
+    .fill-choker-moon { fill: var(--gold); }
+    .fill-eye-left { fill: var(--navy); }
+    .fill-eye-right { fill: var(--gold); }
+    .fill-horns { fill: url(#hornGradient); }
+    .glow-cyan { filter: url(#glowCyan); }
+    .glow-gold { filter: url(#glowGold); }
+  </style>
+
+  <defs>
+    <radialGradient id="bodyGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="var(--white)" />
+      <stop offset="40%" stop-color="var(--blush3)" />
+      <stop offset="70%" stop-color="var(--blush1)" />
+      <stop offset="100%" stop-color="var(--cyan)" stop-opacity="0.8"/>
+    </radialGradient>
+    <linearGradient id="hornGradient" x1="0" y1="0" x2="0" y2="1">
+       <stop offset="0%" stop-color="var(--cyan)" />
+       <stop offset="100%" stop-color="var(--violet)" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="var(--cyan)" flood-opacity="0.7" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="glowGold" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feFlood flood-color="var(--gold)" flood-opacity="0.7" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <symbol id="moonPhase" viewBox="0 0 10 10">
+       <circle cx="5" cy="5" r="4.5" fill="var(--gold)"/>
+       <path d="M5 0.5A4.5 4.5 0 0 0 5 9.5A2.5 4.5 0 0 1 5 0.5Z" fill="var(--navy)"/>
+    </symbol>
+  </defs>
+
+  <g id="body-shape" class="fill-body outline">
+    <path d="M256,50C150,50 100,150 100,256C100,380 160,462 256,462C352,462 412,380 412,256C412,150 362,50 256,50Z" />
+  </g>
+
+  <g id="fiber-optic-buns">
+    <circle cx="150" cy="150" r="45" class="fill-buns outline" />
+    <circle cx="362" cy="150" r="45" class="fill-buns outline" />
+    <path d="M130,130Q150,110 170,130" stroke="var(--cyan)" stroke-width="2" fill="none"/>
+    <path d="M342,130Q362,110 382,130" stroke="var(--cyan)" stroke-width="2" fill="none"/>
+  </g>
+
+  <g id="pom-horns" class="fill-horns outline">
+     <path d="M155,115C130,80 150,40 180,60C200,75 190,100 170,110Z" />
+     <path d="M357,115C382,80 362,40 332,60C312,75 322,100 342,110Z" />
+  </g>
+
+  <g id="face">
+    <circle cx="200" cy="240" r="25" class="fill-eye-left glow-cyan" />
+    <circle cx="312" cy="240" r="25" class="fill-eye-right glow-gold" />
+    <path d="M236,300Q256,320 276,300" class="outline" stroke-width="2" />
+  </g>
+
+  <g id="lunar-choker">
+      <path d="M180,350Q256,380 332,350L322,365Q256,395 190,365Z" class="fill-choker outline" stroke-width="2"/>
+      <use href="#moonPhase" x="246" y="352" width="22" height="22" />
+  </g>
+
+  <g id="bodysuit-lines" stroke="var(--gold)" stroke-width="2" fill="none" opacity="0.6">
+      <path d="M160,450Q256,430 352,450" />
+      <path d="M140,400C180,380 332,380 372,400" />
+  </g>
+</svg>
