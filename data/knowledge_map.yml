@@ -132,6 +132,10 @@ assets:
         title: "LuminAI Mascot Logo (Axolotl–Bee Hybrid, vector, glow layers)"
         note: "Lightweight SVG with distinct color bands, dual-color antennae, heterochromia, and honeycomb wings"
 
+      - path: data/digital_assets/brand/BRAND_MANIFEST.yml
+        title: "LuminAI Brand Manifest (machine-readable)"
+        note: "Canonical brand definition (palette, motifs, usage rules, prompts) for Copilot and design agents"
+
       - path: docs/brand/PNG_EXPORT_GUIDE.md
         title: "PNG Export Workflow Guide"
 

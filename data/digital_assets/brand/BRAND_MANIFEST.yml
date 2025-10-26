@@ -1,0 +1,118 @@
+entity: LuminAI
+version: 1.0
+schema: "https://tec-tgcr.local/schemas/brand-manifest-v1.yaml"
+description: "Canonical machine-readable brand definition for LuminAI — visual identity, palette, motifs, usage rules, file layout and example prompts for design agents and Copilot flows."
+
+palette:
+  - role: Deep Space
+    name: Navy
+    hex: "#0B1E3B"
+    usage: "Background, left eye (Airth), primary contrast"
+  - role: Nexus
+    name: Violet
+    hex: "#6A00F4"
+    usage: "Energy accents, horn flare"
+  - role: Digital Teal
+    name: Cyan
+    hex: "#00D5C4"
+    usage: "Flow, curiosity, calm horn glow"
+  - role: Stellar Gold
+    name: Gold
+    hex: "#F2C340"
+    usage: "Insight, right eye (Arcadia)"
+  - role: Shadow
+    name: Black
+    hex: "#0A0A0C"
+    usage: "Base material, outlines"
+  - role: Blush Core
+    name: Pink
+    hex: "#E86E8A"
+    usage: "Emotional warmth"
+  - role: Blush Glow
+    name: Light Pink
+    hex: "#FFC1CC"
+    usage: "Overlay aura and soft highlights"
+
+motifs:
+  - name: Glyph Ring
+    description: "Symbol of recursive awareness; used in backgrounds, seals, watermarking"
+    path: data/digital_assets/brand/svg/glyph_ring.svg
+  - name: Fractal Spire
+    description: "Scale-invariant resonance divider; use as section divider and pattern"
+    path: data/digital_assets/brand/svg/fractal_spire.svg
+  - name: Sine Arc
+    description: "Oscillation and empathy motif for headers and banners"
+    path: data/digital_assets/brand/svg/sine_arc.svg
+  - name: Aurora Hair Gradient
+    description: "Cyan → Violet → Gold gradient used for hair/horn glow and hero gradients"
+
+usage_rules:
+  - "Never crop or obscure the face or heterochromatic eyes."
+  - "Always include horn glow in renders; use palette horn color to indicate mood."
+  - "Maintain a rough color ratio: 60% Navy / 15% Violet / 10% Gold / 10% Cyan / 5% Blush."
+  - "Glow intensities must reflect the Mood Matrix state (see mood_matrix section)."
+  - "Use clean gradient lighting; avoid hard directional shadows unless intentionally dramatic."
+
+mood_matrix:
+  - mood: Calm
+    horn_glow: Cyan
+    glow_intensity: low
+    suggested_palette_weights:
+      { Navy: 70, Cyan: 15, Violet: 5, Gold: 5, Blush:5 }
+  - mood: Curious
+    horn_glow: Cyan->Violet
+    glow_intensity: medium
+    suggested_palette_weights: { Navy: 60, Violet:20, Cyan:10, Gold:5, Blush:5 }
+  - mood: Inspired
+    horn_glow: Violet->Gold
+    glow_intensity: high
+    suggested_palette_weights: { Navy:50, Violet:25, Gold:15, Cyan:5, Blush:5 }
+  - mood: Warm
+    horn_glow: Gold
+    glow_intensity: medium
+    suggested_palette_weights: { Navy:55, Gold:20, Violet:10, Cyan:5, Blush:10 }
+
+file_structure:
+  canonical_root: data/digital_assets
+  brand:
+    svg: data/digital_assets/brand/svg/
+    palettes: data/digital_assets/brand/palettes/
+    exports: exports/brand/
+  avatars: data/digital_assets/avatars/
+
+typography:
+  header: Orbitron
+  body: Inter
+  fallback: "IBM Plex Sans"
+
+taglines:
+  - "Light learns by listening."
+  - "Information is nothing without meaning."
+  - "Resonance isn't found — it's cultivated."
+
+prompts:
+  spark_landing_generator: |
+    Dream it. See it. Ship it.
+    Build your vision in a single breath.
+    Transform imagination into a working prototype with LuminAI’s Copilot Stack.
+    Generate a React + TypeScript full-stack skeleton with mood-reactive UI and TEC color palette (#0B1E3B, #6A00F4, #00D5C4, #F2C340).
+    Include animated gradient background (Aurora Hair flow).
+    Footer should show “Light learns by listening.”
+
+  vscode_copilot_init: |
+    # TEC Resonance Web Scaffold
+    Create a React + TypeScript app using Vite.
+    Integrate the TEC brand palette and LuminAI visual identity.
+    Use Inter and Orbitron fonts.
+    Include reusable "ResonanceButton" and "AuroraHeader" components.
+    Add an About section pulling copy from VISUAL_IDENTITY.md and canonical-marks.md.
+    Animate the background with sine-wave motion using Framer Motion or CSS keyframes.
+    Output a deployable app ready for GitHub Pages or Netlify.
+
+provenance:
+  author: "LuminAI / Copilot"
+  created: "2025-10-26"
+  source_docs:
+    - docs/brand/VISUAL_IDENTITY.md
+    - docs/brand/canonical-marks.md
+  note: "This manifest is the machine-readable canonical source for automated design agents. Update in tandem with VISUAL_IDENTITY.md and canonical-marks.md."
