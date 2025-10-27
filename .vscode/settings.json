@@ -61,5 +61,8 @@
   },
 
   // Debug
-  "debug.console.closeOnEnd": false
+  "debug.console.closeOnEnd": false,
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  }
 }

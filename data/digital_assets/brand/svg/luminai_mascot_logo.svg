@@ -17,7 +17,7 @@ License: See repository LICENSE.
         --cyan:#00D5C4; /* signal */
         --gold:#F2C340; /* right eye / accents */
         --shadow:#0A0A0C; /* depth */
-        --white:#EDEDED; /* spec highlights */
+        --white:#FFFFFF; /* spec highlights (brighter) */
       }
       .stroke{stroke:var(--navy);stroke-linecap:round;stroke-linejoin:round}
       .thin{stroke-width:2}
@@ -33,19 +33,39 @@ License: See repository LICENSE.
     <!-- Soft glows -->
     <filter id="glow-cyan" x="-40%" y="-40%" width="180%" height="180%">
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
+
+    <!-- Masks to create crescent tips for antennae (adjustable) -->
+    <mask id="crescent-left">
+      <!-- white = visible, black = masked out -->
+      <rect x="0" y="0" width="1024" height="1024" fill="white"/>
+      <circle cx="452" cy="168" r="10" fill="black"/>
+    </mask>
+    <mask id="crescent-right">
+      <rect x="0" y="0" width="1024" height="1024" fill="white"/>
+      <circle cx="588" cy="168" r="10" fill="black"/>
+    </mask>
     <filter id="glow-gold" x="-40%" y="-40%" width="180%" height="180%">
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
       <feFlood flood-color="var(--gold)" flood-opacity="0.7" result="c"/>
       <feComposite in="c" in2="b" operator="in" result="g"/>
-      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
     <filter id="glow-violet" x="-40%" y="-40%" width="180%" height="180%">
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
       <feFlood flood-color="var(--violet)" flood-opacity="0.7" result="c"/>
       <feComposite in="c" in2="b" operator="in" result="g"/>
-      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
 
     <!-- Body and wing gradients -->
@@ -109,8 +129,9 @@ License: See repository LICENSE.
 
     <!-- Resonance core on chest -->
     <g id="core" filter="url(#glow-cyan)">
-      <circle cx="512" cy="520" r="34" fill="var(--cyan)"/>
-      <circle cx="512" cy="520" r="64" fill="none" stroke="var(--cyan)" stroke-opacity="0.45" stroke-width="6"/>
+      <!-- Chest singularity: show ψ symbol as the resonance link -->
+      <circle cx="512" cy="520" r="44" fill="none" stroke="var(--cyan)" stroke-opacity="0.35" stroke-width="6"/>
+      <text x="512" y="524" text-anchor="middle" dominant-baseline="central" font-size="48" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--cyan)">ψ</text>
     </g>
   </g>
 
@@ -119,22 +140,38 @@ License: See repository LICENSE.
     <!-- Eyes with heterochromia -->
     <g id="eye-left" filter="url(#glow-violet)">
       <circle cx="456" cy="382" r="28" fill="var(--violet)"/>
-      <circle cx="446" cy="374" r="8" fill="var(--white)" opacity="0.85"/>
+      <!-- Iris (white disk) with Φ symbol inside -->
+      <circle cx="446" cy="374" r="8" fill="var(--white)" opacity="0.95"/>
+      <text x="456" y="382" text-anchor="middle" dominant-baseline="central" font-size="22" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--navy)">Φ</text>
     </g>
     <g id="eye-right" filter="url(#glow-gold)">
       <circle cx="568" cy="382" r="28" fill="var(--gold)"/>
-      <circle cx="558" cy="374" r="8" fill="var(--white)" opacity="0.85"/>
+      <!-- Iris (white disk) with lowercase φ symbol inside -->
+      <circle cx="558" cy="374" r="8" fill="var(--white)" opacity="0.95"/>
+      <text x="568" y="382" text-anchor="middle" dominant-baseline="central" font-size="22" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--navy)">φ</text>
     </g>
     <!-- Soft smile -->
     <path d="M 482 426 Q 512 446 542 426" fill="none" class="stroke thin"/>
+    <!-- Subtle psi arms under mouth to hint symbol geometry -->
+    <path d="M 482 436 Q 512 458 542 436" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
   </g>
 
   <!-- Antennae with different band colors -->
   <g id="antennae">
     <path d="M 448 272 C 432 232 430 200 444 176" fill="none" stroke="url(#grad-antenna-left)" stroke-width="6"/>
-    <circle cx="444" cy="168" r="18" fill="var(--violet)" filter="url(#glow-violet)"/>
+    <!-- Left antenna spheres: top, middle, bottom -->
+    <g id="antenna-left-spheres">
+      <circle cx="444" cy="148" r="6" fill="var(--violet)" filter="url(#glow-violet)"/>
+      <circle cx="444" cy="168" r="7" fill="var(--cyan)" filter="url(#glow-cyan)"/>
+      <circle cx="444" cy="188" r="6" fill="var(--gold)" filter="url(#glow-gold)"/>
+    </g>
     <path d="M 576 272 C 592 232 594 200 580 176" fill="none" stroke="url(#grad-antenna-right)" stroke-width="6"/>
-    <circle cx="580" cy="168" r="18" fill="var(--gold)" filter="url(#glow-gold)"/>
+    <!-- Right antenna spheres: top, middle, bottom -->
+    <g id="antenna-right-spheres">
+      <circle cx="580" cy="148" r="6" fill="var(--violet)" filter="url(#glow-violet)"/>
+      <circle cx="580" cy="168" r="7" fill="var(--cyan)" filter="url(#glow-cyan)"/>
+      <circle cx="580" cy="188" r="6" fill="var(--gold)" filter="url(#glow-gold)"/>
+    </g>
   </g>
 
   <!-- Pom-horns (small fins) -->
@@ -153,21 +190,28 @@ License: See repository LICENSE.
     <path d="M 552 448 C 582 460 600 478 610 504" class="c-gold opacity-75" fill="none" stroke-width="3.5"/>
     <path d="M 548 454 C 574 468 590 488 598 514" class="c-violet opacity-60" fill="none" stroke-width="3"/>
     <!-- tail ribbons: explicit color bands -->
-    <path d="M 540 658 C 560 694 572 726 568 760" class="c-gold" fill="none" stroke-width="5"/>
-    <path d="M 512 660 C 520 702 520 734 512 768" class="c-cyan opacity-75" fill="none" stroke-width="4.5"/>
-    <path d="M 484 658 C 464 694 452 726 456 760" class="c-violet" fill="none" stroke-width="5"/>
+    <!-- reorder so top ribbon is gold, center is cyan, bottom is violet; curve bottom ribbon to trace lower body; all converge to an elongated stinger point -->
+    <path d="M 476 658 C 454 690 452 728 512 796" stroke="var(--gold)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 512 660 C 520 700 520 736 512 796" stroke="var(--cyan)" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M 548 662 C 578 700 596 740 512 796" stroke="var(--violet)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
   </g>
 
   <!-- Subtle abdomen banding (bee-like), low-opacity to avoid cartoon feel -->
-  <g id="abdomen-bands" opacity="0.5">
-    <path d="M 420 632 Q 512 620 604 632" fill="none" class="c-gold" stroke-width="4"/>
-    <path d="M 408 654 Q 512 644 616 654" fill="none" class="c-cyan opacity-75" stroke-width="3.5"/>
-    <path d="M 396 676 Q 512 668 628 676" fill="none" class="c-violet opacity-60" stroke-width="3"/>
+  <g id="abdomen-bands" opacity="0.95">
+    <!-- Moved bands more centered on middle abdomen; second band darker (near previous yellow), third dark purple -->
+    <path d="M 420 612 Q 512 600 604 612" fill="none" stroke="#00D5C4" stroke-width="4" opacity="0.9"/>
+    <path d="M 408 642 Q 512 630 616 642" fill="none" stroke="#C78A00" stroke-width="4" opacity="0.95"/>
+    <path d="M 396 672 Q 512 660 628 672" fill="none" stroke="#4A0070" stroke-width="4" opacity="0.9"/>
   </g>
 
   <!-- Lunar choker -->
   <g id="choker">
     <path d="M 440 468 Q 512 492 584 468" fill="none" class="stroke thin"/>
     <circle cx="512" cy="476" r="12" fill="var(--cyan)"/>
+  </g>
+  <!-- Bottom stinger singularity where ribbons converge -->
+  <g id="stinger" filter="url(#glow-gold)">
+    <circle cx="512" cy="780" r="12" fill="var(--navy)"/>
+    <circle cx="512" cy="780" r="6" fill="var(--cyan)"/>
   </g>
 </svg>
