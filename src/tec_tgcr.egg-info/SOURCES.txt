@@ -35,6 +35,7 @@ src/tec_tgcr/tools/financial.py
 src/tec_tgcr/tools/integration.py
 src/tec_tgcr/tools/knowledge_lookup.py
 src/tec_tgcr/tools/llm.py
+src/tec_tgcr/tools/notion.py
 src/tec_tgcr/tools/research.py
 src/tec_tgcr/tools/resonance_evaluator.py
 src/tec_tgcr/tools/schedule.py
