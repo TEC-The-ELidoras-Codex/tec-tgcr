@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tight ribbons variant — ribbons hug the silhouette more closely. Updated: ribbons converge to a singularity; chest ψ is a path emerging from convergence; eyes and moon-phase antennae added. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+    <title>LuminAI Mascot — Tight Ribbons Variant (updated)</title>
+    <desc>Ribbons tighter to the body silhouette; clipped to body; gold right, violet left, cyan center (ψ wave) emerging from a singularity. Right eye = purple with φ iris, left eye = yellow with Φ iris. Antennae have moon-phase symbols.</desc>
+    <defs>
+        <style>
+            :root{--navy:#0B1E3B;--violet:#6A00F4;--cyan:#00D5C4;--gold:#F2C340;--white:#FFFFFF}
+            .stroke{stroke:var(--navy);stroke-linecap:round;stroke-linejoin:round}
+        </style>
+        <radialGradient id="grad-body" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+            <stop offset="35%" stop-color="#00D5C4" stop-opacity="0.65"/>
+            <stop offset="85%" stop-color="#0B1E3B" stop-opacity="0.85"/>
+        </radialGradient>
+        <filter id="glow-cyan">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+        </filter>
+        <filter id="glow-gold">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+        </filter>
+        <filter id="glow-violet">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+        </filter>
+        <!-- moon-phase crescent mask -->
+        <mask id="crescent-mask">
+            <rect x="0" y="0" width="1024" height="1024" fill="white"/>
+            <!-- a small circle carved out to make a crescent when used with an overlaid circle -->
+            <circle cx="0" cy="0" r="0" fill="black"/>
+        </mask>
+        <clipPath id="clip-body">
+            <path d="M 512 210 C 428 210 370 266 370 338 C 370 380 392 416 420 440 C 380 460 358 500 358 548 C 358 634 426 710 512 710 C 598 710 666 634 666 548 C 666 500 644 460 604 440 C 632 416 654 380 654 338 C 654 266 596 210 512 210 Z"/>
+        </clipPath>
+    </defs>
+
+    <!-- Body -->
+    <path d="M 512 210 C 428 210 370 266 370 338 C 370 380 392 416 420 440 C 380 460 358 500 358 548 C 358 634 426 710 512 710 C 598 710 666 634 666 548 C 666 500 644 460 604 440 C 632 416 654 380 654 338 C 654 266 596 210 512 210 Z" fill="url(#grad-body)"/>
+
+    <!-- Ribbons clipped to body, converge to singularity -->
+    <g id="body-ribbons" clip-path="url(#clip-body)">
+        <!-- Right gold ribbon — flows into singularity -->
+        <path d="M 608 444 C 632 468 646 496 652 532 C 656 572 648 620 628 660 C 612 690 588 716 548 740 C 532 752 520 758 512 748" stroke="var(--gold)" fill="none" stroke-width="6" stroke-linecap="round" filter="url(#glow-gold)"/>
+        <!-- Left violet ribbon — flows into singularity -->
+        <path d="M 408 444 C 384 468 370 498 364 534 C 360 574 368 622 388 662 C 404 690 428 716 468 740 C 490 754 504 760 512 748" stroke="var(--violet)" fill="none" stroke-width="6" stroke-linecap="round" filter="url(#glow-violet)"/>
+        <!-- Cyan chest-piece: vertical stem from singularity up under chin, waves under eyes, psi emblem centered on chest -->
+        <g id="cyan-chest" filter="url(#glow-cyan)">
+            <!-- vertical stem: runs from singularity up under the chin/mouth -->
+            <path d="M 512 748 L 512 432" stroke="var(--cyan)" fill="none" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- left wave (under left eye, but not directly) -->
+            <path d="M 456 520 C 440 500 432 484 456 468 C 476 452 500 452 520 468" stroke="var(--cyan)" fill="none" stroke-width="5" stroke-linecap="round"/>
+            <!-- right wave (under right eye, but not directly) -->
+            <path d="M 568 520 C 584 500 592 484 568 468 C 548 452 524 452 504 468" stroke="var(--cyan)" fill="none" stroke-width="5" stroke-linecap="round"/>
+            <!-- psi emblem centered on chest (stylized, stroked) -->
+            <path d="M 492 508 C 500 492 524 492 532 508 M 512 508 L 512 548" stroke="var(--cyan)" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+    </g>
+
+    <!-- Singularity (where ribbons converge) -->
+    <g id="singularity" transform="translate(0,0)">
+        <circle cx="512" cy="748" r="10" fill="var(--navy)"/>
+        <!-- inner dot removed per request -->
+    </g>
+
+    <!-- Face: eyes and mouth; right eye is purple with φ iris; left eye is yellow with Φ iris -->
+    <g id="face">
+        <!-- Left eye (viewer-left) is Yellow with Φ as the iris (symbol replaces white iris) -->
+        <g id="eye-left" transform="translate(0,0)">
+            <circle cx="456" cy="382" r="28" fill="var(--gold)" filter="url(#glow-gold)"/>
+            <!-- symbol as iris centered where the white iris was; colored to contrast with the pupil -->
+            <text x="446" y="374" text-anchor="middle" dominant-baseline="central" font-size="14" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--navy)" font-weight="700">Φ</text>
+        </g>
+        <!-- Right eye (viewer-right) is Purple with φ as the iris (symbol replaces white iris) -->
+        <g id="eye-right" transform="translate(0,0)">
+            <circle cx="568" cy="382" r="28" fill="var(--violet)" filter="url(#glow-violet)"/>
+            <!-- symbol as iris centered where the white iris was; colored to contrast with the pupil -->
+            <text x="558" y="374" text-anchor="middle" dominant-baseline="central" font-size="14" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--navy)" font-weight="700">φ</text>
+        </g>
+        <!-- Soft smile -->
+        <path d="M 482 426 Q 512 446 542 426" fill="none" class="stroke" stroke-width="2"/>
+    </g>
+
+    <!-- Antennae with moon-phase spheres -->
+    <g id="antennae">
+        <path d="M 448 272 C 432 232 430 200 444 176" fill="none" stroke="var(--violet)" stroke-width="6"/>
+        <g transform="translate(444,148)">
+            <!-- three moon phases: waning crescent, quarter, full -->
+            <g transform="translate(-0,0)">
+                <circle cx="0" cy="0" r="8" fill="var(--violet)"/>
+                <circle cx="3" cy="0" r="8" fill="rgba(0,0,0,0.15)"/>
+            </g>
+            <g transform="translate(0,20)">
+                <circle cx="0" cy="0" r="9" fill="var(--cyan)"/>
+            </g>
+            <g transform="translate(0,40)">
+                <circle cx="0" cy="0" r="7" fill="var(--gold)"/>
+            </g>
+        </g>
+        <path d="M 576 272 C 592 232 594 200 580 176" fill="none" stroke="var(--gold)" stroke-width="6"/>
+        <g transform="translate(580,148)">
+            <!-- mirrored moon phases -->
+            <g transform="translate(-0,0)">
+                <circle cx="0" cy="0" r="8" fill="var(--violet)"/>
+                <circle cx="-3" cy="0" r="8" fill="rgba(0,0,0,0.15)"/>
+            </g>
+            <g transform="translate(0,20)">
+                <circle cx="0" cy="0" r="9" fill="var(--cyan)"/>
+            </g>
+            <g transform="translate(0,40)">
+                <circle cx="0" cy="0" r="7" fill="var(--gold)"/>
+            </g>
+        </g>
+    </g>
+
+    <!-- Stinger slightly higher so convergence reads natural (keeps a small dark cap); inner dot removed per request -->
+    <g id="stinger">
+        <ellipse cx="512" cy="758" rx="11" ry="8" fill="#0B1E3B"/>
+    </g>
+</svg>
