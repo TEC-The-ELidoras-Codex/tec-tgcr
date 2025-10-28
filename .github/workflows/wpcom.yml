@@ -65,7 +65,7 @@ jobs:
           find "$STAGE" -type f
 
       - name: Upload artifact for WordPress.com
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: wpcom
           path: .wpcom-dist
