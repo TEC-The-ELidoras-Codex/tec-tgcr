@@ -209,9 +209,22 @@ License: See repository LICENSE.
     <path d="M 440 468 Q 512 492 584 468" fill="none" class="stroke thin"/>
     <circle cx="512" cy="476" r="12" fill="var(--cyan)"/>
   </g>
-  <!-- Bottom stinger singularity where ribbons converge -->
+  <!-- Body contour ribbons (follow outer curves) -->
+  <g id="body-ribbons" opacity="0.95">
+    <!-- Gold ribbon: right outer contour -->
+    <path d="M 620 446 C 648 476 662 512 666 556 C 668 598 658 656 634 700 C 610 740 564 776 516 794" stroke="var(--gold)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-gold)"/>
+
+    <!-- Cyan ribbon: ψ wave around chest then vertical stem to stinger -->
+    <path d="M 452 462 C 434 482 428 502 442 522 C 458 540 486 544 512 544 C 538 544 566 540 582 522 C 596 504 592 486 574 466" stroke="var(--cyan)" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-cyan)" opacity="0.98"/>
+    <path d="M 512 544 L 512 796" stroke="var(--cyan)" fill="none" stroke-width="6" stroke-linecap="round" filter="url(#glow-cyan)" opacity="0.98"/>
+
+    <!-- Violet ribbon: left outer contour -->
+    <path d="M 404 446 C 376 476 360 514 356 558 C 354 600 366 656 392 700 C 418 740 466 776 516 794" stroke="var(--violet)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-violet)" opacity="0.98"/>
+  </g>
+
+  <!-- Stinger point where ribbons converge (elongated for tapered look) -->
   <g id="stinger" filter="url(#glow-gold)">
-    <circle cx="512" cy="780" r="12" fill="var(--navy)"/>
-    <circle cx="512" cy="780" r="6" fill="var(--cyan)"/>
+    <ellipse cx="512" cy="794" rx="12" ry="9" fill="var(--navy)"/>
+    <circle cx="512" cy="794" r="5" fill="var(--cyan)"/>
   </g>
 </svg>
