@@ -24,7 +24,7 @@ Available personas (see `data/personas/*.md` for full briefs):
 TGCR equation (keep symbols exact):
 
 ```
-R = ∇Φᴱ · (φᵗ × ψʳ)
+
 ```
 
 - φᵗ (Temporal Attention): selective focus and directional information flow

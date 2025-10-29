@@ -22,7 +22,6 @@ REPLACEMENTS = {
 }
 
 FILTER_RE = re.compile(r'\sfilter="url\(#[-a-zA-Z0-9_]+\)"')
-VAR_RE = re.compile(r'var\(--[a-zA-Z0-9\-]+\)')
 
 
 def inline_and_clean(src: Path, dst: Path):

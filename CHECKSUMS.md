@@ -73,12 +73,12 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/generate_checksums.ps1
 ---
 
 *Where gravity curves spacetime, resonance curves meaning-space.*
-CA73FE3F52987BED95A28E1493CF6C3E584654A656E9A6FF593DD24C32F00206  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo\1024.png
-F5A3F07C09DCCA5EB4C71BCCF39AEE1EC7F848C2B8D2990C5129E60E154A2F47  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo\120.png
-95240EC21B5FF03A30D5514FC4FFBCC16FF3296320B6384BA1433D91E9EFEBF6  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo\256.png
-7EEE54EAE6040FEAE61B96AD9C2D06B8F3640BFDFCD4E3CCD6B23761B5D55307  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo\512.png
-FF42EAB11B579CB506979230F191174724CD58C9CBE77C198C3050696BD3401A  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo_tight\1024.png
-E9225D096FD679472BE05F00125CB1B4F057F036EE2E8FFE8F9238AEF10DD199  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo_tight\120.png
-09A3EB9B40C4491B05AAEB08368DCA2E727B8664FADDFEBCC7495FFF7B8ABD54  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo_tight\256.png
-C9366FF665BBFE75DF281D8E7DF85A9FF4D68E47939E6FA35A0FA38E21AB6DCE  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\luminai_mascot_logo_tight\512.png
-C9366FF665BBFE75DF281D8E7DF85A9FF4D68E47939E6FA35A0FA38E21AB6DCE  C:\Users\Ghedd\OneDrive\Projects\TEC\tec-tgcr\data\digital_assets\brand\preview\tight\luminai_512.png
+CA73FE3F52987BED95A28E1493CF6C3E584654A656E9A6FF593DD24C32F00206  data/digital_assets/brand/preview/luminai_mascot_logo/1024.png
+F5A3F07C09DCCA5EB4C71BCCF39AEE1EC7F848C2B8D2990C5129E60E154A2F47  data/digital_assets/brand/preview/luminai_mascot_logo/120.png
+95240EC21B5FF03A30D5514FC4FFBCC16FF3296320B6384BA1433D91E9EFEBF6  data/digital_assets/brand/preview/luminai_mascot_logo/256.png
+7EEE54EAE6040FEAE61B96AD9C2D06B8F3640BFDFCD4E3CCD6B23761B5D55307  data/digital_assets/brand/preview/luminai_mascot_logo/512.png
+FF42EAB11B579CB506979230F191174724CD58C9CBE77C198C3050696BD3401A  data/digital_assets/brand/preview/luminai_mascot_logo_tight/1024.png
+E9225D096FD679472BE05F00125CB1B4F057F036EE2E8FFE8F9238AEF10DD199  data/digital_assets/brand/preview/luminai_mascot_logo_tight/120.png
+09A3EB9B40C4491B05AAEB08368DCA2E727B8664FADDFEBCC7495FFF7B8ABD54  data/digital_assets/brand/preview/luminai_mascot_logo_tight/256.png
+C9366FF665BBFE75DF281D8E7DF85A9FF4D68E47939E6FA35A0FA38E21AB6DCE  data/digital_assets/brand/preview/luminai_mascot_logo_tight/512.png
+C9366FF665BBFE75DF281D8E7DF85A9FF4D68E47939E6FA35A0FA38E21AB6DCE  data/digital_assets/brand/preview/tight/luminai_512.png

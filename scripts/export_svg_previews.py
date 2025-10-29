@@ -9,6 +9,7 @@ import subprocess
 import sys
 import os
 import argparse
+from typing import Optional
 
 VARIANTS_DIR = Path(__file__).resolve().parents[1] / 'data' / 'digital_assets' / 'brand' / 'svg'
 OUT_DIR = Path(__file__).resolve().parents[1] / 'data' / 'digital_assets' / 'brand' / 'preview'
@@ -29,7 +30,7 @@ def render_with_cairosvg(src: Path, dst: Path, size: int) -> bool:
         return False
 
 
-def render_with_inkscape(src: Path, dst: Path, size: int, inkscape_cmd: str | None = None) -> bool:
+def render_with_inkscape(src: Path, dst: Path, size: int, inkscape_cmd: Optional[str] = None) -> bool:
     """Render using Inkscape CLI.
 
     inkscape_cmd resolution order:
@@ -41,7 +42,14 @@ def render_with_inkscape(src: Path, dst: Path, size: int, inkscape_cmd: str | No
     if not inkscape:
         return False
     # Use Inkscape CLI (>=1.0) - export type PNG and set width
-    try:
+        cmd = [
+            inkscape,
+            str(src),
+            f"--export-filename={dst}",
+            f"--export-width={size}",
+            f"--export-height={size}"
+        ]
+        subprocess.check_call(cmd)
         subprocess.check_call([inkscape, str(src), f"--export-filename={dst}", f"--export-width={size}", f"--export-height={size}"])
         return True
     except subprocess.CalledProcessError as e:
