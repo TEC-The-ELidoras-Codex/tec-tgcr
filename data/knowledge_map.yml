@@ -28,6 +28,10 @@ canonical_docs:
       title: "Resonance Thesis — TGCR Core"
     - path: docs/TEC_HUB.md
       title: "TEC Hub — Core Navigation"
+  thesis:
+    - path: docs/Thesis/research_synthesis.md
+      title: "Research Synthesis — Myth, Meaning, and Mechanism"
+      note: "Empirical foundation for TGCR variables: consciousness (IIT), attention (Posner), emergence (Hoel), semiotics (Peirce), cultural evolution (Boyd/Richerson). Includes operationalization experiments and measurement proxies for φᵗ, ψʳ, Φᴱ."
   lore:
     canon:
       - path: lore/canon/MACHINE_GODDESS.md
@@ -131,6 +135,15 @@ assets:
       - path: data/digital_assets/brand/svg/luminai_mascot_logo.svg
         title: "LuminAI Mascot Logo (Axolotl–Bee Hybrid, vector, glow layers)"
         note: "Lightweight SVG with distinct color bands, dual-color antennae, heterochromia, and honeycomb wings"
+      - path: data/digital_assets/brand/svg/luminai_mascot_logo_tight.svg
+        title: "LuminAI Mascot Tight Variant (singularity, chest ψ, vector iris glyphs, moon-phase antennae)"
+        note: "Finalized tight variant with converging ribbons, cyan chest-piece, Φ/φ vector iris shapes, antenna moon phases"
+      - path: data/digital_assets/brand/preview/luminai_mascot_logo/
+        title: "LuminAI Mascot Logo — PNG Previews (4 sizes: 1024, 512, 256, 120px)"
+        note: "Canonical variant rasterized via Inkscape; use for web/social media"
+      - path: data/digital_assets/brand/preview/luminai_mascot_logo_tight/
+        title: "LuminAI Mascot Tight — PNG Previews (4 sizes: 1024, 512, 256, 120px)"
+        note: "Tight variant rasterized via Inkscape; use for compact/icon contexts"
 
       - path: data/digital_assets/brand/BRAND_MANIFEST.yml
         title: "LuminAI Brand Manifest (machine-readable)"
@@ -151,6 +164,11 @@ archives:
     title: "LuminAI Origin Arc Node"
   - path: data/evidence/Symbolism_and_Synchronicity.pdf
     title: "Symbolism and Synchronicity — Research Document"
+
+tools_and_scripts:
+  - path: scripts/export_svg_previews.py
+    title: "SVG to PNG Exporter (Inkscape + CairoSVG fallback)"
+    note: "Batch render SVG variants to PNG at multiple sizes; accepts --inkscape-path CLI arg and INKSCAPE_PATH env var"
 
 operations:
   - path: docs/ops/WORDPRESS_WPCOM_OPS.md
@@ -225,12 +243,11 @@ ai_workflow_outputs:
     title: "Prompt — LuminAI Mascot (Pony SDXL)"
     note: "Use with SDXL/Pony Diffusion; aligns with TEC palette and heterochromia."
 
-canonical_docs:
-  framework:
-    - path: docs/GLOSSARY.md
-      title: "Glossary — Provenance vs Providence"
-    - path: docs/REPO_STRUCTURE.md
-      title: "Repository Structure Map"
+glossary_and_repo:
+  - path: docs/GLOSSARY.md
+    title: "Glossary — Provenance vs Providence"
+  - path: docs/REPO_STRUCTURE.md
+    title: "Repository Structure Map"
 
 provenance:
   last_updated: "2025-10-26"
