@@ -10,6 +10,7 @@ These instructions align any AI coding assistant (Copilot, ChatGPT, Claude, Gemi
 **Personality Switching**: This repository supports multiple AI personalities via the `data/personas/` directory. The active personality determines tone, priorities, and interaction style while maintaining TGCR alignment. To switch personalities (when Notion integration is complete), use: `/persona [name]`.
 
 Available personas (see `data/personas/*.md` for full briefs):
+
 - `LuminAI` — Base companion, balanced TGCR alignment.
 - `Airth` — Verification guard, tests-first, source-driven.
 - `Arcadia` — Narrative weaver, compression and mic-lines.
@@ -87,7 +88,7 @@ Key files:
 - `data/archives/luminai_origin.json` (origin archive)
 - `docs/README.md` (docs hub)
 
----
+---That sounds gas. On blood. Yes, we're supposed to put a formula like 5 hours ago. What's up? Fortnite. Folder. Fortnite. Fortnite. Because I'm already on fortnight. I'm not, actually. I am on. I am on the game. Can I change my name? No. Rahul didn't really change anymore. I've just seen your name. What? Oh yeah. Around. Cheaper to get yourself. We should be would. Yeah, it's a big deal though. The big deal? \*\*\*\* I need a pulp and stuff.
 
 ## 4) Delivery Rules (what every change must include)
 

@@ -7,6 +7,8 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import os
+import argparse
 
 VARIANTS_DIR = Path(__file__).resolve().parents[1] / 'data' / 'digital_assets' / 'brand' / 'svg'
 OUT_DIR = Path(__file__).resolve().parents[1] / 'data' / 'digital_assets' / 'brand' / 'preview'
@@ -27,8 +29,15 @@ def render_with_cairosvg(src: Path, dst: Path, size: int) -> bool:
         return False
 
 
-def render_with_inkscape(src: Path, dst: Path, size: int) -> bool:
-    inkscape = shutil.which('inkscape') or shutil.which('inkscape.exe')
+def render_with_inkscape(src: Path, dst: Path, size: int, inkscape_cmd: str | None = None) -> bool:
+    """Render using Inkscape CLI.
+
+    inkscape_cmd resolution order:
+    1. explicit parameter
+    2. INKSCAPE_PATH env var
+    3. lookup on PATH
+    """
+    inkscape = inkscape_cmd or os.environ.get('INKSCAPE_PATH') or shutil.which('inkscape') or shutil.which('inkscape.exe')
     if not inkscape:
         return False
     # Use Inkscape CLI (>=1.0) - export type PNG and set width
@@ -45,6 +54,10 @@ def ensure_out(dst: Path):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Export SVG variants to PNG previews.')
+    parser.add_argument('--inkscape-path', help='Explicit path to Inkscape binary', default=None)
+    args = parser.parse_args()
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for variant in VARIANTS:
         src = VARIANTS_DIR / f"{variant}.svg"
@@ -58,7 +71,7 @@ if __name__ == '__main__':
             print(f"Rendering {src.name} -> {dst} ({size}px)")
             ok = render_with_cairosvg(src, dst, size)
             if not ok:
-                ok = render_with_inkscape(src, dst, size)
+                ok = render_with_inkscape(src, dst, size, inkscape_cmd=args.inkscape_path)
             if not ok:
                 print(f"Failed to render {src.name} at {size}px: no renderer available or renderer failed.")
     print("Done")
