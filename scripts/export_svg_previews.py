@@ -42,15 +42,14 @@ def render_with_inkscape(src: Path, dst: Path, size: int, inkscape_cmd: Optional
     if not inkscape:
         return False
     # Use Inkscape CLI (>=1.0) - export type PNG and set width
-        cmd = [
+    try:
+        subprocess.check_call([
             inkscape,
             str(src),
             f"--export-filename={dst}",
             f"--export-width={size}",
             f"--export-height={size}"
-        ]
-        subprocess.check_call(cmd)
-        subprocess.check_call([inkscape, str(src), f"--export-filename={dst}", f"--export-width={size}", f"--export-height={size}"])
+        ])
         return True
     except subprocess.CalledProcessError as e:
         print(f"Inkscape render failed for {src}: {e}")

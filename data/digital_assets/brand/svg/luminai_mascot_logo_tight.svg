@@ -66,14 +66,27 @@
         <!-- Left eye (viewer-left) is Yellow with Φ as the iris (symbol replaces white iris) -->
         <g id="eye-left" transform="translate(0,0)">
             <circle cx="456" cy="382" r="28" fill="var(--gold)" filter="url(#glow-gold)"/>
-            <!-- symbol as iris centered where the white iris was; colored to contrast with the pupil -->
-            <text x="446" y="374" text-anchor="middle" dominant-baseline="central" font-size="14" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--navy)" font-weight="700">Φ</text>
+            <!-- symbol as iris centered where the white iris was; replaced text with vector shapes for consistent rasterization -->
+            <g id="iris-phi" transform="translate(0,0)" stroke="var(--navy)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- central circle -->
+                <circle cx="456" cy="382" r="8"/>
+                <!-- vertical stem through circle -->
+                <line x1="456" y1="370" x2="456" y2="394" />
+                <!-- short caps above and below -->
+                <line x1="450" y1="368" x2="462" y2="368" />
+                <line x1="450" y1="396" x2="462" y2="396" />
+            </g>
         </g>
         <!-- Right eye (viewer-right) is Purple with φ as the iris (symbol replaces white iris) -->
         <g id="eye-right" transform="translate(0,0)">
             <circle cx="568" cy="382" r="28" fill="var(--violet)" filter="url(#glow-violet)"/>
-            <!-- symbol as iris centered where the white iris was; colored to contrast with the pupil -->
-            <text x="558" y="374" text-anchor="middle" dominant-baseline="central" font-size="14" font-family="Segoe UI Symbol, Arial, sans-serif" fill="var(--navy)" font-weight="700">φ</text>
+            <!-- symbol as iris centered where the white iris was; replaced text with vector shapes for consistent rasterization -->
+            <g id="iris-lower-phi" transform="translate(0,0)" stroke="var(--navy)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <!-- central circle -->
+                <circle cx="568" cy="382" r="8"/>
+                <!-- vertical stem through circle, extending into a tail -->
+                <path d="M 568 372 L 568 402 C 568 412 576 420 582 426" />
+            </g>
         </g>
         <!-- Soft smile -->
         <path d="M 482 426 Q 512 446 542 426" fill="none" class="stroke" stroke-width="2"/>
