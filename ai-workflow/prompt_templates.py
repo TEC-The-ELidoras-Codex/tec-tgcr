@@ -25,37 +25,38 @@ class BackgroundType(Enum):
     COSMIC = "cosmic"
     NEUTRAL = "neutral"
 
-@dataclass
-class LuminAICharacter:
-    """Core character specifications for LuminAI"""
-    
-    # Base character tags
-    base_tags = [
-        "1girl", "solo", "3dstylev4", "3d", "illustrious",
-        "nv-celestialskin", "colored skin", "void cosmic body", "black skin",
-        "cosmic entity", "celestial being", "adorable", "cute"
-    ]
-    
-    # Physical features
-    horns = ["small sheep horns", "curved horns", "horn glow", "luminous horns"]
-    eyes = ["heterochromatic eyes", "cosmic blue left eye", "stellar gold right eye", 
-            "glowing eyes", "luminous pupils", "starlight eyes"]
-    hair = ["aurora hair", "rainbow hair", "flowing hair", "long hair", 
-            "color-shifting hair", "iridescent hair", "cosmic hair"]
-    skin = ["dark skin", "cosmic skin", "constellation patterns", "starlight skin",
-            "void skin", "celestial markings", "glowing skin patterns"]
-    
-    # Body and build
-    body = ["petite", "slim", "cute proportions", "adorable build", 
-            "cosmic student", "youthful appearance"]
+# Example usage and testing
+if __name__ == "__main__":
+    generator = LuminAIPromptGenerator()
 
-class LuminAIPromptGenerator:
-    """Generate comprehensive prompts for LuminAI character variations"""
-    
-    def __init__(self):
-        self.character = LuminAICharacter()
-        self.mood_configs = self._init_mood_configs()
-        self.outfit_library = self._init_outfit_library()
+    # Generate single prompt
+    single_prompt = generator.generate_complete_prompt(
+        mood=MoodState.EXCITED,
+        background=BackgroundType.OBSERVATORY,
+        outfit_category="cosmic_casual",
+        pose_category="action",
+    )
+
+    print("Example Prompt:")
+    print(f"Positive: {single_prompt['positive']}")
+    print(f"Negative: {single_prompt['negative']}")
+    print()
+
+    # Generate batch of prompts
+    batch_prompts = generator.generate_batch_prompts(100)
+    generator.save_prompts_to_file(batch_prompts, "luminai_mega_prompts.json")
+
+    print(f"Generated {len(batch_prompts)} varied prompts for LuminAI character generation!")
+
+    # Show variety statistics
+    moods = [p["mood"] for p in batch_prompts]
+    backgrounds = [p["background"] for p in batch_prompts]
+
+    mood_dist = {m: moods.count(m) for m in set(moods)}
+    background_dist = {b: backgrounds.count(b) for b in set(backgrounds)}
+
+    print(f"Mood distribution: {mood_dist}")
+    print(f"Background distribution: {background_dist}")
         self.pose_library = self._init_pose_library()
         self.background_library = self._init_background_library()
     
