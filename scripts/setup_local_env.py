@@ -19,7 +19,9 @@ LOCAL = ROOT / ".env.local"
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="Create .env.local from .env.example (safe defaults)")
+    p = argparse.ArgumentParser(
+        description="Create .env.local from .env.example (safe defaults)"
+    )
     p.add_argument("--force", action="store_true", help="Overwrite existing .env.local")
     args = p.parse_args()
 
@@ -39,7 +41,9 @@ def main() -> int:
         # Not critical on platforms that don't support chmod semantics
         pass
 
-    print(f"Created {LOCAL} from {EXAMPLE}.\nPlease edit {LOCAL} and fill in your real secrets. Do NOT commit {LOCAL} to git.")
+    print(
+        f"Created {LOCAL} from {EXAMPLE}.\nPlease edit {LOCAL} and fill in your real secrets. Do NOT commit {LOCAL} to git."
+    )
     return 0
 
 

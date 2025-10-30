@@ -1,4 +1,5 @@
 """Spotify resonance projection tool."""
+
 from __future__ import annotations
 
 import json
@@ -68,24 +69,26 @@ class SpotifyResonanceTool:
         projections = []
         for feature in features:
             projection = self._project(feature)
-            projections.append({
-                "track_id": feature.get("id"),
-                "resonance": projection.as_dict(),
-                "source": {
-                    key: feature.get(key)
-                    for key in (
-                        "energy",
-                        "valence",
-                        "danceability",
-                        "tempo",
-                        "loudness",
-                        "acousticness",
-                        "speechiness",
-                        "instrumentalness",
-                        "liveness",
-                    )
-                },
-            })
+            projections.append(
+                {
+                    "track_id": feature.get("id"),
+                    "resonance": projection.as_dict(),
+                    "source": {
+                        key: feature.get(key)
+                        for key in (
+                            "energy",
+                            "valence",
+                            "danceability",
+                            "tempo",
+                            "loudness",
+                            "acousticness",
+                            "speechiness",
+                            "instrumentalness",
+                            "liveness",
+                        )
+                    },
+                }
+            )
 
         return json.dumps(projections, indent=2)
 

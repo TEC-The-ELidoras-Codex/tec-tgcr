@@ -1,6 +1,7 @@
 """Convert SVG to PNG using cairosvg or Pillow fallback.
 Touches ψʳ (structure) by producing deployment-ready visual assets.
 """
+
 import argparse
 import sys
 from pathlib import Path
@@ -8,6 +9,7 @@ from pathlib import Path
 # Try cairosvg first (best quality)
 try:
     import cairosvg
+
     HAS_CAIRO = True
 except ImportError:
     HAS_CAIRO = False
@@ -16,12 +18,15 @@ except ImportError:
 # Fallback to Pillow
 try:
     from PIL import Image
+
     HAS_PILLOW = True
 except ImportError:
     HAS_PILLOW = False
 
 
-def svg_to_png_cairo(svg_path: Path, png_path: Path, width: int = 512, height: int = 512):
+def svg_to_png_cairo(
+    svg_path: Path, png_path: Path, width: int = 512, height: int = 512
+):
     """Convert SVG to PNG using cairosvg (high quality)."""
     cairosvg.svg2png(
         url=str(svg_path),
@@ -32,11 +37,16 @@ def svg_to_png_cairo(svg_path: Path, png_path: Path, width: int = 512, height: i
     print(f"[ELY] Exported (cairosvg): {png_path}")
 
 
-def svg_to_png_pillow(svg_path: Path, png_path: Path, width: int = 512, height: int = 512):
+def svg_to_png_pillow(
+    svg_path: Path, png_path: Path, width: int = 512, height: int = 512
+):
     """Convert SVG to PNG using Pillow (basic fallback)."""
     # Pillow doesn't natively support SVG; needs external tool or rasterization
     # This is a placeholder; in practice, you'd use a browser or external renderer
-    print("[ERROR] Pillow cannot render SVG natively. Install cairosvg or use manual export.", file=sys.stderr)
+    print(
+        "[ERROR] Pillow cannot render SVG natively. Install cairosvg or use manual export.",
+        file=sys.stderr,
+    )
     sys.exit(1)
 
 
@@ -49,14 +59,16 @@ def main():
         "--input",
         "-i",
         type=Path,
-        default=Path(__file__).parent.parent / "data/digital_assets/brand/svg/luminai_notion_emblem.svg",
+        default=Path(__file__).parent.parent
+        / "data/digital_assets/brand/svg/luminai_notion_emblem.svg",
         help="Input SVG path (default: luminai_notion_emblem.svg)",
     )
     parser.add_argument(
         "--output",
         "-o",
         type=Path,
-        default=Path(__file__).parent.parent / "data/digital_assets/brand/png/luminai_notion_emblem.png",
+        default=Path(__file__).parent.parent
+        / "data/digital_assets/brand/png/luminai_notion_emblem.png",
         help="Output PNG path (default: data/digital_assets/brand/png/luminai_notion_emblem.png)",
     )
     parser.add_argument(

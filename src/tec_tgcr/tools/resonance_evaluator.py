@@ -12,6 +12,7 @@ capture multiplicative synergy across the three dimensions.
 
 # Source: COMPREHENSIVE_READINESS_AUDIT.md
 """
+
 from __future__ import annotations
 
 from typing import Final
@@ -58,4 +59,4 @@ def compute_resonance_strength(phi: float, psi: float, phi_e: float) -> float:
         return 0.0
 
     # Weighted geometric mean: x**w * y**w * z**w
-    return (p ** _W_PHI) * (s ** _W_PSI) * (e ** _W_PHIE)
+    return (p**_W_PHI) * (s**_W_PSI) * (e**_W_PHIE)

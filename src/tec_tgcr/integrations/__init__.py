@@ -5,6 +5,7 @@ Includes lightweight clients for:
 - World Anvil (content publishing)
 - arXiv (bulk manifest helpers)
 """
+
 """External service integrations for TEC TGCR.
 
 Includes lightweight clients for:

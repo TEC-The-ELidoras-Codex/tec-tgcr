@@ -16,6 +16,7 @@ _SPOTIFY_PATH_RE = re.compile(
     re.IGNORECASE,
 )
 
+
 @dataclass(frozen=True)
 class SpotifyUrl:
     kind: str
@@ -29,6 +30,7 @@ class SpotifyUrl:
     def embed(self) -> str:
         return f"https://open.spotify.com/embed/{self.kind}/{self.id}"
 
+
 SUPPORTED_TYPES = {"track", "album", "playlist", "artist", "episode", "show"}
 
 
@@ -39,7 +41,9 @@ def _coerce_shortlink(url: str) -> str:
     # Known patterns from share sheet sometimes include query tracking.
     if "spotify.link" in url or "spotify.app.link" in url:
         # Best effort: parse path and coerce to open.spotify.com
-        parsed = urlparse(url if url.lower().startswith(("http://", "https://")) else "https://" + url)
+        parsed = urlparse(
+            url if url.lower().startswith(("http://", "https://")) else "https://" + url
+        )
         m = _SPOTIFY_PATH_RE.search(parsed.path or "")
         if m:
             return f"https://open.spotify.com/{m.group('type').lower()}/{m.group('id')}"

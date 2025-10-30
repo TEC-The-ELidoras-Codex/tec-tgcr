@@ -16,14 +16,15 @@ class ORCIDClient:
         self.orcid_id = orcid_id or os.getenv("ORCID_ID")
         if not self.orcid_id:
             raise RuntimeError("ORCID_ID not set")
-        self._client = httpx.Client(base_url="https://pub.orcid.org/v3.0/", headers={
-            "Accept": "application/json",
-            "User-Agent": "TEC-TGCR/1.0"
-        })
+        self._client = httpx.Client(
+            base_url="https://pub.orcid.org/v3.0/",
+            headers={"Accept": "application/json", "User-Agent": "TEC-TGCR/1.0"},
+        )
 
     def summary(self) -> Dict[str, Any]:
         r = self._client.get(f"{self.orcid_id}/summary")
         r.raise_for_status()
         return r.json()
+
 
 __all__ = ["ORCIDClient"]

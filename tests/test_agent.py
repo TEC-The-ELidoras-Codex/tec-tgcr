@@ -3,14 +3,21 @@ from pathlib import Path
 from tec_tgcr.agents.airth import AirthResearchGuard
 from tec_tgcr.config import AgentConfig
 
+
 class DummyResearchTool:
     name = "web_research"
     description = "Dummy"
+
     def __init__(self, text: str = ""):
-        self._text = text or "Top findings:\n1. Example Result\n   https://example.com\n   Example snippet"
+        self._text = (
+            text
+            or "Top findings:\n1. Example Result\n   https://example.com\n   Example snippet"
+        )
+
     @property
     def available(self):
         return True
+
     def run(self, query: str) -> str:
         return self._text
 
@@ -80,4 +87,11 @@ def test_manifest_structure():
     manifest = agent.manifest()
     assert manifest["name"] == config.name
     tool_names = {tool["name"] for tool in manifest["tools"]}
-    assert {"knowledge_lookup", "schedule_planner", "sharepoint_publish", "spotify_resonance", "llm_responder", "web_research"}.issubset(tool_names)
+    assert {
+        "knowledge_lookup",
+        "schedule_planner",
+        "sharepoint_publish",
+        "spotify_resonance",
+        "llm_responder",
+        "web_research",
+    }.issubset(tool_names)

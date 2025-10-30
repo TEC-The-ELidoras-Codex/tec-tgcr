@@ -3,6 +3,7 @@
 Dry-run by default. Produces Microsoft 365 CLI commands and can execute them
 only when explicitly forced.
 """
+
 from __future__ import annotations
 from __future__ import annotations
 
@@ -60,13 +61,17 @@ class SharePointPublisherTool:
             pretty = " ".join(shlex.quote(part) for part in cmd)
             if execute:
                 try:
-                    result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                    result = subprocess.run(
+                        cmd, capture_output=True, text=True, check=True
+                    )
                     summary = {
                         "file": str(file_path),
                         "status": "uploaded",
                         "stdout": result.stdout.strip(),
                     }
-                except subprocess.CalledProcessError as exc:  # pragma: no cover - external call guard
+                except (
+                    subprocess.CalledProcessError
+                ) as exc:  # pragma: no cover - external call guard
                     summary = {
                         "file": str(file_path),
                         "status": "error",

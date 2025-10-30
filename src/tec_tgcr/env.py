@@ -27,7 +27,9 @@ def load(root: Optional[Path] = None) -> None:
 
 def env_str(name: str, default: Optional[str] = None) -> str:
     val = os.getenv(name, default or "")
-    if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+    if (val.startswith('"') and val.endswith('"')) or (
+        val.startswith("'") and val.endswith("'")
+    ):
         val = val[1:-1]
     return val
 

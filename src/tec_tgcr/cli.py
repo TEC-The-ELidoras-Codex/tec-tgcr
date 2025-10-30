@@ -1,4 +1,5 @@
 """Command line interface for interacting with TEC agents."""
+
 from __future__ import annotations
 
 import json
@@ -138,7 +139,9 @@ def notion_search(query: str = typer.Argument(None), page_size: int = 10) -> Non
 def notion_config(config_path: Path = Path("config/notion.yml")) -> None:
     """Print configured Notion endpoints (IDs and URLs)."""
     if not config_path.exists():
-        console.print(f"[bold yellow]No Notion config found:[/bold yellow] {config_path}")
+        console.print(
+            f"[bold yellow]No Notion config found:[/bold yellow] {config_path}"
+        )
         raise typer.Exit(code=0)
     try:
         data = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}

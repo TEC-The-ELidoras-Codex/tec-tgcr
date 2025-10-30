@@ -19,7 +19,10 @@ MANIFEST = [
     ("Agent Persona: Airth Research Guard", Path("docs/AGENT_AIRTH.md")),
     ("Design: Spin Model", Path("docs/DESIGN_SPIN_MODEL.md")),
     ("WordPress Operations Guide", Path("docs/WORDPRESS_WPCOM_OPS.md")),
-    ("WordPress Deploy Success (2025-10-18)", Path("docs/WORDPRESS-DEPLOY-SUCCESS-2025-10-18.md")),
+    (
+        "WordPress Deploy Success (2025-10-18)",
+        Path("docs/WORDPRESS-DEPLOY-SUCCESS-2025-10-18.md"),
+    ),
     ("GitHub Secrets Setup", Path("docs/GITHUB_SECRETS_SETUP.md")),
     ("Quick Secrets Fill Reference", Path("docs/QUICK_SECRETS_FILL.md")),
     ("API Keys Setup Guide", Path("docs/API_KEYS_SETUP.md")),
@@ -27,7 +30,12 @@ MANIFEST = [
     ("Microsoft 365 Integration", Path("docs/M365_INTEGRATION.md")),
     ("Repository Organization", Path("docs/REPOSITORY_ORGANIZATION.md")),
     ("Repository Audit (2025-10-15)", Path("docs/REPOSITORY-AUDIT-2025-10-15.md")),
-    ("Microsoft Support: Billing Dispute", Path("exports/support/YQAT-E6IU-BG7-PGB/MICROSOFT-SUPPORT-BILLING-DISPUTE-YQAT-E6IU-BG7-PGB.md")),
+    (
+        "Microsoft Support: Billing Dispute",
+        Path(
+            "exports/support/YQAT-E6IU-BG7-PGB/MICROSOFT-SUPPORT-BILLING-DISPUTE-YQAT-E6IU-BG7-PGB.md"
+        ),
+    ),
 ]
 
 
@@ -100,7 +108,9 @@ def export_compendium(output_path, files):
 
     # Title page
     doc.add_paragraph("TEC-TGCR Compendium", style="Title")
-    doc.add_paragraph("The Elidoras Codex — Theory of General Contextual Resonance", style="Subtitle")
+    doc.add_paragraph(
+        "The Elidoras Codex — Theory of General Contextual Resonance", style="Subtitle"
+    )
     doc.add_paragraph("Agent Stack Documentation & Operations Guide")
     doc.add_page_break()
 
@@ -131,13 +141,18 @@ def export_compendium(output_path, files):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Export TEC-TGCR documentation compendium to DOCX")
+    parser = argparse.ArgumentParser(
+        description="Export TEC-TGCR documentation compendium to DOCX"
+    )
     parser.add_argument(
         "--output",
         "-o",
         type=Path,
-        default=Path(__file__).parent.parent / "docs" / "exports" / "TEC_TGCR_COMPENDIUM.docx",
-        help="Output path for DOCX file (default: docs/exports/TEC_TGCR_COMPENDIUM.docx)"
+        default=Path(__file__).parent.parent
+        / "docs"
+        / "exports"
+        / "TEC_TGCR_COMPENDIUM.docx",
+        help="Output path for DOCX file (default: docs/exports/TEC_TGCR_COMPENDIUM.docx)",
     )
 
     args = parser.parse_args()

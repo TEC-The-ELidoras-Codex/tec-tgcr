@@ -11,9 +11,11 @@ class ArxivSearch:
     """
 
     def __init__(self):
-        self._client = httpx.Client(base_url="https://export.arxiv.org/api/", timeout=30, headers={
-            "User-Agent": "TEC-TGCR/1.0"
-        })
+        self._client = httpx.Client(
+            base_url="https://export.arxiv.org/api/",
+            timeout=30,
+            headers={"User-Agent": "TEC-TGCR/1.0"},
+        )
 
     def search(self, query: str, start: int = 0, max_results: int = 25) -> str:
         # arXiv uses Atom XML; return raw text to be parsed upstream as needed
@@ -21,5 +23,6 @@ class ArxivSearch:
         r = self._client.get("query", params=params)
         r.raise_for_status()
         return r.text
+
 
 __all__ = ["ArxivSearch"]

@@ -1,4 +1,5 @@
 """Abstract protocol for TEC agents."""
+
 from __future__ import annotations
 
 from typing import Iterable, Protocol

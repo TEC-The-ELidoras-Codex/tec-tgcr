@@ -39,7 +39,9 @@ def parse_env_file(path: Path) -> Dict[str, str]:
 
 def main() -> int:
     p = argparse.ArgumentParser(description="Check that required env vars are set")
-    p.add_argument("--file", default=".env.local", help="Env file to read (defaults to .env.local)")
+    p.add_argument(
+        "--file", default=".env.local", help="Env file to read (defaults to .env.local)"
+    )
     args = p.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -88,7 +90,9 @@ def main() -> int:
         for k in placeholders:
             print("  - ", k)
 
-    print(f"\nTip: run `python scripts/setup_local_env.py` to create a .env.local from the example and fill values.")
+    print(
+        f"\nTip: run `python scripts/setup_local_env.py` to create a .env.local from the example and fill values."
+    )
     return 2
 
 

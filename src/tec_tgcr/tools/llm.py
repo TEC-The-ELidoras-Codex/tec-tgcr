@@ -1,4 +1,5 @@
 """LLM-backed reasoning helper."""
+
 from __future__ import annotations
 
 import json
@@ -30,7 +31,9 @@ class LLMResponder:
         self.max_tokens = max_tokens
         self.temperature = temperature
         # Prefer explicit configuration; optionally fall back to environment if enabled.
-        self.api_key = api_key or (os.getenv("OPENAI_API_KEY") if use_env_api_key else None)
+        self.api_key = api_key or (
+            os.getenv("OPENAI_API_KEY") if use_env_api_key else None
+        )
         self.endpoint = endpoint or self._default_endpoint(provider)
         self._client = http_client
 
@@ -49,7 +52,9 @@ class LLMResponder:
         try:
             # At this point, availability has been checked; endpoint must be non-None.
             assert self.endpoint is not None
-            response = client.post(self.endpoint, json=payload, headers=headers, timeout=30.0)
+            response = client.post(
+                self.endpoint, json=payload, headers=headers, timeout=30.0
+            )
             response.raise_for_status()
             return self._parse_response(response)
         except Exception as exc:  # pragma: no cover - network errors handled uniformly

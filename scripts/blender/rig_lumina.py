@@ -112,7 +112,10 @@ def fit_rig_to_mesh_bbox(rig, mesh_obj):
     import mathutils  # type: ignore
 
     # Compute mesh world-space bounds
-    bbox_corners = [mesh_obj.matrix_world @ mathutils.Vector(corner) for corner in mesh_obj.bound_box]
+    bbox_corners = [
+        mesh_obj.matrix_world @ mathutils.Vector(corner)
+        for corner in mesh_obj.bound_box
+    ]
     xs = [v.x for v in bbox_corners]
     ys = [v.y for v in bbox_corners]
     zs = [v.z for v in bbox_corners]
@@ -136,7 +139,7 @@ def parent_with_automatic_weights(mesh_obj, armature_obj):
     # Select mesh first, then armature; set parent with automatic weights
     select_only([mesh_obj, armature_obj])
     bpy.context.view_layer.objects.active = armature_obj
-    bpy.ops.object.parent_set(type='ARMATURE_AUTO')
+    bpy.ops.object.parent_set(type="ARMATURE_AUTO")
 
 
 def generate_rigify(armature_obj):
@@ -160,7 +163,7 @@ def save_and_export(output_prefix: str):
     glb_path = f"{output_prefix}.glb"
     bpy.ops.export_scene.gltf(
         filepath=glb_path,
-        export_format='GLB',
+        export_format="GLB",
         export_yup=True,
         export_apply=True,
         export_animations=True,
@@ -169,7 +172,9 @@ def save_and_export(output_prefix: str):
 
     # Export FBX
     fbx_path = f"{output_prefix}.fbx"
-    bpy.ops.export_scene.fbx(filepath=fbx_path, use_selection=False, apply_scale_options='FBX_SCALE_ALL')
+    bpy.ops.export_scene.fbx(
+        filepath=fbx_path, use_selection=False, apply_scale_options="FBX_SCALE_ALL"
+    )
 
     return blend_path, glb_path, fbx_path
 
@@ -192,20 +197,22 @@ def main():
             o.scale = (args.scale, args.scale, args.scale)
             apply_object_transforms(o)
 
-    mesh_objs = objects_by_type(imported_objs, 'MESH')
+    mesh_objs = objects_by_type(imported_objs, "MESH")
     if not mesh_objs:
         raise RuntimeError("No mesh objects found in imported GLB.")
 
     if args.no_join:
         # Pick the largest mesh as primary for bbox fit
-        mesh_primary = max(mesh_objs, key=lambda m: sum((m.dimensions[i] for i in range(3))))
+        mesh_primary = max(
+            mesh_objs, key=lambda m: sum((m.dimensions[i] for i in range(3)))
+        )
     else:
         mesh_primary = join_meshes(mesh_objs)
 
     # Ensure object mode
     if bpy.ops.object.mode_set.poll():
         try:
-            bpy.ops.object.mode_set(mode='OBJECT')
+            bpy.ops.object.mode_set(mode="OBJECT")
         except Exception:
             pass
 
@@ -223,15 +230,21 @@ def main():
     print("[LuminaRig] Generating Rigify control rig...")
     control_rig = generate_rigify(metarig)
     if control_rig:
-        print("[LuminaRig] Parenting mesh to generated control rig with automatic weights...")
+        print(
+            "[LuminaRig] Parenting mesh to generated control rig with automatic weights..."
+        )
         parent_with_automatic_weights(mesh_primary, control_rig)
     else:
-        print("[LuminaRig] Warning: Generated rig not found; parenting to metarig as fallback.")
+        print(
+            "[LuminaRig] Warning: Generated rig not found; parenting to metarig as fallback."
+        )
         parent_with_automatic_weights(mesh_primary, metarig)
 
     print("[LuminaRig] Saving & exporting rigged model...")
     blend, glb, fbx = save_and_export(output_prefix)
-    print(f"[LuminaRig] Saved: {blend}\n[ LuminaRig] Exported GLB: {glb}\n[ LuminaRig] Exported FBX: {fbx}")
+    print(
+        f"[LuminaRig] Saved: {blend}\n[ LuminaRig] Exported GLB: {glb}\n[ LuminaRig] Exported FBX: {fbx}"
+    )
 
 
 if __name__ == "__main__":

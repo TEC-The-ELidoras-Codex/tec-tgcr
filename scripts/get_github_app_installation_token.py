@@ -19,6 +19,7 @@ Usage (local):
 This script prints an installation token and a curl example. Do NOT commit private keys
 or secrets to version control; use GitHub Secrets for Actions instead.
 """
+
 from __future__ import annotations
 
 import os
@@ -74,7 +75,9 @@ def get_installation_id_from_app(jwt_token: str) -> int:
     return int(data[0]["id"])
 
 
-def create_installation_token(jwt_token: str, installation_id: int) -> t.Dict[str, t.Any]:
+def create_installation_token(
+    jwt_token: str, installation_id: int
+) -> t.Dict[str, t.Any]:
     headers = {
         "Authorization": f"Bearer {jwt_token}",
         "Accept": "application/vnd.github+json",
@@ -117,7 +120,7 @@ def main() -> None:
 
     print("\nUse example (curl):")
     print(
-        f"curl -H \"Authorization: Bearer {token}\" -H \"Accept: application/vnd.github+json\" https://api.github.com/user"
+        f'curl -H "Authorization: Bearer {token}" -H "Accept: application/vnd.github+json" https://api.github.com/user'
     )
 
 

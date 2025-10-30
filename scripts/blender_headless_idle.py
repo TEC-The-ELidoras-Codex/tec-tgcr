@@ -3,6 +3,7 @@ Blender headless pipeline: import a GLB, add a simple idle animation (breathing 
 Run with Blender (headless):
   blender -b -P scripts/blender_headless_idle.py -- --input path/to/input.glb --output ai-workflow/output/lumina_idle.glb
 """
+
 import argparse
 import math
 import sys
@@ -57,7 +58,9 @@ def add_idle_animation(frames=120, fps=30):
     scene.render.fps = fps
 
     # Find a likely root object (first mesh or armature)
-    candidates = [o for o in bpy.context.scene.objects if o.type in {"MESH", "ARMATURE"}]
+    candidates = [
+        o for o in bpy.context.scene.objects if o.type in {"MESH", "ARMATURE"}
+    ]
     if not candidates:
         print("No mesh/armature found; skipping animation")
         return
@@ -80,11 +83,13 @@ def add_idle_animation(frames=120, fps=30):
     if root.animation_data and root.animation_data.action:
         for fcurve in root.animation_data.action.fcurves:
             for kp in fcurve.keyframe_points:
-                kp.interpolation = 'SINE'
+                kp.interpolation = "SINE"
 
 
 def export_glb(path):
-    bpy.ops.export_scene.gltf(filepath=path, export_format='GLB', export_animations=True)
+    bpy.ops.export_scene.gltf(
+        filepath=path, export_format="GLB", export_animations=True
+    )
 
 
 def main():

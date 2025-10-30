@@ -1,4 +1,5 @@
 """Configuration helpers for TEC agents."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -79,7 +80,9 @@ class AgentConfig(BaseModel):
         default=Path("data") / "knowledge_map.yml",
         description="Path to the structured knowledge map used by the agent.",
     )
-    tool_settings: Dict[str, Dict[str, Any]] = Field(default_factory=_default_tool_settings)
+    tool_settings: Dict[str, Dict[str, Any]] = Field(
+        default_factory=_default_tool_settings
+    )
 
     @classmethod
     def load(cls, path: Optional[Path] = None) -> "AgentConfig":

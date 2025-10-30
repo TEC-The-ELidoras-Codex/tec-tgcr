@@ -37,7 +37,9 @@ def health_check(timeout: float = 15.0) -> Tuple[bool, str]:
     """
     try:
         token = _require_token()
-        with httpx.Client(base_url=NOTION_API_BASE, headers=_get_headers(token), timeout=timeout) as client:
+        with httpx.Client(
+            base_url=NOTION_API_BASE, headers=_get_headers(token), timeout=timeout
+        ) as client:
             resp = client.post("/search", json={"page_size": 1})
             if resp.status_code == 200:
                 data = resp.json()
@@ -48,7 +50,9 @@ def health_check(timeout: float = 15.0) -> Tuple[bool, str]:
         return False, str(e)
 
 
-def search(query: str | None = None, page_size: int = 10, timeout: float = 20.0) -> Dict[str, Any]:
+def search(
+    query: str | None = None, page_size: int = 10, timeout: float = 20.0
+) -> Dict[str, Any]:
     """Search pages/databases in Notion. Requires NOTION_TOKEN.
 
     Note: The integration must have access to the workspace/pages you want to search.
@@ -57,7 +61,9 @@ def search(query: str | None = None, page_size: int = 10, timeout: float = 20.0)
     payload: Dict[str, Any] = {"page_size": page_size}
     if query:
         payload["query"] = query
-    with httpx.Client(base_url=NOTION_API_BASE, headers=_get_headers(token), timeout=timeout) as client:
+    with httpx.Client(
+        base_url=NOTION_API_BASE, headers=_get_headers(token), timeout=timeout
+    ) as client:
         resp = client.post("/search", json=payload)
         resp.raise_for_status()
         return resp.json()
@@ -67,7 +73,9 @@ def databases_list(max_pages: int = 1, timeout: float = 20.0) -> Dict[str, Any]:
     """List databases using the search endpoint filtered by object type (best-effort)."""
     # Notion API does not provide a direct "list all databases" for integrations; use search and filter.
     token = _require_token()
-    with httpx.Client(base_url=NOTION_API_BASE, headers=_get_headers(token), timeout=timeout) as client:
+    with httpx.Client(
+        base_url=NOTION_API_BASE, headers=_get_headers(token), timeout=timeout
+    ) as client:
         results = []
         cursor = None
         pages = 0
@@ -78,7 +86,9 @@ def databases_list(max_pages: int = 1, timeout: float = 20.0) -> Dict[str, Any]:
             resp = client.post("/search", json=payload)
             resp.raise_for_status()
             data = resp.json()
-            results.extend([r for r in data.get("results", []) if r.get("object") == "database"])
+            results.extend(
+                [r for r in data.get("results", []) if r.get("object") == "database"]
+            )
             cursor = data.get("next_cursor")
             if not data.get("has_more"):
                 break

@@ -34,7 +34,9 @@ def main() -> None:
     console.print()
     for p in PATHS:
         path = env_path(p)
-        status = "OK" if path.exists() else ("NOT SET" if str(path) == "" else "MISSING")
+        status = (
+            "OK" if path.exists() else ("NOT SET" if str(path) == "" else "MISSING")
+        )
         console.print(f"[bold]{p}[/bold]: {path} -> {status}")
 
 

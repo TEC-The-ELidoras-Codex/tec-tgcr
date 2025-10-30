@@ -21,7 +21,9 @@ def test_parse_spotify_url(input_url: str, kind: str):
 
 
 def test_sanitize_outputs_canonical_and_embed():
-    data = sanitize_spotify_url("https://open.spotify.com/track/7ouMYWpwJ422jRcDASZB7P?si=foo")
+    data = sanitize_spotify_url(
+        "https://open.spotify.com/track/7ouMYWpwJ422jRcDASZB7P?si=foo"
+    )
     assert data["canonical_url"].startswith("https://open.spotify.com/track/")
     assert data["embed_url"].startswith("https://open.spotify.com/embed/track/")
 

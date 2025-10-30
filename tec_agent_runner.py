@@ -187,9 +187,7 @@ def build_parser() -> argparse.ArgumentParser:
     prompt_parser.set_defaults(func=cmd_show_prompt)
 
     # Terms
-    terms_parser = subparsers.add_parser(
-        "terms", help="Show the Airth term pack."
-    )
+    terms_parser = subparsers.add_parser("terms", help="Show the Airth term pack.")
     terms_parser.add_argument(
         "--pretty",
         action="store_true",

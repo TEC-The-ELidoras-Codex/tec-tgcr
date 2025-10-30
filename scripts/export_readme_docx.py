@@ -45,7 +45,7 @@ def render_markdown(doc: Document, markdown: str) -> None:
             add_paragraph(doc, text, style)
             continue
 
-        if line.startswith(('- ', '* ')):
+        if line.startswith(("- ", "* ")):
             add_paragraph(doc, line[2:].strip(), style="List Bullet")
             continue
 

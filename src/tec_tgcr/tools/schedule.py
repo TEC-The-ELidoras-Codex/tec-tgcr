@@ -1,4 +1,5 @@
 """Schedule assistant for aligning work sessions and shifts."""
+
 from __future__ import annotations
 
 import csv
@@ -12,7 +13,9 @@ class ScheduleTool:
     """Provides formatted schedule summaries and export utilities."""
 
     name = "schedule_planner"
-    description = "Summarize planned TEC build sessions, shifts, and export cadence artifacts."
+    description = (
+        "Summarize planned TEC build sessions, shifts, and export cadence artifacts."
+    )
 
     def __init__(
         self,
@@ -76,7 +79,11 @@ class ScheduleTool:
         return lines
 
     def _generate_ics(self) -> str:
-        events = [item for item in self.sessions + self.shifts if item.get("start") and item.get("end")]
+        events = [
+            item
+            for item in self.sessions + self.shifts
+            if item.get("start") and item.get("end")
+        ]
         if not events:
             return "No dated events configured. Add start/end ISO timestamps in tool settings."
 
@@ -115,13 +122,15 @@ class ScheduleTool:
             start = event.get("start", "")
             end = event.get("end", "")
             notes = event.get("window", "")
-            writer.writerow([
-                event.get("label", "TEC Task"),
-                self.planner_bucket,
-                start,
-                end,
-                notes,
-            ])
+            writer.writerow(
+                [
+                    event.get("label", "TEC Task"),
+                    self.planner_bucket,
+                    start,
+                    end,
+                    notes,
+                ]
+            )
         return output.getvalue().strip()
 
     @staticmethod

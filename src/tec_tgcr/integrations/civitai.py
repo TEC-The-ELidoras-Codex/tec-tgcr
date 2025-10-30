@@ -21,7 +21,9 @@ class CivitaiClient:
         client: Optional[httpx.Client] = None,
     ) -> None:
         self.api_key = api_key or env_str("CIVITAI_API_KEY")
-        self.api_base = (api_base or env_str("CIVITAI_API_BASE", "https://civitai.com/api/v1")).rstrip("/")
+        self.api_base = (
+            api_base or env_str("CIVITAI_API_BASE", "https://civitai.com/api/v1")
+        ).rstrip("/")
         self._client = client
 
     @property

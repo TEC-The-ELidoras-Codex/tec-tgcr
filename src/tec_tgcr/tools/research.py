@@ -4,6 +4,7 @@ Web Research Tool for TEC Agents
 Provides pluggable web research using providers like Bing Web Search
 or Azure Cognitive Search. Controlled via tool_settings.research.
 """
+
 from __future__ import annotations
 
 import os
@@ -14,7 +15,9 @@ import httpx
 
 class ResearchTool:
     name = "web_research"
-    description = "Perform web research and return cited findings from reputable sources."
+    description = (
+        "Perform web research and return cited findings from reputable sources."
+    )
 
     def __init__(
         self,
@@ -51,11 +54,21 @@ class ResearchTool:
     # === Provider implementations ===
     def _run_bing(self, query: str) -> str:
         client = self._ensure_client()
-        params = {"q": query, "mkt": self.market, "count": self.max_results, "responseFilter": "Webpages"}
+        params = {
+            "q": query,
+            "mkt": self.market,
+            "count": self.max_results,
+            "responseFilter": "Webpages",
+        }
         try:
             endpoint = str(self.endpoint)
             key = str(self.api_key)
-            resp = client.get(endpoint, params=params, headers={"Ocp-Apim-Subscription-Key": key}, timeout=20.0)
+            resp = client.get(
+                endpoint,
+                params=params,
+                headers={"Ocp-Apim-Subscription-Key": key},
+                timeout=20.0,
+            )
             resp.raise_for_status()
             data = resp.json()
             return self._format_bing_results(data)

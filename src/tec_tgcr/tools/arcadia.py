@@ -3,6 +3,7 @@
 No network calls here; accept a dict of audio features so we can unit test and
 use cached responses gathered by another process.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -34,8 +35,14 @@ class ArcadiaResonanceTool:
     loud_ref_std: float = 4.0
 
     def project(self, features: Dict[str, float]) -> Dict[str, int]:
-        tempo_z = _z(features.get("tempo", 120.0), self.tempo_ref_mean, self.tempo_ref_std) / 3
-        loud_z = abs(_z(features.get("loudness", -8.0), self.loud_ref_mean, self.loud_ref_std) / 3)
+        tempo_z = (
+            _z(features.get("tempo", 120.0), self.tempo_ref_mean, self.tempo_ref_std)
+            / 3
+        )
+        loud_z = abs(
+            _z(features.get("loudness", -8.0), self.loud_ref_mean, self.loud_ref_std)
+            / 3
+        )
 
         oxy = _clamp01(
             0.55 * features.get("valence", 0.0)
@@ -56,7 +63,11 @@ class ArcadiaResonanceTool:
             + 0.10 * features.get("liveness", 0.0)
         )
 
-        return {"OXY": round(oxy * 100), "DOP": round(dop * 100), "ADR": round(adr * 100)}
+        return {
+            "OXY": round(oxy * 100),
+            "DOP": round(dop * 100),
+            "ADR": round(adr * 100),
+        }
 
     def run(self, query: str) -> str:
         return (
