@@ -82,6 +82,33 @@ Get-Content $envPath | ForEach-Object {
 }
 
 Write-Host ""
+# Backwards-compatible aliases for scripts that expect APP_ID / PRIVATE_KEY / INSTALLATION_ID
+# If the repo .env uses GITHUB_APP_ID / GITHUB_PRIVATE_KEY / GITHUB_INSTALLATION_ID,
+# create equivalent process-level env vars so older scripts work without change.
+$aliasMap = @{
+    "APP_ID" = "GITHUB_APP_ID"
+    "PRIVATE_KEY" = "GITHUB_PRIVATE_KEY"
+    "INSTALLATION_ID" = "GITHUB_INSTALLATION_ID"
+}
+
+foreach ($pair in $aliasMap.GetEnumerator()) {
+    $aliasName = $pair.Key
+    $sourceName = $pair.Value
+    $current = [Environment]::GetEnvironmentVariable($aliasName)
+    if (-not $current) {
+        $srcVal = [Environment]::GetEnvironmentVariable($sourceName)
+        if ($srcVal) {
+            [Environment]::SetEnvironmentVariable($aliasName, $srcVal, [System.EnvironmentVariableTarget]::Process)
+            # Print a concise mapping notice without exposing secret contents
+            if ($aliasName -eq 'PRIVATE_KEY') {
+                Write-Host "[⇄] Mapped $sourceName -> $aliasName (private key loaded)" -ForegroundColor Cyan
+            } else {
+                Write-Host "[⇄] Mapped $sourceName -> $aliasName = $($srcVal.Substring(0, [Math]::Min(8, $srcVal.Length)))..." -ForegroundColor Cyan
+            }
+        }
+    }
+}
+
 Write-Host "════════════════════════════════════════════════════════════" -ForegroundColor Green
 Write-Host "Loaded: $loadedCount variable(s)" -ForegroundColor White
 Write-Host "Skipped: $skippedCount empty/placeholder(s)" -ForegroundColor Gray

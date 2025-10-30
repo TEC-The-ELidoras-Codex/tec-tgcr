@@ -1,0 +1,24 @@
+project_name: The Elidoras Codex
+primary_language: Python
+domains:
+  - mythic-ai
+  - data-resonance
+  - tgcr # Theory of General Contextual Resonance
+goals:
+  - Maintain reproducibility and provenance in all commits (reference manifest.yml).
+  - Enforce lint + test automation via GitHub Actions (see .github/workflows/build.yml).
+  - Auto-generate docstrings (Google style) and markdown summaries for core modules.
+  - Ensure all code and documentation aligns with TGCR principles (φ, ψ, Φᴱ).
+preferred_tools:
+  - black
+  - flake8
+  - pytest
+  - mkdocs
+tasks:
+  - Suggest README improvements incorporating TGCR concepts.
+  - Scaffold new documentation pages under /docs/ following existing structure.
+  - Review pull requests for missing provenance tags or TGCR alignment notes.
+  - Assist in writing pytest unit tests for modules in /src/.
+  - Help draft GitHub Actions workflow steps for new CI/CD requirements.
+  - Generate Mermaid diagrams for documentation (e.g., architecture-map.md)
+# Notes: This file is used as project context for Copilot and other automation tools.

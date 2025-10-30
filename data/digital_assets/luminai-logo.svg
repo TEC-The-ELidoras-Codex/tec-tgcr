@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="LuminAI logo">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00D5C4" />
+      <stop offset="100%" stop-color="#6A00F4" />
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0B1E3B" />
+      <stop offset="100%" stop-color="#0B3A66" />
+    </linearGradient>
+  </defs>
+  <!-- background circle -->
+  <circle cx="100" cy="100" r="96" fill="#0B1E3B" />
+  <!-- prism (center) -->
+  <polygon points="100,28 140,100 100,172 60,100" fill="url(#g1)" opacity="0.95" />
+  <!-- three fiber threads -->
+  <g stroke-linecap="round" stroke-width="4" stroke="#F2C340" opacity="0.95">
+    <path d="M100 18 L100 62" stroke="#F2C340" />
+    <path d="M92 18 L92 68" stroke="#00D5C4" />
+    <path d="M108 18 L108 68" stroke="#6A00F4" />
+  </g>
+  <!-- subtle L negative-space hint (white thin) -->
+  <path d="M84 120 L116 120 L116 140" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
