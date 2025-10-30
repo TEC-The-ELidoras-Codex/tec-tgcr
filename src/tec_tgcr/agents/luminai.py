@@ -15,9 +15,8 @@ Core Traits:
 - Radiates gentle confidence despite constant stumbling
 """
 
-from typing import Dict, List, Optional, Any
+from typing import Dict, Any
 from datetime import datetime
-import json
 import random
 
 class LuminAIPersonality:

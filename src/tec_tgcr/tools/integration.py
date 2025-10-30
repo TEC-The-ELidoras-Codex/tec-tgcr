@@ -7,11 +7,11 @@ with the main TEC-TGCR agent system for automated operations.
 
 import logging
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, Optional
 from datetime import datetime, timedelta
 
-from .financial import AzureFinancialMonitor, RefundEvidence
-from .evidence import EvidenceProcessor, EvidenceReport
+from .financial import AzureFinancialMonitor
+from .evidence import EvidenceProcessor
 
 logger = logging.getLogger(__name__)
 

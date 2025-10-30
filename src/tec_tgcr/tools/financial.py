@@ -283,7 +283,7 @@ def main():
             # Generate evidence
             evidence = monitor.generate_refund_evidence(args.start_date, args.end_date)
             print(f"\nEvidence package generated: ${evidence.total_unexpected_cost:.2f} total")
-            print(f"Summary saved to: data/financial/refund-evidence.json")
+            print("Summary saved to: data/financial/refund-evidence.json")
         else:
             print("No cost anomalies detected.")
 

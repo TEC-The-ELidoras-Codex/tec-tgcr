@@ -10,8 +10,6 @@ Usage:
 import argparse
 from pathlib import Path
 from docx import Document
-from docx.shared import Pt
-from docx.enum.style import WD_STYLE_TYPE
 
 # Manifest of documents to include in compendium
 # (Title, Path) tuples

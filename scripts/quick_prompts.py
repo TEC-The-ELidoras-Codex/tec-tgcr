@@ -3,7 +3,6 @@
 Simple LuminAI prompt generator
 """
 import json
-import random
 from pathlib import Path
 
 # Create output directory
@@ -52,12 +51,12 @@ for mood_name, mood_tags in moods.items():
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(f"POSITIVE PROMPT:\n{full_prompt}\n\n")
             f.write(f"NEGATIVE PROMPT:\n{negative_prompt}\n\n")
-            f.write(f"SETTINGS:\n")
-            f.write(f"Model: Illustrious XL or Nova 3DCG XL\n")
-            f.write(f"Steps: 25-35\n")
-            f.write(f"CFG Scale: 7-9\n")
-            f.write(f"Size: 768x1024 or 832x1216\n")
-            f.write(f"Sampler: DPM++ 2M or Euler A\n")
+            f.write("SETTINGS:\n")
+            f.write("Model: Illustrious XL or Nova 3DCG XL\n")
+            f.write("Steps: 25-35\n")
+            f.write("CFG Scale: 7-9\n")
+            f.write("Size: 768x1024 or 832x1216\n")
+            f.write("Sampler: DPM++ 2M or Euler A\n")
         
         all_prompts.append(prompt_data)
         print(f"✨ Generated: {filename}")

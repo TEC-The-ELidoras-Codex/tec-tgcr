@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from urllib.parse import urlparse, parse_qs, urlencode
+from urllib.parse import urlparse
 
 _SPOTIFY_HOSTS = {"open.spotify.com", "spotify.link", "spotify.app.link"}
 

@@ -10,7 +10,7 @@ import json
 import shlex
 import subprocess
 from pathlib import Path
-from typing import Iterable, List, Optional
+from typing import Iterable, List
 
 
 class SharePointPublisherTool:

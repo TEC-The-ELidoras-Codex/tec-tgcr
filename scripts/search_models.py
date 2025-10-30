@@ -3,7 +3,6 @@
 Quick model search script for LuminAI
 """
 import sys
-import os
 sys.path.insert(0, 'src')
 
 from tec_tgcr.integrations.civitai import CivitaiClient

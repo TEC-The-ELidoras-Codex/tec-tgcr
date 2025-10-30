@@ -24,7 +24,7 @@ import argparse
 
 try:
     import bpy  # type: ignore
-except Exception as e:  # pragma: no cover
+except Exception:  # pragma: no cover
     print("This script must be run from Blender (bpy not found).", file=sys.stderr)
     sys.exit(2)
 
