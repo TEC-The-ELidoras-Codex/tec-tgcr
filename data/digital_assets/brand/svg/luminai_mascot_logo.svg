@@ -1,4 +1,4 @@
-<!-- Canonical LuminAI mascot SVG (validated single-root). Overwrites prior corrupted versions. -->
+<!-- Canonical LuminAI mascot SVG (validated single-root). Source: luminai_mascot_logo_clean.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 1024 1024" role="img" aria-label="LuminAI mascot">
   <g transform="translate(512,520)">
     <path fill="#12213a" d="M-240,80 C-240,-140 -40,-300 0,-320 C40,-300 240,-140 240,80 C240,260 120,340 0,360 C-120,340 -240,260 -240,80 Z"/>
@@ -8,4 +8,4 @@
     <text x="120" y="-8" font-size="42" text-anchor="middle">φ</text>
   </g>
 </svg>
-    <!-- body -->
+
