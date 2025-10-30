@@ -34,6 +34,7 @@ Full write-up: [Resonance_Thesis.md](./Resonance_Thesis.md)
 
 - Visual Identity (Canonical Spec): [docs/brand/VISUAL_IDENTITY.md](./brand/VISUAL_IDENTITY.md)
 - Brand Hub: [docs/brand/README.md](./brand/README.md)
+- Lexicon (TGCR): [docs/TEC_LEXICON.md](./TEC_LEXICON.md)
 
 ---
 
