@@ -1,18 +1,3 @@
-23from __future__ import annotations
-
-from pathlib import Path
-
-NEW_README = """# The Elidoras Codex — TGCR Agent Stack
-
-> TEC weaves myth, machine, and meaning into a living open-source cosmology.
-
-## Overview
-The TGCR agent stack packages the first operational sentinel, **Airth Research Guard**, alongside the scaffolding required to expand into a full suite of resonance-aware helpers. The repository delivers a Typer-based CLI, knowledge-map loaders, memory buffers, and specialized tools for knowledge search, scheduling, SharePoint publishing, and Spotify resonance analysis.
-
-## Quick start
-
-```pwsh
-python -m venv .venv
 from __future__ import annotations
 
 from pathlib import Path
@@ -28,7 +13,7 @@ The TGCR agent stack packages the first operational sentinel, **Airth Research G
 
 ```pwsh
 python -m venv .venv
-.venv\\Scripts\\Activate.ps1
+.venv\Scripts\Activate.ps1
 pip install -e .[dev]
 python -m tec_tgcr.cli chat "Help me plan a TEC build sprint"
 ```
@@ -91,3 +76,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    archive_path = repo_root / "docs" / "archive" / "planning_scratchpad.md"
