@@ -111,3 +111,6 @@ todo/
 .todo/
 .git/todo/
 tasks.json
+
+# Local environment files (safe to ignore - do NOT commit secrets)
+.env.local

@@ -1,4 +1,16 @@
 {
+  // Use workspace .venv Python interpreter when available
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  // Point the ShellCheck extension to the project-local shellcheck binary
+  "shellcheck.executablePath": "${workspaceFolder}/.venv/bin/shellcheck",
+
+  // Keep editor from complaining about the workspace settings being missing
+  "files.exclude": {
+    "**/.env.local": true
+  }
+}
+{
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "editor.formatOnSave": true,

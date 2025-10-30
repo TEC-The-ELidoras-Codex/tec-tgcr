@@ -52,7 +52,6 @@ class ResearchTool:
     def _run_bing(self, query: str) -> str:
         client = self._ensure_client()
         params = {"q": query, "mkt": self.market, "count": self.max_results, "responseFilter": "Webpages"}
-        headers = {"Ocp-Apim-Subscription-Key": self.api_key}
         try:
             endpoint = str(self.endpoint)
             key = str(self.api_key)

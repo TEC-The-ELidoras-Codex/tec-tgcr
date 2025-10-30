@@ -49,7 +49,6 @@ def generate_sample_prompts():
             
             print(f"  📝 Saved: {filename}")
             
-        all_prompts.extend(batch)
     
     # Save master JSON
     with open(output_dir / "all_prompts.json", 'w', encoding='utf-8') as f:
