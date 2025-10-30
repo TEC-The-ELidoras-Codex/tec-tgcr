@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LuminAI Mascot — Tight Vector Variant
+  Touches ψʳ (structure) and Φᴱ (readability): modular SVG built from simple primitives, gradients, and mirrored groups.
+  Palette: Navy #0B1E3B, Violet #6A00F4, Cyan #00D5C4, Gold #F2C340, Shadow #0A0A0C
+  ViewBox: 1024×1024 (square, icon-ready). All strokes use round caps/joins for softness.
+  Author: Copilot (AI-assisted) per TEC/TGCR brand instructions.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-labelledby="title desc">
+    <title id="title">LuminAI Mascot — Tight Variant</title>
+    <desc id="desc">Simplified, structured SVG of the LuminAI mascot with crescent antennae, heterochromia rings, smile, chest psi, and converging ribbons.</desc>
+
+    <defs>
+        <style><![CDATA[
+      :root {
+        --navy: #0B1E3B;
+        --violet: #6A00F4;
+        --cyan: #00D5C4;
+        --gold: #F2C340;
+        --shadow: #0A0A0C;
+      }
+      .stroke-round { stroke-linecap: round; stroke-linejoin: round; }
+      .soft { filter: url(#soften); }
+    ]]>        </style>
+
+        <!-- Subtle soft glow for head/torso -->
+        <filter id="soften" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3"/>
+        </filter>
+
+        <!-- Gradients -->
+        <radialGradient id="gSkin" cx="50%" cy="45%" r="60%">
+            <stop offset="0%" stop-color="#38E6DA"/>
+            <stop offset="60%" stop-color="#00D5C4"/>
+            <stop offset="100%" stop-color="#0B76BF"/>
+        </radialGradient>
+
+        <linearGradient id="gRibbonL" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F2C340"/>
+            <stop offset="50%" stop-color="#6A00F4"/>
+            <stop offset="100%" stop-color="#00D5C4"/>
+        </linearGradient>
+        <linearGradient id="gRibbonR" x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#F2C340"/>
+            <stop offset="50%" stop-color="#6A00F4"/>
+            <stop offset="100%" stop-color="#00D5C4"/>
+        </linearGradient>
+
+        <linearGradient id="gAntennaL" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00D5C4"/>
+            <stop offset="100%" stop-color="#F2C340"/>
+        </linearGradient>
+        <linearGradient id="gAntennaR" x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#00D5C4"/>
+            <stop offset="100%" stop-color="#F2C340"/>
+        </linearGradient>
+
+        <!-- Crescent masks for moons -->
+        <mask id="crescentL" maskUnits="userSpaceOnUse">
+            <rect x="240" y="60" width="180" height="180" fill="#000"/>
+            <circle cx="320" cy="120" r="56" fill="#fff"/>
+            <circle cx="340" cy="110" r="44" fill="#000"/>
+        </mask>
+        <mask id="crescentR" maskUnits="userSpaceOnUse">
+            <rect x="604" y="60" width="180" height="180" fill="#000"/>
+            <circle cx="704" cy="120" r="56" fill="#fff"/>
+            <circle cx="684" cy="110" r="44" fill="#000"/>
+        </mask>
+    </defs>
+
+    <!-- Background is transparent by design for icon use -->
+
+    <!-- Antennae stems -->
+    <g class="stroke-round" fill="none" stroke-width="14">
+        <path d="M444 240 C410 180 360 150 312 156" stroke="url(#gAntennaL)"/>
+        <path d="M580 240 C614 180 664 150 712 156" stroke="url(#gAntennaR)"/>
+    </g>
+
+    <!-- Moons and dots -->
+    <g>
+        <circle cx="320" cy="120" r="56" fill="#00D5C4" mask="url(#crescentL)"/>
+        <circle cx="704" cy="120" r="56" fill="#F2C340" mask="url(#crescentR)"/>
+        <circle cx="350" cy="170" r="10" fill="#F2C340"/>
+        <circle cx="674" cy="170" r="10" fill="#6A00F4"/>
+    </g>
+
+    <!-- Head -->
+    <g id="head">
+        <circle cx="512" cy="352" r="150" fill="url(#gSkin)"/>
+        <!-- subtle lower face underlay -->
+        <ellipse cx="512" cy="420" rx="140" ry="80" fill="#00D5C4" opacity="0.12" class="soft"/>
+    </g>
+
+    <!-- Eyes: black discs + bold Φ (font-free) -->
+    <g id="eyes" class="stroke-round">
+        <g id="eyeL">
+            <circle cx="460" cy="360" r="44" fill="#0A0A0C"/>
+            <circle cx="460" cy="360" r="28" fill="none" stroke="#F2C340" stroke-width="12"/>
+            <line x1="460" y1="332" x2="460" y2="388" stroke="#F2C340" stroke-width="12"/>
+        </g>
+        <g id="eyeR">
+            <circle cx="564" cy="360" r="44" fill="#0A0A0C"/>
+            <circle cx="564" cy="360" r="28" fill="none" stroke="#6A00F4" stroke-width="12"/>
+            <line x1="564" y1="332" x2="564" y2="388" stroke="#6A00F4" stroke-width="12"/>
+        </g>
+    </g>
+
+    <!-- Smile -->
+    <path d="M486 410 Q512 430 538 410" fill="none" stroke="#00D5C4" stroke-width="10" class="stroke-round"/>
+
+    <!-- Torso core (tapered teardrop) -->
+    <g id="torso" transform="translate(0,-24)">
+        <path d="M512 462 C566 508 566 566 566 602 C566 676 540 720 512 742 C484 720 458 676 458 602 C458 566 458 508 512 462 Z" fill="url(#gSkin)" opacity="0.90" transform="translate(512,602) scale(1.15) translate(-512,-602)"/>
+        <!-- Chest Ψ (psi) -->
+        <g class="stroke-round" stroke="#0B1E3B" stroke-width="12" fill="none">
+            <line x1="512" y1="528" x2="512" y2="616"/>
+            <path d="M512 560 C496 560 490 544 490 528"/>
+            <path d="M512 560 C528 560 534 544 534 528"/>
+        </g>
+    </g>
+
+    <!-- Converging ribbons -->
+    <g id="ribbons" class="stroke-round" fill="none" stroke-width="28">
+        <path d="M360 748 C300 690 300 560 360 500 C420 448 452 520 408 564 C372 598 420 676 468 736" stroke="url(#gRibbonL)"/>
+        <path d="M664 748 C724 690 724 560 664 500 C604 448 572 520 616 564 C652 598 604 676 556 736" stroke="url(#gRibbonR)"/>
+    </g>
+
+    <!-- Removed outer frame and base shadow per request -->
+
+</svg>

@@ -104,6 +104,16 @@ assets:
       title: "LuminAI Finalized Render"
     - path: data/digital_assets/avatars/luminai_orb_singularity.svg
       title: "LuminAI Abstract Energy Form"
+    - path: data/digital_assets/avatars/tight.svg
+      title: "LuminAI Mascot — Tight Vector Variant"
+      note: "Clean, modular SVG using TEC palette; crescent antennae, heterochromia rings (Φ implied), chest ψ, converging ribbons. Icon-ready 1024×1024."
+    - path: data/digital_assets/avatars/luminai_mascot_final.svg
+      title: "LuminAI Mascot — Final Approved SVG"
+      note: "Approved tight vector variant duplicated for canonical use; transparent background, icon-ready 1024×1024."
+    - path: data/digital_assets/avatars/20251029_0450_Radiant_Axolotl-Bee_Mascot_remix_clean.svg
+      title: "Radiant Axolotl–Bee Mascot — Remix (Clean)"
+      note: "Transparent background, single path, 1024×1024, TEC palette compliant."
+      note: "Cleaned single-path remix: metadata normalized, TEC cyan fill, transparent background, 1024×1024 viewBox."
   brand:
     motifs:
       - path: data/digital_assets/brand/svg/glyph_ring.svg
