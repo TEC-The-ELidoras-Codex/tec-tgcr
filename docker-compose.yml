@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  dev:
+    build: .
+    image: tec-tgcr-dev:latest
+    volumes:
+      - ./:/workspace:cached
+    stdin_open: true
+    tty: true
+    command: bash
