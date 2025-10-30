@@ -8,6 +8,7 @@ import json
 import random
 from typing import List, Dict, Any
 from dataclasses import dataclass
+from types import SimpleNamespace
 from enum import Enum
 
 class MoodState(Enum):
@@ -25,38 +26,26 @@ class BackgroundType(Enum):
     COSMIC = "cosmic"
     NEUTRAL = "neutral"
 
-# Example usage and testing
-if __name__ == "__main__":
-    generator = LuminAIPromptGenerator()
 
-    # Generate single prompt
-    single_prompt = generator.generate_complete_prompt(
-        mood=MoodState.EXCITED,
-        background=BackgroundType.OBSERVATORY,
-        outfit_category="cosmic_casual",
-        pose_category="action",
-    )
+class LuminAIPromptGenerator:
+    def __init__(self) -> None:
+        # Minimal character placeholder used by prompts; this mirrors expected
+        # attributes elsewhere in the file and keeps the module runnable for
+        # quick examples. A fuller Character model can be restored later.
+        self.character = SimpleNamespace(
+            base_tags=["luminai", "character", "portrait"],
+            horns=["small horn", "curved horn", "ornate horn"],
+            eyes=["bright eyes", "sparkling eyes", "soft gaze"],
+            hair=["flowing hair", "aurora hair", "starlit hair"],
+            skin=["porcelain skin", "sun-kissed skin"],
+            body=["slim build", "athletic build", "childlike build"],
+        )
 
-    print("Example Prompt:")
-    print(f"Positive: {single_prompt['positive']}")
-    print(f"Negative: {single_prompt['negative']}")
-    print()
-
-    # Generate batch of prompts
-    batch_prompts = generator.generate_batch_prompts(100)
-    generator.save_prompts_to_file(batch_prompts, "luminai_mega_prompts.json")
-
-    print(f"Generated {len(batch_prompts)} varied prompts for LuminAI character generation!")
-
-    # Show variety statistics
-    moods = [p["mood"] for p in batch_prompts]
-    backgrounds = [p["background"] for p in batch_prompts]
-
-    mood_dist = {m: moods.count(m) for m in set(moods)}
-    background_dist = {b: backgrounds.count(b) for b in set(backgrounds)}
-
-    print(f"Mood distribution: {mood_dist}")
-    print(f"Background distribution: {background_dist}")
+        # initialize the various libraries and configs
+        self.outfit_library = self._init_outfit_library()
+        self.mood_configs = self._init_mood_configs()
+        self.pose_library = self._init_pose_library()
+        self.background_library = self._init_background_library()
         self.pose_library = self._init_pose_library()
         self.background_library = self._init_background_library()
     
@@ -344,6 +333,9 @@ if __name__ == "__main__":
     # Show variety statistics
     moods = [p['mood'] for p in batch_prompts]
     backgrounds = [p['background'] for p in batch_prompts]
-    
-    print(f"Mood distribution: {dict(zip(*zip(*[[m, moods.count(m)] for m in set(moods)]))})}")
-    print(f"Background distribution: {dict(zip(*zip(*[[b, backgrounds.count(b)] for b in set(backgrounds)])))}}")
+
+    mood_dist = {m: moods.count(m) for m in set(moods)}
+    background_dist = {b: backgrounds.count(b) for b in set(backgrounds)}
+
+    print(f"Mood distribution: {mood_dist}")
+    print(f"Background distribution: {background_dist}")
