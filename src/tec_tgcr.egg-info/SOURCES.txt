@@ -1,3 +1,4 @@
+LICENSE
 README.md
 pyproject.toml
 src/tec_tgcr/__init__.py
