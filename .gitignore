@@ -114,6 +114,7 @@ tasks.json
 
 # Local environment files (safe to ignore - do NOT commit secrets)
 .env.local
+.env.local.bak
 
 # Ignore raw brain dump transcripts (sensitive / large)
 brain_dump/

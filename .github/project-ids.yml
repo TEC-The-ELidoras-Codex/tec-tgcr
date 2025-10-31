@@ -1,0 +1,15 @@
+# Project identifiers for CI/workflows
+# Only store non-secret identifiers here. Do NOT store tokens or PATs in this file.
+
+PROJECT_NUMBER: 6
+PROJECT_ID: null # replace with the GraphQL node id (e.g. PN_kw...) after you fetch it locally
+
+# How to fetch the PROJECT_ID locally (do not paste tokens here):
+# Recommended (use gh CLI after 'gh auth login --web'):
+#   gh api graphql -f query='query { organization(login:"TEC-The-ELidoras-Codex") { projectV2(number:6) { id } } }' | jq -r '.data.organization.projectV2.id'
+# Alternative (curl + token):
+#   export GITHUB_TOKEN="<your_token_with_read:project_scope>"
+#   curl -s -H "Authorization: bearer $GITHUB_TOKEN" -X POST -d '{"query":"query { organization(login:\"TEC-The-ELidoras-Codex\") { projectV2(number:6) { id } } }"}' https://api.github.com/graphql | jq -r '.data.organization.projectV2.id'
+#
+# After you run one of the commands above, paste only the returned PROJECT_ID (a string) into this file
+# in place of 'null' OR paste the id here and I'll update this file and commit for you.
