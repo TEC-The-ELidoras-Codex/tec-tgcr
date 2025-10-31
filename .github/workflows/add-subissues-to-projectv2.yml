@@ -1,0 +1,96 @@
+name: Add sub-issues to Project (v2)
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+jobs:
+  add-to-projectv2:
+    name: Add referenced issues to Project (v2)
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+      contents: read
+
+    env:
+      # Configure these as repository secrets
+      # PROJECT_NUMBER: numeric project number shown in the Projects (beta) URL (e.g. the '5' in /projects/5)
+      # PROJECTS_TOKEN: PAT or token with Projects (beta) write access (recommended)
+      PROJECT_NUMBER: ${{ secrets.PROJECT_NUMBER }}
+
+    steps:
+      - name: Add referenced issues to projectV2
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.PROJECTS_TOKEN || github.token }}
+          script: |
+            // Workflow overview:
+            // - parse issue body for references (#123 or full URLs)
+            // - map each reference to a GraphQL Issue node id
+            // - lookup the target ProjectV2 node id using the org and project number
+            // - call addProjectV2ItemById GraphQL mutation to add the issue to the project
+
+            const projectNumber = parseInt(process.env.PROJECT_NUMBER, 10);
+            const orgLogin = context.repo.owner;
+
+            if (!projectNumber) {
+              throw new Error('PROJECT_NUMBER is not configured. Set the repository secret PROJECT_NUMBER to the project number.');
+            }
+
+            const body = context.payload.issue && context.payload.issue.body ? context.payload.issue.body : '';
+            if (!body) {
+              console.log('Empty issue body — nothing to add.');
+              return;
+            }
+
+            // collect unique references
+            const refs = new Set();
+            const issueNumberRegex = /#(\d+)/g;
+            const urlRegex = /https:\/\/github\.com\/([^\/]+)\/([^\/]+)\/issues\/(\d+)/g;
+
+            let m;
+            while ((m = issueNumberRegex.exec(body)) !== null) {
+              refs.add(`${context.repo.owner}/${context.repo.repo}/${m[1]}`);
+            }
+            while ((m = urlRegex.exec(body)) !== null) {
+              refs.add(`${m[1]}/${m[2]}/${m[3]}`);
+            }
+
+            if (refs.size === 0) {
+              console.log('No referenced sub-issues found.');
+              return;
+            }
+
+            // 1) Lookup the ProjectV2 node id for this organization by project number
+            const projectQuery = `query($org:String!, $num:Int!){ organization(login:$org){ projectV2(number:$num){ id title } } }`;
+            const projectResp = await github.graphql(projectQuery, { org: orgLogin, num: projectNumber });
+            const projectNode = projectResp && projectResp.organization && projectResp.organization.projectV2;
+            if (!projectNode || !projectNode.id) {
+              throw new Error(`Could not find projectV2 number ${projectNumber} in organization ${orgLogin}`);
+            }
+            const projectId = projectNode.id;
+            console.log(`Found projectV2: ${projectNode.title} (node id=${projectId})`);
+
+            // GraphQL mutation template
+            const addMutation = `mutation($projectId: ID!, $contentId: ID!){ addProjectV2ItemById(input:{projectId:$projectId, contentId:$contentId}){ item{ id } } }`;
+
+            for (const ref of refs) {
+              try {
+                const [rOwner, rRepo, rNum] = ref.split('/');
+                console.log(`Resolving ${rOwner}/${rRepo}#${rNum}`);
+                // fetch issue node id
+                const issueQuery = `query($owner:String!, $repo:String!, $num:Int!){ repository(owner:$owner, name:$repo){ issue(number:$num){ id } } }`;
+                const issueResp = await github.graphql(issueQuery, { owner: rOwner, repo: rRepo, num: parseInt(rNum, 10) });
+                const issueNode = issueResp && issueResp.repository && issueResp.repository.issue;
+                if (!issueNode || !issueNode.id) {
+                  console.log(`Could not find issue ${rOwner}/${rRepo}#${rNum}`);
+                  continue;
+                }
+
+                // add to projectV2
+                await github.graphql(addMutation, { projectId: projectId, contentId: issueNode.id });
+                console.log(`Added ${rOwner}/${rRepo}#${rNum} to projectV2 ${projectNumber}`);
+              } catch (err) {
+                console.log(`Failed to add ${ref}: ${err.message}`);
+              }
+            }

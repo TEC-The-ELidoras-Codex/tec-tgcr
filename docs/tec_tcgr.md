@@ -14,7 +14,7 @@ Primary principles
 Recommended metadata schema (per record)
 ---------------------------------------
 - id: anonymous record id (uuid)
-- source_file: path or origin (e.g., `brain_dump/gpt103025`)
+- source_file: path or origin (e.g., `docs/archive/notes/2025-10-30-gpt103025.md`)
 - date_collected: ISO date
 - speaker_id: anonymized speaker id (e.g., speaker_001)
 - raw_text: original verbatim text (preserve punctuation, capitalization, and offensive tokens)
@@ -31,7 +31,7 @@ JSON example
 ------------
 {
   "id": "uuid-0000",
-  "source_file": "brain_dump/gpt103025",
+  "source_file": "docs/archive/notes/2025-10-30-gpt103025.md",
   "date_collected": "2025-10-30",
   "speaker_id": "speaker_001",
   "raw_text": "I’m a Addict I’m a Junkie I made my own word up... Kaznak...",
@@ -50,6 +50,12 @@ Handling offensive language and researcher notes
 - Keep raw_text untouched. Never alter the speaker's words in the archival raw field.
 - Provide a sanitized_text for public outputs when necessary, with a short rationale in `notes`.
 - In annotations, include `offensive_intent` to capture whether language is used for emphasis, provocation, identity reclamation, or otherwise.
+
+Automation
+----------
+- Store raw transcripts as markdown notes under `docs/archive/notes/` with YAML front matter that defines the `archive.slug` and `archive.basename` keys.
+- Run `python scripts/parse_brain_dump.py` to regenerate the JSON/CSV snapshots under `data/archives/transcripts/<slug>/`.
+- Update `data/knowledge_map.yml` if you add a new archive slug so the dataset is discoverable.
 
 Search & revisions
 ------------------

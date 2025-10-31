@@ -1,0 +1,102 @@
+name: Add sub-issues to Project (classic)
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+jobs:
+  add-subissues:
+    name: Add referenced sub-issues to project
+    runs-on: ubuntu-latest
+    # ensures the job can create project cards
+    permissions:
+      issues: read
+      contents: read
+      actions: read
+      security-events: read
+      checks: read
+
+    env:
+      # Supply these as repository secrets or repository variables
+      # PROJECT_ID: numeric classic project id (e.g. 5)
+      # PROJECT_COLUMN_NAME: optional, column name to add cards into (defaults to first column)
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      PROJECT_COLUMN_NAME: ${{ secrets.PROJECT_COLUMN_NAME }}
+
+    steps:
+      - name: Parse issue & add sub-issues to project
+        uses: actions/github-script@v6
+        with:
+          # Prefer a PAT stored in secrets.PROJECTS_TOKEN (recommended) otherwise falls back to github.token
+          github-token: ${{ secrets.PROJECTS_TOKEN || github.token }}
+          script: |
+            // This script will:
+            // 1) parse the current issue body for referenced issues (both #123 and full GitHub issue URLs)
+            // 2) add each referenced issue as a card into the specified CLASSIC Project (project id)
+            // Requirements: set repository secret PROJECT_ID (numeric) and optionally PROJECTS_TOKEN (PAT with projects:write)
+
+            const projectId = process.env.PROJECT_ID;
+            const columnName = process.env.PROJECT_COLUMN_NAME;
+
+            if (!projectId) {
+              throw new Error('PROJECT_ID is not set. Create a repository secret named PROJECT_ID with the project number.');
+            }
+
+            const body = context.payload.issue && context.payload.issue.body ? context.payload.issue.body : '';
+            if (!body) {
+              console.log('Empty issue body — no sub-issues to add.');
+              return 'no-body';
+            }
+
+            // collect refs as owner/repo/number strings
+            const refs = new Set();
+            const issueNumberRegex = /#(\d+)/g; // matches #123 (repo-local)
+            const urlRegex = /https:\/\/github\.com\/([^\/]+)\/([^\/]+)\/issues\/(\d+)/g; // full issue URLs
+
+            let m;
+            while ((m = issueNumberRegex.exec(body)) !== null) {
+              // local repo reference
+              refs.add(`${context.repo.owner}/${context.repo.repo}/${m[1]}`);
+            }
+            while ((m = urlRegex.exec(body)) !== null) {
+              refs.add(`${m[1]}/${m[2]}/${m[3]}`);
+            }
+
+            if (refs.size === 0) {
+              console.log('No referenced sub-issues found in the issue body. Nothing to do.');
+              return 'no-refs';
+            }
+
+            // load project columns (classic Projects API)
+            const columnsResp = await github.rest.projects.listColumns({ project_id: parseInt(projectId, 10) });
+            if (!columnsResp || !columnsResp.data || columnsResp.data.length === 0) {
+              throw new Error(`No columns found for project ${projectId}. Is this a classic Project (not the Projects (beta) projectV2)?`);
+            }
+
+            let column = null;
+            if (columnName) {
+              column = columnsResp.data.find(c => c.name && c.name.toLowerCase() === columnName.toLowerCase());
+            }
+            if (!column) {
+              column = columnsResp.data[0];
+            }
+
+            const columnId = column.id;
+            console.log(`Using project column: ${column.name} (id=${columnId})`);
+
+            for (const ref of refs) {
+              try {
+                const [rOwner, rRepo, rNum] = ref.split('/');
+                console.log(`Processing ${rOwner}/${rRepo}#${rNum}`);
+                const issueResp = await github.rest.issues.get({ owner: rOwner, repo: rRepo, issue_number: Number(rNum) });
+                const contentId = issueResp.data.id;
+                // Create a project card for an issue
+                await github.rest.projects.createCard({ column_id: columnId, content_id: contentId, content_type: 'Issue' });
+                console.log(`Added ${rOwner}/${rRepo}#${rNum} to project ${projectId}`);
+              } catch (err) {
+                // log and continue — e.g., 422 (already exists), 403/404 (permissions)
+                console.log(`Could not add ${ref}: ${err.message}`);
+              }
+            }
+
+            return 'done';

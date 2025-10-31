@@ -28,4 +28,10 @@ pip install -e .
 
 ---
 
+## Documentation Map
+
+- Core guides live in `docs/technical/`, `docs/brand/`, and `docs/ops/`
+- Operating updates are organized under `docs/updates/` by year
+- Historical notes, PDFs, and retired material live in `docs/archive/`
+
 © The Elidoras Codex Initiative — Open under the MIT License.

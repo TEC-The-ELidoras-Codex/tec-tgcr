@@ -23,7 +23,7 @@ id,source_file,date_collected,speaker_id,composite_gender,composite_age_range,co
 
 Sample row
 ---------
-uuid-0000,brain_dump/gpt103025,2025-10-30,speaker_001,non-disclosed,45-54,status:past_substance_use,TRUE,TRUE,"Speaker reclaims label 'Kaznak' — preserve raw_text; sanitize for public releases."
+uuid-0000,docs/archive/notes/2025-10-30-gpt103025.md,2025-10-30,speaker_001,non-disclosed,45-54,status:past_substance_use,TRUE,TRUE,"Speaker reclaims label 'Kaznak' — preserve raw_text; sanitize for public releases."
 
 Notes on aggregation and privacy
 --------------------------------

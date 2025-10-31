@@ -28,6 +28,8 @@
 - Ops: `docs/ops/` (secrets, CI/CD, WordPress, Notion, exit plans)
 - Technical: `docs/technical/` (architecture, runners, pipelines)
 - Wireframes: `docs/wireframes/`
+- Updates: `docs/updates/` (chronological operating reports; subfolders by year)
+- Archive: `docs/archive/` (PDFs, historical notes, deprecated assets — not for active edits)
 
 ## Knowledge & Provenance
 

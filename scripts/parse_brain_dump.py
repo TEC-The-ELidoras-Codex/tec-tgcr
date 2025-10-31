@@ -1,201 +1,169 @@
 #!/usr/bin/env python3
-"""Parse brain_dump/gpt103025 and extract user 'You said' blocks into anonymized assets.
+"""Extract transcript datasets from archived field notes.
 
-Outputs:
-- assets/tec_tcgr_samples.json (array of records)
-- assets/tec_tcgr_samples.csv  (CSV with headers)
+Every markdown file in ``docs/archive/notes`` (except README) can define
+front matter describing where its transcripts should live:
 
-Conservative defaults: composite_gender='non-disclosed', age_range='non-disclosed', status='unverified'
+```
+---
+archive:
+  slug: 2025-10-30-food-stamp-panic
+  basename: tec_tcgr_samples
+  title: Food Stamp Safety Panic Transcript
+---
+```
+
+The ``slug`` determines the subdirectory that will be created beneath
+``data/archives/transcripts/`` and ``basename`` controls the output filename
+prefix. The script parses each note, looks for repeated ``You said:`` /
+``ChatGPT said:`` blocks, and writes CSV + JSON snapshots for tooling.
 """
-import re
-import os
-import json
+from __future__ import annotations
+
 import csv
+import json
+import re
+import sys
 import uuid
-from datetime import datetime
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, Tuple
 
-ROOT = os.path.dirname(os.path.dirname(__file__))
-BRAIN = os.path.join(ROOT, "brain_dump", "gpt103025")
-OUT_DIR = os.path.join(ROOT, "assets")
-JSON_OUT = os.path.join(OUT_DIR, "tec_tcgr_samples.json")
-CSV_OUT = os.path.join(OUT_DIR, "tec_tcgr_samples.csv")
+import yaml
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+NOTES_DIR = REPO_ROOT / "docs" / "archive" / "notes"
+TRANSCRIPTS_ROOT = REPO_ROOT / "data" / "archives" / "transcripts"
+README_NAME = "README.md"
 
-def read_brain():
-    with open(BRAIN, "r", encoding="utf-8", errors="replace") as f:
-        return f.read()
-
-
-def extract_you_said_blocks(text):
-    # Match sections that start with 'You said:' (or variants) and capture until the next marker
-    pattern = re.compile(
-        r"(?s)(?:^|\n)(?:You said:|You asked:|You wrote:)\s*(.*?)\s*(?=(?:\n(?:You said:|ChatGPT said:|You asked:|You wrote:)|\Z))"
-    )
-    matches = pattern.findall(text)
-    return [m.strip() for m in matches if m.strip()]
+USER_BLOCK_PATTERN = re.compile(
+    r"You said:\n(?P<user>.*?)\nChatGPT said:\n(?P<assistant>.*?)(?=\nYou said:|\Z)",
+    re.S,
+)
 
 
-def build_records(blocks, source_mtime=None):
-    records = []
-    for blk in blocks:
-        rec = {
-            "id": str(uuid.uuid4()),
-            "date": source_mtime or datetime.utcnow().isoformat() + "Z",
-            "composite_gender": "non-disclosed",
-            "age_range": "non-disclosed",
-            "status": "unverified",
-            "raw_text": blk,
+@dataclass
+class NoteConfig:
+    slug: str
+    basename: str
+    source: Path
+    title: str | None = None
+
+
+@dataclass
+class TranscriptRecord:
+    id: str
+    collected_at: str
+    speaker_id: str
+    raw_text: str
+
+    def as_dict(self) -> Dict[str, str]:
+        return {
+            "id": self.id,
+            "date": self.collected_at,
+            "speaker_id": self.speaker_id,
+            "raw_text": self.raw_text,
         }
-        records.append(rec)
-    return records
 
 
-def write_outputs(records):
-    os.makedirs(OUT_DIR, exist_ok=True)
-    # JSON
-    with open(JSON_OUT, "w", encoding="utf-8") as jf:
-        json.dump(records, jf, ensure_ascii=False, indent=2)
-    # CSV
-    with open(CSV_OUT, "w", encoding="utf-8", newline="") as cf:
-        writer = csv.DictWriter(
-            cf,
-            fieldnames=[
-                "id",
-                "date",
-                "composite_gender",
-                "age_range",
-                "status",
-                "raw_text",
-            ],
+def split_front_matter(content: str) -> Tuple[dict, str]:
+    lines = content.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return {}, content
+    try:
+        end_idx = lines.index("---", 1)
+    except ValueError as exc:
+        raise ValueError("Front matter not closed with '---'") from exc
+    front_matter = "\n".join(lines[1:end_idx])
+    body = "\n".join(lines[end_idx + 1 :])
+    data = yaml.safe_load(front_matter) or {}
+    return data, body
+
+
+def load_note_config(path: Path) -> Tuple[NoteConfig, str]:
+    content = path.read_text(encoding="utf-8")
+    meta_raw, body = split_front_matter(content)
+    archive_meta = (meta_raw or {}).get("archive", {})
+    slug = archive_meta.get("slug", path.stem)
+    basename = archive_meta.get("basename", slug)
+    title = archive_meta.get("title")
+    return NoteConfig(slug=slug, basename=basename, source=path, title=title), body
+
+
+def parse_transcripts(content: str, collected_at: str) -> list[TranscriptRecord]:
+    transcripts: list[TranscriptRecord] = []
+    for idx, match in enumerate(USER_BLOCK_PATTERN.finditer(content), start=1):
+        user_text = match.group("user").strip()
+        assistant_text = match.group("assistant").strip()
+        combined = f"USER:\n{user_text}\n\nASSISTANT:\n{assistant_text}"
+        transcripts.append(
+            TranscriptRecord(
+                id=str(uuid.uuid4()),
+                collected_at=collected_at,
+                speaker_id=f"speaker_{idx:03d}",
+                raw_text=combined,
+            )
         )
+    return transcripts
+
+
+def write_dataset(config: NoteConfig, transcripts: list[TranscriptRecord]) -> None:
+    if not transcripts:
+        print(f"No transcripts found in {config.source.relative_to(REPO_ROOT)}; skipping")
+        return
+
+    output_dir = TRANSCRIPTS_ROOT / config.slug
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    json_path = output_dir / f"{config.basename}.json"
+    csv_path = output_dir / f"{config.basename}.csv"
+
+    json_data = [record.as_dict() for record in transcripts]
+    json_path.write_text(json.dumps(json_data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    with csv_path.open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=["id", "date", "speaker_id", "raw_text"])
         writer.writeheader()
-        for r in records:
-            writer.writerow(r)
+        for record in transcripts:
+            writer.writerow(record.as_dict())
+
+    print(
+        "Wrote",
+        json_path.relative_to(REPO_ROOT),
+        "and",
+        csv_path.relative_to(REPO_ROOT),
+    )
 
 
-def main():
-    if not os.path.exists(BRAIN):
-        print("Brain dump file not found:", BRAIN)
-        return 1
-    st = os.stat(BRAIN)
-    mtime = datetime.utcfromtimestamp(st.st_mtime).isoformat() + "Z"
-    text = read_brain()
-    blocks = extract_you_said_blocks(text)
-    print(f"Found {len(blocks)} user blocks (You said / You asked / You wrote)")
-    records = build_records(blocks, source_mtime=mtime)
-    write_outputs(records)
-    print("Wrote", JSON_OUT, "and", CSV_OUT)
+def discover_notes() -> list[Path]:
+    if not NOTES_DIR.exists():
+        return []
+    return sorted(
+        [p for p in NOTES_DIR.glob("*.md") if p.name != README_NAME],
+        key=lambda p: p.name,
+    )
+
+
+def main() -> int:
+    notes = discover_notes()
+    if not notes:
+        print("No archive notes found.")
+        return 0
+
+    for note in notes:
+        config, body = load_note_config(note)
+        collected_at = datetime.fromtimestamp(note.stat().st_mtime, tz=timezone.utc).isoformat().replace(
+            "+00:00", "Z"
+        )
+        transcripts = parse_transcripts(body, collected_at)
+        print(
+            f"Parsed {len(transcripts)} transcript blocks from",
+            note.relative_to(REPO_ROOT),
+        )
+        write_dataset(config, transcripts)
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-#!/usr/bin/env python3
-"""Parse brain_dump/gpt103025 into TEC_TCGR sample JSON and CSV records.
-
-Creates:
-- assets/tec_tcgr_samples.json
-- assets/tec_tcgr_samples.csv
-
-This script is idempotent and safe to run multiple times.
-"""
-import re
-import json
-import csv
-import uuid
-from datetime import date
-
-SRC = "brain_dump/gpt103025"
-IN = SRC
-OUT_JSON = "assets/tec_tcgr_samples.json"
-OUT_CSV = "assets/tec_tcgr_samples.csv"
-
-
-def detect_offensive(text):
-    # crude list of tokens that likely indicate offensive language
-    toks = ["crackhead", "crackheads", "junkie", "addict", "fuck", "shit"]
-    t = text.lower()
-    return any(tok in t for tok in toks)
-
-
-def detect_owner_narrative(text):
-    t = text
-    if "kaznak" in t.lower():
-        return True
-    if re.search(r"i\W*'?m\W*a\W*addict", t.lower()):
-        return True
-    if "i made my own word" in t.lower():
-        return True
-    return False
-
-
-def parse(content):
-    # Split on 'You said:' blocks, capturing user and assistant
-    pattern = re.compile(
-        r"You said:\n(.*?)\nChatGPT said:\n(.*?)(?=\nYou said:|\Z)", re.S
-    )
-    matches = pattern.findall(content)
-    records = []
-    for i, (user_text, assistant_text) in enumerate(matches, start=1):
-        uid = str(uuid.uuid4())
-        raw_text = user_text.strip()
-        assistant = assistant_text.strip()
-        combined_raw = "USER:\n" + raw_text + "\n\nASSISTANT:\n" + assistant
-        offensive = detect_offensive(raw_text) or detect_offensive(assistant)
-        owner_flag = detect_owner_narrative(raw_text) or detect_owner_narrative(
-            assistant
-        )
-        # guess composite status
-        status = "non-disclosed"
-        if re.search(r"addict|junkie|substance use|drug", raw_text, re.I):
-            status = "status:past_substance_use"
-        rec = {
-            "id": uid,
-            "source_file": SRC,
-            "date_collected": date.today().isoformat(),
-            "speaker_id": f"speaker_{i:03d}",
-            "raw_text": combined_raw,
-            "sanitized_text": "",
-            "offensive_language_flag": offensive,
-            "offensive_intent": "reclaimed" if owner_flag else "unknown",
-            "owner_narrative_flag": owner_flag,
-            "composite_gender": "non-disclosed",
-            "composite_age_range": "non-disclosed",
-            "composite_status": status,
-            "notes": "Auto-parsed record. Manual review recommended before publication.",
-        }
-        records.append(rec)
-    return records
-
-
-def main():
-    with open(IN, "r", encoding="utf-8") as f:
-        content = f.read()
-    records = parse(content)
-    # write JSON
-    with open(OUT_JSON, "w", encoding="utf-8") as j:
-        json.dump(records, j, ensure_ascii=False, indent=2)
-    # write CSV header
-    fieldnames = [
-        "id",
-        "source_file",
-        "date_collected",
-        "speaker_id",
-        "composite_gender",
-        "composite_age_range",
-        "composite_status",
-        "offensive_language_flag",
-        "owner_narrative_flag",
-        "raw_text",
-        "notes",
-    ]
-    with open(OUT_CSV, "w", encoding="utf-8", newline="") as c:
-        writer = csv.DictWriter(c, fieldnames=fieldnames)
-        writer.writeheader()
-        for r in records:
-            writer.writerow({k: r.get(k, "") for k in fieldnames})
-    print(f"Wrote {len(records)} records to {OUT_JSON} and {OUT_CSV}")
-
-
-if __name__ == "__main__":
-    main()

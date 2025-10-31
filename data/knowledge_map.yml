@@ -4,6 +4,7 @@ overview:
   structure:
     lore: "Canon mythology, narratives, brand identity"
     docs: "Technical documentation (ops/, technical/)"
+    archive: "Historical docs, PDFs, transcript snapshots"
     sources: "External content and ideas"
     data: "Digital assets, archives, financial records"
     scripts: "Automation and tooling"
@@ -164,6 +165,15 @@ archives:
     title: "LuminAI Origin Arc Node"
   - path: data/evidence/Symbolism_and_Synchronicity.pdf
     title: "Symbolism and Synchronicity — Research Document"
+  - path: data/archives/transcripts/2025-10-30-food-stamp-panic/tec_tcgr_samples.csv
+    title: "Food Stamp Panic Samples (CSV)"
+    note: "Transcript snapshot relocated from legacy assets directory"
+  - path: data/archives/transcripts/2025-10-30-food-stamp-panic/tec_tcgr_samples.json
+    title: "Food Stamp Panic Samples (JSON)"
+    note: "Structured transcript archive for analysis tooling"
+  - path: docs/archive/notes/2025-10-30-gpt103025.md
+    title: "Field Note: Food Stamp Safety Panic Conversation"
+    note: "Migrated brain dump preserved for provenance"
 
 tools_and_scripts:
   - path: scripts/export_svg_previews.py
