@@ -119,3 +119,6 @@ tasks.json
 # Ignore raw brain dump transcripts (sensitive / large)
 brain_dump/
 /secrets-local/
+
+# Ignore generated ingest JSONs for brand personal notes
+data/digital_assets/brand/ingests/
