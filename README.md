@@ -229,5 +229,36 @@ Build gracefully, test rigorously, and keep resonance high.
 
 
 
+---
+
+## CI: Build & publish Docker image to GitHub Container Registry (GHCR)
+
+This repository includes a GitHub Actions workflow that builds the repository Docker image and pushes it to GitHub Container Registry (ghcr.io). The workflow runs on pushes to `main` and when you create a tag starting with `v` (for example `v1.2.3`).
+
+What the workflow does
+- Checks out the repository
+- Sets up buildx and QEMU (optional multi-arch)
+- Logs in to `ghcr.io` using the repository `GITHUB_TOKEN` and `packages: write` permission
+- Builds the image and pushes two tags:
+   - `ghcr.io/<owner>/tec-tgcr:<commit-sha>`
+   - `ghcr.io/<owner>/tec-tgcr:latest` (for main branch builds)
+
+How to trigger a publish
+- Push to `main` to build and push (push will tag the image as `latest`).
+- Create and push a semver tag to publish a specific release image, e.g.:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Repository settings / notes
+- The workflow uses the automatically-provided `GITHUB_TOKEN` and requires the `permissions` block included in the workflow (`packages: write`). If your organization blocks `GITHUB_TOKEN` from writing packages, create a PAT with `packages: write` and store it in the repository secrets as `CR_PAT`, then update the workflow to use that secret for login.
+- After the workflow completes the image will be available at `https://ghcr.io/<owner>/tec-tgcr`.
+
+
+
+
+
 
 

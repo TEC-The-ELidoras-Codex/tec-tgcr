@@ -1,6 +1,8 @@
 LICENSE
 README.md
 pyproject.toml
+src/resonance_notebook/__init__.py
+src/resonance_notebook/ingest.py
 src/tec_tgcr/__init__.py
 src/tec_tgcr/cli.py
 src/tec_tgcr/config.py
@@ -43,5 +45,6 @@ src/tec_tgcr/tools/sharepoint.py
 src/tec_tgcr/tools/spotify_resonance.py
 src/tec_tgcr/utils/spotify_url.py
 tests/test_agent.py
+tests/test_ingest.py
 tests/test_resonance_evaluator.py
 tests/test_spotify_url.py

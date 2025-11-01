@@ -1,6 +1,0 @@
-
-<!-- DEPRECATED OPERATIONAL SIGN: preserved for archival use. See docs/tec_tcgr.md for canonical project guidance. -->
-NOTICE: We are NOT confirming any benefits outage.
-Please line up calmly — we will serve everyone in order.
-If you need private assistance, please see Customer Service.
-Thank you for your patience.

@@ -18,7 +18,6 @@ WORKDIR /workspace
 # Copy project files and install editable with dev extras
 COPY pyproject.toml pyproject.toml
 COPY src src
-COPY tests tests
 COPY README.md README.md
 
 RUN python -m pip install --upgrade pip setuptools wheel \
