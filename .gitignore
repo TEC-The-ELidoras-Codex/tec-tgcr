@@ -118,3 +118,4 @@ tasks.json
 
 # Ignore raw brain dump transcripts (sensitive / large)
 brain_dump/
+/secrets-local/
