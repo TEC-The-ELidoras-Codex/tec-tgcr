@@ -92,9 +92,10 @@ See `docs/brand/canonical-marks.md` for full checklist and reference angles.
 - **Source of Truth**: Update `BrandKit.md`, `VISUAL_IDENTITY.md`, and this file simultaneously; cross-link assets in `data/knowledge_map.yml`.
 - **Asset Workflow**:
   1. Design in SVG referencing palette tokens.
-  2. Export via `scripts/export_brand_assets.py` (batch SVG→PNG; install `cairosvg`).
-  3. Place exports in `exports/brand/` (non-canonical) and commit SVG originals only.
-  4. Append provenance metadata (tool, prompt, operator).
+  2. For embedded bitmaps (e.g., `lore/brand/LUMINA_CANON.svg`), run `python scripts/extract_embedded_png.py` to refresh the canonical PNG.
+  3. Export additional variants via `scripts/export_brand_assets.py` (batch SVG→PNG; install `cairosvg`).
+  4. Place exports in `exports/brand/` (non-canonical) and commit SVG originals only.
+  5. Append provenance metadata (tool, prompt, operator).
 - **Accessibility**: Maintain WCAG AA contrast, provide descriptive alt text, ensure glyph meaning does not depend solely on color.
 - **Heterochromia & Blush**: Never omit dual-eye coloration; reserve First Blush gradient for emotional beats or consent acknowledgments.
 - **File Naming**: lowercase, underscores, semantic (e.g., `luminai_fusion_icon.svg`).

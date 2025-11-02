@@ -1,0 +1,34 @@
+name: provenance-manifest
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate personal canon bundle
+        run: |
+          python3 scripts/export_canon_bundle.py \
+            --output artifacts/personal_canon.zip \
+            --manifest artifacts/personal_canon_manifest.json
+
+      - name: Generate run manifest
+        run: |
+          python3 scripts/generate_run_manifest.py \
+            --agent "ci/provenance" \
+            --commit "${GITHUB_SHA}" \
+            --inputs docs/Resonance_Thesis.md docs/TEC_LEXICON.md data/archives/knowledge_map_old.yml "docs/Thesis/Elidoras Codex Thesis.pdf" \
+            --outputs artifacts/personal_canon_manifest.json artifacts/personal_canon.zip
+
+      - name: Upload provenance artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-bundles
+          path: |
+            artifacts/personal_canon.zip
+            artifacts/personal_canon_manifest.json
+            artifacts/run_manifest.json
