@@ -12,3 +12,12 @@ get_github_app_installation_token.py
   3) Run: `python scripts/get_github_app_installation_token.py`
 
 Security note: Never commit real private keys or client secrets. Use GitHub repository secrets for Actions and keep local secrets in `.env.local` (which is gitignored).
+
+export_brand_assets.py
+
+- Batch converts canonical brand SVGs (glyphs, mascot, marketplace header) into PNG exports referenced in `docs/brand/Brand.md`.
+- Requirements: `pip install cairosvg`
+- Usage:
+  1) `python scripts/export_brand_assets.py` — exports all targets.
+  2) `python scripts/export_brand_assets.py --list` — show available keys.
+  3) `python scripts/export_brand_assets.py --only mascot-512 marketplace-header` — export specific assets.

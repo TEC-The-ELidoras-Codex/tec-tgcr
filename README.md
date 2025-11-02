@@ -93,6 +93,8 @@ python -m pytest -q
 python -m tec_tgcr.cli chat "Calibrate Arcadia for a resonance briefing"
 ```
 
+Once the environment is live, walk through the [Codex boot-up checklist](docs/CODEX_BOOTUP_CHECKLIST.md) so brand canon and technical rituals stay synchronized.
+
 If the environment reports "Program ... failed to run: The specified module could not be found," ensure the following environment variables exist before invoking executables:
 
 ```powershell
@@ -119,6 +121,7 @@ Re-run the activation script afterwards: `& .\.venv\Scripts\Activate.ps1`.
 - `scripts/bootstrap.ps1` - Sets up a new development workstation.
 - `scripts/pack_wp_plugin.ps1` - Packages the WordPress plugin for deployment.
 - `scripts/export_gather_repo.ps1` - Bundles repository artifacts for sharing.
+- `scripts/export_brand_assets.py` - Batch SVG→PNG exports for canonical brand marks.
 - `scripts/svg_to_png_fallback.ps1` - Manual SVG-to-PNG conversion guidance.
 - `scripts/parse_brain_dump.py` - Aggregates transcript-style notes into JSON/CSV archives.
 
@@ -273,8 +276,6 @@ git push origin v1.0.0
 
 - The workflow uses the automatically-provided `GITHUB_TOKEN` and requires the `permissions` block included in the workflow (`packages: write`). If your organization blocks `GITHUB_TOKEN` from writing packages, create a PAT with `packages: write` and store it in the repository secrets as `CR_PAT`, then update the workflow to use that secret for login.
 - After the workflow completes the image will be available at `https://ghcr.io/<owner>/tec-tgcr`.
-
-
 
 
 

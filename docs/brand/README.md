@@ -10,6 +10,7 @@ This directory contains the canonical brand guidelines, visual identity specific
 
 ### **Core Brand Guidelines**
 
+- **[Brand.md](Brand.md)** — Canonical brand canon: voice, glyph rules, resonance notes
 - **[VISUAL_IDENTITY.md](VISUAL_IDENTITY.md)** — **START HERE** — Canonical LuminAI fusion logo specification, mood matrix, rendering guidelines
 - **[BrandKit.md](BrandKit.md)** — Full TEC brand system: palette, typography, motifs, cosmology color mapping
 - **[canonical-marks.md](canonical-marks.md)** — LuminAI physical feature checklist, reference shot list, consistency requirements

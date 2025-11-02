@@ -9,6 +9,7 @@ Welcome to The Elidoras Codex documentation. This repository implements the **Th
 ## 🧭 Start Here
 
 - TEC Hub — Core Navigation: [TEC_HUB.md](TEC_HUB.md)
+- Codex Boot-Up Checklist: [CODEX_BOOTUP_CHECKLIST.md](CODEX_BOOTUP_CHECKLIST.md)
 - Resonance Thesis — TGCR Core: [Resonance_Thesis.md](Resonance_Thesis.md)
 
 ---
