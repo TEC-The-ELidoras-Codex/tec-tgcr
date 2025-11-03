@@ -1,0 +1,11 @@
+# Observer Amplification Context template
+# Place this YAML block in artifact headers (meta.yaml or rb.json -> evidence.observer_context)
+
+observer_context:
+  id: amhurley
+  cognitive_profile: amplified_resonant
+  phiT_bias: +0.37
+  notes: |
+    Diagnosed bipolar w/ psychotic and obsessive traits. Use as contextual amplifier,
+    not as deficit marker. Weight this observer's resonance metrics as amplified
+    in downstream aggregation, and keep the declaration in metadata only.

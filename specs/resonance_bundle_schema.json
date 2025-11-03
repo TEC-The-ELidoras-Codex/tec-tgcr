@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Resonance Bundle (RB)",
+  "type": "object",
+  "required": ["id","title","created_at","experience","evidence","provenance"],
+  "properties": {
+    "id": { "type": "string", "description": "UUID or unique artifact id" },
+    "title": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "author": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+
+    "phi_T": { "type": "number", "description": "Temporal attention token (TGCR)" },
+    "psi_R": { "type": "number", "description": "Structural cadence token (TGCR)" },
+    "Phi_E": { "type": "number", "description": "Contextual energy token (TGCR)" },
+
+    "experience": {
+      "type": "object",
+      "description": "Experience Layer - ritual-first content",
+      "required": ["ritual_script"],
+      "properties": {
+        "ritual_script": { "type": "string", "description": "Short ritual script (text) for human consumption" },
+        "soundtrack_descriptor": { "type": "object", "properties": {
+          "mood": { "type": "string" },
+          "bpm": { "type": "number" },
+          "loop_seconds": { "type": "number" },
+          "audio_hint_files": { "type": "array", "items": { "type": "string" } }
+        }},
+        "visual_prompts": { "type": "array", "items": { "type": "string" }, "description": "List of visual prompt tokens or asset refs" },
+        "duration_estimate_seconds": { "type": "number" }
+      }
+    },
+
+    "evidence": {
+      "type": "object",
+      "description": "Evidence Layer - immutable metadata and verification",
+      "required": ["evidence_hash","verification_checks"],
+      "properties": {
+        "evidence_hash": { "type": "string", "description": "SHA256 of RB zipped assets and metadata" },
+        "verification_checks": { "type": "array", "items": { "type": "string" }, "description": "Short list of checks (e.g., schema, Airth tests)" },
+        "provenance_git": { "type": "object", "properties": {
+          "commit": { "type": "string" },
+          "branch": { "type": "string" },
+          "repo": { "type": "string" }
+        }},
+        "observer_context": { "type": "object", "description": "Optional observer amplification metadata (see templates)" }
+      }
+    },
+
+    "publish_targets": { "type": "array", "items": { "type": "string" }, "description": "Where to publish (wordpress, sharepoint, resonance-player)" },
+
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "generated_by": { "type": "string" },
+        "tool_version": { "type": "string" },
+        "seed": { "type": ["string","number"] }
+      }
+    }
+  }
+}
