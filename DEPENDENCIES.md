@@ -1,6 +1,7 @@
 # Dependencies & Setup Guide
 
 **TL;DR:** Run this once and you're done:
+
 ```bash
 bash scripts/setup_environment.sh
 ```
@@ -12,6 +13,7 @@ Then just use the scripts—no manual dependency management needed.
 ## Overview
 
 The `scripts/setup_environment.sh` script handles **all** dependency installation automatically:
+
 - ✅ Python packages (pip)
 - ✅ System packages (apt/Homebrew)
 - ✅ Git hooks
@@ -61,6 +63,7 @@ bash scripts/setup_environment.sh
 ```
 
 **What it does:**
+
 - Installs Python packages via pip
 - Installs system packages (prompts for sudo password on Linux)
 - Sets up Git pre-commit hooks
@@ -103,37 +106,47 @@ Then test:
 ## Which Scripts Need What
 
 ### Archive Workspace
+
 ```bash
 python3 scripts/archive_workspace.py --dry-run
 ```
+
 **Needs**: Python 3 (standard library only)  
 **Setup time**: ~10 seconds
 
 ### Push to OneDrive
+
 ```bash
 ./scripts/push_to_onedrive.sh
 ```
+
 **Needs**: `rclone` (installed by setup script)  
 **Setup time**: One-time rclone config (5 min)
 
 ### Export Brand Assets
+
 ```bash
 python3 scripts/export_brand_assets.py
 ```
+
 **Needs**: Python 3 + `cairosvg` (installed by setup script)  
 **Setup time**: Included in main setup
 
 ### Extract Embedded PNG
+
 ```bash
 python3 scripts/extract_embedded_png.py
 ```
+
 **Needs**: Python 3 (standard library only)  
 **Setup time**: ~5 seconds
 
 ### GitHub App Token Generation
+
 ```bash
 python3 scripts/get_github_app_installation_token.py
 ```
+
 **Needs**: Python 3 + PyJWT + requests + cryptography (all installed by setup script)  
 **Setup time**: Included in main setup
 
@@ -161,6 +174,7 @@ python3 scripts/extract_embedded_png.py --list
 ## Troubleshooting
 
 ### "pip: command not found"
+
 ```bash
 # macOS
 brew install python3
@@ -170,6 +184,7 @@ sudo apt-get install python3-pip
 ```
 
 ### "rclone: command not found"
+
 ```bash
 # macOS
 brew install rclone
@@ -179,9 +194,11 @@ curl https://rclone.org/install.sh | sudo bash
 ```
 
 ### "sudo: password required" during setup
+
 This is normal! The setup script needs `sudo` to install system packages. Just type your password when prompted (you won't see it being typed—that's normal).
 
 ### "cairosvg import error"
+
 ```bash
 # Reinstall
 python3 -m pip install --force-reinstall cairosvg
@@ -192,7 +209,9 @@ python3 -m pip install cairosvg
 ```
 
 ### ".env.local not found"
+
 The setup script checks for `.env.local` but doesn't create it. Create manually:
+
 ```bash
 cp secrets/mapping.example.json .env.local
 # Or generate from Bitwarden:
@@ -204,6 +223,7 @@ bash scripts/secrets/generate_env_from_bws.sh
 ## Minimal vs. Full Setup
 
 ### Minimal (Just Archive + Cleanup)
+
 ```bash
 python3 scripts/setup_environment.sh
 # Only answer "yes" to Python packages
@@ -211,6 +231,7 @@ python3 scripts/setup_environment.sh
 ```
 
 ### Full (All Tools)
+
 ```bash
 bash scripts/setup_environment.sh
 # Answer "yes" to all prompts
@@ -222,6 +243,7 @@ rclone config create onedrive microsoft account type=onedrive
 ## Re-running Setup
 
 It's safe to run the setup script multiple times:
+
 - ✅ Already-installed packages are skipped
 - ✅ Git hooks are idempotent
 - ✅ No data is deleted
@@ -246,6 +268,7 @@ No setup needed on cron—dependencies are already installed.
 ### GitHub Actions Workflow
 
 CI workflows automatically install dependencies:
+
 ```yaml
 - name: Set up Python
   uses: actions/setup-python@v4
@@ -292,7 +315,7 @@ CI workflows automatically install dependencies:
 
 ## Support
 
-- **Bitwarden setup**: https://bitwarden.com/help/
-- **rclone setup**: https://rclone.org/docs/
-- **Python pip**: https://pip.pypa.io/
-- **GitHub Apps**: https://docs.github.com/en/apps
+- **Bitwarden setup**: <https://bitwarden.com/help/>
+- **rclone setup**: <https://rclone.org/docs/>
+- **Python pip**: <https://pip.pypa.io/>
+- **GitHub Apps**: <https://docs.github.com/en/apps>
