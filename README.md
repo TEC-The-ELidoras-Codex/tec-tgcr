@@ -47,6 +47,22 @@ FOLD's primary objective (by March 6, 2026):
 
 ---
 
+## 📍 One Unified Place: Start Here
+
+**👉 New to FOLD?**
+→ [`docs/FOLD_QUICK_START.md`](docs/FOLD_QUICK_START.md) *(single page, essential only)*
+
+**Want GPT integrations?**
+→ [`config/gpt-actions-research.json`](config/gpt-actions-research.json) *(ChatGPT Actions for music analysis)*
+
+**ChatGPT Custom Instructions?**
+→ [`config/FOLD_INSTRUCTIONS_COMPACT.txt`](config/FOLD_INSTRUCTIONS_COMPACT.txt) *(~3200 chars, paste directly)*
+
+**Everything indexed**
+→ [`data/knowledge_map.yml`](data/knowledge_map.yml) *(canonical unified map)*
+
+---
+
 ## Quick Start
 
 ### Prerequisites

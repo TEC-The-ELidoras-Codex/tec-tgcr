@@ -1,0 +1,446 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FOLD Research API",
+    "description": "Music resonance field analysis, motif extraction, and collective conscience instrumentation for FOLD platform",
+    "version": "1.0.0",
+    "contact": {
+      "name": "FOLD Operations",
+      "url": "https://github.com/TEC-The-ELidoras-Codex/tec-tgcr"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.tec-fold.local",
+      "description": "FOLD Research API (local development)"
+    }
+  ],
+  "paths": {
+    "/motif/search": {
+      "post": {
+        "operationId": "searchMotifs",
+        "summary": "Search music motifs across research corpus",
+        "description": "Query ALBUM_ANALYSIS and CODEX for specific motifs (harmonic, rhythmic, lyrical, emotional, cross-genre)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Motif name or theme (e.g., 'Observer Amplification', 'dual-persona encoding', 'duality of strength')"
+                  },
+                  "motif_type": {
+                    "type": "string",
+                    "enum": [
+                      "harmonic",
+                      "rhythmic",
+                      "lyrical",
+                      "emotional",
+                      "cross_genre"
+                    ],
+                    "description": "Filter by motif type"
+                  },
+                  "genre": {
+                    "type": "string",
+                    "description": "Filter by genre cluster (e.g., 'metalcore', 'hip_hop', 'post_hardcore')"
+                  },
+                  "min_resonance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Minimum Resonance Index (0-10 scale)"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Motif search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "motif_name": { "type": "string" },
+                          "theme": { "type": "string" },
+                          "tracks": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          },
+                          "motif_type": { "type": "string" },
+                          "genre": { "type": "string" },
+                          "resonance_index": { "type": "number" },
+                          "listener_segments": { "type": "string" },
+                          "cross_genre_bridges": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          },
+                          "source": { "type": "string" }
+                        }
+                      }
+                    },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resonance/score": {
+      "post": {
+        "operationId": "scoreResonance",
+        "summary": "Calculate resonance index for a track",
+        "description": "Compute φᵗ (Temporal Attention), ψʳ (Structural Cadence), and Φᴱ (Contextual Potential Energy) → Resonance Index (0-10)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "artist": { "type": "string" },
+                  "track": { "type": "string" },
+                  "bpm": { "type": "number" },
+                  "key": { "type": "string" },
+                  "genre": { "type": "string" },
+                  "phi_t_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Temporal Attention (0-10): how well rhythm locks focus"
+                  },
+                  "psi_r_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Structural Cadence (0-10): form coherence and closure"
+                  },
+                  "Phi_E_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
+                    "description": "Contextual Potential Energy (0-10): cultural resonance"
+                  },
+                  "circadian_window": {
+                    "type": "string",
+                    "description": "Optional: time window (e.g., '4:20 PM' for liminality bonus +2)"
+                  }
+                },
+                "required": [
+                  "artist",
+                  "track",
+                  "phi_t_score",
+                  "psi_r_score",
+                  "Phi_E_score"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resonance scoring result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "artist": { "type": "string" },
+                    "track": { "type": "string" },
+                    "phi_t": {
+                      "type": "number",
+                      "description": "Temporal Attention score"
+                    },
+                    "psi_r": {
+                      "type": "number",
+                      "description": "Structural Cadence score"
+                    },
+                    "Phi_E": {
+                      "type": "number",
+                      "description": "Contextual Potential Energy score"
+                    },
+                    "resonance_index": {
+                      "type": "number",
+                      "description": "Final resonance score (0-10)"
+                    },
+                    "interpretation": { "type": "string" },
+                    "circadian_bonus": { "type": "number" },
+                    "listener_segments": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/artist/analyze": {
+      "post": {
+        "operationId": "analyzeArtist",
+        "summary": "Deep-dive analysis of artist from research codex",
+        "description": "Retrieve artist resonance map, motif signatures, fan discourse analysis, cross-genre bridges from CODEX",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "artist": {
+                    "type": "string",
+                    "description": "Artist or band name (e.g., 'Sleep Token', 'The Devil Wears Prada')"
+                  },
+                  "include_motifs": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Include motif signatures and themes"
+                  },
+                  "include_discourse": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Include fan discourse analysis (Reddit, Genius, Discord)"
+                  },
+                  "include_bridges": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Include cross-genre resonance bridges"
+                  }
+                },
+                "required": ["artist"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Artist analysis from research codex",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "artist": { "type": "string" },
+                    "genres": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "resonance_profile": {
+                      "type": "object",
+                      "properties": {
+                        "phi_t_avg": { "type": "number" },
+                        "psi_r_avg": { "type": "number" },
+                        "Phi_E_avg": { "type": "number" },
+                        "resonance_avg": { "type": "number" }
+                      }
+                    },
+                    "key_motifs": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "listener_segments": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "fan_discourse": {
+                      "type": "string",
+                      "description": "Summary of collective conscience themes"
+                    },
+                    "cross_genre_bridges": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "source_file": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conscience/discourse": {
+      "post": {
+        "operationId": "analyzeFanDiscourse",
+        "summary": "Collective conscience analysis via fan discourse",
+        "description": "Query Reddit, Genius comments, Discord for artist/motif discussions → cultural resonance mapping",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "artist": {
+                    "type": "string",
+                    "description": "Artist name"
+                  },
+                  "motif": {
+                    "type": "string",
+                    "description": "Optional: specific motif to trace"
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": ["reddit", "genius", "discord", "all"],
+                    "default": "all",
+                    "description": "Which platform(s) to query"
+                  },
+                  "solidarity_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": ["mechanical", "organic"]
+                    },
+                    "description": "Filter by solidarity type (shared codes vs debate)"
+                  }
+                },
+                "required": ["artist"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fan discourse analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "artist": { "type": "string" },
+                    "collective_themes": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "mechanical_solidarity": { "type": "string" },
+                    "organic_solidarity": { "type": "string" },
+                    "trauma_response_moments": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "myth_construction": { "type": "string" },
+                    "source_quotes": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "sentiment_distribution": {
+                      "type": "object",
+                      "properties": {
+                        "positive": { "type": "number" },
+                        "neutral": { "type": "number" },
+                        "negative": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/circadian/ritual": {
+      "post": {
+        "operationId": "logCircadianRitual",
+        "summary": "Log listener session with circadian phase tracking",
+        "description": "Record listening session with listener mood, circadian phase, resonance response, timestamps",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listener_id": { "type": "string" },
+                  "artist": { "type": "string" },
+                  "track": { "type": "string" },
+                  "timestamp": { "type": "string", "format": "date-time" },
+                  "circadian_phase": {
+                    "type": "string",
+                    "description": "Time of day (e.g., '4:20 PM' for liminality)"
+                  },
+                  "listener_mood": {
+                    "type": "string",
+                    "enum": [
+                      "despair",
+                      "threshold",
+                      "catharsis",
+                      "emergence",
+                      "neutral"
+                    ]
+                  },
+                  "resonance_response": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "session_context": {
+                    "type": "string",
+                    "description": "Context notes"
+                  }
+                },
+                "required": ["listener_id", "artist", "track", "timestamp"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Session logged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "session_id": { "type": "string" },
+                    "listener_id": { "type": "string" },
+                    "logged_at": { "type": "string" },
+                    "circadian_alignment": {
+                      "type": "number",
+                      "description": "Correlation with circadian phase"
+                    },
+                    "emotional_resonance": { "type": "number" },
+                    "archival_location": {
+                      "type": "string",
+                      "description": "Path in research/CIRCADIAN_RITUAL_LOG.md"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token for FOLD API access"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
