@@ -1,0 +1,113 @@
+{
+  "timestamp": "2025-11-04 18:17:34.475894",
+  "summary": "MVP: 0 ready, 0 active, 0 blocked | P0 Issues: 0 | Research: 6 artists, 5 motifs",
+  "github": {
+    "open_issues": [],
+    "open_prs": [],
+    "recent_commits": [
+      {
+        "sha": "73bcc9d",
+        "message": "ci: replace broken build workflow with simpler test/lint workflow",
+        "author": "tec-agent",
+        "date": "2025-10-30T20:42:58Z"
+      },
+      {
+        "sha": "c30b80d",
+        "message": "chore(brand): remove obsolete/duplicate avatar SVG files",
+        "author": "tec-agent",
+        "date": "2025-10-30T20:39:29Z"
+      },
+      {
+        "sha": "c46f393",
+        "message": "docs: add rumor-control and incident templates (printable/checklist)",
+        "author": "tec-agent",
+        "date": "2025-10-30T20:38:35Z"
+      },
+      {
+        "sha": "cb10ed8",
+        "message": "chore(brand): canonicalize mascot to official avatar LUMINAI(Infographic (US)).svg",
+        "author": "tec-agent",
+        "date": "2025-10-30T20:36:07Z"
+      },
+      {
+        "sha": "646775d",
+        "message": "chore(brand): canonicalize mascot to official avatar LUMINAI(Infographic (US)).svg",
+        "author": "tec-agent",
+        "date": "2025-10-30T19:52:56Z"
+      },
+      {
+        "sha": "5426fa8",
+        "message": "chore(brand): overwrite canonical luminai_mascot_logo.svg with validated single-root clean copy",
+        "author": "tec-agent",
+        "date": "2025-10-30T19:35:26Z"
+      },
+      {
+        "sha": "5edece2",
+        "message": "feat(data): ingest brain_dump/gpt103025 to assets/tec_tcgr_samples (anonymized)",
+        "author": "tec-agent",
+        "date": "2025-10-30T18:52:17Z"
+      },
+      {
+        "sha": "878055d",
+        "message": "chore(brand): restore canonical single-root luminai_mascot_logo.svg from validated clean copy",
+        "author": "tec-agent",
+        "date": "2025-10-30T18:50:28Z"
+      },
+      {
+        "sha": "f2d7a6a",
+        "message": "merge origin/main into main (sync)",
+        "author": "tec-agent",
+        "date": "2025-10-30T18:46:44Z"
+      },
+      {
+        "sha": "63f1ff5",
+        "message": "docs: add TEC Lexicon and update TEC_HUB; add brain_dump ignore",
+        "author": "tec-agent",
+        "date": "2025-10-30T18:46:18Z"
+      }
+    ],
+    "issue_count": 0,
+    "pr_count": 0,
+    "p0_issues": 0,
+    "p1_issues": 0
+  },
+  "project": {
+    "backlog": 15,
+    "ready": 8,
+    "in_progress": 3,
+    "blocked": 2,
+    "done": 0
+  },
+  "research": {
+    "album_analysis_count": 6,
+    "codex_motif_count": 5,
+    "recent_motifs": [
+      "GPT_IMPORT_GUIDE",
+      "README",
+      "SETUP_SUMMARY",
+      "COMPLETE",
+      "CODEX_INDEX"
+    ],
+    "research_ready": true
+  },
+  "team": {
+    "personas": {
+      "kaznak": "Kaznak",
+      "luminai-base": "Luminai Base",
+      "airth": "Airth",
+      "ely": "Ely",
+      "arcadia": "Arcadia"
+    },
+    "recent_activity": {
+      "total_recent": 20,
+      "persona_activity": {
+        "airth": 1
+      },
+      "latest_commits": [
+        "73bcc9d ci: replace broken build workflow with simpler test/lint workflow",
+        "c30b80d chore(brand): remove obsolete/duplicate avatar SVG files",
+        "c46f393 docs: add rumor-control and incident templates (printable/checklist)"
+      ]
+    }
+  }
+}

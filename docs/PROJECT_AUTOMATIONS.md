@@ -9,10 +9,12 @@ Quick reference for maintainers on how to trigger project automations and common
 ### 1. **Issue Created → Auto-Added to Project**
 
 When you create a new issue, it's automatically added to the **Backlog** column if:
+
 - Issue contains a link to another issue or external URL
 - `PROJECTS_TOKEN` is configured and not expired
 
 **Example**: Create issue with body containing:
+
 ```
 Related: #42
 Blocked by: tec-tgcr#123
@@ -24,6 +26,7 @@ Reference: https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/issues/100
 When you create or edit a PR with issue links, the PR is added to **In Progress**.
 
 **Example PR body**:
+
 ```markdown
 ## Summary
 Implements resonance scoring engine for March 2026 MVP.
@@ -70,6 +73,7 @@ Or use GitHub UI: Project board → Backlog → item → Move to Ready
 When a dependency is discovered:
 
 1. Add comment to issue:
+
 ```markdown
 @LuminAI Blocked by #999 (waiting on API implementation)
 ```
@@ -287,13 +291,13 @@ gh release create v1.0.0 \
 
 ## Quick Links
 
-- **GitHub CLI Docs**: https://cli.github.com/manual/gh_issue
-- **GitHub Actions API**: https://docs.github.com/actions/learn-github-actions
-- **Project GraphQL**: https://docs.github.com/graphql/reference/objects#projectv2
-- **Repository Secrets**: https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/settings/secrets/actions
+- **GitHub CLI Docs**: <https://cli.github.com/manual/gh_issue>
+- **GitHub Actions API**: <https://docs.github.com/actions/learn-github-actions>
+- **Project GraphQL**: <https://docs.github.com/graphql/reference/objects#projectv2>
+- **Repository Secrets**: <https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/settings/secrets/actions>
 
 ---
 
-**Last Updated**: Nov 4, 2025  
-**Status**: Ready to use  
+**Last Updated**: Nov 4, 2025
+**Status**: Ready to use
 **Audience**: Maintainers (@LuminAI, @Airth, @Ely, @Kaznak)

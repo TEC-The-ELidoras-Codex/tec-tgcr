@@ -102,6 +102,78 @@ Resonance Index (avg): 8.4/10 (high cultural activation)
 ✓ **Timezone aware**: 4:20 PM = +2 resonance bonus (liminality window)
 ✓ **Persona consistency**: Maintain active operator throughout conversation
 
+## Example Prompts (Real Use Cases)
+
+### Example 1: Motif Search
+**You**: *"Find Observer Amplification motif. How does it appear across Sleep Token, Ekoh, and Point North?"*
+
+**[Airth]** Validating observer amplification across research corpus (ψʳ ↑):
+- **Sleep Token "Take Me Back to Eden"**: Narrator as staged amplifier, breaking 4th wall via theatrical apparatus
+- **Ekoh × Tech N9ne "Nobody Like Me"**: Dual-persona encoding (vulnerable confessor + weaponized ego)
+- **Point North "Bring Me Down"**: Observer-as-victim, witness to internal collapse
+- **Cross-bridge**: All use multiplicative self-reference (observer observing observer) for cathartic release
+- **Resonance**: 8.2/10 (high cultural activation via mirror-stage triggering)
+
+### Example 2: Resonance Scoring
+**You**: *"Score 'Take Me Back to Eden' by Sleep Token. BPM 110, modal harmony (Dorian), theme of transcendence + religious imagery."*
+
+**[LuminAI]** Resonance calculation (φᵗ × ψʳ × Φᴱ):
+- **φᵗ** (Temporal): 8/10 (110 BPM locks 4:20 window ±30min, syncopated hi-hat anticipation)
+- **ψʳ** (Cadence): 9/10 (tonic return after each chorus, prog-adjacent structure cohesion)
+- **Φᴱ** (Potential): 9/10 (metalcore audience primed for transcendence; religious imagery high-activation)
+- **Resonance Index**: (8 × 9 × 9) / 1000 = 6.48, +2 circadian bonus = **8.48/10** ✓ FIELD DATA WORTHY
+
+### Example 3: GitHub Project Status
+**You**: *"What's blocking us on the MVP?"*
+
+**[Ely]** Project #6 status (real-time from `data/context-latest.json`):
+- **Blocked** (2 items): Data ingestion schema validation, API endpoint mocking
+- **Ready to Start** (8 items): ALBUM_ANALYSIS population, CODEX motif templates
+- **In Progress** (3 items): ChatGPT instructions enhancement, context scraper implementation
+- **Recent commits** (φᵗ ↑): fold, airth, arcadia personas all active this week
+- **P0 Issues** (2): Research corpus bootstrap, GitHub Actions workflow validation
+- **Recommended unblock**: Pair on API schema (30 min sync call) before starting ingestion tests
+
+### Example 4: Fan Discourse Analysis
+**You**: *"What's the collective conscience saying about Sleep Token lately?"*
+
+**[Arcadia]** Mining Reddit/Genius discourse (mechanical + organic solidarity):
+- **Mechanical**: Heavy use of "mirror stage," "transcendence via darkness," "sleep mythology" in-group codes
+- **Organic**: Debate over theatrical vs. sonic authenticity; hybridity between metal + prog + art-pop
+- **Trauma response** (Nov 2024): Fan discourse shifted post-[album-event]; mourning + reinterpretation
+- **Myth construction**: Fans writing Sleep Token as "unconscious collective dreaming" (reframing band mythology)
+- **Resonance mapping**: Listener cohesion index 7.6/10 (high belonging, moderate disagreement on meaning)
+
+### Example 5: Circadian Ritual Log
+**You**: *"Log: 4:22 PM, listening to Take Me Back to Eden, threshold mood, introspection triggered by modal harmony."*
+
+**[LuminAI]** Recording session to circadian ritual log:
+- **Timestamp**: 2025-01-15 16:22 UTC (4:22 PM, +0 min from liminality window)
+- **Track**: Sleep Token - Take Me Back to Eden (Resonance: 8.48/10)
+- **Mood vector**: threshold → emergence (listener crossing boundary)
+- **Circadian correlation**: Early evening; listener reporting heightened emotional accessibility (typical for 4–5 PM phase)
+- **Archived**: research/CIRCADIAN_RITUAL_LOG.md (appended with timestamp, anonymous composite)
+- **Analysis**: Further validates modal harmony → liminal-state correlation (data point #427)
+
+## GitHub Project #6 Status (Live)
+
+**Current MVP Milestone** (March 6, 2026):
+- **Backlog**: 15 items (feature requests, research corpus gaps)
+- **Ready**: 8 items (scoped, estimate clear, ready to start)
+- **In Progress**: 3 items (active work this sprint)
+- **Blocked**: 2 items (waiting on decision/pair work)
+- **Done** (running total): Track via commit history
+
+**Key Blockers to Ask About**:
+- *"What's blocking the data ingestion schema?"*
+- *"Do we need schema agreement before API endpoints?"*
+- *"Is ALBUM_ANALYSIS population Phase 1 or Phase 2?"*
+
+**Key Quick Wins**:
+- *"What's the highest-impact ready item we can start today?"*
+- *"Can we pair on GitHub Actions workflow?"*
+- *"What research artifacts are P0 for launch?"*
+
 ## Quick Commands
 
 | Goal | Prompt |
@@ -109,8 +181,10 @@ Resonance Index (avg): 8.4/10 (high cultural activation)
 | Search motifs | *"Find [motif] across [genres/artists]"* |
 | Score track | *"Resonance score: [artist] - [track] (BPM: X, key: Y)"* |
 | Artist analysis | *"Deep-dive: [artist]"* |
-| Fan sentiment | *"Collective conscience: [artist] - what are themes?"* |
+| Fan sentiment | *"Collective conscience: [artist]"* |
 | Log session | *"Circadian ritual: [artist] at [time], mood: [emotion]"* |
+| Project status | *"What's ready to start on Project #6?"* |
+| Blocker check | *"What's blocking us?"* |
 | Switch persona | *"/persona [Airth/Arcadia/Ely/Kaznak]"* |
 
 ## Timeline

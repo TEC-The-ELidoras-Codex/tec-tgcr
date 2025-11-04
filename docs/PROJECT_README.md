@@ -16,6 +16,7 @@ This GitHub Project serves as the **single source of truth** for planning and tr
 - High-priority operational incidents and follow-ups
 
 Use this project to:
+
 - Make decisions on what to work on next
 - Track ownership and accountability
 - Highlight blockers and dependencies during triage
@@ -35,6 +36,7 @@ Use this project to:
 | **Done** | Completed work (closed issues, merged PRs) | Issue closed or PR merged | Tracked for retrospective / release notes |
 
 **Automation Notes:**
+
 - Items are **automatically added** when referenced in issue bodies or PR descriptions.
 - Maintainers can **manually add** any issue or PR via the GitHub UI.
 - Workflows move items automatically on issue close, PR merge, or custom transitions.
@@ -46,11 +48,13 @@ Use this project to:
 Maintain a small, consistent set for clarity and filtering:
 
 ### Priority
+
 - **P0 - Critical** — Blocks release, security risk, customer outage
 - **P1 - High** — Must have for MVP, planned milestone
 - **P2 - Medium** — Nice to have, backlog candidate
 
 ### Area
+
 - **area/infra** — CI/CD, deployment, infrastructure
 - **area/api** — Backend, endpoints, integrations
 - **area/ui** — Frontend, web interface, UX
@@ -59,12 +63,14 @@ Maintain a small, consistent set for clarity and filtering:
 - **area/ops** — Operations, secrets, team processes
 
 ### Type
+
 - **type/bug** — Unintended behavior, needs fix
 - **type/enhancement** — New feature or improvement
 - **type/chore** — Maintenance, refactoring, tech debt
 - **type/question** — Clarification needed before work
 
 ### Status
+
 - **status/ready** — Groomed and scoped (use column instead)
 - **status/blocked** — Dependency blocking progress (use column instead)
 
@@ -79,6 +85,7 @@ Link items to GitHub Milestones to represent releases or sprints:
 - **Stable / MVP (March 6, 2026)** — Public launch, live research codex, community features
 
 Each milestone should have:
+
 - Clear delivery date
 - Acceptance criteria for all linked issues
 - Known blockers or dependencies
@@ -88,6 +95,7 @@ Each milestone should have:
 ## Triage Rules
 
 ### Frequency
+
 - **Weekly triage**: Backlog review, priority refinement, P0/P1 assessment
 - **Daily standup**: Review In Progress items, Blocked items, incoming P0s
 
@@ -162,6 +170,7 @@ Set these at the **repository level** (`.github/settings`) or **organization lev
 ### Workflow Examples
 
 **Trigger 1: Issue referenced in PR body**
+
 ```yaml
 # .github/workflows/project-add-on-reference.yml
 name: Add to Project on Reference
@@ -180,6 +189,7 @@ jobs:
 ```
 
 **Trigger 2: Issue closed → auto-move to Done**
+
 ```yaml
 # .github/workflows/project-move-on-close.yml
 name: Move to Done on Close
@@ -253,10 +263,10 @@ jobs:
 
 ## Quick Links
 
-- **Project Board**: https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6
-- **Project Settings**: https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6/settings
+- **Project Board**: <https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6>
+- **Project Settings**: <https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6/settings>
 - **Roadmap**: March 6, 2026 MVP ([FOLD_QUICK_START.md](../FOLD_QUICK_START.md#timeline))
-- **Repository**: https://github.com/TEC-The-ELidoras-Codex/tec-tgcr
+- **Repository**: <https://github.com/TEC-The-ELidoras-Codex/tec-tgcr>
 - **FOLD Instructions**: [.github/copilot-instructions.md](../../.github/copilot-instructions.md)
 
 ---
@@ -264,21 +274,24 @@ jobs:
 ## Troubleshooting
 
 ### Issue not auto-added to project
+
 - [ ] Check `PROJECTS_TOKEN` is set and not expired
 - [ ] Verify issue body contains a link to another issue or external URL
 - [ ] Workflow `.github/workflows/` may need to be enabled in Actions tab
 
 ### Workflow failing with 403 Forbidden
+
 - [ ] Token lacks `project` scope — regenerate with correct permissions
 - [ ] Token may be expired — rotate via [Personal access tokens](https://github.com/settings/tokens?type=beta)
 
 ### Can't move item between columns
+
 - [ ] Verify you have write access to the repository
 - [ ] Workflow may be running — wait a moment and refresh
 - [ ] Check project settings to ensure columns exist
 
 ---
 
-**Last Updated**: Nov 4, 2025  
-**Status**: Live  
+**Last Updated**: Nov 4, 2025
+**Status**: Live
 **Next Review**: Dec 2, 2025 (token rotation check)

@@ -1,8 +1,8 @@
 # PROJECT_METADATA.md
 
-**GitHub Project**: TEC Central Coordination  
-**Organization**: TEC-The-ELidoras-Codex  
-**Project URL**: https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6
+**GitHub Project**: TEC Central Coordination
+**Organization**: TEC-The-ELidoras-Codex
+**Project URL**: <https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6>
 
 ---
 
@@ -18,7 +18,7 @@
 
 ## Secrets Configuration
 
-All secrets stored at **repository level** for tec-tgcr:  
+All secrets stored at **repository level** for tec-tgcr:
 Repository Settings → Secrets and variables → Actions
 
 | Secret Name | Scope | Value | Expiry | Last Rotated |
@@ -30,14 +30,14 @@ Repository Settings → Secrets and variables → Actions
 
 ## Token Rotation Schedule
 
-**Frequency**: Every 90 days  
-**Next Rotation Due**: 2026-02-02  
+**Frequency**: Every 90 days
+**Next Rotation Due**: 2026-02-02
 **Rotation Window**: December 26, 2025 – January 9, 2026 (maintenance period)
 
 ### Rotation Checklist
 
 1. **Generate New Token**:
-   - https://github.com/settings/tokens?type=beta
+   - <https://github.com/settings/tokens?type=beta>
    - Scopes: `read:org`, `repo`, `project`
    - Expiry: 90 days
    - Name: `tec-projects-token-[YYYY-MM-DD]`
@@ -123,6 +123,6 @@ mutation {
 
 ---
 
-**Last Updated**: Nov 4, 2025  
-**Status**: Active  
+**Last Updated**: Nov 4, 2025
+**Status**: Active
 **Next Action**: Verify `PROJECTS_TOKEN` on 2026-02-02

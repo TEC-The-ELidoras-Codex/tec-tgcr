@@ -1,7 +1,7 @@
 # GitHub Project #6 Setup Summary
 
-**Date**: Nov 4, 2025  
-**Commit**: `1586a25` (ely: add GitHub Project coordination layer)  
+**Date**: Nov 4, 2025
+**Commit**: `1586a25` (ely: add GitHub Project coordination layer)
 **Status**: ✅ Ready to use
 
 ---
@@ -11,6 +11,7 @@
 Three coordination documents to enable cross-repository planning using GitHub Project #6:
 
 ### 1. **PROJECT_README.md** — Central Reference
+
 - **Purpose**: Single source of truth for project coordination
 - **Content**:
   - 6-column workflow (Backlog → Ready → In Progress → Review → Blocked → Done)
@@ -20,10 +21,11 @@ Three coordination documents to enable cross-repository planning using GitHub Pr
   - Token management
   - Links to settings
 
-**Use**: Send to team members for onboarding  
+**Use**: Send to team members for onboarding
 **File**: `docs/PROJECT_README.md`
 
 ### 2. **PROJECT_METADATA.md** — Configuration
+
 - **Purpose**: Technical reference for project identifiers and token management
 - **Content**:
   - `PROJECT_NUMBER`: 6
@@ -33,10 +35,11 @@ Three coordination documents to enable cross-repository planning using GitHub Pr
   - Workflow references
   - Troubleshooting (GraphQL queries, validation)
 
-**Use**: For maintainers handling secrets and automation  
+**Use**: For maintainers handling secrets and automation
 **File**: `docs/PROJECT_METADATA.md`
 
 ### 3. **PROJECT_AUTOMATIONS.md** — Workflows & Recipes
+
 - **Purpose**: Guide for triggering automations and common maintenance tasks
 - **Content**:
   - Workflow triggers (issue created → added, PR merged → moved to Done)
@@ -45,7 +48,7 @@ Three coordination documents to enable cross-repository planning using GitHub Pr
   - Custom workflow examples (YAML recipes)
   - Release coordination (March 2026 MVP checklist)
 
-**Use**: For maintainers managing issues and PRs  
+**Use**: For maintainers managing issues and PRs
 **File**: `docs/PROJECT_AUTOMATIONS.md`
 
 ---
@@ -53,31 +56,38 @@ Three coordination documents to enable cross-repository planning using GitHub Pr
 ## Quick Setup (5 Steps)
 
 ### 1. Verify Secrets Exist
+
 ```bash
 # Check PROJECTS_TOKEN and PROJECT_NUMBER in repo settings
 # https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/settings/secrets/actions
 ```
 
 ### 2. Enable GitHub Actions
+
 - Go to repo Settings → Actions → "Allow all actions and reusable workflows"
 - Ensure workflows in `.github/workflows/` are enabled
 
 ### 3. Copy Project Description
+
 Paste into [Project #6 Settings](https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6/settings):
 
 ```
-Central coordination project for TEC-The-ELidoras-Codex — tracks cross-repository work, release milestones, and automations. 
+Central coordination project for TEC-The-ELidoras-Codex — tracks cross-repository work, release milestones, and automations.
 
 See docs/PROJECT_README.md for full documentation.
 ```
 
 ### 4. Share with Team
+
 Send team members:
+
 - `docs/PROJECT_README.md` (what they need to know)
 - `docs/PROJECT_AUTOMATIONS.md` (how to trigger workflows)
 
 ### 5. Set First Milestone
+
 Create GitHub Milestone:
+
 - Name: "Stable / MVP (March 6, 2026)"
 - Target Date: 2026-03-06
 - Link MVP issues to this milestone
@@ -193,18 +203,21 @@ gh run list --repo=TEC-The-ELidoras-Codex/tec-tgcr
 ## Troubleshooting
 
 ### Workflow Not Triggering
+
 - [ ] Check `PROJECTS_TOKEN` not expired (rotate if > 90 days old)
 - [ ] Verify `PROJECT_NUMBER` = 6
 - [ ] Ensure issue body contains a link (URL or `#123`)
 - [ ] Check `.github/workflows/` files exist and are enabled
 
 ### Item Not Moving Automatically
+
 - [ ] Verify PR merge link is correct (e.g., `Closes #123`)
 - [ ] Check workflow logs: repo Settings → Actions → recent runs
 - [ ] May need to manually move if automation failed
 
 ### Token Expired
-- [ ] Generate new PAT: https://github.com/settings/tokens?type=beta
+
+- [ ] Generate new PAT: <https://github.com/settings/tokens?type=beta>
 - [ ] Update secret: `gh secret set PROJECTS_TOKEN --repo=... --body="[token]"`
 - [ ] Test workflow manually
 
@@ -219,7 +232,7 @@ gh run list --repo=TEC-The-ELidoras-Codex/tec-tgcr
 
 ---
 
-**Created**: Nov 4, 2025  
-**Status**: Live  
-**Commit**: `1586a25`  
+**Created**: Nov 4, 2025
+**Status**: Live
+**Commit**: `1586a25`
 **Branch**: `research/resonance-agent`
