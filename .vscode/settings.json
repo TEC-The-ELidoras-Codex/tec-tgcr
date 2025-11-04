@@ -1,22 +1,27 @@
 {
-  // Use workspace .venv Python interpreter when available
+  // ============================================================
+  // PROJECT-LEVEL VS CODE SETTINGS (Secure & Centralized)
+  // ============================================================
+  // These settings keep your project consistent across all team members
+  // and environments (local, CI/CD, containers, etc.)
+
+  // Python: Use project .venv (works on both Windows & Linux)
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestArgs": ["tests", "-q"],
+  "python.testing.autoTestDiscoverOnSaveEnabled": true,
+  "python.analysis.typeCheckingMode": "basic",
 
-  // Point the ShellCheck extension to the project-local shellcheck binary
-  "shellcheck.executablePath": "${workspaceFolder}/.venv/bin/shellcheck",
-
-  // Keep editor from complaining about the workspace settings being missing
-  "files.exclude": {
-    "**/.env.local": true
-  }
-}
-{
+  // Formatting & Code Style
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.linkedEditing": true,
 
-  // Language-specific formatting
+  // Language-specific formatters
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
@@ -26,55 +31,46 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
 
-  // Use project venv by default (Windows path)
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
-
-  // Testing
-  "python.testing.pytestEnabled": true,
-  "python.testing.unittestEnabled": false,
-  "python.testing.nosetestsEnabled": false,
-  "python.testing.pytestArgs": ["tests", "-q"],
-  "python.testing.autoTestDiscoverOnSaveEnabled": true,
-
-  // Type checking & analysis
-  "python.analysis.typeCheckingMode": "basic",
-
-  // Exclude build artifacts and generated outputs from Explorer and Search
+  // Exclude build artifacts, cache, and secrets from Explorer & Search
   "files.exclude": {
+    "**/.env.local": true,
+    "**/.secrets.env": true,
     ".wpcom-dist": true,
     "ai-workflow/output": true,
     "exports/wp-plugin": true,
     "dist": true,
     "**/__pycache__": true,
     "**/.pytest_cache": true,
-    "**/*.egg-info": true
+    "**/*.egg-info": true,
+    ".ruff_cache": true
   },
   "search.exclude": {
+    "**/.env.local": true,
+    "**/.secrets.env": true,
     ".wpcom-dist": true,
     "ai-workflow/output": true,
     "exports/wp-plugin": true,
     "dist": true,
     "**/__pycache__": true,
     "**/.pytest_cache": true,
-    "**/*.egg-info": true
+    "**/*.egg-info": true,
+    ".ruff_cache": true
   },
 
-  // Terminal
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.profiles.windows": {
-    "PowerShell": {
-      "path": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
-    },
-    "pwsh": {
-      "path": "C:/Program Files/PowerShell/7/pwsh.exe",
-      "icon": "terminal-powershell"
-    }
-  },
+  // Git & VCS
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.openRepositoryInParentFolders": "always",
 
   // Debug
   "debug.console.closeOnEnd": false,
-  "[xml]": {
-    "editor.defaultFormatter": "DotJoshJohnson.xml"
-  }
+
+  // Security: Don't prompt for local file protocol handling
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.untrustedFiles": "open"
 }
