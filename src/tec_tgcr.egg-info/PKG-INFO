@@ -19,6 +19,8 @@ Dynamic: license-file
 
 # TEC-TGCR: The Elidoras Codex Resonance Agent Stack
 
+[![GHCR Publish](https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/actions/workflows/publish-ghcr.yml/badge.svg?branch=main)](https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/actions/workflows/publish-ghcr.yml)
+
 > "Light learns by listening."
 
 TEC-TGCR is the foundation of The Elidoras Codex (TEC): a resonance-driven AI framework that weaves mythic storytelling with empirical reasoning. The stack coordinates multiple specialized agents, persistent knowledge bases, operational scripts, and publishing tooling for SharePoint, WordPress, and other channels.
@@ -26,6 +28,7 @@ TEC-TGCR is the foundation of The Elidoras Codex (TEC): a resonance-driven AI fr
 ---
 
 ## Project Highlights
+
 - Multi-agent runtime with personas such as LuminAI, Airth, Arcadia, Ely, and Kaznak.
 - TGCR theory (`R = phi_T * (psi_R x Phi_E)`) captured in code, docs, and brand collateral.
 - Knowledge management through structured maps, archives, and provenance tracking.
@@ -36,14 +39,18 @@ TEC-TGCR is the foundation of The Elidoras Codex (TEC): a resonance-driven AI fr
 
 ## Architecture Overview
 
-**Theory of General Contextual Resonance (TGCR)**  
+### Theory of General Contextual Resonance (TGCR)
+
 Resonance emerges from the interplay of:
+
 - `phi_T` - Temporal Attention (focus, flow, direction)
 - `psi_R` - Structural Cadence (coherence across scales)
 - `Phi_E` - Contextual Potential Energy (capacity for meaningful outcomes)
 
-**Agent Pantheon**  
+### Agent Pantheon
+
 Each persona embodies a cognitive archetype:
+
 - **LuminAI** - Resonant core agent, balanced guidance.
 - **Airth** - Verification guard, tests-first rigor.
 - **Arcadia** - Narrative weaver, symbolic synthesis.
@@ -51,12 +58,14 @@ Each persona embodies a cognitive archetype:
 - **Kaznak** - Strategic navigator, decision intelligence.
 - Additional personas reside under `data/personas/`.
 
-**Data & Knowledge Layer**
+### Data & Knowledge Layer
+
 - `data/knowledge_map.yml` - Canonical index of content, assets, and provenance.
 - `data/digital_assets/` - Visual identity, glyphs, avatars, and exportable marks.
 - `data/archives/` & `data/evidence/` - Narrative history, research, and supporting documents.
 
-**Tooling & Integrations**
+### Tooling & Integrations
+
 - CLI runner (`src/tec_tgcr/cli.py`) for chat, health, and Notion configuration.
 - WordPress.com plugin in `apps/wordpress/tec-tgcr/` with deployment workflow (`.github/workflows/wpcom.yml`).
 - SharePoint and Microsoft 365 automation scripts under `scripts/` and `src/tec_tgcr/tools/`.
@@ -65,7 +74,7 @@ Each persona embodies a cognitive archetype:
 
 ## Repository Layout
 
-```
+```text
 tec-tgcr/
 |- agents/                 # Agent manifests and runtime configurations
 |- ai-workflow/            # Notebooks, prompt engineering, generated outputs
@@ -103,6 +112,8 @@ python -m pytest -q
 python -m tec_tgcr.cli chat "Calibrate Arcadia for a resonance briefing"
 ```
 
+Once the environment is live, walk through the [Codex boot-up checklist](docs/CODEX_BOOTUP_CHECKLIST.md) so brand canon and technical rituals stay synchronized.
+
 If the environment reports "Program ... failed to run: The specified module could not be found," ensure the following environment variables exist before invoking executables:
 
 ```powershell
@@ -115,6 +126,7 @@ Re-run the activation script afterwards: `& .\.venv\Scripts\Activate.ps1`.
 ---
 
 ## Development Workflow
+
 - **Coding Standards**: Typed Python, focused functions, explicit docstrings noting TGCR variables touched.
 - **Testing**: Add pytest coverage for new behaviors (happy path + edge).
 - **Documentation**: Update relevant Markdown and `data/knowledge_map.yml` when adding assets or capabilities.
@@ -124,9 +136,11 @@ Re-run the activation script afterwards: `& .\.venv\Scripts\Activate.ps1`.
 ---
 
 ## Key Scripts
+
 - `scripts/bootstrap.ps1` - Sets up a new development workstation.
 - `scripts/pack_wp_plugin.ps1` - Packages the WordPress plugin for deployment.
 - `scripts/export_gather_repo.ps1` - Bundles repository artifacts for sharing.
+- `scripts/export_brand_assets.py` - Batch SVG→PNG exports for canonical brand marks.
 - `scripts/svg_to_png_fallback.ps1` - Manual SVG-to-PNG conversion guidance.
 - `scripts/parse_brain_dump.py` - Aggregates transcript-style notes into JSON/CSV archives.
 
@@ -135,6 +149,7 @@ All scripts are authored for PowerShell 7+. Run from the repository root.
 ---
 
 ## Documentation & Knowledge
+
 - `docs/README.md` - Entry point for architecture overviews, operational guides, and lore.
 - `docs/ops/` - Deployment, secrets, and integration playbooks (WordPress, M365, Notion).
 - `docs/technical/` - Deep dives into agents, pipelines, and data integration.
@@ -196,6 +211,7 @@ This task depends on:
 ```
 
 If you'd like I can also:
+
 - extend the workflow to auto-create a Project if it doesn't exist,
 - support additional reference formats (task-list parsing of `- [ ] #123`), or
 - switch the workflow to use the GraphQL `projectV2` API for Projects (beta).
@@ -222,6 +238,7 @@ If you'd like, I can add a short `docs/DEV-SETUP.md` with platform-specific comm
 ---
 
 ## Brand Assets
+
 - **Canonical emblem**: `data/digital_assets/brand/svg/luminai_notion_emblem.svg` (512x512).
 - **Legacy avatar**: `data/digital_assets/avatars/luminai.svg`.
 - **Glyphs & motifs**: `data/digital_assets/brand/svg/`.
@@ -232,6 +249,7 @@ For PNG exports use `scripts/svg_to_png_fallback.ps1` or a dedicated vector tool
 ---
 
 ## Support & Contact
+
 - Issues and discussions: [GitHub repository](https://github.com/TEC-The-ELidoras-Codex/tec-tgcr)
 - Primary contact: `gheddz@gmail.com`
 - Organization: `Kaznakalpha@ElidorasCodex.com`
@@ -254,7 +272,8 @@ Build gracefully, test rigorously, and keep resonance high.
 
 This repository includes a GitHub Actions workflow that builds the repository Docker image and pushes it to GitHub Container Registry (ghcr.io). The workflow runs on pushes to `main` and when you create a tag starting with `v` (for example `v1.2.3`).
 
-What the workflow does
+### What the workflow does
+
 - Checks out the repository
 - Sets up buildx and QEMU (optional multi-arch)
 - Logs in to `ghcr.io` using the repository `GITHUB_TOKEN` and `packages: write` permission
@@ -262,7 +281,8 @@ What the workflow does
    - `ghcr.io/<owner>/tec-tgcr:<commit-sha>`
    - `ghcr.io/<owner>/tec-tgcr:latest` (for main branch builds)
 
-How to trigger a publish
+### How to trigger a publish
+
 - Push to `main` to build and push (push will tag the image as `latest`).
 - Create and push a semver tag to publish a specific release image, e.g.:
 
@@ -271,11 +291,10 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Repository settings / notes
+### Repository settings / notes
+
 - The workflow uses the automatically-provided `GITHUB_TOKEN` and requires the `permissions` block included in the workflow (`packages: write`). If your organization blocks `GITHUB_TOKEN` from writing packages, create a PAT with `packages: write` and store it in the repository secrets as `CR_PAT`, then update the workflow to use that secret for login.
 - After the workflow completes the image will be available at `https://ghcr.io/<owner>/tec-tgcr`.
-
-
 
 
 

@@ -160,7 +160,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -e .[dev]
-      
+
       # GitHub Actions AUTOMATICALLY injects these as env vars
       - name: Run tests
         env:
