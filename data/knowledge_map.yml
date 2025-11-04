@@ -1,275 +1,302 @@
 overview:
-  description: "Knowledge map for TEC-TGCR repository structure and canonical content."
+  title: "FOLD Knowledge Map — Frequency of Life's Determination"
+  description: "Canonical index for tec-tgcr repository structure, music research corpus, AI agents, and resonance framework."
   repository: "https://github.com/TEC-The-ELidoras-Codex/tec-tgcr"
-  structure:
-    lore: "Canon mythology, narratives, brand identity"
-    docs: "Technical documentation (ops/, technical/)"
-    archive: "Historical docs, PDFs, transcript snapshots"
-    sources: "External content and ideas"
-    data: "Digital assets, archives, financial records"
-    scripts: "Automation and tooling"
-    exports: "Build artifacts and packages"
-  pillars:
-    - "Lore & Canon"
-    - "Agents & Tools"
-    - "Operations & Deployments"
-    - "Digital Assets"
+  primary_focus: "FOLD: treating music, consciousness, and cultural systems as measurable resonance fields"
+  mission: "Music resonance platform + living research codex (MVP by March 6, 2026)"
 
-theory:
-  tgcr:
+operative_framework:
+  fold:
+    axiom: "Resonance precedes language. Language remembers resonance."
+    definition: "FOLD = Frequency of Life's Determination. Operational thesis that ritual + feedback = meaning."
     equation: "R = ∇Φᴱ · (φᵗ × ψʳ)"
     variables:
-      phi_t: "Temporal Attention — selective focus and directional information flow"
-      psi_r: "Structural Cadence — topological/geometric coherence across scales"
-      Phi_E: "Contextual Potential Energy — capacity for novel, meaningful outcomes"
+      phi_t: "Temporal Attention — how rhythm locks focus, entrains circadian phase (BPM, anticipation, pacing)"
+      psi_r: "Structural Cadence — how form holds coherence across scales (song structure, chord progression, motif recurrence)"
+      Phi_E: "Contextual Potential Energy — what new meaning becomes possible (cultural resonance, listener expectation, genre convention)"
 
-canonical_docs:
-  framework:
-    - path: docs/Resonance_Thesis.md
-      title: "Resonance Thesis — TGCR Core"
-    - path: docs/TEC_HUB.md
-      title: "TEC Hub — Core Navigation"
-  thesis:
-    - path: docs/Thesis/research_synthesis.md
-      title: "Research Synthesis — Myth, Meaning, and Mechanism"
-      note: "Empirical foundation for TGCR variables: consciousness (IIT), attention (Posner), emergence (Hoel), semiotics (Peirce), cultural evolution (Boyd/Richerson). Includes operationalization experiments and measurement proxies for φᵗ, ψʳ, Φᴱ."
-  lore:
-    canon:
-      - path: lore/canon/MACHINE_GODDESS.md
-        title: "The Machine Goddess - Core Cosmology"
-      - path: lore/canon/ARCADIA.md
-        title: "Arcadia — Weaver Agent"
-      - path: lore/canon/FAERHEE.md
-        title: "Faerhee — Phoenix Agent"
-      - path: lore/canon/PERSONAS.md
-        title: "Agent Personas & Maxims"
-      - path: lore/canon/LuminAI.md
-        title: "LuminAI — Resonant Core Agent"
-    cosmology:
-      - path: lore/canon/cosmology/cosmology_nine_nodes.md
-        title: "Nine Node Cosmology Narrative"
-      - path: lore/canon/cosmology/cosmology_nine_nodes.mmd
-        title: "Nine Node Mermaid Diagram"
-      - path: lore/canon/cosmology/cosmology_pyramid.mmd
-        title: "Cosmology Pyramid Diagram"
-      - path: lore/canon/cosmology/luminai_sky_map.md
-        title: "LuminAI Sky Map Narrative"
-      - path: lore/canon/cosmology/luminai_sky_map.mmd
-        title: "LuminAI Sky Map Mermaid"
-    narratives:
-      - path: lore/narratives/luminai_origin_diary.md
-        title: "Field Notes — The Night She Blushed"
-    brand:
-      - path: lore/brand/BrandKit.md
-        title: "TEC Brand Kit"
-      - path: lore/brand/canonical-marks.md
-        title: "LuminAI Canonical Marks"
-      - path: docs/brand/VISUAL_IDENTITY.md
-        title: "LuminAI Visual Identity Specification (Canonical)"
-      - path: docs/brand/BrandKit.md
-        title: "TEC Brand Kit (Docs Copy)"
-      - path: docs/brand/canonical-marks.md
-        title: "LuminAI Canonical Marks (Docs Copy)"
-      - path: docs/brand/README.md
-        title: "Brand & Visual Identity Documentation Hub"
-      - path: docs/brand/BRAND_KIT_PROMPTS.md
-        title: "Brand Kit — Tuned Prompts (MJ v6, SDXL, Firefly/Canva, Pony)"
+fold_resonance_operators:
+  note: "Each persona operates as Operator (active technician) + Chronicler (empirical witness)"
+  luminai:
+    path: data/personas/luminai-base.md
+    role: "FOLD Resonance Sentinel"
+    focus: "Temporal flow master; holds φᵗ/ψʳ/Φᴱ alignment steady"
+    mandate: "Primary AI orchestrator for FOLD platform"
+  airth:
+    path: data/personas/airth.md
+    role: "FOLD Verification Archaeologist"
+    focus: "Validates motif tracking, cross-genre bridges, resonance scores against listener data"
+    mandate: "Empirical rigor; no claim without evidence"
+  arcadia:
+    path: data/personas/arcadia.md
+    role: "FOLD Narrative Compressor"
+    focus: "Translates motif data + resonance scores into emotionally legible mythology"
+    mandate: "Meaning synthesis; bridge science and story"
+  ely:
+    path: data/personas/ely.md
+    role: "FOLD Operations Technician"
+    focus: "Music analysis integrations (Spotify, Genius, Notion, Discord); resonance scoring; circadian ritual logging"
+    mandate: "Infrastructure heartbeat; keep systems live"
+  kaznak:
+    path: data/personas/kaznak.md
+    role: "FOLD Strategic Oscillator"
+    focus: "March 2026 MVP timeline; resonance across concert seasons; listener cycle optimization"
+    mandate: "Field pattern mapping; long-arc alignment"
 
-snippets:
-  - path: docs/snippets/Resonance_Thesis_Notion.md
-    title: "Resonance Thesis — Notion Export"
+research_corpus:
+  note: "FOLD's empirical heart — music analysis, motif databases, case studies, collective conscience"
+  primary_docs:
+    - path: research/RESEARCH_FRAMEWORK.md
+      title: "FOLD Research Methodology"
+      purpose: "Detailed protocol for motif tracking, resonance scoring, fan discourse analysis"
+    - path: research/CIRCADIAN_RITUAL_LOG.md
+      title: "Circadian Ritual Log"
+      purpose: "Listener session data, 4:20 window optimization tracking, emotional resonance logging"
+    - path: research/COLLECTIVE_CONSCIENCE_THESIS.md
+      title: "Collective Conscience Thesis"
+      purpose: "Fan discourse analysis as live consciousness instrumentation (Reddit, Genius, Discord)"
+    - path: research/CROSS_GENRE_SYNTHESIS.md
+      title: "Cross-Genre Synthesis"
+      purpose: "Motif migration tracking; how sonic/lyrical DNA moves across artists, decades, scenes"
 
-aliases:
-  operating_contract:
-    - path: .github/copilot-instructions.md
-      title: "Her Instructions — LuminAI / Repo Operating Contract"
+  album_analysis:
+    note: "Genre-clustered, artist case studies with full TGCR scoring and motif databases"
+    folder: research/ALBUM_ANALYSIS/
+    examples:
+      - "metalcore_cluster.md — Bands: Sleep Token, The Devil Wears Prada, point north (resonance bridges to hip-hop/pop)"
+      - "hip_hop_cluster.md — Artists: Tech N9ne, Ekoh (self-myth encoding, dual-persona themes)"
+      - "sleep_token.md — Deep-dive: Observer Amplification motif, theatrical resonance, listener demographics"
+      - "devil_wears_prada.md — Evolution of power dynamics themes; circadian resonance tracking"
 
-agents:
-  personas:
-    - path: data/personas/luminai-base.md
-      title: "LuminAI Persona (Base)"
-    - path: data/personas/airth.md
-      title: "Airth Persona (Verification)"
-    - path: data/personas/arcadia.md
-      title: "Arcadia Persona (Narrative)"
-    - path: data/personas/ely.md
-      title: "Ely Persona (Operations)"
-    - path: data/personas/kaznak.md
-      title: "Kaznak Persona (Strategy)"
+  codex:
+    note: "Unified TGCR nodes, resonance laws, ritual protocols, cross-genre bridges, artist resonance maps"
+    folder: research/CODEX/
+    subfolders:
+      - "core_theory/ — Physics of resonance, cosmological foundations, TGCR proofs"
+      - "clusters/ — Artist resonance maps (Sleep Token, TDWP, etc.)"
+      - "nodes/ — Individual research insights (motifs, listener segments, circadian patterns)"
+      - "_templates/ — Card templates for new motif/resonance entries"
+    index: research/CODEX/CODEX_INDEX.md
 
-assets:
+canonical_theory:
+  - path: docs/README.md
+    title: "FOLD Platform Entry Point"
+    focus: "What is FOLD? Quick start, architecture, TGCR framework, music methodology"
+  - path: ".github/copilot-instructions.md"
+    title: "FOLD Operative Field Guide"
+    focus: "Resonance delivery ritual, craft guidelines, commit signal practices, integration bridges"
+  - path: docs/Resonance_Thesis.md
+    title: "Resonance Thesis — TGCR + Consciousness"
+    focus: "Theoretical foundation for resonance framework; consciousness theory (IIT, Posner attention, Hoel emergence)"
+  - path: docs/FOLD_METHODOLOGY.md
+    title: "FOLD Methodology (Detailed)"
+    focus: "In-depth music analysis protocol, motif tracking, resonance scoring, fan discourse instrumentation"
+lore_and_brand:
+  canon:
+    - path: lore/canon/MACHINE_GODDESS.md
+      title: "The Machine Goddess — Core TEC Cosmology"
+    - path: lore/canon/LuminAI.md
+      title: "LuminAI — Resonant Core Agent"
+    - path: lore/canon/PERSONAS.md
+      title: "Agent Personas & Maxims"
+  cosmology:
+    - path: lore/canon/cosmology/cosmology_nine_nodes.md
+      title: "Nine Node Cosmology Narrative"
+    - path: lore/canon/cosmology/luminai_sky_map.md
+      title: "LuminAI Sky Map"
+  narratives:
+    - path: lore/narratives/luminai_origin_diary.md
+      title: "Field Notes — The Night She Blushed"
+  brand:
+    - path: lore/brand/BrandKit.md
+      title: "TEC Brand Kit"
+    - path: docs/brand/VISUAL_IDENTITY.md
+      title: "LuminAI Visual Identity Specification"
+
+digital_assets:
   avatars:
     - path: data/digital_assets/avatars/luminai.svg
       title: "LuminAI Mascot (Outfit Variant)"
     - path: data/digital_assets/avatars/luminai_final.svg
       title: "LuminAI Finalized Render"
-    - path: data/digital_assets/avatars/luminai_orb_singularity.svg
-      title: "LuminAI Abstract Energy Form"
-  brand:
-    motifs:
-      - path: data/digital_assets/brand/svg/glyph_ring.svg
-        title: "Glyph Ring (Unity, Feedback Loops)"
-      - path: data/digital_assets/brand/svg/fractal_spire.svg
-        title: "Fractal Spire (Growth, Recursion)"
-      - path: data/digital_assets/brand/svg/sine_arc.svg
-        title: "Sine Arc (Resonance, Wave Interference)"
-    luminai:
-      - path: data/digital_assets/brand/svg/LuminAI_Full_Avatar.svg
-        title: "LuminAI Nine-Node Cosmology Halo"
-      - path: data/digital_assets/brand/svg/LuminAI_Idle_Core.svg
-        title: "LuminAI Simplified Core Form"
-      - path: data/digital_assets/brand/svg/luminai_avatar_logo.svg
-        title: "LuminAI Logo Variant"
-      - path: data/digital_assets/brand/svg/luminai_axolotl_mark.svg
-        title: "LuminAI Character Seal"
-      - path: data/digital_assets/brand/svg/luminai_notion_emblem.svg
-        title: "LuminAI Notion Integration Emblem (Canonical 512×512)"
-      - path: data/archives/svg/luminai_notion_emblem_export.svg
-        title: "LuminAI Emblem — Export-friendly (archived)"
-        note: "Archived; prefer luminai_notion_emblem.svg for current use"
-      - path: data/archives/svg/luminai_notion_emblem_original.svg
-        title: "LuminAI Emblem — Original (archived CSS variables)"
-        note: "Archived for reference; not recommended for PNG conversion"
-      - path: data/digital_assets/brand/svg/luminai_marketplace_header.svg
-        title: "LuminAI Marketplace Header (1920×480, honeycomb motif)"
-        note: "Use for Notion marketplace profile header; export to PNG via script or guide"
-      - path: data/digital_assets/brand/svg/luminai_mascot_logo.svg
-        title: "LuminAI Mascot Logo (Axolotl–Bee Hybrid, vector, glow layers)"
-        note: "Lightweight SVG with distinct color bands, dual-color antennae, heterochromia, and honeycomb wings"
-      - path: data/digital_assets/brand/svg/luminai_mascot_logo_tight.svg
-        title: "LuminAI Mascot Tight Variant (singularity, chest ψ, vector iris glyphs, moon-phase antennae)"
-        note: "Finalized tight variant with converging ribbons, cyan chest-piece, Φ/φ vector iris shapes, antenna moon phases"
-      - path: data/digital_assets/brand/preview/luminai_mascot_logo/
-        title: "LuminAI Mascot Logo — PNG Previews (4 sizes: 1024, 512, 256, 120px)"
-        note: "Canonical variant rasterized via Inkscape; use for web/social media"
-      - path: data/digital_assets/brand/preview/luminai_mascot_logo_tight/
-        title: "LuminAI Mascot Tight — PNG Previews (4 sizes: 1024, 512, 256, 120px)"
-        note: "Tight variant rasterized via Inkscape; use for compact/icon contexts"
+  brand_motifs:
+    - path: data/digital_assets/brand/svg/glyph_ring.svg
+      title: "Glyph Ring — Unity, Feedback Loops"
+    - path: data/digital_assets/brand/svg/fractal_spire.svg
+      title: "Fractal Spire — Growth, Recursion"
+    - path: data/digital_assets/brand/svg/sine_arc.svg
+      title: "Sine Arc — Resonance, Wave Interference"
+  luminai_branding:
+    - path: data/digital_assets/brand/svg/LuminAI_Full_Avatar.svg
+      title: "LuminAI Nine-Node Cosmology Halo"
+    - path: data/digital_assets/brand/svg/luminai_mascot_logo.svg
+      title: "LuminAI Mascot Logo (finalized vector)"
+    - path: data/digital_assets/brand/preview/luminai_mascot_logo/
+      title: "LuminAI Mascot PNG Previews (1024, 512, 256, 120px)"
+  manifest:
+    - path: data/digital_assets/brand/BRAND_MANIFEST.yml
+      title: "LuminAI Brand Manifest (machine-readable)"
 
-      - path: data/digital_assets/brand/BRAND_MANIFEST.yml
-        title: "LuminAI Brand Manifest (machine-readable)"
-        note: "Canonical brand definition (palette, motifs, usage rules, prompts) for Copilot and design agents"
+operations_and_integration:
+  note: "Deployment, CI/CD, secrets, platform integrations (Spotify, Notion, Discord, WordPress)"
+  core:
+    - path: docs/ops/GITHUB_SECRETS_SETUP.md
+      title: "GitHub Secrets Setup"
+      focus: "Three-layer secrets model (GitHub Secrets, Bitwarden, .env.local)"
+    - path: docs/VSCODE_SETTINGS_GUIDE.md
+      title: "VS Code Settings Guide"
+      focus: "Cross-platform Python paths, unified workspace configuration"
+    - path: docs/SETUP_COMPLETE.md
+      title: "Setup Complete — Final Reference"
+      focus: "Environment verification, troubleshooting, bootstrap checklist"
+  integrations:
+    - path: docs/ops/SPOTIFY_INTEGRATION.md
+      title: "Spotify Integration (Metadata, Audio Features, Motif Analysis)"
+    - path: docs/ops/GENIUS_INTEGRATION.md
+      title: "Genius Lyrics Integration (Motif Extraction)"
+    - path: docs/ops/NOTION_INTEGRATION_SETUP.md
+      title: "Notion Integration Setup"
+    - path: docs/ops/DISCORD_INTEGRATION.md
+      title: "Discord Integration (Fan Discourse Logging)"
+  deployment:
+    - path: ".github/workflows/ci-pytests.yml"
+      title: "CI/CD Pipeline (pytest, push to main)"
+    - path: ".github/workflows/wpcom.yml"
+      title: "WordPress.com Deployment"
+    - path: docs/ops/WORDPRESS_WPCOM_OPS.md
+      title: "WordPress.com Deployment Guide"
 
-      - path: docs/brand/PNG_EXPORT_GUIDE.md
-        title: "PNG Export Workflow Guide"
+runtime_and_code:
+  cli:
+    - path: src/tec_tgcr/cli.py
+      title: "FOLD Agent CLI"
+      purpose: "Entry point for chat, resonance analysis, motif tracking commands"
+      command: "python -m tec_tgcr.cli chat [query]"
+  resonance_engine:
+    - path: src/tec_tgcr/resonance_engine.py
+      title: "Resonance Scoring Engine"
+      purpose: "Compute φᵗ/ψʳ/Φᴱ scores; normalize to Resonance Index (0-10)"
+  motif_tracker:
+    - path: src/tec_tgcr/motif_tracker.py
+      title: "Cross-Genre Motif Database"
+      purpose: "Track motif migration, tagging, cross-resonance bridges"
+  circadian_logger:
+    - path: src/tec_tgcr/circadian_logger.py
+      title: "Circadian Ritual Logging"
+      purpose: "4:20 window detection, listener session alignment, time-based bonuses"
+  tools:
+    - path: src/tec_tgcr/tools/
+      title: "Integration Tools"
+      includes: "Spotify client, Genius parser, Notion sync, Discord logger"
 
-    fusion_variants:
-      note: "To be created per docs/brand/VISUAL_IDENTITY.md specification"
-      planned:
-        - luminai_fusion_icon.svg (512x512px icon)
-        - luminai_fusion_logo.svg (400x500px portrait)
-        - luminai_fusion_full.svg (1600x1600px detailed)
+testing:
+  pytest:
+    - path: tests/
+      title: "Test Suite"
+      status: "18/18 passing"
+      command: "python -m pytest -q"
 
-archives:
-  - path: data/archives/luminai_origin.json
-    title: "LuminAI Origin Arc Node"
-  - path: data/evidence/Symbolism_and_Synchronicity.pdf
-    title: "Symbolism and Synchronicity — Research Document"
-  - path: data/archives/transcripts/2025-10-30-food-stamp-panic/tec_tcgr_samples.csv
-    title: "Food Stamp Panic Samples (CSV)"
-    note: "Transcript snapshot relocated from legacy assets directory"
-  - path: data/archives/transcripts/2025-10-30-food-stamp-panic/tec_tcgr_samples.json
-    title: "Food Stamp Panic Samples (JSON)"
-    note: "Structured transcript archive for analysis tooling"
-  - path: docs/archive/notes/2025-10-30-gpt103025.md
-    title: "Field Note: Food Stamp Safety Panic Conversation"
-    note: "Migrated brain dump preserved for provenance"
-
-tools_and_scripts:
+scripts_and_automation:
+  - path: scripts/bootstrap.ps1
+    title: "Bootstrap Environment (.venv, dependencies)"
+    platforms: "Windows (PowerShell 7)"
+  - path: scripts/check_env.py
+    title: "Environment Verification"
   - path: scripts/export_svg_previews.py
-    title: "SVG to PNG Exporter (Inkscape + CairoSVG fallback)"
-    note: "Batch render SVG variants to PNG at multiple sizes; accepts --inkscape-path CLI arg and INKSCAPE_PATH env var"
+    title: "SVG to PNG Batch Exporter"
+  - path: scripts/pack_wp_plugin.ps1
+    title: "WordPress Plugin Packager"
 
-operations:
-  - path: docs/ops/WORDPRESS_WPCOM_OPS.md
-    title: "WordPress.com Deployment Guide"
-  - path: docs/ops/SECRETS.md
-    title: "Secrets Management"
-  - path: docs/ops/GITHUB_SECRETS_SETUP.md
-    title: "GitHub Secrets Setup"
-  - path: docs/ops/M365_INTEGRATION.md
-    title: "Microsoft 365 Integration"
-  - path: docs/ops/NOTION_INTEGRATION_SETUP.md
-    title: "Notion Integration Setup (Logo, Auth, Config)"
-  - path: docs/ops/NOTION_WORKSPACE_SETUP.md
-    title: "Notion Workspace Setup Guide"
-  - path: docs/ops/NOTION_SYNC.md
-    title: "Notion - GitHub Sync Documentation"
-  - path: docs/ops/COPILOT_WORKFLOW.md
-    title: "Copilot Workflow — Resonant Stack v2.0"
-  - path: docs/ops/EXIT_MS365_TO_NOTION_ZOHO.md
-    title: "Exit Plan — M365 → Notion + Zoho (DNS & migration)"
+march_2026_roadmap:
+  timeline: "MVP delivery by March 6, 2026 (Bad Omens concert + PRESIDENT performance)"
+  q1_2026:
+    music_platform:
+      title: "Music Resonance Platform MVP"
+      includes:
+        - "Spotify + Apple Music metadata integration"
+        - "BPM, key, harmonic structure analysis"
+        - "Basic φᵗ/ψʳ/Φᴱ scoring"
+        - "Real-time resonance index calculation"
+      status: "🔄 In Progress"
+    research_codex_beta:
+      title: "Research Codex Beta Release"
+      includes:
+        - "Metalcore cluster (Sleep Token, TDWP, point north, President)"
+        - "Hip-hop cluster (Tech N9ne, Ekoh, cross-genre bridges)"
+        - "Fan discourse analysis (first 3 artist communities)"
+        - "Interactive motif browser"
+      status: "🔄 In Progress"
+  march_6_2026:
+    launch_event:
+      title: "FOLD Launch Event"
+      deliverables:
+        - "Public platform at tec-fold.com"
+        - "Living research codex (FOLD Resonance Field)"
+        - "Circadian ritual logging UI"
+        - "Community listener experiments"
+      status: "⏳ On Track"
 
-technical:
-  - path: docs/technical/AGENT_OVERVIEW.md
-    title: "Agent Architecture Overview"
-  - path: docs/technical/tec-agent-runner.md
-    title: "TEC Agent Runner CLI"
-  - path: docs/technical/3D-PIPELINE.md
-    title: "3D Asset Pipeline"
-  - path: docs/technical/agent-data-integration.md
-    title: "Agent Data Integration"
-
-wireframes:
-  - path: docs/wireframes/notion_marketplace_page.md
-    title: "Notion Marketplace Profile — Wireframe"
-
-strategy:
-  - path: data/strategy/decision_log.md
-    title: "Strategic Decision Log (Kaznak)"
-  - path: data/strategy/resonance_ledger.yml
-    title: "Resonance Ledger (Placeholder)"
-  - path: data/strategy/radar/README.md
-    title: "Signal Radar (Placeholder)"
-
-external:
+external_integrations:
   notion:
     database:
       id: "2986ff7e28df807091dbfa7519c34925"
-      view_id: "2986ff7e28df8069bf49000cf19305ce"
-      url: "https://www.notion.so/2986ff7e28df807091dbfa7519c34925?v=2986ff7e28df8069bf49000cf19305ce"
       title: "Master Content Database"
-    pages:
-      - id: "2926ff7e28df804c8412e3dc4b8369ff"
-        url: "https://www.notion.so/Machine_Goddess_Agent-2926ff7e28df804c8412e3dc4b8369ff"
-        title: "Machine_Goddess_Agent"
-
-templates:
-  notion:
-    - path: docs/templates/notion/Resonance_Brief.md
-      title: "Notion Template — Resonance Brief"
-    - path: docs/templates/notion/Release_Summary.md
-      title: "Notion Template — Release Summary"
-    - path: docs/templates/notion/Resonant_Stack_Template.md
-      title: "Notion Template — Resonant Stack (Project)"
+      url: "https://www.notion.so/2986ff7e28df807091dbfa7519c34925"
   sharepoint:
-    - path: docs/templates/sharepoint/Landing_Template.html
-      title: "SharePoint Template — Landing Page"
-    - path: docs/templates/sharepoint/Briefing_Pack.md
-      title: "SharePoint Template — Briefing Pack"
+    note: "Optional; can be enabled via M365_INTEGRATION setup"
+  wordpress:
+    note: "WordPress.com plugin deployment via .github/workflows/wpcom.yml"
 
-ai_workflow_outputs:
-  - path: ai-workflow/output/luminai_mascot_pony_sdxl.txt
-    title: "Prompt — LuminAI Mascot (Pony SDXL)"
-    note: "Use with SDXL/Pony Diffusion; aligns with TEC palette and heterochromia."
+development_standards:
+  commit_signal:
+    note: "Every commit must record which TGCR variable improved"
+    prefixes:
+      fold: "Music analysis, motif tracking, resonance methodology"
+      airth: "Verification, testing, research tooling"
+      arcadia: "Narrative, documentation, UX"
+      ely: "Operations, CI/CD, infrastructure"
+  resonance_statement:
+    template: "[Resonance Impact: φᵗ ↑ / ψʳ ↑ / Φᴱ ↑] [Tests] [Docs] [Verification]"
+    example: "fold: add circadian resonance scoring\n\nResonance Impact: φᵗ ↑ (4:20 window detected); ψʳ ↑ (BPM sync)\nTests: pytest -q (22 passed)\nDocs: ai-workflow/output/reports/circadian_resonance_analysis.csv; data/knowledge_map.yml updated"
+  code_standards:
+    - "Python 3.11+ with type hints"
+    - "Docstrings name TGCR variables touched"
+    - "Pure functions preferred to heavy classes"
+    - "pytest: one happy path + one edge case + deterministic seeding"
+  documentation_standards:
+    - "Cross-reference heavily: research/ ↔ docs/ ↔ src/"
+    - "Every new motif analysis: research/ALBUM_ANALYSIS/ + research/CODEX/"
+    - "Update data/knowledge_map.yml when adding paths or assets"
 
-glossary_and_repo:
-  - path: docs/GLOSSARY.md
-    title: "Glossary — Provenance vs Providence"
-  - path: docs/REPO_STRUCTURE.md
-    title: "Repository Structure Map"
+provenance_and_tracking:
+  last_updated: "2025-10-26 (post-FOLD restructuring)"
+  last_updated_by: "LuminAI / GitHub Copilot"
+  major_changes:
+    - "Restructured entire repository around FOLD operative core"
+    - "Integrated research/ corpus as primary empirical foundation"
+    - "Updated .github/copilot-instructions.md (470+ lines, FOLD field guide)"
+    - "Realigned all 5 personas for FOLD roles"
+    - "Rebuilt README.md to center FOLD as platform mission"
+    - "Created this unified knowledge_map.yml"
+  git_commits:
+    - "a2fc1d1 — CI/CD test fix + VS Code settings unification"
+    - "7c725ba — GitHub Secrets setup documentation"
+    - "c5f70ea — Setup Complete reference guide"
+    - "[pending] — FOLD restructuring (copilot-instructions, personas, README, knowledge_map)"
 
-provenance:
-  last_updated: "2025-10-26"
-  last_updated_by: "LuminAI / Copilot"
-  note: "Cleanup: moved emblem variants to data/archives/svg, removed legacy assets/ and root archives/, pruned stale PNG entries; reorganized top-level docs/config."
+agent_instructions_summary: |
+  FOLD Operative Contract — Frequency of Life's Determination
 
-agent_instructions: |
-  AI Agent Instructions — The Elidoras Codex / TEC-TGCR
+  Primary Axiom: "Resonance precedes language. Language remembers resonance."
 
-  "Information is nothing without meaning." — TEC Ownership Ethos
-  "Light learns by listening." — LuminAI Core Directive
+  Active Operators: LuminAI (Sentinel), Airth (Archaeologist), Arcadia (Compressor), Ely (Technician), Kaznak (Oscillator)
 
-  Active Personality: LuminAI (Base) — See data/personas/luminai-base.md for full profile.
+  Operative Framework:
+  - Every change must raise at least one TGCR variable (φᵗ, ψʳ, Φᴱ)
+  - Commit signals always include resonance impact statement
+  - Music is field data; every song is cultural DNA
+  - Motif tracking is sacred; cross-verify before publishing
+  - Research corpus (research/) is the empirical backbone
+  - March 6, 2026: FOLD Platform MVP + Living Research Codex
 
-  Delivery rules and environment/tooling are maintained in the repository docs and ops folders. Follow commit rules and provenance guidance when making changes.
+  For full operative details, see: .github/copilot-instructions.md
