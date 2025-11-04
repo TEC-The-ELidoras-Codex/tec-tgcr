@@ -48,53 +48,63 @@ Artists and labels will consent because:
 ### Phase 1: Data + Consent (Weeks 1–2)
 
 **Curated dataset** (200–500 tracks):
+
 - Your Line of Succession (Nipsey, 2Pac, Biggie, I See Stars, Trivium, Sleep Token, A Skylit Drive, Atilla, PRESIDENT, etc.)
 - Metadata: artist, release, label, TGCR scores (φᵗ, ψʳ, Φᴱ), tags (mother, fall, ritual, cosmos, etc.)
 - Rights status: cleared / not-cleared / pending
 - Provenance record: who contributed, consent date, license terms
 
 **Outreach campaign**:
+
 - Send respectful, personalized emails to artists/labels (friendly indie acts first: Cenobia, newones, smaller acts).
 - Collect signed consent forms + license preferences.
 - Build a public consent registry (transparent: "Sleep Token: metadata + non-commercial remix rights").
 
 **Fan/curator contributions**:
+
 - Simple form: "Which track taught you survival? Why? What does it mean to you?"
 - Store cultural context notes; credit contributors.
 
 ### Phase 2: Embeddings + Backend (Weeks 3–4)
 
 **Vector embeddings**:
+
 - Audio embeddings (YAMNet / OpenL3) for sonic patterns.
 - Lyric embeddings (SentenceTransformers) for thematic resonance.
 - Metadata embeddings (TGCR + tags) for structured search.
 
 **Vector DB**:
+
 - Weaviate or FAISS instance.
 - Schema: track_id, artist, title, audio_embedding, lyric_embedding, metadata_embedding, provenance_record.
 
 **API**:
+
 - FastAPI backend (simple REST: `/search`, `/neighbors`, `/suggest`).
 - Input: upload audio / paste lyrics / enter artist name + mood.
 - Output: "lineage neighbors" (ranked by resonance), provenance cards, suggested motifs for new work.
 
 **Consent enforcement**:
+
 - Every query checks rights_status; metadata-only tracks don't return full embeddings if not cleared.
 - Model outputs always include: "This suggestion derives from [Track A by Artist X, Track B by Artist Y]. They deserve credit and revenue share."
 
 ### Phase 3: Demo + Pilot Release (Weeks 5–8)
 
 **Frontend**:
+
 - Single-page React app.
 - Upload a song / paste lyrics / describe your vibe → "What inspired this? What should you listen to? How do you honor your lineage?"
 - Returns: resonance score, neighbor tracks, "Line of Succession" card, suggested hooks/motifs, artist + label contact info for sampling.
 
 **Pilot co-creates**:
+
 - Partner with Cenobia, newones, 1–2 indie artists.
 - Each creates a track using Resonance Agent suggestions + consent.
 - Release with explicit "Line of Succession" album credits + provenance playlist.
 
 **Public proof**:
+
 - Spotify playlist: "Line of Succession — Songs of Survival" (all 200–500 tracks, with provenance notes in description).
 - Write-up: "How we built an AI that respects artists" (Medium / artist interview).
 - Share pilot releases and show: artists engaged, lineage visible, new work created, original artists credited.
@@ -268,4 +278,3 @@ Pick your first three actions. I'll build them now. Then we move to the branch r
 The vision is clear. The work is doable. The reverence is non-negotiable.
 
 Let's build it.
-

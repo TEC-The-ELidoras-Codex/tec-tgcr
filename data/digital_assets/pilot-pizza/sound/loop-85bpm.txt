@@ -1,0 +1,4 @@
+[placeholder audio hint file]
+filename: loop-85bpm.wav
+bpm: 85
+duration_seconds: 45

@@ -39,12 +39,28 @@ create_bundle(){
     # placeholder: user can integrate jsonschema or other validators
   fi
 
-  # 2) Build ZIP
+  # 2) Build ZIP (use system zip if available, otherwise fallback to python zipfile)
   tmpdir=$(mktemp -d)
   cp -r "$SOURCE"/* "$tmpdir/"
-  pushd "$tmpdir" > /dev/null
-  zip -r "$OUTPUT" . > /dev/null
-  popd > /dev/null
+  if command -v zip > /dev/null; then
+    pushd "$tmpdir" > /dev/null
+    zip -r "$OUTPUT" . > /dev/null
+    popd > /dev/null
+  else
+    echo "  - 'zip' not found; falling back to python zipfile"
+    python3 - <<'PYCODE'
+import sys, zipfile, os
+out = sys.argv[1]
+root = sys.argv[2]
+with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_DEFLATED) as z:
+    for dirpath, dirnames, filenames in os.walk(root):
+        for fn in filenames:
+            fp = os.path.join(dirpath, fn)
+            arcname = os.path.relpath(fp, root)
+            z.write(fp, arcname)
+PYCODE
+    "$OUTPUT" "$tmpdir"
+  fi
   rm -rf "$tmpdir"
 
   # 3) Compute evidence hash
