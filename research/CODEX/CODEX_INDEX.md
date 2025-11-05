@@ -27,7 +27,7 @@ These are the fundamental frameworks that anchor all other cards. Start with the
 
 | Card | Version | Status | Purpose |
 |------|---------|--------|---------|
-| `CODEX_MOTHER_STEWARD_MIRROR.md` | 1.0 | refined | Ethical framework for stewardship; trauma-aware governance; consent vs. control |
+| `CODEX_STEWARD_MATTER_SUBCONSCIENCE_SELF.md` | 1.0 | refined | Ethical stewardship, matter dynamics, subconscious patterns, self-knowledge |
 | `CODEX_CHRONOSPHERE.md` | 1.0 | refined | Information-to-kinetics cascade; threshold events; instantaneity |
 | `CODEX_PAC_MAN_UNIVERSE.md` | 1.0 | refined | 3-torus topology; closed systems; iterative remembering |
 

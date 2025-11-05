@@ -16,8 +16,8 @@
 
 ### Reorganized
 
-- ✓ `MOTHER_STEPCHILD_STEWARD_MIRROR.md` → `core_theory/CODEX_MOTHER_STEWARD_MIRROR.md`
-- **Reason**: Removed "stepchild" language; renamed to emphasize Mother/Steward/Mirror framework
+- ✓ `CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md` → `core_theory/CODEX_STEWARD_MATTER_SUBCONSCIENCE_SELF.md`
+- **Reason**: Core framework revised to 4 pillars: Steward, Matter, Subconscience, Self
 
 ---
 
