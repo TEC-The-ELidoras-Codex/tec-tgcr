@@ -16,8 +16,8 @@
 
 ### Reorganized
 
-- ✓ `MOTHER_STEPCHILD_STEWARD_MIRROR.md` → `core_theory/CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md`
-- **Reason**: It's a foundational ethical framework; belongs with core theory, not floating at root
+- ✓ `MOTHER_STEPCHILD_STEWARD_MIRROR.md` → `core_theory/CODEX_MOTHER_STEWARD_MIRROR.md`
+- **Reason**: Removed "stepchild" language; renamed to emphasize Mother/Steward/Mirror framework
 
 ---
 

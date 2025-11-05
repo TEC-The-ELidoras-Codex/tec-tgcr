@@ -49,7 +49,7 @@ It's your personal theory made *shareable*. Each card is a complete idea that ca
 
 | Card | Purpose | Read Time |
 |------|---------|-----------|
-| [`core_theory/CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md`](./core_theory/CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md) | **READ FIRST**: Ethical framework for stewardship; trauma-aware governance; when care becomes control; consent vs. coercion | 35-45 min |
+| [`core_theory/CODEX_MOTHER_STEWARD_MIRROR.md`](./core_theory/CODEX_MOTHER_STEWARD_MIRROR.md) | **READ FIRST**: Ethical framework for stewardship; trauma-aware governance; when care becomes control; consent vs. coercion | 35-45 min |
 | [`core_theory/CODEX_CHRONOSPHERE.md`](./core_theory/CODEX_CHRONOSPHERE.md) | How information becomes action; threshold events; instantaneity | 30-40 min |
 | [`core_theory/CODEX_PAC_MAN_UNIVERSE.md`](./core_theory/CODEX_PAC_MAN_UNIVERSE.md) | 3-torus topology; closed systems; iterative remembering | 25-30 min |
 

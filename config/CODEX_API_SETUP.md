@@ -19,7 +19,7 @@
 5. **Upload Files** (Knowledge section):
    - `research/CODEX/core_theory/CODEX_CHRONOSPHERE.md`
    - `research/CODEX/core_theory/CODEX_PAC_MAN_UNIVERSE.md`
-   - `research/CODEX/core_theory/CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md`
+   - `research/CODEX/core_theory/CODEX_MOTHER_STEWARD_MIRROR.md`
    - `research/CODEX/nodes/CODEX_SYNTHETIC_INTROSPECTION.md`
    - `research/CODEX/nodes/CODEX_GUT_BRAIN_PHI_T.md`
    - `research/CODEX/clusters/CODEX_SLEEP_TOKEN_RAIN.md`
@@ -67,7 +67,7 @@ def load_cards():
     card_files = [
         ("core_theory", "CODEX_CHRONOSPHERE.md", "codex_chronosphere"),
         ("core_theory", "CODEX_PAC_MAN_UNIVERSE.md", "codex_pac_man_universe"),
-        ("core_theory", "CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md", "codex_mother_stepchild"),
+        ("core_theory", "CODEX_MOTHER_STEWARD_MIRROR.md", "codex_mother_steward_mirror"),
         ("nodes", "CODEX_SYNTHETIC_INTROSPECTION.md", "codex_synthetic_introspection"),
         ("nodes", "CODEX_GUT_BRAIN_PHI_T.md", "codex_gut_brain_phi_t"),
         ("clusters", "CODEX_SLEEP_TOKEN_RAIN.md", "codex_sleep_token_rain"),

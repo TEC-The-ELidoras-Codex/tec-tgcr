@@ -1,3 +1,0 @@
-[placeholder emblem]
-colors: cold-brass, matte-glass
-focus: humming-lamp

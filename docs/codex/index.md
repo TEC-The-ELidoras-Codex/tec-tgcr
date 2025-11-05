@@ -74,7 +74,7 @@ The CODEX consists of **7 core cards**, each exploring a different facet of TGCR
 2. **CODEX_PAC_MAN_UNIVERSE** — Topology, loops, memory
 3. **CODEX_SYNTHETIC_INTROSPECTION** — AI consciousness, resonance tests
 4. **CODEX_GUT_BRAIN_PHI_T** — Embodied decision-making, vagal leadership
-5. **CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR** — Ethics, governance, trauma-awareness
+5. **CODEX_MOTHER_STEWARD_MIRROR** — Ethics, governance, trauma-awareness
 6. **CODEX_SLEEP_TOKEN_RAIN** — Music as cosmic pattern (Sleep Token case)
 7. **CODEX_TDWP** — Structural cadence in prog-metal (The Devil Wears Prada case)
 
