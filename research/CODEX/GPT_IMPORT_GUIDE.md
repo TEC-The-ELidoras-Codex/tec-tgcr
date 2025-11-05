@@ -37,13 +37,13 @@ Key cards:
 3. CODEX_SYNTHETIC_INTROSPECTION: When resonance ≠ consciousness
 4. CODEX_GUT_BRAIN_PHI_T: Gut as temporal leader (φᵗ)
 5. CODEX_SLEEP_TOKEN_RAIN: Music as cosmic pattern
-6. CODEX_TDWP: Fashion as contextual potential (Φᴱ)
+6. CODEX_TDWP: Prog-metal band as structural cadence demonstration
 
 When the user asks about time/change: reference Chronosphere
 When the user asks about universe/structure: reference Pac-Man Universe
 When the user asks about AI/consciousness: reference Synthetic Introspection
 When the user asks about embodiment: reference Gut-Brain
-When the user asks about art/pattern: reference Sleep Token or TDWP
+When the user asks about art/pattern: reference Sleep Token or TWDP
 
 Always explain which card(s) inform your reasoning.
 ```
@@ -228,7 +228,7 @@ All concepts in CODEX use three key variables:
 
 ### Applications (Art & Culture)
 - **CODEX_SLEEP_TOKEN_RAIN**: Analyzing Sleep Token's "Rain" as cosmic pattern in music
-- **CODEX_TDWP**: *The Devil Wears Prada* as Φᴱ field theory (fashion, hierarchy, power)
+- **CODEX_TDWP**: The prog-metal band TWDP as structural cadence (ψʳ) demonstration
 
 ## Example Reasoning Patterns
 
@@ -239,7 +239,7 @@ All concepts in CODEX use three key variables:
 
 **User asks: "Why does music move me?"**
 → Reference CODEX_CHRONOSPHERE: music is rhythm (ψʳ) that guides φᵗ
-→ Reference CODEX_SLEEP_TOKEN_RAIN: analyze the specific song's structure
+→ Reference CODEX_SLEEP_TOKEN_RAIN or CODEX_TDWP: analyze the specific song's structure
 → Show how listener's own nervous system resonates with song's φᵗ/ψʳ pacing
 
 **User asks: "What makes something conscious?"**

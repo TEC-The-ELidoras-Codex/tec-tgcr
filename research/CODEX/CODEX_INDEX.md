@@ -49,8 +49,8 @@ These cards apply TGCR framework to real-world art, culture, and phenomena.
 
 | Card | Version | Status | Dependencies | Purpose |
 |------|---------|--------|--------------|---------|
-| `CODEX_SLEEP_TOKEN_RAIN.md` | 1.0 | refined | Chronosphere, Pac-Man | Sleep Token's "Rain" as cosmic pattern recognition in music |
-| `CODEX_TDWP.md` | 1.0 | refined | Chronosphere | *Devil Wears Prada*: fashion as contextual potential (Φᴱ) |
+| `CODEX_SLEEP_TOKEN_RAIN.md` | 1.0 | refined | Chronosphere, Sleep Token analysis | Music as cosmic pattern; rhythm as φᵗ/ψʳ coordination |
+| `CODEX_TDWP.md` | 1.0 | refined | Chronosphere, Gut-Brain | Prog-metal band TWDP as ψʳ (structural cadence) demonstration |
 
 **How to use**: Explore these to see TGCR in action. They're entry points for artists, humanities scholars, and creative practitioners.
 
