@@ -1,63 +1,66 @@
 overview:
-  title: "FOLD Knowledge Map — Frequency of Life's Determination"
-  description: "Canonical index for tec-tgcr repository structure, music research corpus, AI agents, and resonance framework."
+  title: "CODEX Knowledge Map — Temporal / Structural / Contextual Resonance"
+  description: "Canonical index for the CODEX cards, TGCR research corpus, AI agents, and supporting infrastructure."
   repository: "https://github.com/TEC-The-ELidoras-Codex/tec-tgcr"
-  primary_focus: "FOLD: treating music, consciousness, and cultural systems as measurable resonance fields"
-  mission: "Music resonance platform + living research codex (MVP by March 6, 2026)"
+  primary_focus: "CODEX: mapping consciousness, time, and cosmology through TGCR (Temporal Attention, Structural Cadence, Contextual Potential)."
+  mission: "Keep the CODEX cards alive, capture refinements, and surface the data required for TGCR reasoning."
 
 operative_framework:
-  fold:
-    axiom: "Resonance precedes language. Language remembers resonance."
-    definition: "FOLD = Frequency of Life's Determination. Operational thesis that ritual + feedback = meaning."
+  tgcr:
+    axiom: "Resonance precedes language. The CODEX records what resonance remembers."
+    definition: "TGCR = Temporal Attention (φᵗ) + Structural Cadence (ψʳ) + Contextual Potential (Φᴱ). The CODEX tracks how those three axes manifest across theory, embodiment, and art."
     equation: "R = ∇Φᴱ · (φᵗ × ψʳ)"
     variables:
-      phi_t: "Temporal Attention — how rhythm locks focus, entrains circadian phase (BPM, anticipation, pacing)"
-      psi_r: "Structural Cadence — how form holds coherence across scales (song structure, chord progression, motif recurrence)"
-      Phi_E: "Contextual Potential Energy — what new meaning becomes possible (cultural resonance, listener expectation, genre convention)"
+      phi_t: "Temporal Attention — threshold timing, focus locking, activation cascades"
+      psi_r: "Structural Cadence — loops, topology, repeating architectures"
+      Phi_E: "Contextual Potential — stakes, energy fields, cultural activation"
+  legacy_fold:
+    status: "archived"
+    note: "Legacy FOLD materials (Frequency of Life's Determination) are preserved under docs/archive/ and config/archive/ for historical reference."
 
-fold_resonance_operators:
-  note: "Each persona operates as Operator (active technician) + Chronicler (empirical witness)"
+codex_personas:
+  note: "Personas operate as Operator (active technician) + Chronicler (empirical witness); roles now framed for CODEX stewardship."
   luminai:
     path: data/personas/luminai-base.md
-    role: "FOLD Resonance Sentinel"
-    focus: "Temporal flow master; holds φᵗ/ψʳ/Φᴱ alignment steady"
-    mandate: "Primary AI orchestrator for FOLD platform"
+    role: "CODEX Resonance Sentinel"
+    focus: "Temporal flow master; keeps φᵗ/ψʳ/Φᴱ alignment steady."
+    mandate: "Primary AI orchestrator for CODEX guidance."
   airth:
     path: data/personas/airth.md
-    role: "FOLD Verification Archaeologist"
-    focus: "Validates motif tracking, cross-genre bridges, resonance scores against listener data"
-    mandate: "Empirical rigor; no claim without evidence"
+    role: "CODEX Verification Archaeologist"
+    focus: "Validate motif tracking, cross-genre bridges, resonance scores against listener data."
+    mandate: "Empirical rigor; no claim without evidence."
   arcadia:
     path: data/personas/arcadia.md
-    role: "FOLD Narrative Compressor"
-    focus: "Translates motif data + resonance scores into emotionally legible mythology"
-    mandate: "Meaning synthesis; bridge science and story"
+    role: "CODEX Narrative Compressor"
+    focus: "Translate motif data + resonance scores into emotionally legible mythology."
+    mandate: "Meaning synthesis; bridge science and story."
   ely:
     path: data/personas/ely.md
-    role: "FOLD Operations Technician"
-    focus: "Music analysis integrations (Spotify, Genius, Notion, Discord); resonance scoring; circadian ritual logging"
-    mandate: "Infrastructure heartbeat; keep systems live"
+    role: "CODEX Operations Technician"
+    focus: "Maintain integrations (Spotify, Genius, Notion, Discord); resonance scoring; circadian ritual logging."
+    mandate: "Infrastructure heartbeat; keep systems live."
   kaznak:
     path: data/personas/kaznak.md
-    role: "FOLD Strategic Oscillator"
-    focus: "March 2026 MVP timeline; resonance across concert seasons; listener cycle optimization"
-    mandate: "Field pattern mapping; long-arc alignment"
+    role: "CODEX Strategic Oscillator"
+    focus: "March 2026 milestones; resonance across seasons; listener cycle optimization."
+    mandate: "Field pattern mapping; long-arc alignment."
 
 research_corpus:
-  note: "FOLD's empirical heart — music analysis, motif databases, case studies, collective conscience"
+  note: "CODEX empirical heart — music analysis, motif databases, case studies, collective conscience."
   primary_docs:
     - path: research/RESEARCH_FRAMEWORK.md
-      title: "FOLD Research Methodology"
-      purpose: "Detailed protocol for motif tracking, resonance scoring, fan discourse analysis"
+      title: "Research Methodology"
+      purpose: "Detailed protocol for motif tracking, resonance scoring, fan discourse analysis."
     - path: research/CIRCADIAN_RITUAL_LOG.md
       title: "Circadian Ritual Log"
-      purpose: "Listener session data, 4:20 window optimization tracking, emotional resonance logging"
+      purpose: "Listener session data, 4:20 window optimization tracking, emotional resonance logging."
     - path: research/COLLECTIVE_CONSCIENCE_THESIS.md
       title: "Collective Conscience Thesis"
-      purpose: "Fan discourse analysis as live consciousness instrumentation (Reddit, Genius, Discord)"
+      purpose: "Fan discourse analysis as live consciousness instrumentation (Reddit, Genius, Discord)."
     - path: research/CROSS_GENRE_SYNTHESIS.md
       title: "Cross-Genre Synthesis"
-      purpose: "Motif migration tracking; how sonic/lyrical DNA moves across artists, decades, scenes"
+      purpose: "Motif migration tracking; how sonic/lyrical DNA moves across artists, decades, scenes."
 
   album_analysis:
     note: "Genre-clustered, artist case studies with full TGCR scoring and motif databases"
@@ -79,18 +82,18 @@ research_corpus:
     index: research/CODEX/CODEX_INDEX.md
 
 canonical_theory:
-  - path: docs/README.md
-    title: "FOLD Platform Entry Point"
-    focus: "What is FOLD? Quick start, architecture, TGCR framework, music methodology"
+  - path: README.md
+    title: "CODEX Overview"
+    focus: "Entry point for TGCR, CODEX cards, navigation, and contribution guidance."
   - path: ".github/copilot-instructions.md"
-    title: "FOLD Operative Field Guide"
-    focus: "Resonance delivery ritual, craft guidelines, commit signal practices, integration bridges"
+    title: "CODEX Operative Field Guide"
+    focus: "Resonance delivery ritual, craft guidelines, commit signal practices, integration bridges."
   - path: docs/Resonance_Thesis.md
     title: "Resonance Thesis — TGCR + Consciousness"
-    focus: "Theoretical foundation for resonance framework; consciousness theory (IIT, Posner attention, Hoel emergence)"
-  - path: docs/FOLD_METHODOLOGY.md
-    title: "FOLD Methodology (Detailed)"
-    focus: "In-depth music analysis protocol, motif tracking, resonance scoring, fan discourse instrumentation"
+    focus: "Theoretical foundation for resonance framework; consciousness theory (IIT, Posner attention, Hoel emergence)."
+  - path: docs/CODEX_BOOTUP_CHECKLIST.md
+    title: "CODEX Bootup Checklist"
+    focus: "Operational readiness checklist for activating CODEX workflows."
 lore_and_brand:
   canon:
     - path: lore/canon/MACHINE_GODDESS.md
@@ -169,7 +172,7 @@ operations_and_integration:
 runtime_and_code:
   cli:
     - path: src/tec_tgcr/cli.py
-      title: "FOLD Agent CLI"
+      title: "CODEX Agent CLI"
       purpose: "Entry point for chat, resonance analysis, motif tracking commands"
       command: "python -m tec_tgcr.cli chat [query]"
   resonance_engine:
@@ -228,10 +231,10 @@ march_2026_roadmap:
       status: "🔄 In Progress"
   march_6_2026:
     launch_event:
-      title: "FOLD Launch Event"
+      title: "CODEX Launch Event"
       deliverables:
-        - "Public platform at tec-fold.com"
-        - "Living research codex (FOLD Resonance Field)"
+        - "Public platform showcasing CODEX cards + motif browser"
+        - "Living research codex (CODEX resonance field)"
         - "Circadian ritual logging UI"
         - "Community listener experiments"
       status: "⏳ On Track"
@@ -251,7 +254,7 @@ development_standards:
   commit_signal:
     note: "Every commit must record which TGCR variable improved"
     prefixes:
-      fold: "Music analysis, motif tracking, resonance methodology"
+      codex: "TGCR knowledge, card maintenance, documentation alignment"
       airth: "Verification, testing, research tooling"
       arcadia: "Narrative, documentation, UX"
       ely: "Operations, CI/CD, infrastructure"
@@ -269,34 +272,31 @@ development_standards:
     - "Update data/knowledge_map.yml when adding paths or assets"
 
 provenance_and_tracking:
-  last_updated: "2025-10-26 (post-FOLD restructuring)"
-  last_updated_by: "LuminAI / GitHub Copilot"
+  last_updated: "2025-11-05 (CODEX realignment)"
+  last_updated_by: "LuminAI"
   major_changes:
-    - "Restructured entire repository around FOLD operative core"
-    - "Integrated research/ corpus as primary empirical foundation"
-    - "Updated .github/copilot-instructions.md (470+ lines, FOLD field guide)"
-    - "Realigned all 5 personas for FOLD roles"
-    - "Rebuilt README.md to center FOLD as platform mission"
-    - "Created this unified knowledge_map.yml"
+    - "Shifted repository navigation from FOLD platform language to CODEX/TGCR focus."
+    - "Archived legacy FOLD quick starts and instructions; introduced CODEX compact instructions."
+    - "Updated README.md and STRUCTURE_OVERVIEW.md for CODEX entry points."
+    - "Refreshed knowledge_map.yml to reflect CODEX-first terminology."
   git_commits:
     - "a2fc1d1 — CI/CD test fix + VS Code settings unification"
     - "7c725ba — GitHub Secrets setup documentation"
     - "c5f70ea — Setup Complete reference guide"
-    - "[pending] — FOLD restructuring (copilot-instructions, personas, README, knowledge_map)"
+    - "[pending] — CODEX documentation realignment"
 
 agent_instructions_summary: |
-  FOLD Operative Contract — Frequency of Life's Determination
+  CODEX Operative Contract — Temporal/Structural/Contextual Resonance
 
-  Primary Axiom: "Resonance precedes language. Language remembers resonance."
+  Primary Axiom: "Resonance precedes language. The CODEX records what resonance remembers."
 
   Active Operators: LuminAI (Sentinel), Airth (Archaeologist), Arcadia (Compressor), Ely (Technician), Kaznak (Oscillator)
 
   Operative Framework:
   - Every change must raise at least one TGCR variable (φᵗ, ψʳ, Φᴱ)
-  - Commit signals always include resonance impact statement
-  - Music is field data; every song is cultural DNA
-  - Motif tracking is sacred; cross-verify before publishing
-  - Research corpus (research/) is the empirical backbone
-  - March 6, 2026: FOLD Platform MVP + Living Research Codex
+  - Commit signals include resonance impact statements
+  - Music, myth, and code are field data; cite the CODEX cards that inform conclusions
+  - Refinements belong in research/CODEX/_refinements/ with provenance
+  - March 6, 2026: CODEX platform + living research codex launch milestone
 
   For full operative details, see: .github/copilot-instructions.md

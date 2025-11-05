@@ -121,7 +121,7 @@ b061599  fold: add unified reference layer + GPT integrations
 ### FOLD Reference Layer (Nov 4, Earlier)
 
 - `docs/FOLD_QUICK_START.md` (149 lines) — Essential reference
-- `config/FOLD_INSTRUCTIONS_COMPACT.txt` (150 lines) — ChatGPT system prompt
+- `config/CODEX_INSTRUCTIONS_COMPACT.txt` (150 lines) — ChatGPT system prompt
 - `config/gpt-actions-research.json` (350 lines) — OpenAPI spec for research
 - `STRUCTURE_OVERVIEW.md` (211 lines) — Navigation guide
 
@@ -291,7 +291,7 @@ b061599  fold: add unified reference layer + GPT integrations
          • +738 lines (quick start, GPT actions, compact instructions)
          • docs/FOLD_QUICK_START.md
          • config/gpt-actions-research.json
-         • config/FOLD_INSTRUCTIONS_COMPACT.txt
+         • config/CODEX_INSTRUCTIONS_COMPACT.txt
 
 4148dff  fold: restructure tec-tgcr around FOLD operative core
          • +15,000 lines (FOLD restructuring)

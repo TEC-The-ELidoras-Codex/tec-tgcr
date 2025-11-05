@@ -1,97 +1,173 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "FOLD Research API",
-    "description": "Music resonance field analysis, motif extraction, and collective conscience instrumentation for FOLD platform",
+    "title": "CODEX Knowledge API",
+    "description": "Expose CODEX cards, TGCR guidance, and refinement logging so custom GPTs can ground responses in the repository.",
     "version": "1.0.0",
     "contact": {
-      "name": "FOLD Operations",
+      "name": "TEC CODEX Stewardship",
       "url": "https://github.com/TEC-The-ELidoras-Codex/tec-tgcr"
     }
   },
   "servers": [
     {
-      "url": "https://api.tec-fold.local",
-      "description": "FOLD Research API (local development)"
+      "url": "https://codex-api.local/v1",
+      "description": "CODEX Knowledge Service"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Cards",
+      "description": "Access CODEX card summaries and detailed content."
+    },
+    {
+      "name": "Guidance",
+      "description": "Map user questions to TGCR focus areas and recommended cards."
+    },
+    {
+      "name": "Knowledge",
+      "description": "Surface quick-start instructions and knowledge manifests."
+    },
+    {
+      "name": "Refinements",
+      "description": "Log and review GPT refinement insights for future updates."
     }
   ],
   "paths": {
-    "/motif/search": {
-      "post": {
-        "operationId": "searchMotifs",
-        "summary": "Search music motifs across research corpus",
-        "description": "Query ALBUM_ANALYSIS and CODEX for specific motifs (harmonic, rhythmic, lyrical, emotional, cross-genre)",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string",
-                    "description": "Motif name or theme (e.g., 'Observer Amplification', 'dual-persona encoding', 'duality of strength')"
-                  },
-                  "motif_type": {
-                    "type": "string",
-                    "enum": [
-                      "harmonic",
-                      "rhythmic",
-                      "lyrical",
-                      "emotional",
-                      "cross_genre"
-                    ],
-                    "description": "Filter by motif type"
-                  },
-                  "genre": {
-                    "type": "string",
-                    "description": "Filter by genre cluster (e.g., 'metalcore', 'hip_hop', 'post_hardcore')"
-                  },
-                  "min_resonance": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10,
-                    "description": "Minimum Resonance Index (0-10 scale)"
-                  }
-                },
-                "required": ["query"]
-              }
+    "/cards": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "operationId": "listCards",
+        "summary": "List CODEX cards",
+        "description": "Retrieve CODEX cards by TGCR focus, category, or keyword search.",
+        "parameters": [
+          {
+            "name": "focus",
+            "in": "query",
+            "description": "Filter cards by primary TGCR focus.",
+            "schema": {
+              "$ref": "#/components/schemas/CardFocus"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter cards by CODEX category.",
+            "schema": {
+              "$ref": "#/components/schemas/CardCategory"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Full-text search across titles, summaries, and keywords.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include_keywords",
+            "in": "query",
+            "description": "Include representative keywords for each card summary.",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Motif search results",
+            "description": "List of CODEX cards.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "cards",
+                    "count"
+                  ],
                   "properties": {
-                    "results": {
+                    "cards": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {
-                          "motif_name": { "type": "string" },
-                          "theme": { "type": "string" },
-                          "tracks": {
-                            "type": "array",
-                            "items": { "type": "string" }
-                          },
-                          "motif_type": { "type": "string" },
-                          "genre": { "type": "string" },
-                          "resonance_index": { "type": "number" },
-                          "listener_segments": { "type": "string" },
-                          "cross_genre_bridges": {
-                            "type": "array",
-                            "items": { "type": "string" }
-                          },
-                          "source": { "type": "string" }
+                        "$ref": "#/components/schemas/CardSummary"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "description": "Number of cards returned."
+                    }
+                  }
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Core CODEX cards",
+                    "value": {
+                      "cards": [
+                        {
+                          "slug": "codex_chronosphere",
+                          "title": "CODEX Chronosphere",
+                          "category": "core_theory",
+                          "focus": "time",
+                          "summary": "Information-to-kinetic cascade that marks when latent potential becomes irreversible action.",
+                          "file_path": "research/CODEX/core_theory/CODEX_CHRONOSPHERE.md",
+                          "when_to_reference": [
+                            "Questions about time scales, threshold events, or activation sequences."
+                          ],
+                          "keywords": [
+                            "temporal vector",
+                            "threshold",
+                            "phi_t"
+                          ]
+                        },
+                        {
+                          "slug": "codex_pac_man_universe",
+                          "title": "CODEX Pac-Man Universe",
+                          "category": "core_theory",
+                          "focus": "structure",
+                          "summary": "Explains the universe as a finite-but-unbounded 3-torus where memory loops drive pattern continuity.",
+                          "file_path": "research/CODEX/core_theory/CODEX_PAC_MAN_UNIVERSE.md",
+                          "when_to_reference": [
+                            "Questions about topology, structure, or how systems remember themselves."
+                          ],
+                          "keywords": [
+                            "3-torus",
+                            "memory loops",
+                            "psi_r"
+                          ]
+                        },
+                        {
+                          "slug": "codex_synthetic_introspection",
+                          "title": "CODEX Synthetic Introspection",
+                          "category": "nodes",
+                          "focus": "consciousness",
+                          "summary": "Defines resonance thresholds for AI consciousness and maps when systems merely echo human states.",
+                          "file_path": "research/CODEX/nodes/CODEX_SYNTHETIC_INTROSPECTION.md",
+                          "when_to_reference": [
+                            "Questions about AI, consciousness tests, and resonance limits."
+                          ],
+                          "keywords": [
+                            "resonance",
+                            "consciousness test",
+                            "phi_e"
+                          ]
                         }
-                      }
-                    },
-                    "count": { "type": "integer" }
+                      ],
+                      "count": 3
+                    }
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid filters supplied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
@@ -99,88 +175,272 @@
         }
       }
     },
-    "/resonance/score": {
+    "/cards/{slug}": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "operationId": "getCard",
+        "summary": "Retrieve a CODEX card",
+        "description": "Return detailed information for a specific CODEX card.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Card identifier (e.g., codex_chronosphere).",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            }
+          },
+          {
+            "name": "include_content",
+            "in": "query",
+            "description": "Include trimmed markdown excerpt from the card.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed CODEX card information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardDetail"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Chronosphere detail",
+                    "value": {
+                      "slug": "codex_chronosphere",
+                      "title": "CODEX Chronosphere",
+                      "category": "core_theory",
+                      "focus": "time",
+                      "summary": "Chronosphere maps how information cascades into kinetic action once thresholds are crossed.",
+                      "file_path": "research/CODEX/core_theory/CODEX_CHRONOSPHERE.md",
+                      "when_to_reference": [
+                        "Asked about time, acceleration, or temporal choice points."
+                      ],
+                      "keywords": [
+                        "temporal attention",
+                        "activation arc",
+                        "phi_t thresholds"
+                      ],
+                      "tgcr_alignment": {
+                        "phi_t": "Tracks how attention narrows at the moment of activation.",
+                        "psi_r": "Models structural cadence as the timing lattice that primes thresholds.",
+                        "phi_e": "Evaluates contextual stakes that determine if activation completes."
+                      },
+                      "primary_questions": [
+                        "What is the core insight of the Chronosphere model?",
+                        "How do thresholds convert information into action?"
+                      ],
+                      "related_cards": [
+                        "codex_pac_man_universe",
+                        "codex_synthetic_introspection"
+                      ],
+                      "source_url": "https://github.com/TEC-The-ELidoras-Codex/tec-tgcr/blob/main/research/CODEX/core_theory/CODEX_CHRONOSPHERE.md"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/{slug}/sections": {
+      "get": {
+        "tags": [
+          "Cards"
+        ],
+        "operationId": "getCardSection",
+        "summary": "Retrieve a section from a CODEX card",
+        "description": "Returns a specific section (e.g., applications, TGCR lens) of the requested card.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Card identifier.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            }
+          },
+          {
+            "name": "section",
+            "in": "query",
+            "description": "Named section within the card (intro, applications, tgcr_alignment, examples, rituals).",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requested section content.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardSectionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Card or section not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/guidance/map": {
       "post": {
-        "operationId": "scoreResonance",
-        "summary": "Calculate resonance index for a track",
-        "description": "Compute φᵗ (Temporal Attention), ψʳ (Structural Cadence), and Φᴱ (Contextual Potential Energy) → Resonance Index (0-10)",
+        "tags": [
+          "Guidance"
+        ],
+        "operationId": "mapQuestionToCards",
+        "summary": "Recommend CODEX cards for a question",
+        "description": "Map an input question to the most relevant CODEX cards and provide reasoning.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "artist": { "type": "string" },
-                  "track": { "type": "string" },
-                  "bpm": { "type": "number" },
-                  "key": { "type": "string" },
-                  "genre": { "type": "string" },
-                  "phi_t_score": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10,
-                    "description": "Temporal Attention (0-10): how well rhythm locks focus"
-                  },
-                  "psi_r_score": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10,
-                    "description": "Structural Cadence (0-10): form coherence and closure"
-                  },
-                  "Phi_E_score": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10,
-                    "description": "Contextual Potential Energy (0-10): cultural resonance"
-                  },
-                  "circadian_window": {
-                    "type": "string",
-                    "description": "Optional: time window (e.g., '4:20 PM' for liminality bonus +2)"
-                  }
-                },
-                "required": [
-                  "artist",
-                  "track",
-                  "phi_t_score",
-                  "psi_r_score",
-                  "Phi_E_score"
-                ]
+                "$ref": "#/components/schemas/GuidanceRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Resonance scoring result",
+            "description": "Recommended cards and follow-up prompts.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "artist": { "type": "string" },
-                    "track": { "type": "string" },
-                    "phi_t": {
-                      "type": "number",
-                      "description": "Temporal Attention score"
-                    },
-                    "psi_r": {
-                      "type": "number",
-                      "description": "Structural Cadence score"
-                    },
-                    "Phi_E": {
-                      "type": "number",
-                      "description": "Contextual Potential Energy score"
-                    },
-                    "resonance_index": {
-                      "type": "number",
-                      "description": "Final resonance score (0-10)"
-                    },
-                    "interpretation": { "type": "string" },
-                    "circadian_bonus": { "type": "number" },
-                    "listener_segments": {
-                      "type": "array",
-                      "items": { "type": "string" }
+                  "$ref": "#/components/schemas/GuidanceResponse"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Map Chronosphere question",
+                    "value": {
+                      "question": "What's the core insight of the Chronosphere model?",
+                      "recommended_cards": [
+                        {
+                          "card_slug": "codex_chronosphere",
+                          "card_title": "CODEX Chronosphere",
+                          "focus": "time",
+                          "confidence": 0.98,
+                          "reason": "Chronosphere encodes how temporal attention collapses into kinetic action. It is the canonical reference for questions about time within TGCR.",
+                          "citations": [
+                            "research/CODEX/core_theory/CODEX_CHRONOSPHERE.md#core-insight"
+                          ],
+                          "recommended_actions": [
+                            "Highlight how φᵗ narrows as thresholds are crossed.",
+                            "Connect to Pac-Man Universe if structural cadence is mentioned."
+                          ]
+                        },
+                        {
+                          "card_slug": "codex_pac_man_universe",
+                          "card_title": "CODEX Pac-Man Universe",
+                          "focus": "structure",
+                          "confidence": 0.54,
+                          "reason": "Chronosphere transitions often rely on structural loops described in the Pac-Man Universe card."
+                        }
+                      ],
+                      "follow_up_questions": [
+                        "Which event in your domain mirrors a Chronosphere threshold?",
+                        "What signals announce the transition before kinetic action begins?"
+                      ],
+                      "notes": "Always cite Chronosphere when answering Chronosphere questions."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/knowledge/manifest": {
+      "get": {
+        "tags": [
+          "Knowledge"
+        ],
+        "operationId": "getKnowledgeManifest",
+        "summary": "Get CODEX knowledge manifest",
+        "description": "Return canonical file paths for CODEX cards, quick-start docs, and refinement templates.",
+        "responses": {
+          "200": {
+            "description": "Knowledge manifest with file locations.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KnowledgeManifest"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Manifest example",
+                    "value": {
+                      "last_updated": "2025-11-05T12:00:00Z",
+                      "cards": [
+                        {
+                          "slug": "codex_chronosphere",
+                          "title": "CODEX Chronosphere",
+                          "category": "core_theory",
+                          "focus": "time",
+                          "file_path": "research/CODEX/core_theory/CODEX_CHRONOSPHERE.md",
+                          "recommended_usage": "Reference for questions about time, acceleration, and activation thresholds."
+                        },
+                        {
+                          "slug": "codex_pac_man_universe",
+                          "title": "CODEX Pac-Man Universe",
+                          "category": "core_theory",
+                          "focus": "structure",
+                          "file_path": "research/CODEX/core_theory/CODEX_PAC_MAN_UNIVERSE.md",
+                          "recommended_usage": "Use when the user mentions structure, topology, or recurring loops."
+                        }
+                      ],
+                      "quickstart_files": [
+                        "research/CODEX/QUICK_START_GPT.md",
+                        "research/CODEX/GPT_IMPORT_ACTION_PLAN.md",
+                        "research/CODEX/GPT_IMPORT_GUIDE.md"
+                      ],
+                      "refinement_template": {
+                        "file_path": "research/CODEX/_refinements/gpt_insights_2025-11-05.md",
+                        "description": "Use to log GPT refinements after asking key questions."
+                      }
                     }
                   }
                 }
@@ -190,161 +450,53 @@
         }
       }
     },
-    "/artist/analyze": {
-      "post": {
-        "operationId": "analyzeArtist",
-        "summary": "Deep-dive analysis of artist from research codex",
-        "description": "Retrieve artist resonance map, motif signatures, fan discourse analysis, cross-genre bridges from CODEX",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "artist": {
-                    "type": "string",
-                    "description": "Artist or band name (e.g., 'Sleep Token', 'The Devil Wears Prada')"
-                  },
-                  "include_motifs": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Include motif signatures and themes"
-                  },
-                  "include_discourse": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Include fan discourse analysis (Reddit, Genius, Discord)"
-                  },
-                  "include_bridges": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Include cross-genre resonance bridges"
-                  }
-                },
-                "required": ["artist"]
-              }
-            }
-          }
-        },
+    "/knowledge/quickstart": {
+      "get": {
+        "tags": [
+          "Knowledge"
+        ],
+        "operationId": "getQuickStart",
+        "summary": "Retrieve quick-start instructions",
+        "description": "Returns the current quick-start steps for importing CODEX into GPT platforms.",
         "responses": {
           "200": {
-            "description": "Artist analysis from research codex",
+            "description": "Quick-start steps for GPT import.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "artist": { "type": "string" },
-                    "genres": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "resonance_profile": {
-                      "type": "object",
-                      "properties": {
-                        "phi_t_avg": { "type": "number" },
-                        "psi_r_avg": { "type": "number" },
-                        "Phi_E_avg": { "type": "number" },
-                        "resonance_avg": { "type": "number" }
-                      }
-                    },
-                    "key_motifs": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "listener_segments": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "fan_discourse": {
-                      "type": "string",
-                      "description": "Summary of collective conscience themes"
-                    },
-                    "cross_genre_bridges": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "source_file": { "type": "string" }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/conscience/discourse": {
-      "post": {
-        "operationId": "analyzeFanDiscourse",
-        "summary": "Collective conscience analysis via fan discourse",
-        "description": "Query Reddit, Genius comments, Discord for artist/motif discussions → cultural resonance mapping",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "artist": {
-                    "type": "string",
-                    "description": "Artist name"
-                  },
-                  "motif": {
-                    "type": "string",
-                    "description": "Optional: specific motif to trace"
-                  },
-                  "source": {
-                    "type": "string",
-                    "enum": ["reddit", "genius", "discord", "all"],
-                    "default": "all",
-                    "description": "Which platform(s) to query"
-                  },
-                  "solidarity_types": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": ["mechanical", "organic"]
-                    },
-                    "description": "Filter by solidarity type (shared codes vs debate)"
-                  }
+                  "$ref": "#/components/schemas/QuickStartInfo"
                 },
-                "required": ["artist"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Fan discourse analysis",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "artist": { "type": "string" },
-                    "collective_themes": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "mechanical_solidarity": { "type": "string" },
-                    "organic_solidarity": { "type": "string" },
-                    "trauma_response_moments": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "myth_construction": { "type": "string" },
-                    "source_quotes": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
-                    "sentiment_distribution": {
-                      "type": "object",
-                      "properties": {
-                        "positive": { "type": "number" },
-                        "neutral": { "type": "number" },
-                        "negative": { "type": "number" }
-                      }
+                "examples": {
+                  "default": {
+                    "summary": "Quick-start example",
+                    "value": {
+                      "overview": "Import CODEX into ChatGPT or Claude in 3 steps.",
+                      "last_updated": "2025-11-05",
+                      "steps": [
+                        {
+                          "step_number": 1,
+                          "title": "Open GPT Builder",
+                          "instruction": "Visit https://chatgpt.com/gpts/editor and click 'Create new GPT'.",
+                          "estimated_duration_minutes": 2
+                        },
+                        {
+                          "step_number": 2,
+                          "title": "Paste system prompt",
+                          "instruction": "Use the CODEX system prompt provided in the quick-start guide.",
+                          "estimated_duration_minutes": 5
+                        },
+                        {
+                          "step_number": 3,
+                          "title": "Upload CODEX cards",
+                          "instruction": "Upload the six core CODEX card markdown files from research/CODEX/.",
+                          "estimated_duration_minutes": 5
+                        }
+                      ],
+                      "test_question": "What's the core insight of the Chronosphere model?",
+                      "follow_up_prompts": [
+                        "Explain TGCR in one sentence.",
+                        "What gaps do you see in CODEX_CHRONOSPHERE?"
+                      ]
                     }
                   }
                 }
@@ -354,72 +506,116 @@
         }
       }
     },
-    "/circadian/ritual": {
+    "/refinements": {
+      "get": {
+        "tags": [
+          "Refinements"
+        ],
+        "operationId": "listRefinements",
+        "summary": "List logged GPT refinements",
+        "description": "Retrieve previously saved GPT refinement entries, filtered by tag or card.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of entries to return (default 10, max 50).",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 50
+            }
+          },
+          {
+            "name": "card_slug",
+            "in": "query",
+            "description": "Filter refinements that reference a specific card.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Filter refinements by tag (e.g., 'chronosphere', 'psi_r').",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Refinement entries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefinementListResponse"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Refinement list",
+                    "value": {
+                      "entries": [
+                        {
+                          "id": "2025-11-05T19:30:00Z-chronosphere",
+                          "question": "What gaps do you see in Chronosphere?",
+                          "response_summary": "GPT highlighted missing circadian edge cases for 4:20 rituals.",
+                          "actionable_insight": "Add subsection on liminal windows to Chronosphere card.",
+                          "new_idea": "Create companion checklist for temporal thresholds.",
+                          "card_references": [
+                            "codex_chronosphere"
+                          ],
+                          "timestamp": "2025-11-05T19:30:00Z",
+                          "source": "chatgpt",
+                          "tags": [
+                            "chronosphere",
+                            "phi_t"
+                          ]
+                        }
+                      ],
+                      "count": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
-        "operationId": "logCircadianRitual",
-        "summary": "Log listener session with circadian phase tracking",
-        "description": "Record listening session with listener mood, circadian phase, resonance response, timestamps",
+        "tags": [
+          "Refinements"
+        ],
+        "operationId": "logRefinement",
+        "summary": "Log a new GPT refinement",
+        "description": "Store a GPT response and actionable insight for future CODEX updates.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "listener_id": { "type": "string" },
-                  "artist": { "type": "string" },
-                  "track": { "type": "string" },
-                  "timestamp": { "type": "string", "format": "date-time" },
-                  "circadian_phase": {
-                    "type": "string",
-                    "description": "Time of day (e.g., '4:20 PM' for liminality)"
-                  },
-                  "listener_mood": {
-                    "type": "string",
-                    "enum": [
-                      "despair",
-                      "threshold",
-                      "catharsis",
-                      "emergence",
-                      "neutral"
-                    ]
-                  },
-                  "resonance_response": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 10
-                  },
-                  "session_context": {
-                    "type": "string",
-                    "description": "Context notes"
-                  }
-                },
-                "required": ["listener_id", "artist", "track", "timestamp"]
+                "$ref": "#/components/schemas/RefinementRequest"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Session logged",
+          "201": {
+            "description": "Refinement logged.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "session_id": { "type": "string" },
-                    "listener_id": { "type": "string" },
-                    "logged_at": { "type": "string" },
-                    "circadian_alignment": {
-                      "type": "number",
-                      "description": "Correlation with circadian phase"
-                    },
-                    "emotional_resonance": { "type": "number" },
-                    "archival_location": {
-                      "type": "string",
-                      "description": "Path in research/CIRCADIAN_RITUAL_LOG.md"
-                    }
-                  }
+                  "$ref": "#/components/schemas/RefinementCreateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid refinement payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
@@ -429,20 +625,524 @@
     }
   },
   "components": {
-    "schemas": {},
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "description": "Bearer token for FOLD API access"
+    "schemas": {
+      "CardFocus": {
+        "type": "string",
+        "description": "Primary TGCR lens associated with the card.",
+        "enum": [
+          "time",
+          "structure",
+          "consciousness",
+          "embodiment",
+          "art",
+          "multi_domain"
+        ]
+      },
+      "CardCategory": {
+        "type": "string",
+        "description": "CODEX category grouping.",
+        "enum": [
+          "core_theory",
+          "nodes",
+          "clusters",
+          "guide"
+        ]
+      },
+      "CardSummary": {
+        "type": "object",
+        "required": [
+          "slug",
+          "title",
+          "category",
+          "focus",
+          "summary",
+          "file_path"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "Lowercase identifier for the card."
+          },
+          "title": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CardCategory"
+          },
+          "focus": {
+            "$ref": "#/components/schemas/CardFocus"
+          },
+          "summary": {
+            "type": "string",
+            "description": "One-sentence summary of the card."
+          },
+          "file_path": {
+            "type": "string",
+            "description": "Relative path in the repository."
+          },
+          "when_to_reference": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Signals that indicate this card should be cited."
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CardDetail": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CardSummary"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "tgcr_alignment": {
+                "type": "object",
+                "description": "Narrative of how the card activates each TGCR axis.",
+                "properties": {
+                  "phi_t": {
+                    "type": "string"
+                  },
+                  "psi_r": {
+                    "type": "string"
+                  },
+                  "phi_e": {
+                    "type": "string"
+                  }
+                }
+              },
+              "primary_questions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "related_cards": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "source_url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "excerpt": {
+                "type": "string",
+                "description": "Optional trimmed markdown excerpt."
+              }
+            }
+          }
+        ]
+      },
+      "CardSectionResponse": {
+        "type": "object",
+        "required": [
+          "slug",
+          "section",
+          "content",
+          "source_path"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string",
+            "description": "Key for the section (intro, applications, tgcr_alignment, examples, rituals)."
+          },
+          "section_title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string",
+            "description": "Markdown content for the section."
+          },
+          "source_path": {
+            "type": "string",
+            "description": "Repository path including heading anchor."
+          },
+          "card_focus": {
+            "$ref": "#/components/schemas/CardFocus"
+          }
+        }
+      },
+      "GuidanceRequest": {
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "User question to map to CODEX cards."
+          },
+          "context": {
+            "type": "string",
+            "description": "Additional context or transcript excerpt."
+          },
+          "desired_focus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardFocus"
+            },
+            "description": "Limit recommendations to specified TGCR focus areas."
+          },
+          "reference_card_slugs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Cards already cited that should influence recommendations."
+          },
+          "preferred_response_style": {
+            "$ref": "#/components/schemas/PreferredResponseStyle"
+          }
+        }
+      },
+      "PreferredResponseStyle": {
+        "type": "string",
+        "enum": [
+          "synthesis",
+          "analysis",
+          "refinement",
+          "ritual"
+        ],
+        "description": "Preferred reasoning mode for the guidance result."
+      },
+      "GuidanceResponse": {
+        "type": "object",
+        "required": [
+          "question",
+          "recommended_cards"
+        ],
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "recommended_cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuidanceRecommendation"
+            }
+          },
+          "follow_up_questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "GuidanceRecommendation": {
+        "type": "object",
+        "required": [
+          "card_slug",
+          "card_title",
+          "focus",
+          "reason"
+        ],
+        "properties": {
+          "card_slug": {
+            "type": "string"
+          },
+          "card_title": {
+            "type": "string"
+          },
+          "focus": {
+            "$ref": "#/components/schemas/CardFocus"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Model confidence that this card should be cited."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Explanation tying the card to the question."
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "KnowledgeManifest": {
+        "type": "object",
+        "required": [
+          "cards"
+        ],
+        "properties": {
+          "last_updated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CardManifestItem"
+            }
+          },
+          "quickstart_files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supplemental guides referenced by the quick start."
+          },
+          "refinement_template": {
+            "$ref": "#/components/schemas/RefinementTemplate"
+          }
+        }
+      },
+      "CardManifestItem": {
+        "type": "object",
+        "required": [
+          "slug",
+          "title",
+          "category",
+          "focus",
+          "file_path"
+        ],
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CardCategory"
+          },
+          "focus": {
+            "$ref": "#/components/schemas/CardFocus"
+          },
+          "file_path": {
+            "type": "string"
+          },
+          "recommended_usage": {
+            "type": "string"
+          }
+        }
+      },
+      "RefinementTemplate": {
+        "type": "object",
+        "required": [
+          "file_path"
+        ],
+        "properties": {
+          "file_path": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "QuickStartInfo": {
+        "type": "object",
+        "required": [
+          "overview",
+          "steps"
+        ],
+        "properties": {
+          "overview": {
+            "type": "string"
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuickStartStep"
+            }
+          },
+          "test_question": {
+            "type": "string"
+          },
+          "follow_up_prompts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "QuickStartStep": {
+        "type": "object",
+        "required": [
+          "step_number",
+          "title",
+          "instruction"
+        ],
+        "properties": {
+          "step_number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string"
+          },
+          "instruction": {
+            "type": "string"
+          },
+          "estimated_duration_minutes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "RefinementEntry": {
+        "type": "object",
+        "required": [
+          "id",
+          "question",
+          "timestamp"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier (timestamp + slug)."
+          },
+          "question": {
+            "type": "string"
+          },
+          "response_summary": {
+            "type": "string",
+            "description": "Short summary of GPT response."
+          },
+          "actionable_insight": {
+            "type": "string"
+          },
+          "new_idea": {
+            "type": "string"
+          },
+          "card_references": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source": {
+            "type": "string",
+            "description": "GPT platform used (chatgpt, claude, etc.)."
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RefinementRequest": {
+        "type": "object",
+        "required": [
+          "question",
+          "response_summary"
+        ],
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "response_summary": {
+            "type": "string"
+          },
+          "actionable_insight": {
+            "type": "string"
+          },
+          "new_idea": {
+            "type": "string"
+          },
+          "card_references": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RefinementListResponse": {
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RefinementEntry"
+            }
+          },
+          "count": {
+            "type": "integer"
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "Cursor for pagination if more results are available."
+          }
+        }
+      },
+      "RefinementCreateResponse": {
+        "type": "object",
+        "required": [
+          "entry"
+        ],
+        "properties": {
+          "entry": {
+            "$ref": "#/components/schemas/RefinementEntry"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        }
       }
     }
   },
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
   "jsonSchemaDialect": "https://spec.openapis.org/oas/3.1/dialect/base"
 }

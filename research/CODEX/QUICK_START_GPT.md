@@ -36,16 +36,18 @@ When asked about art → Sleep Token or TWDP
 Always cite which card(s) inform your answer.
 ```
 
+*Need to reuse later? The same instructions live at `config/CODEX_INSTRUCTIONS_COMPACT.txt`.*
+
 ### STEP 3: Upload Your Cards
 
 1. In "Knowledge" section: Upload these 6 files
-2. Location: `/home/tec_tgcr/tec-tgcr/research/CODEX/`
+2. Location: `/home/tec_tgcr/tec-tgcr/research/`
 
 ```
 core_theory/
   - CODEX_CHRONOSPHERE.md
   - CODEX_PAC_MAN_UNIVERSE.md
-nodes/
+nodes/CODEX
   - CODEX_SYNTHETIC_INTROSPECTION.md
   - CODEX_GUT_BRAIN_PHI_T.md
 clusters/

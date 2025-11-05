@@ -162,7 +162,7 @@ Upload these files so Resonance has full context:
 
 1. `research/CODEX/MOTHER_STEPCHILD_STEWARD_MIRROR.md`
 2. `.github/copilot-instructions.md` (FOLD framework)
-3. `config/FOLD_INSTRUCTIONS_COMPACT.txt` (examples + quick commands)
+3. `config/CODEX_INSTRUCTIONS_COMPACT.txt` (examples + quick commands)
 4. `PHASE_1_EXECUTIVE_SUMMARY.md` (for context on LuminAI project)
 
 ### Step 4: Set Capabilities
@@ -223,7 +223,7 @@ Operating outside this clarity means you:
 |------|---------|
 | `research/CODEX/MOTHER_STEPCHILD_STEWARD_MIRROR.md` | Core mythoscientific framework |
 | `.github/copilot-instructions.md` | Full FOLD operative system |
-| `config/FOLD_INSTRUCTIONS_COMPACT.txt` | Quick reference + examples |
+| `config/CODEX_INSTRUCTIONS_COMPACT.txt` | Quick reference + examples |
 | `PHASE_1_COMPLETION.md` | LuminAI project context |
 | `data/context-latest.json` | Live GitHub context (updated weekly) |
 | `research/ALBUM_ANALYSIS/` | Music as myth/data |
