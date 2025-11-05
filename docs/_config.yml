@@ -1,0 +1,35 @@
+theme: jekyll-theme-minimal
+title: The Elidoras Codex (TEC)
+description: TGCR Framework — AI, Consciousness, Structure, Time
+author: TEC Stewardship
+email: codex@example.com
+show_downloads: false
+google_analytics_id: ""
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: CODEX
+    url: /codex/
+  - title: API Docs
+    url: /codex/api-docs/
+  - title: Quick Start
+    url: /codex/quick-start/
+  - title: GitHub
+    url: https://github.com/TEC-The-ELidoras-Codex/tec-tgcr
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - .git
+  - .gitignore
+  - node_modules
+  - vendor
+  - .env
+  - .DS_Store
