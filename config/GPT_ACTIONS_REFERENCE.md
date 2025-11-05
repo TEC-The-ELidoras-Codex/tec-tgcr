@@ -3,11 +3,13 @@
 ## Available Actions (Callable from ChatGPT)
 
 ### 1. **listCards** (GET /contents/research/CODEX)
+
 Get all CODEX cards with summaries and filters.
 
 **Use when**: You want to browse all cards, filter by focus/category, or search keywords.
 
 **Example prompt**:
+
 ```
 "List all CODEX cards. Show me which ones focus on time and consciousness."
 ```
@@ -17,11 +19,13 @@ Get all CODEX cards with summaries and filters.
 ---
 
 ### 2. **getCard** (GET /contents/research/CODEX/{slug})
+
 Fetch full details of a specific card.
 
 **Use when**: You need deep context on a card's TGCR alignment, primary questions, related cards.
 
 **Example prompt**:
+
 ```
 "Get the full details of CODEX_CHRONOSPHERE. Show me how it aligns with φᵗ, ψʳ, and Φᴱ."
 ```
@@ -31,11 +35,13 @@ Fetch full details of a specific card.
 ---
 
 ### 3. **getCardSection** (GET /contents/research/CODEX/{slug}/sections)
+
 Pull a specific section from a card (intro, applications, examples, rituals, etc.).
 
 **Use when**: You need just the applications or ritual section without full card context.
 
 **Example prompt**:
+
 ```
 "Get the 'applications' section from CODEX_SLEEP_TOKEN_RAIN."
 ```
@@ -45,16 +51,19 @@ Pull a specific section from a card (intro, applications, examples, rituals, etc
 ---
 
 ### 4. **mapQuestionToCards** (POST /guidance/map)
+
 **The most powerful action.** Maps a user question to recommended cards with confidence scores.
 
 **Use when**: Doing deep research, answering complex questions, synthesizing across domains.
 
 **Example prompt**:
+
 ```
 "Map this question to CODEX cards: 'How do decisions happen? What makes a moment feel inevitable?'"
 ```
 
 **Sends to API**:
+
 ```json
 {
   "question": "How do decisions happen?",
@@ -68,11 +77,13 @@ Pull a specific section from a card (intro, applications, examples, rituals, etc
 ---
 
 ### 5. **getKnowledgeManifest** (GET /knowledge/manifest)
+
 See the complete CODEX catalog: all cards, quick-start files, refinement templates.
 
 **Use when**: Onboarding, understanding the structure, or planning research.
 
 **Example prompt**:
+
 ```
 "Show me the complete CODEX knowledge manifest. What's the structure?"
 ```
@@ -82,11 +93,13 @@ See the complete CODEX catalog: all cards, quick-start files, refinement templat
 ---
 
 ### 6. **getQuickStart** (GET /knowledge/quickstart)
+
 Get setup instructions for importing CODEX into GPT platforms.
 
 **Use when**: Helping someone else set up, or verifying setup steps.
 
 **Example prompt**:
+
 ```
 "What are the quick-start steps for importing CODEX into ChatGPT?"
 ```
@@ -96,16 +109,19 @@ Get setup instructions for importing CODEX into GPT platforms.
 ---
 
 ### 7. **listRefinements** (GET /refinements)
+
 View previously logged insights and refinements from CODEX conversations.
 
 **Use when**: Reviewing what has been learned, finding patterns in feedback.
 
 **Example prompt**:
+
 ```
 "List refinements related to 'chronosphere'. What gaps have been identified?"
 ```
 
 **Parameters**:
+
 - `limit`: Max entries (default 10, max 50)
 - `card_slug`: Filter by specific card (e.g., "codex_chronosphere")
 - `tag`: Filter by tag (e.g., "phi_t", "consciousness")
@@ -115,11 +131,13 @@ View previously logged insights and refinements from CODEX conversations.
 ---
 
 ### 8. **logRefinement** (POST /refinements)
+
 **Save new insights back to CODEX.** Essential for iterative theory improvement.
 
 **Use when**: Completing a deep research session, identifying gaps, discovering new connections.
 
 **Example prompt**:
+
 ```
 "Log this refinement: 
 Question: 'How does embodied gut sense predict consciousness?'
@@ -131,6 +149,7 @@ Tags: phi_t, embodiment, consciousness"
 ```
 
 **Sends**:
+
 ```json
 {
   "question": "...",
@@ -150,6 +169,7 @@ Tags: phi_t, embodiment, consciousness"
 ## Deep Research Workflow
 
 ### Pattern 1: **Explore a Domain**
+
 ```
 1. mapQuestionToCards("How does [topic] relate to TGCR?")
    → Identify relevant cards
@@ -162,6 +182,7 @@ Tags: phi_t, embodiment, consciousness"
 ```
 
 ### Pattern 2: **Compare Cards**
+
 ```
 1. getCard("codex_chronosphere")
 2. getCard("codex_pac_man_universe")
@@ -171,6 +192,7 @@ Tags: phi_t, embodiment, consciousness"
 ```
 
 ### Pattern 3: **Synthesize New Ideas**
+
 ```
 1. mapQuestionToCards("What if [hypothesis]?")
    → Which cards support/challenge it?
@@ -214,6 +236,7 @@ When using Actions, structure answers like:
 **User**: "Deep dive on how gut intuition predicts decisions."
 
 **ChatGPT**:
+
 ```
 Let me map this question to CODEX cards...
 

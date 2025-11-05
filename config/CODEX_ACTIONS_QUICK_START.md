@@ -1,6 +1,7 @@
 # ⚡ CODEX GPT Actions - 30-Second Setup
 
-## You Have:
+## You Have
+
 ✅ API Key (GitHub token or custom)  
 ✅ OpenAPI schema (gpt-actions-research.json)  
 ✅ 7 CODEX cards ready to access  
@@ -8,9 +9,10 @@
 
 ---
 
-## What To Do NOW:
+## What To Do NOW
 
 ### Step 1: Create Your API Key
+
 ```bash
 # GitHub Personal Access Token
 Go to: https://github.com/settings/tokens
@@ -20,6 +22,7 @@ Go to: https://github.com/settings/tokens
 ```
 
 ### Step 2: Open ChatGPT GPT Builder
+
 ```
 https://chatgpt.com/gpts/editor
 → Create new GPT
@@ -29,6 +32,7 @@ https://chatgpt.com/gpts/editor
 ```
 
 ### Step 3: Import Schema
+
 ```
 Schema source: "Import from URL"
 
@@ -37,6 +41,7 @@ https://raw.githubusercontent.com/TEC-The-ELidoras-Codex/tec-tgcr/main/config/gp
 ```
 
 ### Step 4: Add Authentication
+
 ```
 Authentication Type: API Key
 
@@ -48,20 +53,24 @@ Bearer ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ### Step 5: Paste System Prompt
+
 In GPT Instructions field, paste from:
 `config/CODEX_INSTRUCTIONS_COMPACT.txt`
 
-### Step 6: Test It!
+### Step 6: Test It
+
 Try this prompt:
+
 ```
 "Use listCards to show me all available CODEX cards"
 ```
 
 ---
 
-## That's It!
+## That's It
 
 Your CODEX is now live in ChatGPT with full Actions support:
+
 - ✓ Dynamically list/fetch cards
 - ✓ Map questions to cards
 - ✓ Deep research with confidence scores
