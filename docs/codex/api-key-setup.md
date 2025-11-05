@@ -3,13 +3,14 @@ layout: default
 title: API Key Setup
 ---
 
-# ChatGPT GPT Actions Setup (API Key)
+## ChatGPT GPT Actions Setup (API Key)
 
 [Quick reference from config/GPT_ACTIONS_API_KEY_SETUP.md]
 
 ## Step 1: Get API Key
 
 ### GitHub Personal Access Token
+
 1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
 2. Click "Generate new token (classic)"
 3. Name: `CODEX-ChatGPT-Actions`
@@ -24,24 +25,28 @@ title: API Key Setup
 4. Click "+ Create new action"
 
 ### Schema Import
+
 - **Source**: "Import from URL"
 - **URL**: `https://raw.githubusercontent.com/TEC-The-ELidoras-Codex/tec-tgcr/main/config/gpt-actions-research.json`
 
 ### Authentication
+
 - **Type**: API Key
 - **Header**: `Authorization`
 - **Value**: `Bearer YOUR_GITHUB_TOKEN`
 
 Example:
-```
+
+```bash
 Bearer ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ## Step 3: Test Actions
 
 Try in ChatGPT:
-```
-"Use listCards to show all CODEX cards"
+
+```text
+Use listCards to show all CODEX cards
 ```
 
 ## Step 4: Add System Prompt

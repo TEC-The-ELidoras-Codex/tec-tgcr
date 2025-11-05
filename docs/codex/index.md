@@ -4,7 +4,7 @@ title: CODEX Knowledge Base
 description: TGCR Framework & Deep Research Tools
 ---
 
-# 🎯 CODEX Knowledge Base
+## 🎯 CODEX Knowledge Base
 
 Welcome to the **CODEX** — an evolving framework for understanding consciousness, time, structure, and meaning through **TGCR** (Theory of General Contextual Resonance).
 
@@ -21,8 +21,8 @@ Welcome to the **CODEX** — an evolving framework for understanding consciousne
 ### ⚙️ **Use CODEX**
 
 - [GPT Actions Setup](#gpt-actions-setup) — Connect ChatGPT to CODEX
-- [API Documentation](#api-docs)
-- [Deep Research Workflows](#workflows)
+- [API Documentation](#api-documentation)
+- [Deep Research Workflows](#deep-research-workflows)
 
 ### 🔧 **Integrate CODEX**
 
@@ -70,19 +70,11 @@ Music and structure demonstrate ψʳ in action—see **CODEX_SLEEP_TOKEN_RAIN** 
 
 The CODEX consists of **7 core cards**, each exploring a different facet of TGCR:
 
-### Core Theory
-
 1. **CODEX_CHRONOSPHERE** — Time, thresholds, information cascades
 2. **CODEX_PAC_MAN_UNIVERSE** — Topology, loops, memory
-
-### Intermediate Concepts
-
 3. **CODEX_SYNTHETIC_INTROSPECTION** — AI consciousness, resonance tests
 4. **CODEX_GUT_BRAIN_PHI_T** — Embodied decision-making, vagal leadership
 5. **CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR** — Ethics, governance, trauma-awareness
-
-### Applications
-
 6. **CODEX_SLEEP_TOKEN_RAIN** — Music as cosmic pattern (Sleep Token case)
 7. **CODEX_TDWP** — Structural cadence in prog-metal (The Devil Wears Prada case)
 
@@ -134,7 +126,7 @@ The **CODEX Knowledge API** exposes 8 operations:
 
 ### Pattern 1: Explore a Domain
 
-```
+```bash
 mapQuestionToCards("How does [topic] relate to TGCR?")
 → getCard(top_result)
 → getCardSection(..., "applications")
@@ -143,7 +135,7 @@ mapQuestionToCards("How does [topic] relate to TGCR?")
 
 ### Pattern 2: Compare Cards
 
-```
+```bash
 getCard("codex_chronosphere")
 → getCard("codex_pac_man_universe")
 → mapQuestionToCards("How do these relate?")
@@ -151,7 +143,7 @@ getCard("codex_chronosphere")
 
 ### Pattern 3: Synthesize New Ideas
 
-```
+```bash
 mapQuestionToCards("What if [hypothesis]?")
 → Which cards support/challenge?
 → logRefinement(new_card_idea)
@@ -167,7 +159,7 @@ mapQuestionToCards("What if [hypothesis]?")
 
 1. [Read TGCR overview](tgcr-overview.md)
 2. [Browse CODEX cards](cards/)
-3. [Try deep research prompts](#workflows)
+3. [Try deep research prompts](#deep-research-workflows)
 
 ### For Developers
 
