@@ -11,8 +11,16 @@
   },
   "servers": [
     {
-      "url": "https://api.github.com/repos/TEC-The-ELidoras-Codex/tec-tgcr",
-      "description": "CODEX Repository (GitHub API with Authentication)"
+      "url": "https://localhost:5000/api/v1",
+      "description": "CODEX Knowledge Service (Local - HTTPS)"
+    },
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "CODEX Knowledge Service (Local - HTTP)"
+    },
+    {
+      "url": "https://codex-api.local/api/v1",
+      "description": "CODEX Knowledge Service (Production)"
     }
   ],
   "security": [

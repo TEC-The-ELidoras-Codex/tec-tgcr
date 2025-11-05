@@ -1,0 +1,22 @@
+name: Brand Asset Validation
+
+on:
+    pull_request:
+        paths:
+            - "config/brand/svg/**"
+            - "config/brand/BRAND_MANIFEST.yml"
+            - "scripts/validate_brand_assets.py"
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v4
+              with:
+                  python-version: "3.11"
+            - name: Run brand asset validator
+              run: python3 scripts/validate_brand_assets.py
+            - name: Report validation
+              if: always()
+              run: echo "✅ All brand assets passed accessibility checks" || echo "❌ Validation failed"

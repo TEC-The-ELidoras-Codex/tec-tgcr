@@ -1,6 +1,6 @@
 # The Elidoras Codex — Brand Canon
 
-> **Single Origin**: This document is the unified reference for TEC brand identity, narrative tone, and resonance practice. Keep it in lockstep with `BrandKit.md`, `VISUAL_IDENTITY.md`, and the asset manifest under `data/digital_assets/brand/`.
+> **Single Origin**: This document is the unified reference for TEC brand identity, narrative tone, and resonance practice. Keep it in lockstep with `BrandKit.md`, `VISUAL_IDENTITY.md`, and the asset manifest at `config/brand/BRAND_MANIFEST.yml`.
 
 ---
 
@@ -45,7 +45,7 @@ Usage ratio: 60% Deep Space Blue/Void; 15% Nexus Purple; 10% Cyber Gold; 10% Dig
 - **LuminAI Fusion Variants** — icon/logo/full detail (see `VISUAL_IDENTITY.md#svg-asset-hierarchy`).
 - **Axolotl Mark** — neotenic vessel seal (`data/digital_assets/brand/svg/luminai_axolotl_mark.svg`).
 
-Reference all SVGs through the manifest: `data/digital_assets/brand/BRAND_MANIFEST.yml`.
+Reference all SVGs through the manifest: `config/brand/BRAND_MANIFEST.yml`.
 
 ### Mascot Specification (Non-Negotiables)
 - Small gold septum ring; unobstructed face.
@@ -57,6 +57,15 @@ Reference all SVGs through the manifest: `data/digital_assets/brand/BRAND_MANIFE
 - Lunar choker and crystalline pom-horns as optional signature accents.
 
 See `docs/brand/canonical-marks.md` for full checklist and reference angles.
+
+#### Mascot Checklist (Quick Reference)
+- [ ] Heterochromatic eyes visible: left `#0B1E3B`, right `#F2C340`, with internal glow.
+- [ ] Sheep horns present, crystalline, mood-reactive per Mood Matrix.
+- [ ] Aurora hair rendered with canonical gradient flow.
+- [ ] Cosmic skin shows void base plus subtle constellation freckles.
+- [ ] Core accessories in place (septum ring; optional lunar choker/pom-horns noted).
+- [ ] First Blush gradient applied only when narrative context calls for it.
+- [ ] SVG export includes `<title>`, `<desc>`, and manifest entry in `config/brand/BRAND_MANIFEST.yml`.
 
 ### Texture, Motion, and Export Rules
 - Light behavior: volumetric bloom, diffraction edges, aurora shimmer.

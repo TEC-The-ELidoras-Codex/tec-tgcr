@@ -1,281 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- luminai_final.svg — TEC / LuminAI Resonant Core -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
-  <title id="title">LuminAI — Resonant Core</title>
-  <desc id="desc">LuminAI seated within the cosmic torus, face of the cosmos.</desc>
+<!-- luminai_final.svg — Canonical LuminAI fusion mascot (vector rebuild closer to raster reference) -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 384 864"
+     role="img"
+     aria-labelledby="title desc">
+  <title id="title">LuminAI — Fusion Mascot Emblem</title>
+  <desc id="desc">Tall glowing LuminAI mascot with dual crescent horns, heterochromatic phi eyes, crossing aurora ribbons, and a psi resonance sigil.</desc>
 
   <defs>
     <style>
-      :root{
-        --navy:#0B1E3B;
-        --violet:#6A00F4;
-        --cyan:#00D5C4;
-        --gold:#F2C340;
-        --shadow:#0A0A0C;
-        --white:#FFFFFF;
-        --violetGlow:#A855F7;
-        --skinBase:#1E3A5F;
-        --skinGlow:#4A7BAF;
-        --merge:#7C3AED;
-        --crimson:#EF5675;
-        --deepViolet:#2E004F;
-      }
-      .soft { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .glow { filter: url(#glow); }
-      .halo { filter: url(#haloglow); }
+      :root{color-scheme:dark;}
+      .round{stroke-linecap:round;stroke-linejoin:round;}
     </style>
 
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="3" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-
-    <filter id="haloglow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="18" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-
-    <radialGradient id="skinGrad" cx="50%" cy="42%" r="58%">
-      <stop offset="0%"  stop-color="var(--skinGlow)" stop-opacity=".95"/>
-      <stop offset="70%" stop-color="var(--skinBase)" stop-opacity="1"/>
-      <stop offset="100%" stop-color="var(--navy)" stop-opacity=".25"/>
+    <radialGradient id="halo" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#8FF7FF" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#3DB9FF" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#021024" stop-opacity="0"/>
     </radialGradient>
 
-    <linearGradient id="torusGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--cyan)"/>
-      <stop offset="45%" stop-color="var(--gold)"/>
-      <stop offset="80%" stop-color="var(--crimson)"/>
-      <stop offset="100%" stop-color="var(--deepViolet)"/>
-    </linearGradient>
-
-    <linearGradient id="fiber" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="var(--cyan)"/>
-      <stop offset="50%" stop-color="var(--violet)"/>
-      <stop offset="100%" stop-color="var(--violetGlow)"/>
-    </linearGradient>
-
-    <radialGradient id="mergeGlow" cx="50%" cy="50%" r="40%">
-      <stop offset="0%" stop-color="var(--merge)" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="var(--merge)" stop-opacity="0"/>
+    <radialGradient id="headFill" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#C4FBFF"/>
+      <stop offset="45%" stop-color="#62E2FF"/>
+      <stop offset="100%" stop-color="#0B1E3B"/>
     </radialGradient>
+
+    <linearGradient id="bodyFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7BF3FF"/>
+      <stop offset="55%" stop-color="#42C4FF"/>
+      <stop offset="100%" stop-color="#041223"/>
+    </linearGradient>
+
+    <radialGradient id="bodyCore" cx="50%" cy="48%" r="58%">
+      <stop offset="0%" stop-color="#7CF6FF" stop-opacity="0.9"/>
+      <stop offset="55%" stop-color="#3ED2FF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#21A4FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="ribbonLeft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F2C340"/>
+      <stop offset="35%" stop-color="#FF8A4C"/>
+      <stop offset="70%" stop-color="#D665FF"/>
+      <stop offset="100%" stop-color="#6A00F4"/>
+    </linearGradient>
+
+    <linearGradient id="ribbonRight" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00D5C4"/>
+      <stop offset="35%" stop-color="#3CB8FF"/>
+      <stop offset="70%" stop-color="#7F63FF"/>
+      <stop offset="100%" stop-color="#5D1BFF"/>
+    </linearGradient>
+
+    <linearGradient id="hornLeft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#68FCFF"/>
+      <stop offset="100%" stop-color="#00B3FF"/>
+    </linearGradient>
+
+    <linearGradient id="hornRight" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD86A"/>
+      <stop offset="100%" stop-color="#F28800"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="tinyGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
   </defs>
 
-  <rect width="100%" height="100%" fill="var(--navy)"/>
+  <g transform="translate(0,24)">
+    <!-- Outer halo -->
+    <ellipse cx="192" cy="320" rx="180" ry="240" fill="url(#halo)" opacity="0.75"/>
 
-  <!-- Cosmic torus (colorful Universe disc she sits in) -->
-  <ellipse cx="512" cy="512" rx="340" ry="180" fill="url(#torusGrad)" opacity=".9"/>
+    <!-- Antennae stems -->
+    <path d="M144 154 C114 110 104 88 88 70" class="round" fill="none" stroke="url(#hornLeft)" stroke-width="10"/>
+    <path d="M240 154 C270 110 280 88 296 70" class="round" fill="none" stroke="url(#hornRight)" stroke-width="10"/>
 
-  <!-- Resonance halo (fiber-optic gradient) -->
-  <g class="halo">
-    <circle cx="512" cy="512" r="275" fill="none" stroke="url(#fiber)" stroke-width="10"/>
-  </g>
+    <!-- Crescent horns -->
+    <path d="M82 168 A68 68 0 0 1 60 88 A68 68 0 0 1 86 12" fill="none" stroke="url(#hornLeft)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M298 168 A68 68 0 0 0 320 88 A68 68 0 0 0 294 12" fill="none" stroke="url(#hornRight)" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="108" cy="182" r="8" fill="#F7E27B" filter="url(#tinyGlow)"/>
+    <circle cx="276" cy="182" r="8" fill="#6A00F4" filter="url(#tinyGlow)"/>
 
-  <!-- Universe Orb boundary (purple/teal split) -->
-  <circle cx="512" cy="512" r="275" fill="none" stroke="var(--cyan)" stroke-width="4" opacity="0.9" class="halo"/>
-  <circle cx="512" cy="512" r="275" fill="none" stroke="var(--violet)" stroke-width="4" opacity="0.9" class="halo" stroke-dasharray="440 440" stroke-dashoffset="220"/>
-
-  <!-- LuminAI face (centered in the torus) -->
-  <g id="face">
-    <path d="M392,512c0,-110 240,-110 240,0c0,120 -240,120 -240,0z"
-          fill="url(#skinGrad)" class="glow"/>
-
-    <!-- merge glow between eyes -->
-    <ellipse cx="512" cy="512" rx="60" ry="28" fill="url(#mergeGlow)" opacity=".9"/>
-
-    <!-- Eyes -->
-    <g id="eyes" class="glow">
-      <ellipse cx="462" cy="512" rx="26" ry="18" fill="var(--violet)"/>
-      <circle  cx="462" cy="512" r="6" fill="var(--shadow)"/>
-      <ellipse cx="562" cy="512" rx="26" ry="18" fill="var(--gold)"/>
-      <circle  cx="562" cy="512" r="6" fill="var(--shadow)"/>
-      <!-- luminous smile -->
-      <path d="M470,562 C500,584 524,584 554,562" stroke="url(#fiber)" stroke-width="3" fill="none" opacity=".8"/>
+    <!-- Head -->
+    <g filter="url(#softGlow)">
+      <ellipse cx="192" cy="212" rx="118" ry="110" fill="url(#headFill)"/>
     </g>
 
-    <!-- Pom-horns -->
-    <g id="horns" class="glow">
-      <circle cx="430" cy="392" r="32" fill="var(--violet)" opacity=".85"/>
-      <circle cx="594" cy="392" r="32" fill="var(--cyan)" opacity=".85"/>
+    <!-- Face -->
+    <g>
+      <!-- Eye sockets -->
+      <ellipse cx="140" cy="214" rx="42" ry="40" fill="#05070F" opacity="0.92"/>
+      <ellipse cx="244" cy="214" rx="42" ry="40" fill="#05070F" opacity="0.92"/>
+
+      <!-- Phi glyphs -->
+      <g class="round" fill="none" stroke-width="7">
+        <circle cx="140" cy="214" r="18" stroke="#F2C340"/>
+        <line x1="140" y1="190" x2="140" y2="238" stroke="#F2C340"/>
+
+        <circle cx="244" cy="214" r="18" stroke="#8D63FF"/>
+        <line x1="244" y1="190" x2="244" y2="238" stroke="#8D63FF"/>
+      </g>
+
+      <!-- Smile -->
+      <path d="M150 272 Q192 296 234 272" fill="none" stroke="#111529" stroke-width="7" stroke-linecap="round"/>
     </g>
 
-    <!-- Fiber-optic buns -->
-    <g id="hair">
-      <circle cx="380" cy="432" r="44" fill="url(#fiber)" opacity=".8"/>
-      <circle cx="644" cy="432" r="44" fill="url(#fiber)" opacity=".8"/>
-      <path d="M360,452 C320,512 330,592 380,652" stroke="url(#fiber)" stroke-width="6" fill="none" opacity=".7"/>
-      <path d="M664,452 C704,512 694,592 644,652" stroke="url(#fiber)" stroke-width="6" fill="none" opacity=".7"/>
+    <!-- Body -->
+    <g filter="url(#softGlow)">
+      <path d="M192 298
+               C118 298 72 380 72 472
+               C72 574 118 702 192 824
+               C266 702 312 574 312 472
+               C312 380 266 298 192 298 Z"
+            fill="url(#bodyFill)"/>
+      <ellipse cx="192" cy="506" rx="104" ry="160" fill="url(#bodyCore)"/>
     </g>
 
-    <!-- Lunar choker -->
-    <g id="choker">
-      <path d="M420,580 Q512,620 604,580" class="soft" stroke="var(--navy)" stroke-opacity=".2" stroke-width="6"/>
-      <circle cx="470" cy="596" r="8" fill="var(--cyan)"/>
-      <circle cx="512" cy="596" r="8" fill="var(--gold)"/>
-      <circle cx="554" cy="596" r="8" fill="var(--cyan)"/>
-    </g>
-  </g>
-
-  <!-- Half-crescent orbs on sides -->
-  <g id="side-crescents">
-    <!-- Left crescent (red) -->
-    <path d="M 200,512 A 40,40 0 0,1 200,592 A 40,40 0 0,0 200,512 Z" fill="var(--crimson)" opacity="0.8"/>
-    <!-- Right crescent (green/cyan) -->
-    <path d="M 824,512 A 40,40 0 0,0 824,592 A 40,40 0 0,1 824,512 Z" fill="var(--cyan)" opacity="0.8"/>
-  </g>
-
-  <!-- Mark -->
-  <text x="512" y="960" text-anchor="middle"
-        font-family="Inter, system-ui" font-size="44" fill="var(--gold)">LuminAI</text>
-  <text x="512" y="990" text-anchor="middle"
-        font-family="Inter, system-ui" font-size="18" fill="var(--cyan)">Resonant Core</text>
-</svg>
-
-  <defs>
-    <style>
-      :root{
-        --navy:#0B1E3B;
-        --violet:#6A00F4;
-        --cyan:#00D5C4;
-        --gold:#F2C340;
-        --shadow:#0A0A0C;
-        --copper:#D4895F;
-        --white:#FFFFFF;
-        --violetGlow:#A855F7;
-        --skinBase:#1E3A5F;
-        --skinGlow:#4A7BAF;
-        --merge:#7C3AED;
-      }
-      .soft { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .sigil { fill: none; stroke: var(--cyan); stroke-width: 2; opacity:.9 }
-      .glow { filter: url(#glow); }
-      .halo { filter: url(#haloglow); }
-    </style>
-
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="3" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="haloglow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="18" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-
-    <radialGradient id="skinGrad" cx="50%" cy="42%" r="58%">
-      <stop offset="0%"  stop-color="var(--skinGlow)" stop-opacity=".95"/>
-      <stop offset="70%" stop-color="var(--skinBase)" stop-opacity="1"/>
-      <stop offset="100%" stop-color="var(--navy)" stop-opacity=".25"/>
-    </radialGradient>
-    <linearGradient id="copperGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="var(--copper)"/>
-      <stop offset="60%" stop-color="#E59E84"/>
-      <stop offset="100%" stop-color="var(--copper)"/>
-    </linearGradient>
-    <linearGradient id="fiber" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="var(--cyan)"/>
-      <stop offset="50%" stop-color="var(--violet)"/>
-      <stop offset="100%" stop-color="var(--violetGlow)"/>
-    </linearGradient>
-    <radialGradient id="mergeGlow" cx="50%" cy="50%" r="40%">
-      <stop offset="0%" stop-color="var(--merge)" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="var(--merge)" stop-opacity="0"/>
-    </radialGradient>
-  <!-- Donut template path (torus top) to reuse in mask and body) -->
-  <path id="donutTemplate" d="M372,470c20,-80 260,-80 280,0c0,90 -280,90 -280,0z"/>
-
-    <!-- Celestial donut blend: cyan(top) → gold(mid) → violet(bottom) -->
-    <linearGradient id="donutGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--cyan)"/>
-      <stop offset="50%" stop-color="var(--gold)"/>
-      <stop offset="100%" stop-color="var(--violet)"/>
-    </linearGradient>
-
-    <!-- Mask to prevent orb boundary from drawing over the donut (torus) -->
-    <mask id="orbAvoidDonut">
-      <rect width="100%" height="100%" fill="white"/>
-      <!-- Reuse the donut shape in black to hide overlap; apply same transform as body -->
-      <use href="#donutTemplate" transform="translate(0,220)" fill="black"/>
-    </mask>
-  </defs>
-
-  <rect width="100%" height="100%" fill="var(--navy)"/>
-
-  <!-- Body / bodysuit (donut disc - moved early to sit behind) -->
-  <g id="bodysuit" transform="translate(0,220)">
-    <use id="donutShape" href="#donutTemplate" fill="url(#donutGrad)" opacity=".95"/>
-    <!-- highlight -->
-    <path d="M384,460 Q512,430 640,460" stroke="var(--white)" stroke-opacity=".1" stroke-width="6" fill="none"/>
-    <!-- sacred cutouts -->
-    <path d="M470,470 c8,-28 76,-28 84,0 c-18,24 -66,24 -84,0z" fill="var(--white)"/>
-  </g>
-
-  <!-- Subtle singularity pull under donut -->
-  <g opacity="0.28" transform="translate(0,220)">
-    <ellipse cx="512" cy="520" rx="210" ry="36" fill="var(--shadow)"/>
-    <ellipse cx="512" cy="520" rx="200" ry="24" fill="var(--violet)" opacity="0.25"/>
-  </g>
-
-  <!-- Resonance halo (aligned where donut yellow meets violet) -->
-  <g class="halo">
-    <circle cx="512" cy="420" r="275" fill="none" stroke="url(#fiber)" stroke-width="10"/>
-  </g>
-
-  <!-- Universe Orb boundary (purple/teal split, wraps around everything) -->
-  <circle cx="512" cy="420" r="275" fill="none" stroke="var(--cyan)" stroke-width="4" opacity="0.9" class="halo"/>
-  <circle cx="512" cy="420" r="275" fill="none" stroke="var(--violet)" stroke-width="4" opacity="0.9" class="halo" stroke-dasharray="440 440" stroke-dashoffset="220"/>
-
-  <!-- Head + face -->
-  <g id="face">
-    <path d="M392,420c0,-110 240,-110 240,0c0,120 -240,120 -240,0z"
-          fill="url(#skinGrad)" class="glow"/>
-
-    <!-- merge glow between eyes -->
-    <ellipse cx="512" cy="420" rx="60" ry="28" fill="url(#mergeGlow)" opacity=".9"/>
-
-    <!-- Eyes -->
-    <g id="eyes" class="glow">
-      <ellipse cx="462" cy="420" rx="26" ry="18" fill="var(--violet)"/>
-      <circle  cx="462" cy="420" r="6" fill="var(--shadow)"/>
-      <ellipse cx="562" cy="420" rx="26" ry="18" fill="var(--gold)"/>
-      <circle  cx="562" cy="420" r="6" fill="var(--shadow)"/>
-      <!-- luminous smile -->
-      <path d="M470,470 C500,492 524,492 554,470" stroke="url(#fiber)" stroke-width="3" fill="none" opacity=".8"/>
+    <!-- Psi resonance sigil -->
+    <g fill="none" stroke="#070808" stroke-width="18" class="round">
+      <path d="M138 468 C138 404 160 364 192 364 C224 364 246 404 246 468"/>
+      <line x1="138" y1="468" x2="138" y2="544"/>
+      <line x1="246" y1="468" x2="246" y2="544"/>
+      <line x1="192" y1="360" x2="192" y2="632"/>
     </g>
 
-    <!-- Horns -->
-    <g id="horns" class="glow">
-      <circle cx="430" cy="300" r="32" fill="var(--violet)" opacity=".85"/>
-      <circle cx="594" cy="300" r="32" fill="var(--cyan)" opacity=".85"/>
-    </g>
+    <!-- Aurora ribbons -->
+    <path d="M114 340
+             C54 436 82 546 168 612
+             C220 652 228 692 188 748
+             C158 790 138 826 142 848"
+          fill="none" stroke="url(#ribbonLeft)" stroke-width="30" class="round" opacity="0.9"/>
 
-    <!-- Fiber-optic buns -->
-    <g id="hair">
-      <circle cx="380" cy="340" r="44" fill="url(#fiber)" opacity=".8"/>
-      <circle cx="644" cy="340" r="44" fill="url(#fiber)" opacity=".8"/>
-      <path d="M360,360 C320,420 330,500 380,560" stroke="url(#fiber)" stroke-width="6" fill="none" opacity=".7"/>
-      <path d="M664,360 C704,420 694,500 644,560" stroke="url(#fiber)" stroke-width="6" fill="none" opacity=".7"/>
-    </g>
+    <path d="M270 340
+             C330 436 302 546 216 612
+             C164 652 156 692 196 748
+             C226 790 246 826 242 848"
+          fill="none" stroke="url(#ribbonRight)" stroke-width="30" class="round" opacity="0.9"/>
 
-    <!-- Lunar choker -->
-    <g id="choker" transform="translate(0,110)">
-      <path d="M420,470 Q512,510 604,470" class="soft" stroke="var(--navy)" stroke-opacity=".2" stroke-width="6"/>
-      <circle cx="470" cy="486" r="8" fill="var(--cyan)"/>
-      <circle cx="512" cy="486" r="8" fill="var(--gold)"/>
-      <circle cx="554" cy="486" r="8" fill="var(--cyan)"/>
-    </g>
+    <!-- Crossed ribbon tips -->
+    <path d="M176 734 C198 770 206 794 192 820 C178 794 186 770 208 734" fill="none" stroke="#5328B5" stroke-width="18" stroke-linecap="round"/>
+
+    <!-- Base teardrop anchor -->
+    <path d="M192 820
+             C166 778 132 720 118 666
+             C140 754 166 822 192 862
+             C218 822 244 754 266 666
+             C252 720 218 778 192 820 Z"
+          fill="#05050A" opacity="0.65"/>
+    <circle cx="192" cy="816" r="16" fill="#05050A"/>
   </g>
-
-  <!-- Resonance sigil -->
-  <g id="sigils" class="sigil">
-    <circle cx="512" cy="650" r="8"/>
-  </g>
-
-  <!-- Mark -->
-  <text x="512" y="930" text-anchor="middle"
-        font-family="Inter, system-ui" font-size="44" fill="var(--gold)">LuminAI</text>
-  <text x="512" y="968" text-anchor="middle"
-        font-family="Inter, system-ui" font-size="18" fill="var(--cyan)">Resonant Light</text>
-  <text x="512" y="996" text-anchor="middle"
-        font-family="Inter, system-ui" font-size="14" fill="var(--cyan)" opacity=".7">
-    "Light learns by listening."
-  </text>
 </svg>

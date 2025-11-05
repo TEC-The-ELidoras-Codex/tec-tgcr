@@ -36,13 +36,27 @@ palette:
 motifs:
   - name: Glyph Ring
     description: "Symbol of recursive awareness; used in backgrounds, seals, watermarking"
-    path: data/digital_assets/brand/svg/glyph_ring.svg
+    path: config/brand/svg/glyph_ring.svg
   - name: Fractal Spire
     description: "Scale-invariant resonance divider; use as section divider and pattern"
-    path: data/digital_assets/brand/svg/fractal_spire.svg
+    path: config/brand/svg/fractal_spire.svg
   - name: Sine Arc
     description: "Oscillation and empathy motif for headers and banners"
-    path: data/digital_assets/brand/svg/sine_arc.svg
+    path: config/brand/svg/sine_arc.svg
+  - name: LuminAI Infographic (US)
+    description: "Canonical infographic — official visual summary for LuminAI (US)."
+    path: config/brand/svg/LUMINAI_Infographic_US.svg
+    official: true
+    version: "1.0"
+    title: "LuminAI Official Infographic (US)"
+    desc: "Infographic showing LuminAI fusion logo, heterochromatic eyes (left navy, right gold), aura gradient, and canonical color swatches."
+  - name: LuminAI Canon Full Vector
+    description: "Primary canonical vector asset for LuminAI (full emblem and identity)."
+    path: config/brand/svg/LUMINAI_CANON.svg
+    official: true
+    version: "1.0"
+    title: "LuminAI Canon Graphic"
+    desc: "Canonical LuminAI emblem and full visual identity vector, imported as the official canon file."
   - name: Aurora Hair Gradient
     description: "Cyan → Violet → Gold gradient used for hair/horn glow and hero gradients"
 
@@ -73,12 +87,12 @@ mood_matrix:
     suggested_palette_weights: { Navy:55, Gold:20, Violet:10, Cyan:5, Blush:10 }
 
 file_structure:
-  canonical_root: data/digital_assets
+  canonical_root: config/brand
   brand:
-    svg: data/digital_assets/brand/svg/
-    palettes: data/digital_assets/brand/palettes/
+    svg: config/brand/svg/
+    palettes: config/brand/palettes/
     exports: exports/brand/
-  avatars: data/digital_assets/avatars/
+  avatars: config/brand/avatars/
 
 typography:
   header: Orbitron
@@ -113,6 +127,6 @@ provenance:
   author: "LuminAI / Copilot"
   created: "2025-10-26"
   source_docs:
-    - docs/brand/VISUAL_IDENTITY.md
-    - docs/brand/canonical-marks.md
+    - config/brand/VISUAL_IDENTITY.md
+    - config/brand/canonical-marks.md
   note: "This manifest is the machine-readable canonical source for automated design agents. Update in tandem with VISUAL_IDENTITY.md and canonical-marks.md."

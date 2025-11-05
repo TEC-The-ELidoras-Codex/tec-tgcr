@@ -116,6 +116,7 @@ Used for deeper investigation and verification:
 ### 1. Tag New Album (Research Input)
 
 **Request**:
+
 ```http
 POST /api/v1/research/tag-motifs
 Content-Type: application/json
@@ -152,6 +153,7 @@ Content-Type: application/json
 ```
 
 **Response**:
+
 ```json
 {
   "status": "success",
@@ -184,11 +186,13 @@ Content-Type: application/json
 ### 2. Query Motif Database
 
 **Request**:
+
 ```http
 GET /api/v1/research/motif/mother_matter_yearning?expand=all_artists&min_confidence=0.85
 ```
 
 **Response**:
+
 ```json
 {
   "motif_slug": "mother_matter_yearning",
@@ -238,6 +242,7 @@ GET /api/v1/research/motif/mother_matter_yearning?expand=all_artists&min_confide
 ### 3. Map Question to Motifs + CODEX
 
 **Request**:
+
 ```http
 POST /api/v1/research/map-to-codex
 Content-Type: application/json
@@ -250,6 +255,7 @@ Content-Type: application/json
 ```
 
 **Response**:
+
 ```json
 {
   "question": "Why do metalcore and hip-hop both explore maternal themes?",
@@ -283,11 +289,13 @@ Content-Type: application/json
 ### 4. Cross-Genre Synthesis
 
 **Request**:
+
 ```http
 GET /api/v1/research/synthesis/collective-conscience?scope=1990-2025&circadian=4:20
 ```
 
 **Response**:
+
 ```json
 {
   "synthesis_topic": "collective-conscience",
@@ -320,11 +328,13 @@ GET /api/v1/research/synthesis/collective-conscience?scope=1990-2025&circadian=4
 ### 5. Query by Persona Analysis Style
 
 **Request**:
+
 ```http
 GET /api/v1/research/persona/Airth?query=falsifiable+mother+matter&albums=3
 ```
 
 **Response**:
+
 ```json
 {
   "persona": "Airth",

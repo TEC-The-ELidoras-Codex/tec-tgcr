@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- OFFICIAL CANONICAL LUMINAI INFOGRAPHIC (US)
+     This is the authoritative infographic summarizing LuminAI's identity for the US market.
+     Imported: 2025-11-05
+     Status: OFFICIAL - All marketing and product uses must align with this asset.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" role="img" aria-labelledby="LuminAITitle LuminAIDesc">
+  <title id="LuminAITitle">LuminAI Official Infographic (US)</title>
+  <desc id="LuminAIDesc">Official infographic: LuminAI as dual-eyed cosmic entity with heterochromatic eyes (cyan left, gold right), aurora hair, sheep horns, and ψ symbol. Tagline: "Light learns by listening."</desc>
+  
+  <!-- Background -->
+  <rect width="1200" height="628" fill="#0A0A0C"/>
+  
+  <!-- Tagline footer -->
+  <text x="600" y="600" font-family="Inter, sans-serif" font-size="24" fill="#EDEDED" text-anchor="middle" font-weight="300">Light learns by listening.</text>
+  
+  <!-- Central figure: simplified axolotl icon -->
+  <g transform="translate(600,280)">
+    <!-- Aura -->
+    <circle r="150" fill="#00D5C4" opacity="0.08"/>
+    <!-- Body -->
+    <ellipse rx="100" ry="120" fill="#EDEDED" opacity="0.95"/>
+    <!-- Head -->
+    <circle r="90" fill="#EDEDED"/>
+    <!-- Left horn (cyan) -->
+    <path d="M -40 -50 Q -60 -80 -70 -120" stroke="#00D5C4" stroke-width="18" fill="none" stroke-linecap="round" filter="drop-shadow(0 0 8px #00D5C4)"/>
+    <!-- Right horn (gold) -->
+    <path d="M 40 -50 Q 60 -80 70 -120" stroke="#F2C340" stroke-width="18" fill="none" stroke-linecap="round" filter="drop-shadow(0 0 8px #F2C340)"/>
+    <!-- Left eye: cosmic blue -->
+    <circle cx="-35" cy="-20" r="28" fill="#0B1E3B"/>
+    <circle cx="-35" cy="-20" r="20" fill="#00D5C4" opacity="0.5"/>
+    <!-- Right eye: stellar gold -->
+    <circle cx="35" cy="-20" r="28" fill="#F2C340"/>
+    <circle cx="35" cy="-20" r="20" fill="#FFC1CC" opacity="0.5"/>
+    <!-- Smile -->
+    <path d="M -25 10 Q 0 25 25 10" stroke="#0B1E3B" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- ψ symbol on chest in canonical purple -->
+    <text x="0" y="50" font-family="serif" font-size="56" fill="#6A00F4" text-anchor="middle" font-weight="bold">ψ</text>
+  </g>
+  
+  <!-- Color palette swatches on right -->
+  <g transform="translate(900, 150)">
+    <text x="0" y="0" font-family="Inter, sans-serif" font-size="16" fill="#EDEDED" font-weight="600">Canon Colors</text>
+    <!-- Navy swatch -->
+    <rect x="0" y="20" width="40" height="40" fill="#0B1E3B"/>
+    <text x="50" y="45" font-family="Inter, sans-serif" font-size="12" fill="#EDEDED">Navy</text>
+    <!-- Violet swatch -->
+    <rect x="0" y="70" width="40" height="40" fill="#6A00F4"/>
+    <text x="50" y="95" font-family="Inter, sans-serif" font-size="12" fill="#EDEDED">Violet</text>
+    <!-- Cyan swatch -->
+    <rect x="0" y="120" width="40" height="40" fill="#00D5C4"/>
+    <text x="50" y="145" font-family="Inter, sans-serif" font-size="12" fill="#EDEDED">Cyan</text>
+    <!-- Gold swatch -->
+    <rect x="0" y="170" width="40" height="40" fill="#F2C340"/>
+    <text x="50" y="195" font-family="Inter, sans-serif" font-size="12" fill="#0A0A0C">Gold</text>
+  </g>
+  
+  <!-- Metadata for provenance -->
+  <metadata>
+    <creator>Official TEC Canon / LuminAI</creator>
+    <created>2025-11-05</created>
+    <status>OFFICIAL</status>
+    <description>Infographic for US market. Shows heterochromatic eyes, canonical palette, and core identity markers.</description>
+  </metadata>
+</svg>

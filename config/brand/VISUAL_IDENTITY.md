@@ -161,14 +161,14 @@ The **LuminAI Fusion Logo** represents the synthesis of:
 ### **Specialized Variants** (existing)
 
 4. **`LuminAI_Full_Avatar.svg`** (Cosmology)
-   - **Content**: Nine-node resonance halo (Machine Goddess + six sister-forces + Kaznak body + Lumina eyes)
-   - **Use Case**: Cosmology explainers, onboarding, theory visualization
-   - **Location**: `data/digital_assets/brand/svg/`
+      - **Content**: Nine-node resonance halo (Machine Goddess + six sister-forces + Kaznak body + Lumina eyes)
+      - **Use Case**: Cosmology explainers, onboarding, theory visualization
+      - **Location**: `config/brand/svg/`
 
 5. **`luminai.svg`** (Outfit Variant)
-   - **Content**: Specific clothing/accessories (bodysuit, moon choker, fiber-optic strands)
-   - **Use Case**: Character illustrations, narrative scenes
-   - **Location**: `data/digital_assets/avatars/`
+      - **Content**: Specific clothing/accessories (bodysuit, moon choker, fiber-optic strands)
+      - **Use Case**: Character illustrations, narrative scenes
+      - **Location**: `config/brand/avatars/`
 
 ---
 
@@ -180,7 +180,7 @@ The **LuminAI Fusion Logo** represents the synthesis of:
 - **Fractal Spire**: Scale-invariant structure, emergent complexity (section breaks, dividers)
 - **Sine Arc**: Oscillation, resonance, wave interference (callouts, banners)
 
-**SVG Locations**: `data/digital_assets/brand/svg/`
+**SVG Locations**: `config/brand/svg/`
 
 - `glyph_ring.svg`
 - `fractal_spire.svg`
@@ -260,8 +260,8 @@ The **LuminAI Fusion Logo** represents the synthesis of:
 
 ### **Documentation**
 
-- Brand Kit: `lore/brand/BrandKit.md`
-- Canonical Marks: `lore/brand/canonical-marks.md`
+- Brand Kit: `config/brand/BrandKit.md`
+- Canonical Marks: `config/brand/canonical-marks.md`
 - Cosmology Map: `lore/canon/cosmology/cosmology_nine_nodes.mmd`
 - First Bit Origin: `docs/templates/luminai_first_bit_prompt.md`
 
@@ -269,7 +269,7 @@ The **LuminAI Fusion Logo** represents the synthesis of:
 
 - Prompt Generator: `ai-workflow/prompt_templates.py`
 - React Component: `apps/luminai-interface/src/components/LuminAI.jsx`
-- SVG Assets: `data/digital_assets/brand/svg/`, `data/digital_assets/avatars/`
+- SVG Assets: `config/brand/svg/`, `config/brand/avatars/`
 - Animation Specs: `apps/luminai-interface/public/animations/README.md`
 
 ### **Knowledge Base**
@@ -277,6 +277,23 @@ The **LuminAI Fusion Logo** represents the synthesis of:
 - Knowledge Map: `data/knowledge_map.yml`
 - LuminAI Canon: `lore/canon/LuminAI.md`
 - Personality Base: `data/personas/luminai-base.md`
+
+## 🔗 CODEX Integration
+
+- Canonical assets for CODEX integration are hosted under `config/brand/` (SVGs in `config/brand/svg/`). Keep the asset manifest at `config/brand/BRAND_MANIFEST.yml` as the single source of truth.
+- The CODEX backend exposes a manifest endpoint that tools and GPT Actions can query: GET /api/v1/manifest (example: `http://localhost:5000/api/v1/manifest`). Use this to discover asset→card mappings at runtime.
+- To associate a visual with a CODEX card, add an `asset` entry in the card metadata or the `BRAND_MANIFEST.yml`, for example:
+
+   ```yaml
+   - slug: codex_chronosphere
+      title: CODEX Chronosphere
+      asset: config/brand/svg/luminai_fusion_icon.svg
+   ```
+
+- ChatGPT Actions: import `config/gpt-actions-research.json` into the GPT builder. Ensure the action uses Bearer auth (GitHub PAT) and that the OpenAPI server base URL points to your running CODEX backend (or a hosted endpoint).
+- Typical workflow: ChatGPT → Actions → OpenAPI → /api/v1/manifest or /api/v1/cards → returns card content + `asset` path → client fetches `config/brand/svg/...` for display.
+
+_Note_: After consolidation, update any scripts that previously referenced `data/digital_assets/*` to read from `config/brand/` instead. See `scripts/export_brand_assets.py` and `scripts/validate_brand_assets.py` (planned) for examples.
 
 ---
 
