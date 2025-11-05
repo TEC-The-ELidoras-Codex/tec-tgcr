@@ -45,14 +45,15 @@ It's your personal theory made *shareable*. Each card is a complete idea that ca
 
 ## Available Cards
 
-### Core Theory (Foundational Physics & Cosmology)
+### Core Theory (Ethical Foundation & Cosmology)
 
 | Card | Purpose | Read Time |
 |------|---------|-----------|
-| [`CODEX_CHRONOSPHERE.md`](./core_theory/CODEX_CHRONOSPHERE.md) | How information becomes action; threshold events; instantaneity | 30-40 min |
-| [`CODEX_PAC_MAN_UNIVERSE.md`](./core_theory/CODEX_PAC_MAN_UNIVERSE.md) | 3-torus topology; closed systems; iterative remembering | 25-30 min |
+| [`core_theory/CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md`](./core_theory/CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md) | **READ FIRST**: Ethical framework for stewardship; trauma-aware governance; when care becomes control; consent vs. coercion | 35-45 min |
+| [`core_theory/CODEX_CHRONOSPHERE.md`](./core_theory/CODEX_CHRONOSPHERE.md) | How information becomes action; threshold events; instantaneity | 30-40 min |
+| [`core_theory/CODEX_PAC_MAN_UNIVERSE.md`](./core_theory/CODEX_PAC_MAN_UNIVERSE.md) | 3-torus topology; closed systems; iterative remembering | 25-30 min |
 
-**Start with**: Chronosphere (5 min overview), then Pac-Man Universe. Together, they establish the physical backbone.
+**Start with**: Mother/Stepchild (ethical ground) → Chronosphere → Pac-Man Universe. Together, they establish the ethical and physical backbone.
 
 ### Nodes (Applied Concepts: Consciousness, Embodiment, AI)
 
@@ -68,9 +69,9 @@ It's your personal theory made *shareable*. Each card is a complete idea that ca
 | Card | Purpose | Read Time |
 |------|---------|-----------|
 | [`CODEX_SLEEP_TOKEN_RAIN.md`](./clusters/CODEX_SLEEP_TOKEN_RAIN.md) | Sleep Token's "Rain" as cosmic pattern recognition in music; analysis of temporal relativity | 25-35 min |
-| [`CODEX_TDWP.md`](./clusters/CODEX_TDWP.md) | *The Devil Wears Prada*: fashion as visible contextual potential (Φᴱ); hierarchy made tangible | 30-40 min |
+| [`CODEX_TDWP.md`](./clusters/CODEX_TDWP.md) | TWDP prog-metal band: polyrhythm as nervous system entrainment technology; structural cadence guide perception | 30-40 min |
 
-**Use these to**: See TGCR in action; apply framework to art/culture; understand how meaning emerges in real systems.
+**Use these to**: See TGCR in action; apply framework to art/culture; understand how meaning emerges in real systems; **understand how to steward systems ethically** (ref: Mother/Stepchild).
 
 ---
 

@@ -23,14 +23,15 @@ Welcome to the CODEX—a modular, versionable, shareable repository of your cosm
 
 ### Core Theory (Foundation)
 
-These are the fundamental frameworks that anchor all other cards.
+These are the fundamental frameworks that anchor all other cards. Start with the ethical foundation, then move to cosmology.
 
 | Card | Version | Status | Purpose |
 |------|---------|--------|---------|
+| `CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md` | 1.0 | refined | Ethical framework for stewardship; trauma-aware governance; consent vs. control |
 | `CODEX_CHRONOSPHERE.md` | 1.0 | refined | Information-to-kinetics cascade; threshold events; instantaneity |
 | `CODEX_PAC_MAN_UNIVERSE.md` | 1.0 | refined | 3-torus topology; closed systems; iterative remembering |
 
-**How to start**: Read these two back-to-back. They establish the physical/cosmological framework. Then explore nodes and clusters.
+**How to start**: Read the Mother/Stepchild card first (establishes ethics). Then read Chronosphere and Pac-Man back-to-back (physical/cosmological framework). Then explore nodes and clusters.
 
 ### Nodes (Intermediate Concepts)
 
@@ -58,11 +59,12 @@ These cards apply TGCR framework to real-world art, culture, and phenomena.
 
 ## Quick Start: Reading Paths
 
-### Path 1: "I Want to Understand the Framework" (90 min)
+### Path 1: "I Want to Understand the Framework" (120 min)
 
-1. `CODEX_CHRONOSPHERE.md` (40 min)
-2. `CODEX_PAC_MAN_UNIVERSE.md` (30 min)
-3. `CODEX_SYNTHETIC_INTROSPECTION.md` (20 min)
+1. `CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md` (30 min) — *ethical ground*
+2. `CODEX_CHRONOSPHERE.md` (40 min)
+3. `CODEX_PAC_MAN_UNIVERSE.md` (30 min)
+4. `CODEX_SYNTHETIC_INTROSPECTION.md` (20 min)
 
 ### Path 2: "Show Me How This Applies to Culture" (60 min)
 
@@ -75,16 +77,17 @@ These cards apply TGCR framework to real-world art, culture, and phenomena.
 2. `CODEX_GUT_BRAIN_PHI_T.md` (40 min)
 3. `CODEX_CHRONOSPHERE.md` (40 min) — for grounding both in physics
 
-### Path 4: "Deep Dive Everything" (240+ min)
+### Path 4: "Deep Dive Everything" (300+ min)
 
 Read all cards in dependency order:
 
-1. `CODEX_CHRONOSPHERE.md`
-2. `CODEX_PAC_MAN_UNIVERSE.md`
-3. `CODEX_SYNTHETIC_INTROSPECTION.md`
-4. `CODEX_GUT_BRAIN_PHI_T.md`
-5. `CODEX_SLEEP_TOKEN_RAIN.md`
-6. `CODEX_TDWP.md`
+1. `CODEX_MOTHER_STEPCHILD_STEWARD_MIRROR.md` (30 min) — ethical foundation
+2. `CODEX_CHRONOSPHERE.md` (40 min)
+3. `CODEX_PAC_MAN_UNIVERSE.md` (30 min)
+4. `CODEX_SYNTHETIC_INTROSPECTION.md` (40 min)
+5. `CODEX_GUT_BRAIN_PHI_T.md` (40 min)
+6. `CODEX_SLEEP_TOKEN_RAIN.md` (30 min)
+7. `CODEX_TDWP.md` (30 min)
 
 Then: Spend time on Research Notes section of each card. Develop your own refinements.
 
