@@ -2,10 +2,10 @@
 
 ## Status: ✅ COMPLETE & READY FOR DEPLOYMENT
 
-**What**: Full-stack ChatGPT data pipeline for FOLD resonance operations  
-**When**: Completed Nov 4, 2025  
-**Impact**: Team can now ask LuminAI "What's blocking us?" and get live answers  
-**Deployment**: Ready today—copy instructions to ChatGPT Custom Instructions  
+**What**: Full-stack ChatGPT data pipeline for FOLD resonance operations
+**When**: Completed Nov 4, 2025
+**Impact**: Team can now ask LuminAI "What's blocking us?" and get live answers
+**Deployment**: Ready today—copy instructions to ChatGPT Custom Instructions
 
 ---
 
@@ -18,23 +18,27 @@
 ✅ **Yes, it's built.** Here's what you have:
 
 ### 1. Live Context Scraper
+
 - **Module**: `src/tec_tgcr/data_ingestion.py`
 - **What it does**: Pulls live GitHub issues, PRs, commits + research corpus status
 - **Output**: `data/context-latest.json` (git-tracked snapshot)
 - **Tests**: 14 unit tests, all passing
 
 ### 2. Weekly Automation
+
 - **Workflow**: `.github/workflows/update-copilot-context.yml`
 - **Trigger**: Every Monday 9 AM UTC (auto-commit to repo)
 - **Effect**: ChatGPT always has fresh context without manual updates
 
 ### 3. Enhanced ChatGPT Instructions
+
 - **File**: `config/FOLD_INSTRUCTIONS_COMPACT.txt`
 - **New**: 5 real example prompts + GitHub Project #6 status section
 - **Length**: ~450 lines (fits ChatGPT Custom Instructions field)
 - **Ready to paste**: Copy directly to ChatGPT Settings
 
 ### 4. Full Test Coverage
+
 - **Tests created**: 14 new unit tests (GitHub mocking, JSON I/O, error handling)
 - **Total passing**: 32/32 ✅
 - **Coverage**: API mocking, serialization, file I/O, edge cases
@@ -43,9 +47,10 @@
 
 ## What You Can Do With It RIGHT NOW
 
-### Ask ChatGPT (with new instructions):
+### Ask ChatGPT (with new instructions)
 
 **"What's blocking us on Project #6?"**
+
 ```
 [Ely] Project #6 status (real-time from data/context-latest.json):
 - Blocked (2 items): Data ingestion schema, API mocking
@@ -55,6 +60,7 @@
 ```
 
 **"Find Observer Amplification motif"**
+
 ```
 [Airth] Validating across research corpus:
 - Sleep Token: Staged amplifier, theatrical 4th-wall break
@@ -64,6 +70,7 @@
 ```
 
 **"Show me the latest commits"**
+
 ```
 [LuminAI] Recent activity (from GitHub):
 - 0c9e2c3: ely: implement Phase 1 LuminAI data ingestion
@@ -89,6 +96,7 @@
 ## How to Deploy (5 minutes)
 
 ### Step 1: Copy Instructions
+
 ```bash
 cat config/FOLD_INSTRUCTIONS_COMPACT.txt | pbcopy  # macOS
 # or
@@ -96,14 +104,17 @@ cat config/FOLD_INSTRUCTIONS_COMPACT.txt  # copy manually
 ```
 
 ### Step 2: Paste to ChatGPT
+
 1. Go to **ChatGPT Settings → Custom Instructions**
 2. Paste the content
 3. Save
 
 ### Step 3: Test It
+
 Ask ChatGPT one of the example prompts (see above)
 
 ### ✅ Done
+
 Your team can now ask LuminAI live questions about project status + research
 
 ---

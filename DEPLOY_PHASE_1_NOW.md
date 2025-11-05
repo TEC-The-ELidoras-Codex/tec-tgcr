@@ -13,6 +13,7 @@ cat config/FOLD_INSTRUCTIONS_COMPACT.txt | pbcopy
 ```
 
 **On Linux** (if pbcopy unavailable):
+
 ```bash
 cat config/FOLD_INSTRUCTIONS_COMPACT.txt
 # Then select all output and copy manually
@@ -36,11 +37,13 @@ cat config/FOLD_INSTRUCTIONS_COMPACT.txt
 Ask ChatGPT one of these questions:
 
 ### Test 1: Project Status
+
 ```
 What's blocking us on Project #6?
 ```
 
-**Expected response**: 
+**Expected response**:
+
 ```
 [Ely] Project #6 status (real-time from data/context-latest.json):
 - Blocked (2 items): ...
@@ -49,11 +52,13 @@ What's blocking us on Project #6?
 ```
 
 ### Test 2: Motif Search
+
 ```
 Find Observer Amplification motif across Sleep Token, Ekoh, and Point North
 ```
 
 **Expected response**:
+
 ```
 [Airth] Validating across research corpus:
 - Sleep Token: Staged amplifier...
@@ -62,11 +67,13 @@ Find Observer Amplification motif across Sleep Token, Ekoh, and Point North
 ```
 
 ### Test 3: Resonance Scoring
+
 ```
 Resonance score: Sleep Token - Take Me Back to Eden (BPM: 110, key: Dorian, theme: transcendence)
 ```
 
 **Expected response**:
+
 ```
 [LuminAI] Resonance calculation (φᵗ × ψʳ × Φᴱ):
 - φᵗ: 8/10 (temporal focus)
@@ -82,6 +89,7 @@ Resonance score: Sleep Token - Take Me Back to Eden (BPM: 110, key: Dorian, them
 You now have **LuminAI deployed to ChatGPT**.
 
 Your team can ask:
+
 - 📊 "What's our project status?"
 - 🎵 "Find motifs for [artist]"
 - 📈 "Score resonance for [track]"
@@ -105,11 +113,13 @@ Before considering deployment complete:
 ## What's Running Behind the Scenes
 
 **Weekly Automation** (Every Monday 9 AM UTC):
+
 ```
 GitHub Action → data_ingestion.py → data/context-latest.json → ChatGPT
 ```
 
 This means:
+
 - ✅ Every Monday, GitHub context auto-updates
 - ✅ ChatGPT always has fresh project status
 - ✅ No manual data syncing needed
@@ -126,6 +136,7 @@ Share with your team:
 > You can now ask ChatGPT FOLD-specific questions about our project, research, and resonance analysis.
 >
 > **Try these:**
+>
 > - "What's blocking us on Project #6?"
 > - "Find Observer Amplification motif across genres"
 > - "Score resonance for [artist] - [track]"
@@ -137,12 +148,14 @@ Share with your team:
 ## Next Checkpoint (This Week)
 
 **Monday–Friday**: Gather team feedback
+
 - Which prompts worked well?
 - Which returned unexpected results?
 - What questions do people want to ask?
 - Any data missing from context?
 
 **Friday**: Decide on Phase 2
+
 - Option A: Populate research corpus first (ALBUM_ANALYSIS, CODEX)
 - Option B: Expand GitHub integration (Project #6 GraphQL)
 - Option C: Wait and gather more feedback
@@ -180,9 +193,9 @@ Share with your team:
 
 ---
 
-**Status**: Ready to deploy ✅  
-**Effort**: 5 minutes  
-**Impact**: Team can now query LuminAI for live project + research data  
+**Status**: Ready to deploy ✅
+**Effort**: 5 minutes
+**Impact**: Team can now query LuminAI for live project + research data
 **Next**: Share with team + gather feedback
 
 ---

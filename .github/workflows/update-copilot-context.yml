@@ -1,76 +1,76 @@
 name: "Update: LuminAI Copilot Context"
 
 on:
-  schedule:
-    # Run every Monday at 9 AM UTC
-    - cron: '0 9 * * 1'
-  workflow_dispatch:
-    # Allow manual trigger
+    schedule:
+        # Run every Monday at 9 AM UTC
+        - cron: "0 9 * * 1"
+    workflow_dispatch:
+        # Allow manual trigger
 
 jobs:
-  update-context:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: read
+    update-context:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: read
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'pip'
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.11"
+                  cache: "pip"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e .[dev]
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -e .[dev]
 
-      - name: Fetch LuminAI context
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python -m tec_tgcr.data_ingestion fetch-context
+            - name: Fetch LuminAI context
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  python -m tec_tgcr.data_ingestion fetch-context
 
-      - name: Verify context file
-        run: |
-          if [ -f data/context-latest.json ]; then
-            echo "✓ Context file generated successfully"
-            head -20 data/context-latest.json
-          else
-            echo "✗ Context file not found"
-            exit 1
-          fi
+            - name: Verify context file
+              run: |
+                  if [ -f data/context-latest.json ]; then
+                    echo "✓ Context file generated successfully"
+                    head -20 data/context-latest.json
+                  else
+                    echo "✗ Context file not found"
+                    exit 1
+                  fi
 
-      - name: Commit and push context
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          if git diff --quiet data/context-latest.json; then
-            echo "No changes to context, skipping commit"
-          else
-            git add data/context-latest.json
-            TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-            git commit -m "ely: update LuminAI copilot context (weekly) - $TIMESTAMP"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
+            - name: Commit and push context
+              shell: bash
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Log context summary
-        shell: bash
-        run: |
-          python << 'EOF'
-          import json
-          with open('data/context-latest.json') as f:
-              data = json.load(f)
-              print(f'Summary: {data["summary"]}')
-              print(f'Issues: {data["github"]["issue_count"]}')
-              print(f'PRs: {data["github"]["pr_count"]}')
-              print(f'P0: {data["github"]["p0_issues"]}, P1: {data["github"]["p1_issues"]}')
-          EOF
+                  if git diff --quiet data/context-latest.json; then
+                    echo "No changes to context, skipping commit"
+                  else
+                    git add data/context-latest.json
+                    TIMESTAMP=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+                    git commit -m "ely: update LuminAI copilot context (weekly) - $TIMESTAMP"
+                    git push origin HEAD:${{ github.ref_name }}
+                  fi
+
+            - name: Log context summary
+              shell: bash
+              run: |
+                  python << 'EOF'
+                  import json
+                  with open('data/context-latest.json') as f:
+                      data = json.load(f)
+                      print(f'Summary: {data["summary"]}')
+                      print(f'Issues: {data["github"]["issue_count"]}')
+                      print(f'PRs: {data["github"]["pr_count"]}')
+                      print(f'P0: {data["github"]["p0_issues"]}, P1: {data["github"]["p1_issues"]}')
+                  EOF
