@@ -192,6 +192,77 @@ runtime_and_code:
       title: "Integration Tools"
       includes: "Spotify client, Genius parser, Notion sync, Discord logger"
 
+web_applications:
+  resonance_viewer:
+    - path: apps/resonance-viewer/index.html
+      title: "Resonance Viewer — 3D Avatar + Card Explorer"
+      purpose: "Immersive 3D scene with LuminAI avatar + textured mesh; interactive CODEX card browsing"
+      features:
+        - "Three.js scene with resonance sphere animation"
+        - "Card selection via keyboard (arrow keys, space)"
+        - "TGCR alignment display (φᵗ, ψʳ, Φᴱ)"
+        - "GLB model integration for LuminAI avatar"
+        - "Real-time API queries from elidorascodex.com"
+      status: "Ready for GLB integration"
+      deployment: "https://elidorascodex.com/resonance-viewer/"
+    - path: apps/resonance-viewer/resonance-viewer.js
+      title: "Resonance Viewer Engine (400 lines)"
+    - path: apps/resonance-viewer/GLB_INTEGRATION_TEMPLATE.js
+      title: "GLB Model Integration Template (copy-paste ready)"
+    - path: apps/resonance-viewer/SETUP.md
+      title: "Setup & Integration Guide"
+
+  star_viewer:
+    - path: apps/star-viewer/index.html
+      title: "Star Viewer — Constellation Navigation"
+      purpose: "Interactive starfield where each star = CODEX card; constellations connect related cards"
+      features:
+        - "Spherical star distribution from API data"
+        - "Click to select star / load card details"
+        - "Constellation lines connecting related cards"
+        - "WASD pan + scroll zoom + arrow navigation"
+        - "HUD displays star count, zoom level, focus type"
+        - "Smooth pulsing animations + gentle rotations"
+      status: "Complete (JavaScript engine + CSS styling)"
+      deployment: "https://elidorascodex.com/star-viewer/"
+    - path: apps/star-viewer/star-viewer.js
+      title: "Star Viewer Engine (403 lines)"
+      features:
+        - "loadCards(): Fetch from API, create visual stars"
+        - "createStar(): Spherical distribution, focus-based coloring"
+        - "drawConstellations(): Connect related cards with lines"
+        - "selectCard(): Fetch + render card info panel"
+        - "animate(): Continuous rotation + pulsing"
+        - "onCanvasClick, onMouseWheel, onKeyDown: Full navigation"
+
+  asset_specification:
+    - path: apps/3D_ASSETS_SPEC.md
+      title: "3D Asset Specification for Blender Artists (367 lines)"
+      purpose: "Comprehensive spec for TGCR symbols, stars, constellations, environment assets"
+      includes:
+        - "TGCR dimension markers (φᵗ helix, ψʳ torus, Φᴱ spire)"
+        - "Star particle system (octahedron, glow halo, size variants)"
+        - "Constellation + environment assets"
+        - "Blender export settings (glTF 2.0 .glb format)"
+        - "Material definitions + color palette"
+        - "Animation specifications + timing"
+        - "Priority 1/2/3 build checklist"
+        - "JavaScript integration examples"
+      status: "Locked specification; awaiting artist"
+
+  testing_and_deployment:
+    - path: apps/LOCAL_TESTING_GUIDE.md
+      title: "Local Testing Checklist"
+      purpose: "Verification steps for both viewers before live deployment"
+      covers:
+        - "Initialization (canvas load, API fetch, HUD display)"
+        - "API integration (card data, TGCR alignment display)"
+        - "User interaction (click, keyboard, zoom, pan)"
+        - "Animation performance (frame rate, smoothness)"
+        - "GLB model integration (once files copied)"
+        - "Debugging tips + performance baselines"
+        - "Deployment instructions to elidorascodex.com"
+
 testing:
   pytest:
     - path: tests/
