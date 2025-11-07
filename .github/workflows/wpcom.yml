@@ -1,5 +1,15 @@
 name: Publish to WordPress.com
 
+# LuminAI Platform → WordPress.com Deployment
+# Deploys all 3 core WordPress plugins (platform frontends):
+# - tec-tgcr: Core platform entry point (loads src/tec_tgcr engine)
+# - tec-luminai-agent: Persona orchestration (LUMINAI + 5 others)
+# - tec-resonance-player: Audio/motif widget
+#
+# Triggered on main branch only (after core tests + QA gate passed).
+# All 3 plugins deploy together as single platform version.
+# No partial deployments—coherence is critical.
+
 on:
   push:
     branches: [main]

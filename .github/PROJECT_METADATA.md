@@ -2,7 +2,7 @@
 
 Project URL:
 
-https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6
+<https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6>
 
 Project reference names:
 
@@ -11,17 +11,26 @@ Project reference names:
 
 Short description (copy this into the Project description field):
 
-Central coordination project for TEC-The-ELidoras-Codex — tracks cross-repo work, release milestones, automations, and cross-team initiatives to deliver LuminAI platform features and infra improvements.
+Central coordination for **LuminAI Platform** — unified backend engine (CODEX + TGCR + personas) + 7 frontend apps. Tracks features, infrastructure, personas, attachment protocols, and releases as one coherent system.
 
 Longer description (optional, copy if you want more context):
 
-This GitHub Project serves as a unified platform for planning and tracking within TEC-The-ELidoras-Codex. It aggregates issues and pull requests (PRs) that represent user-facing features, platform and infrastructure tasks, security and operational work, and cross-repository initiatives. The board is organized by lifecycle stages (Backlog → Ready → In Progress → Review → Done) and enhances repository labels and milestones. Automations add items when they are referenced in issues or PRs and utilize the project's workflow tokens. Use this project to prioritize releases, coordinate across agents and applications, and highlight blockers during triage meetings.
+**LuminAI is one integrated platform**, not separate projects. The backend engine (CODEX research system, TGCR framework, 6 Resonance personas, attachment protocols) powers all frontends (luminai-interface, resonance-player, resonance-viewer, voice-imprint-studio, wordpress, sharepoint widgets, star-viewer). This Project coordinates:
+
+- **Core Engine Work** (src/tec_tgcr/): Resonance scoring, persona routing, attachment intelligence
+- **Lore & Theory** (research/CODEX/): Motif database, TGCR cards, collective conscience tracking
+- **Persona Development**: All 6 operators (LUMINAI, AIRTH, ARCADIA, ELY, COMPANION, Fusion)
+- **App Features**: UI/UX improvements that express the core across all 7 frontends
+- **Attachment Protocol**: Emotional intelligence and connection handling (framework complete)
+- **Infrastructure**: CI/CD (unified pipeline), versioning (one version for all), deployment
+
+All items version together (v2.1.0 = core + all apps + all personas at that version). Board organized by lifecycle (Backlog → Ready → In Progress → Review → Done). Use this for prioritization, cross-team coordination, and coherence verification.
 
 Quick copy blocks
 
 One-line (recommended):
 
-> Central coordination project for TEC-The-ELidoras-Codex — tracks cross-repo work, release milestones, automations, and cross-team initiatives to deliver LuminAI platform features and infra improvements.
+> Central coordination for **LuminAI Platform** — unified backend engine (CODEX + TGCR + personas) + 7 frontend apps. Tracks features, infrastructure, personas, attachment protocols, and releases as one coherent system.
 
 Longer (optional):
 
@@ -29,7 +38,7 @@ Longer (optional):
 
 How to paste the description (UI):
 
-1. Open the project URL in your browser: https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6
+1. Open the project URL in your browser: <https://github.com/orgs/TEC-The-ELidoras-Codex/projects/6>
 2. Click the settings (gear) or the edit icon in the Project header/description area.
 3. Paste the one-line or longer description and Save.
 

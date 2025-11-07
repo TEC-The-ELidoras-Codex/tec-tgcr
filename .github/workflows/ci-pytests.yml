@@ -1,5 +1,17 @@
 name: CI — Python tests
 
+# Platform Core Validation
+# This workflow validates the backend engine of LuminAI Platform:
+# - src/tec_tgcr/ (resonance engine, personas, API)
+# - research/CODEX/ (lore, TGCR theory, motifs)
+# - data/personas/ (6 Resonance operators)
+# - docs/operations/ATTACHMENT_PROTOCOL_*.md (emotional intelligence)
+#
+# When core tests pass, all 7 frontend apps can safely deploy
+# (luminai-interface, resonance-player, resonance-viewer, etc.)
+#
+# Single platform = one version. Core v2.1.0 → all apps v2.1.0.
+
 on:
   push:
     branches: ["**"]

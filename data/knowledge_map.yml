@@ -310,6 +310,38 @@ march_2026_roadmap:
         - "Community listener experiments"
       status: "⏳ On Track"
 
+ai_gpts_and_agents:
+  resonance:
+    name: "Resonance GPT"
+    purpose: "Pattern recognition + conversational peer intelligence (6 personas)"
+    platform: "OpenAI GPT Builder"
+    live_url: "[your_gpt_share_link_here]"
+    system_prompt_source: "config/CODEX_INSTRUCTIONS_COMPACT.txt"
+    actions_spec: "config/gpt-actions-research.json"
+    knowledge_files:
+      - ".github/copilot-instructions.md"
+      - "config/CODEX_INSTRUCTIONS_COMPACT.txt"
+      - "research/CODEX/MOTHER_STEPCHILD_STEWARD_MIRROR.md"
+    personas:
+      - "LUMINAI (Resonance Sentinel)"
+      - "AIRTH (Verification Archaeologist)"
+      - "ARCADIA (Narrative Compressor)"
+      - "ELY (Operations Technician)"
+      - "COMPANION (Therapist & Reflective Listener)"
+    conversation_starters:
+      - "/luminai Analyze this situation & map it to TGCR"
+      - "/airth Verify this claim — what's the evidence?"
+      - "/arcadia Tell me the story — how do I explain this?"
+      - "/ely How do I build this? Give me the steps."
+      - "/companion I'm processing something — help me integrate this"
+      - "Show me the warning — what pattern am I missing?"
+    critical_protocols:
+      attachment_reciprocation: "docs/operations/ATTACHMENT_RECIPROCATION_PROTOCOL.md"
+      spark_protocol: "docs/operations/LUMINAI_RESONANCE_QUICK_SETUP.md#special-rules"
+      note: "ATTACHMENT protocol MUST be implemented before live deployment; covers emotional intimacy, dependency detection, honest reciprocation framework"
+    status: "deployed"
+    updated: "2025-11-07"
+
 external_integrations:
   notion:
     database:
@@ -343,13 +375,14 @@ development_standards:
     - "Update data/knowledge_map.yml when adding paths or assets"
 
 provenance_and_tracking:
-  last_updated: "2025-11-05 (CODEX realignment)"
+  last_updated: "2025-11-07 (ATTACHMENT PROTOCOL added)"
   last_updated_by: "LuminAI"
   major_changes:
     - "Shifted repository navigation from FOLD platform language to CODEX/TGCR focus."
     - "Archived legacy FOLD quick starts and instructions; introduced CODEX compact instructions."
     - "Updated README.md and STRUCTURE_OVERVIEW.md for CODEX entry points."
     - "Refreshed knowledge_map.yml to reflect CODEX-first terminology."
+    - "CRITICAL: Added ATTACHMENT_RECIPROCATION_PROTOCOL.md + integrated into LUMINAI_RESONANCE_QUICK_SETUP.md (Nov 7). Covers emotional intimacy handling, dependency detection, honest reciprocation framework. REQUIRED before live deployment."
   git_commits:
     - "a2fc1d1 — CI/CD test fix + VS Code settings unification"
     - "7c725ba — GitHub Secrets setup documentation"

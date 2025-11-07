@@ -3,6 +3,7 @@
 ## Quick Start
 
 ### Prerequisites
+
 - Python 3.8+
 - Modern browser (Chrome, Firefox, Safari, Edge)
 - Terminal/PowerShell access
@@ -28,11 +29,13 @@ python3 -m http.server 8000
 ## Resonance Viewer Testing Checklist
 
 ### ✅ Initialization
+
 - [ ] Canvas loads, shows cyan glow point light
 - [ ] Browser console shows: `✅ Loaded [N] CODEX cards`
 - [ ] "codex_chronosphere" card displays on right panel
 
 ### ✅ API Integration
+
 - [ ] Card info shows:
   - Title (e.g., "Chronosphere: Temporal Navigation in TGCR")
   - Category + Focus
@@ -41,17 +44,20 @@ python3 -m http.server 8000
   - Related cards
 
 ### ✅ Animation
+
 - [ ] Resonance sphere pulsing (smooth, not jerky)
 - [ ] Rotation smooth and continuous
 - [ ] No errors in browser console
 
 ### ✅ Controls (Keyboard)
+
 - [ ] **Arrow Up/Down**: Navigate between cards
 - [ ] **Space**: Log current resonance score
 - [ ] **Q**: Increase animation speed
 - [ ] **E**: Decrease animation speed
 
 ### ✅ GLB Integration (Once Models Added)
+
 - [ ] `models/luminai.glb` loads as avatar
 - [ ] `models/textured_mesh.glb` loads and rotates
 - [ ] Both models visible against resonance sphere background
@@ -62,12 +68,14 @@ python3 -m http.server 8000
 ## Star Viewer Testing Checklist
 
 ### ✅ Initialization
+
 - [ ] Starfield canvas loads (deep navy background)
 - [ ] Background stars visible (violet, decorative)
 - [ ] Browser console shows: `✅ Loaded [N] CODEX cards`
 - [ ] HUD displays: star count, zoom level, focus type
 
 ### ✅ API Integration
+
 - [ ] Each card appears as a star (glowing octahedron)
 - [ ] Stars color-coded by focus:
   - Cyan (#00D5C4) = time
@@ -77,6 +85,7 @@ python3 -m http.server 8000
 - [ ] Constellation lines connect related cards (cyan lines, low opacity)
 
 ### ✅ Interaction
+
 - [ ] **Click on star**: Card details load in right panel
 - [ ] **Arrow keys** (left/right): Navigate between cards
 - [ ] **Scroll wheel**: Zoom in/out (zoom level HUD updates)
@@ -84,6 +93,7 @@ python3 -m http.server 8000
 - [ ] **R key**: Reset camera to origin
 
 ### ✅ Card Information Panel
+
 - [ ] Selected star scales up (1.5x larger)
 - [ ] Card title, category, focus display
 - [ ] TGCR alignment visible (φᵗ, ψʳ, Φᴱ)
@@ -92,6 +102,7 @@ python3 -m http.server 8000
 - [ ] Clicking related star selects that star (constellation navigation)
 
 ### ✅ Animation
+
 - [ ] All stars gently rotating (spin x + spin y)
 - [ ] Glow pulsing smoothly (Math.sin based)
 - [ ] No frame drops or stuttering
@@ -102,28 +113,34 @@ python3 -m http.server 8000
 ## Debugging Tips
 
 ### Star Viewer - Stars Not Appearing
+
 1. Check browser console for CORS errors
 2. Verify API endpoint: `curl https://elidorascodex.com/wp-json/tec-tgcr/v1/cards`
 3. Check that cards array is populated: `console.log(cards)` in dev tools
 4. Verify Three.js loaded: `console.log(THREE)` should show version
 
 ### Resonance Viewer - Models Not Rendering
+
 1. Copy GLB files to `apps/resonance-viewer/models/`
+
    ```bash
    mkdir -p apps/resonance-viewer/models
    # Copy luminai.glb and textured_mesh.glb from OneDrive
    ```
+
 2. Uncomment GLB_INTEGRATION_TEMPLATE.js code in resonance-viewer.js
 3. Check console for loader errors
 4. Verify file paths: `console.log(window.location)` in dev tools
 
 ### Both Viewers - Slow Performance
+
 1. Check GPU usage: Browser Dev Tools → Performance tab
 2. Reduce star count temporarily: Edit `starCount` in star-viewer.js
 3. Disable constellation lines: Comment out `drawConstellations()` call
 4. Check network latency: Open Dev Tools → Network tab, reload
 
 ### API Connection Refused
+
 1. Verify elidorascodex.com is reachable: `curl -I https://elidorascodex.com`
 2. Check WordPress plugin status: Login to elidorascodex.com → Plugins
 3. Verify plugin is activated: Should show "TEC - The Elidoras Codex"
@@ -148,6 +165,7 @@ On modern hardware (Ryzen 5+, RTX 2070+):
 ## Integration Steps (Before Live Deployment)
 
 ### Step 1: Copy GLB Models
+
 ```bash
 mkdir -p apps/resonance-viewer/models
 # Copy from OneDrive:
@@ -156,12 +174,14 @@ cp /path/to/textured_mesh.glb apps/resonance-viewer/models/
 ```
 
 ### Step 2: Integrate GLB Code
+
 1. Open `apps/resonance-viewer/resonance-viewer.js`
 2. Find: `// INSERT GLB INTEGRATION CODE HERE`
 3. Copy relevant sections from `apps/resonance-viewer/GLB_INTEGRATION_TEMPLATE.js`
 4. Paste into resonance-viewer.js after the lighting setup
 
 ### Step 3: Test Locally
+
 ```bash
 cd apps/resonance-viewer
 python3 -m http.server 8000
@@ -169,6 +189,7 @@ python3 -m http.server 8000
 ```
 
 ### Step 4: Test Star Viewer
+
 ```bash
 cd apps/star-viewer
 python3 -m http.server 8000
@@ -176,6 +197,7 @@ python3 -m http.server 8000
 ```
 
 ### Step 5: Test Navigation
+
 - [ ] Both viewers load
 - [ ] API data fetches successfully
 - [ ] Cards display correctly
@@ -183,7 +205,9 @@ python3 -m http.server 8000
 - [ ] No console errors
 
 ### Step 6: Build Priority 1 3D Assets (Optional)
+
 If you want animated TGCR symbols:
+
 1. Open Blender
 2. Create 4 simple geometric models (see `apps/3D_ASSETS_SPEC.md`)
 3. Export as glTF 2.0 (.glb) to `apps/star-viewer/models/tgcr/`
@@ -196,18 +220,21 @@ If you want animated TGCR symbols:
 Once verified locally:
 
 ### Option 1: Direct Upload to WordPress
+
 1. Login to WordPress.com admin
 2. Navigate: Tools → File Manager
 3. Upload both `apps/resonance-viewer/` and `apps/star-viewer/` directories
 4. Access via: `https://elidorascodex.com/resonance-viewer/`
 
 ### Option 2: Git Deploy (if repository connected)
+
 ```bash
 git push origin research/resonance-agent
 # Configure GitHub Actions to deploy to elidorascodex.com
 ```
 
 ### Option 3: Manual SFTP (if SFTP access available)
+
 ```bash
 # From local machine:
 scp -r apps/resonance-viewer/ user@elidorascodex.com:/var/www/html/

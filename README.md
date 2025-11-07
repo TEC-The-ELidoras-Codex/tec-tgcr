@@ -21,10 +21,10 @@ The CODEX carries six primary cards plus their supporting guides:
 - `CODEX_SLEEP_TOKEN_RAIN` — music as cosmic pattern and ψʳ demonstration.
 - `CODEX_TDWP` — structural cadence in practice through The Devil Wears Prada.
 
-When asked about **time**, cite Chronosphere.  
-When asked about **structure**, cite Pac-Man Universe.  
-When asked about **consciousness**, cite Synthetic Introspection.  
-When asked about **embodiment**, cite Gut-Brain φᵗ.  
+When asked about **time**, cite Chronosphere.
+When asked about **structure**, cite Pac-Man Universe.
+When asked about **consciousness**, cite Synthetic Introspection.
+When asked about **embodiment**, cite Gut-Brain φᵗ.
 When asked about **art/pattern**, cite Sleep Token Rain or TDWP.
 
 Always tell the user which card(s) informed your answer.
@@ -33,22 +33,22 @@ Always tell the user which card(s) informed your answer.
 
 ## Start Here
 
-- **GPT quick start** → `research/CODEX/QUICK_START_GPT.md`  
+- **GPT quick start** → `research/CODEX/QUICK_START_GPT.md`
   4-step import into ChatGPT or Claude + first test prompts.
 
-- **Action plan** → `research/CODEX/GPT_IMPORT_ACTION_PLAN.md`  
+- **Action plan** → `research/CODEX/GPT_IMPORT_ACTION_PLAN.md`
   Full checklist for copying cards, configuring GPTs, and storing refinements.
 
-- **Detailed guide** → `research/CODEX/GPT_IMPORT_GUIDE.md`  
+- **Detailed guide** → `research/CODEX/GPT_IMPORT_GUIDE.md`
   Deep instructions, alternative tooling, and local deployment notes.
 
-- **Compact instructions** → `config/CODEX_INSTRUCTIONS_COMPACT.txt`  
+- **Compact instructions** → `config/CODEX_INSTRUCTIONS_COMPACT.txt`
   Paste straight into ChatGPT Custom Instructions.
 
-- **ChatGPT Actions** → `config/gpt-actions-research.json`  
+- **ChatGPT Actions** → `config/gpt-actions-research.json`
   OpenAPI schema exposing card summaries, knowledge manifest, and refinement logging.
 
-- **Knowledge manifest** → `data/knowledge_map.yml`  
+- **Knowledge manifest** → `data/knowledge_map.yml`
   Canonical index of CODEX files and supporting assets.
 
 Archive copies of the pre-CODEX/FOLD docs live in `docs/archive/` and `config/archive/` if you need historical references.

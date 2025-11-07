@@ -1,11 +1,21 @@
 name: Build and publish to GHCR
 
+# LuminAI Platform Docker Image
+# Publishes unified platform container to GitHub Container Registry:
+# - Includes: src/tec_tgcr (backend engine)
+# - Includes: research/CODEX (lore + theory)
+# - Includes: data/personas (all 6 operators)
+# - Includes: All frontend app dependencies
+#
+# One Docker image = one complete LuminAI Platform
+# Versions match core release (v2.1.0 tag creates tagged image).
+
 on:
   push:
     branches:
       - main
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: read

@@ -1,10 +1,19 @@
 name: CI
 
+# LuminAI Platform Core Quality Gate
+# This workflow ensures platform core integrity on pull requests:
+# - Lint: Code style consistency
+# - Format: Black + isort formatting standards
+# - Test: Unit tests for backend engine
+#
+# Gate for PR merge. All checks must pass before apps can deploy.
+# Prevents regression in personas, attachment protocol, resonance engine.
+
 on:
   push:
-    branches: [ main, 'revamp-**' ]
+    branches: [main, "revamp-**"]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -20,7 +29,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install dependencies
         run: |
