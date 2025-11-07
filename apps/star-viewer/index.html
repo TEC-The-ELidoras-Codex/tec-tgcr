@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEC Star Viewer | The Elidoras Codex</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: #0a0a0c;
+        color: #e0e6ed;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      /* Canvas Area */
+      #canvas {
+        flex: 1;
+        background: radial-gradient(circle at center, #0a0a1a, #000000);
+      }
+
+      /* Info Panel */
+      .info-panel {
+        width: 350px;
+        background: rgba(10, 10, 12, 0.95);
+        border-left: 1px solid rgba(0, 213, 196, 0.2);
+        padding: 24px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .info-panel h1 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        color: #00d5c4;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .info-panel .star-type {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #6a00f4;
+        margin-bottom: 16px;
+        opacity: 0.8;
+      }
+
+      .info-panel .summary {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 24px;
+        color: #b0b8c4;
+      }
+
+      .constellation-box {
+        background: rgba(0, 213, 196, 0.08);
+        border: 1px solid rgba(0, 213, 196, 0.3);
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 20px;
+      }
+
+      .constellation-box h3 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #00d5c4;
+        margin-bottom: 10px;
+      }
+
+      .constellation-item {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .constellation-item strong {
+        color: #6a00f4;
+      }
+
+      .star-map {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 213, 196, 0.2);
+      }
+
+      .star-map h4 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: #00d5c4;
+        margin-bottom: 12px;
+        opacity: 0.8;
+      }
+
+      .related-star {
+        background: rgba(0, 213, 196, 0.05);
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-left: 2px solid rgba(0, 213, 196, 0.3);
+      }
+
+      .related-star:hover {
+        background: rgba(0, 213, 196, 0.15);
+        border-left-color: #00d5c4;
+        transform: translateX(4px);
+      }
+
+      .star-name {
+        font-size: 0.9rem;
+        color: #e0e6ed;
+        font-weight: 500;
+      }
+
+      .star-magnitude {
+        font-size: 0.75rem;
+        color: #00d5c4;
+        margin-top: 4px;
+        opacity: 0.8;
+      }
+
+      /* Header */
+      .header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        color: #00d5c4;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .header .logo {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+      }
+
+      .header .subtitle {
+        font-size: 0.75rem;
+        color: #6a00f4;
+        margin-top: 4px;
+        opacity: 0.7;
+      }
+
+      /* Controls */
+      .controls {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(10, 10, 12, 0.8);
+        border: 1px solid rgba(0, 213, 196, 0.3);
+        border-radius: 8px;
+        padding: 12px 16px;
+        z-index: 10;
+        font-size: 0.8rem;
+        color: #b0b8c4;
+        line-height: 1.6;
+      }
+
+      .controls strong {
+        color: #00d5c4;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      /* HUD */
+      .hud {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(10, 10, 12, 0.8);
+        border: 1px solid rgba(0, 213, 196, 0.3);
+        border-radius: 8px;
+        padding: 16px;
+        z-index: 10;
+        font-size: 0.85rem;
+        color: #00d5c4;
+        text-align: right;
+        letter-spacing: 0.5px;
+      }
+
+      .hud-item {
+        margin-bottom: 8px;
+        font-family: "Courier New", monospace;
+      }
+
+      .hud-label {
+        color: #6a00f4;
+        display: inline-block;
+        width: 80px;
+      }
+
+      /* Loading */
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 20;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(0, 213, 196, 0.3);
+        border-top-color: #00d5c4;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 16px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Card Info Panel Content */
+      #card-info h1 {
+        margin: 0 0 12px 0;
+        font-size: 1.4rem;
+        color: #00d5c4;
+      }
+
+      #card-info h3 {
+        margin: 16px 0 12px 0;
+        font-size: 0.9rem;
+        color: #6a00f4;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      #card-info h4 {
+        margin: 12px 0 8px 0;
+        font-size: 0.85rem;
+        color: #f2c340;
+      }
+
+      .star-type {
+        font-size: 0.75rem;
+        color: #9d9daa;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      .summary {
+        line-height: 1.6;
+        color: #d0d5dd;
+        margin: 0 0 16px 0;
+        font-size: 0.9rem;
+      }
+
+      .constellation-box {
+        background: rgba(106, 0, 244, 0.08);
+        border-left: 3px solid #6a00f4;
+        padding: 12px;
+        margin: 16px 0;
+        border-radius: 4px;
+      }
+
+      .constellation-item {
+        margin: 8px 0;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        color: #b0b8c4;
+      }
+
+      .constellation-item strong {
+        color: #6a00f4;
+      }
+
+      .star-map {
+        margin-top: 16px;
+      }
+
+      .related-star {
+        background: rgba(0, 213, 196, 0.1);
+        border: 1px solid rgba(0, 213, 196, 0.3);
+        padding: 8px;
+        margin: 6px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .related-star:hover {
+        background: rgba(0, 213, 196, 0.2);
+        border-color: #00d5c4;
+      }
+
+      .star-name {
+        font-size: 0.85rem;
+        color: #00d5c4;
+        font-weight: 500;
+      }
+
+      .star-magnitude {
+        font-size: 0.75rem;
+        color: #9d9daa;
+        margin-top: 3px;
+      }
+
+      /* Scroll */
+      .info-panel::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .info-panel::-webkit-scrollbar-track {
+        background: rgba(0, 213, 196, 0.1);
+      }
+
+      .info-panel::-webkit-scrollbar-thumb {
+        background: rgba(0, 213, 196, 0.3);
+        border-radius: 3px;
+      }
+
+      .info-panel::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 213, 196, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="canvas"></canvas>
+      <div class="info-panel">
+        <div id="card-info">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Mapping the CODEX stars...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="logo">TEC Star Viewer</div>
+      <div class="subtitle">The Elidoras Codex</div>
+    </div>
+
+    <div class="hud">
+      <div class="hud-item">
+        <span class="hud-label">Stars:</span> <span id="star-count">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Zoom:</span> <span id="zoom-level">1.0x</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Focus:</span> <span id="focus-type">—</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <strong>Navigation</strong>
+      Click stars • Scroll to zoom • WASD to pan • R to reset
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="star-viewer.js"></script>
+  </body>
+</html>

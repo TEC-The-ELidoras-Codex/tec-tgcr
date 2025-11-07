@@ -3,18 +3,22 @@
 ## Quick Start: Add Your Models
 
 ### 1. **Create models directory**
+
 ```bash
 mkdir -p /home/tec_tgcr/tec-tgcr/apps/resonance-viewer/models
 ```
 
 ### 2. **Copy your GLB files**
+
 From Windows:
+
 ```
 C:\Users\Ghedd\OneDrive\Linux_Share\LuminAI_modeldraft1120\*.glb
 C:\Users\Ghedd\OneDrive\Linux_Share\textured_mesh.glb
 ```
 
 To Linux workspace:
+
 ```
 ~/tec-tgcr/apps/resonance-viewer/models/
 ```
@@ -61,6 +65,7 @@ python3 -m http.server 8000
 Visit: `http://localhost:8000`
 
 You should see:
+
 - Three.js canvas with lighting
 - CODEX card panel on right
 - LuminAI model + textured mesh rotating
@@ -77,12 +82,14 @@ Then access: `https://elidorascodex.com/resonance-viewer/`
 ## Animation Customization
 
 ### Pulse on Resonance (already implemented)
+
 ```javascript
 const pulseScale = 1 + Math.sin(Date.now() * 0.003) * 0.02 * (resonanceValue / 10);
 luminaiModel.scale.set(pulseScale, pulseScale, pulseScale);
 ```
 
 ### Rotate based on TGCR focus
+
 ```javascript
 if (currentCard?.focus === 'time') {
     luminaiModel.rotation.y += 0.015;  // Faster for temporal
@@ -94,6 +101,7 @@ if (currentCard?.focus === 'time') {
 ```
 
 ### Color-code by focus area
+
 ```javascript
 const focusColors = {
     'time': 0x00D5C4,        // Cyan
@@ -142,15 +150,18 @@ apps/resonance-viewer/
 ## Troubleshooting
 
 **Models not showing?**
+
 - Check browser console (F12) for errors
 - Verify file paths in `resonance-viewer.js`
 - Make sure GLB files are in `models/` folder
 
 **API not responding?**
+
 - Verify plugin is active on elidorascodex.com
 - Test endpoint: `curl https://elidorascodex.com/wp-json/tec-tgcr/v1/cards`
 
 **CORS error?**
+
 - Add CORS headers to WordPress plugin (see README.md)
 - Or deploy both app + API on same domain
 
