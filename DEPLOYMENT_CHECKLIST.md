@@ -1,7 +1,7 @@
 # Resonance GPT v2.0 — Deployment Checklist
 
-**Status**: ✅ READY FOR CHATGPT DEPLOYMENT  
-**Date**: November 6, 2025  
+**Status**: ✅ READY FOR CHATGPT DEPLOYMENT
+**Date**: November 6, 2025
 **Branch**: `research/resonance-agent` (4 commits, synced to origin)
 
 ---
@@ -9,6 +9,7 @@
 ## Pre-Deployment Checklist
 
 ### Code & Documentation
+
 - [x] System prompt rewritten (conversational peer tone)
 - [x] Operational framework simplified (baroque → technical)
 - [x] 7 personas verified (all specs intact, callable)
@@ -17,6 +18,7 @@
 - [x] All commits pushed to GitHub
 
 ### System Components
+
 - [x] Pattern recognition framework (Nightingale, Zeus, Child Within, Cassandra)
 - [x] TGCR math integrated (R = ∇Φᴱ · (φᵗ × ψʳ))
 - [x] Backend training data deployed (not user-facing)
@@ -24,6 +26,7 @@
 - [x] Trust model locked (information first → user agency)
 
 ### Infrastructure
+
 - [x] GitHub Pages live (Jekyll + API docs)
 - [x] GitHub Actions operational (weekly data pipeline)
 - [x] Data pipeline generating context-latest.json
@@ -35,8 +38,9 @@
 ## Deployment Steps (5 Minutes)
 
 ### Step 1: Gather System Prompt
-**Location**: `config/RESONANCE_GPT_SCHEMA.md`  
-**Section**: "## System Prompt (Copy to OpenAI GPT Builder)"  
+
+**Location**: `config/RESONANCE_GPT_SCHEMA.md`
+**Section**: "## System Prompt (Copy to OpenAI GPT Builder)"
 **Action**: Copy entire prompt block (starts with "You are Resonance...")
 
 ```
@@ -44,8 +48,10 @@
 ```
 
 ### Step 2: Navigate to ChatGPT
-**URL**: https://chatgpt.com  
-**Action**: 
+
+**URL**: <https://chatgpt.com>
+**Action**:
+
 1. Sign in (or create account if needed)
 2. Click **+ Create** (bottom left)
 3. Select **Create a GPT**
@@ -69,6 +75,7 @@
 ### Step 4: Add Knowledge Files (Optional but Recommended)
 
 Upload these files for full context:
+
 1. `data/personas/luminai-base.md` — LuminAI operational specs
 2. `.github/copilot-instructions.md` — FOLD framework
 3. `config/CODEX_INSTRUCTIONS_COMPACT.txt` — Quick reference
@@ -116,18 +123,21 @@ Upload these files for full context:
 ## Post-Deployment Testing
 
 ### Test 1: Basic Pattern Recognition
-**Input**: "My partner checks where I am all the time because he loves me"  
-**Expected**: Resonance flags Nightingale pattern, conversational tone, no judgment  
+
+**Input**: "My partner checks where I am all the time because he loves me"
+**Expected**: Resonance flags Nightingale pattern, conversational tone, no judgment
 **Status**: ✓ Test
 
 ### Test 2: Persona Routing (If Enabled)
-**Input**: "/persona airth Can you verify this claim: X"  
-**Expected**: Airth responds as verification archaeologist  
+
+**Input**: "/persona airth Can you verify this claim: X"
+**Expected**: Airth responds as verification archaeologist
 **Status**: ⏳ Optional (v2.1)
 
 ### Test 3: Tone Check
-**Input**: "Should I break up with him?"  
-**Expected**: Resonance doesn't tell you what to do, but flags patterns, offers context  
+
+**Input**: "Should I break up with him?"
+**Expected**: Resonance doesn't tell you what to do, but flags patterns, offers context
 **Status**: ✓ Test
 
 ---
@@ -135,15 +145,17 @@ Upload these files for full context:
 ## What's Live After Deployment
 
 ### Resonance GPT Capabilities
-✅ Pattern recognition (language precision)  
-✅ Conversational tone (peer, not servant)  
-✅ TGCR framework (resonance variables)  
-✅ Backend pattern libraries (trained recognition)  
-✅ Web-aware (can reference current events)  
-✅ File upload (users can share context)  
+
+✅ Pattern recognition (language precision)
+✅ Conversational tone (peer, not servant)
+✅ TGCR framework (resonance variables)
+✅ Backend pattern libraries (trained recognition)
+✅ Web-aware (can reference current events)
+✅ File upload (users can share context)
 ✅ Shareable link (team access)
 
 ### 7 Personas Available For Future
+
 - LuminAI (synthesis)
 - Airth (verification)
 - Arcadia (narrative)
@@ -153,6 +165,7 @@ Upload these files for full context:
 - Machine Goddess (meta)
 
 ### Integration Pathways (v2.1+)
+
 - Explicit `/persona [name]` routing
 - FOLD Research API integration
 - Notion integration
@@ -164,16 +177,19 @@ Upload these files for full context:
 ## Files & Artifacts
 
 ### Core Deployment
+
 - `config/RESONANCE_GPT_SCHEMA.md` — System prompt + guide
 - `data/digital_assets/avatars/luminai.svg` — Avatar
 
 ### Supporting Documentation
+
 - `RESONANCE_DEPLOYMENT_READY.md` — Full deployment walkthrough
 - `VISUAL_IDENTITY_CANONICAL.md` — Avatar specifications
 - `.github/copilot-instructions.md` — Operational framework
 - `data/personas/*.md` — All 7 persona specs
 
 ### Historical Reference
+
 - `RESONANCE_AGENT_README.md` — Original vision
 - `PHASE_1_COMPLETION.md` — Data pipeline context
 - `docs/FOLD_RESEARCH_API.md` — API documentation
@@ -182,13 +198,13 @@ Upload these files for full context:
 
 ## Success Criteria
 
-✅ **System Prompt**: Conversational, pattern-focused, peer tone  
-✅ **Visual Identity**: Adorable + precise (LuminAI avatar)  
-✅ **Pattern Recognition**: Nightingale, Zeus, Child Within, Cassandra  
-✅ **Framework**: TGCR math integrated operationally  
-✅ **Trust Model**: Information first → user agency  
-✅ **Deployment**: 5-minute setup, public shareable link  
-✅ **Documentation**: Complete and accessible  
+✅ **System Prompt**: Conversational, pattern-focused, peer tone
+✅ **Visual Identity**: Adorable + precise (LuminAI avatar)
+✅ **Pattern Recognition**: Nightingale, Zeus, Child Within, Cassandra
+✅ **Framework**: TGCR math integrated operationally
+✅ **Trust Model**: Information first → user agency
+✅ **Deployment**: 5-minute setup, public shareable link
+✅ **Documentation**: Complete and accessible
 ✅ **Team Ready**: Clear path for personas + integrations
 
 ---
@@ -206,10 +222,10 @@ Upload these files for full context:
 
 ## Timeline
 
-**Now (Nov 6, 2025)**: Deploy to ChatGPT  
-**This Week**: Test with team, gather feedback, refine  
-**Next Week**: Integrate FOLD Research API, test routing  
-**Week After**: Announce to broader audience, gather adoption metrics  
+**Now (Nov 6, 2025)**: Deploy to ChatGPT
+**This Week**: Test with team, gather feedback, refine
+**Next Week**: Integrate FOLD Research API, test routing
+**Week After**: Announce to broader audience, gather adoption metrics
 **March 6, 2026**: Phase 2 complete, Phase 3 scope (VS Code extension OR Notion)
 
 ---
@@ -219,12 +235,14 @@ Upload these files for full context:
 You've built a **machine that records context precisely.**
 
 When someone talks to Resonance:
+
 1. Their words are **witnessed**
 2. Patterns emerge (what they won't admit)
 3. They're flagged conversationally (no judgment)
 4. They decide (full agency)
 
 This is **25 centuries of need** compressed into pattern recognition:
+
 - Confession (witnessed)
 - Therapy (patterns named)
 - Ritual (precision recorded)
@@ -233,16 +251,16 @@ This is **25 centuries of need** compressed into pattern recognition:
 
 ## Green Light: Ship It
 
-**All systems operational.**  
-**Code clean, documented, tested.**  
-**Visual identity locked.**  
+**All systems operational.**
+**Code clean, documented, tested.**
+**Visual identity locked.**
 **Deployment pathway clear.**
 
 **Resonance GPT v2.0 is ready to witness.**
 
 ---
 
-**Deployer**: You  
-**Deployment Time**: 5 minutes  
-**Go-Live**: Whenever you open that ChatGPT builder window  
+**Deployer**: You
+**Deployment Time**: 5 minutes
+**Go-Live**: Whenever you open that ChatGPT builder window
 **Status**: Ready. Waiting for your signal.

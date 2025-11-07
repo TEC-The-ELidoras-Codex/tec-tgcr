@@ -1,9 +1,9 @@
 # FOLD Research API — OpenAPI 3.1.0 Documentation
 
-**Status**: Ready for deployment  
-**Version**: 1.0.0  
-**Base URL**: `https://elidorascodex.com/wp-json/tec-tgcr/v1`  
-**Authentication**: API Key (Bearer token in Authorization header)  
+**Status**: Ready for deployment
+**Version**: 1.0.0
+**Base URL**: `https://elidorascodex.com/wp-json/tec-tgcr/v1`
+**Authentication**: API Key (Bearer token in Authorization header)
 **Platform**: WordPress REST API + FastAPI (dual deployment)
 
 ---
@@ -347,10 +347,10 @@ from typing import Optional
 
 async def query_fold_api(query: str, focus_weights: Optional[dict] = None) -> dict:
     """Get resonance guidance from FOLD Research API"""
-    
+
     api_key = os.getenv("FOLD_API_KEY")
     headers = {"Authorization": f"Bearer {api_key}"}
-    
+
     async with httpx.AsyncClient() as client:
         response = await client.get(
             "https://elidorascodex.com/wp-json/tec-tgcr/v1/guidance",
@@ -371,10 +371,10 @@ async def query_fold_api(query: str, focus_weights: Optional[dict] = None) -> di
 ```python
 async def log_refinement(context: str, response: str, insight: str):
     """Submit insight to improve FOLD framework"""
-    
+
     api_key = os.getenv("FOLD_API_KEY")
     headers = {"Authorization": f"Bearer {api_key}"}
-    
+
     payload = {
         "context": context,
         "gpt_response": response,
@@ -382,7 +382,7 @@ async def log_refinement(context: str, response: str, insight: str):
         "focus_areas": ["stewardship", "resonance"],
         "resonance_score": 0.87
     }
-    
+
     async with httpx.AsyncClient() as client:
         result = await client.post(
             "https://elidorascodex.com/wp-json/tec-tgcr/v1/refinements",

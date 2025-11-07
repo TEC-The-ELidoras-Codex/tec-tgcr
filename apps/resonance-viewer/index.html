@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEC - Resonance Viewer | The Elidoras Codex</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: linear-gradient(135deg, #0b1e3b 0%, #1a2d4d 100%);
+        color: #e0e6ed;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      /* 3D Canvas Area */
+      #canvas {
+        flex: 1;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(106, 0, 244, 0.1),
+          transparent
+        );
+      }
+
+      /* Card Info Panel */
+      .card-panel {
+        width: 350px;
+        background: rgba(10, 10, 12, 0.9);
+        border-left: 1px solid rgba(106, 0, 244, 0.3);
+        padding: 24px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-panel h1 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+        color: #00d5c4;
+      }
+
+      .card-panel .category {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #6a00f4;
+        margin-bottom: 16px;
+      }
+
+      .card-panel .summary {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        color: #b0b8c4;
+      }
+
+      .tgcr-box {
+        background: rgba(106, 0, 244, 0.1);
+        border: 1px solid rgba(106, 0, 244, 0.3);
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 20px;
+      }
+
+      .tgcr-box h3 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6a00f4;
+        margin-bottom: 10px;
+      }
+
+      .tgcr-item {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+
+      .tgcr-item strong {
+        color: #00d5c4;
+      }
+
+      .keywords {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .keyword {
+        background: rgba(0, 213, 196, 0.15);
+        color: #00d5c4;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        border: 1px solid rgba(0, 213, 196, 0.3);
+      }
+
+      .card-list {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(106, 0, 244, 0.3);
+      }
+
+      .card-list h4 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: #6a00f4;
+        margin-bottom: 12px;
+      }
+
+      .card-item {
+        background: rgba(106, 0, 244, 0.05);
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-left: 2px solid transparent;
+      }
+
+      .card-item:hover {
+        background: rgba(106, 0, 244, 0.15);
+        border-left-color: #6a00f4;
+        transform: translateX(4px);
+      }
+
+      .card-item-title {
+        font-size: 0.9rem;
+        color: #e0e6ed;
+      }
+
+      .card-item-focus {
+        font-size: 0.75rem;
+        color: #00d5c4;
+        margin-top: 4px;
+      }
+
+      /* Header */
+      .header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        color: #00d5c4;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .header .logo {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+      }
+
+      /* Loading */
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 20;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(106, 0, 244, 0.3);
+        border-top-color: #6a00f4;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 16px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Resonance Indicator */
+      .resonance-meter {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(10, 10, 12, 0.8);
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(106, 0, 244, 0.3);
+        width: 200px;
+        z-index: 10;
+      }
+
+      .resonance-label {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6a00f4;
+        margin-bottom: 8px;
+      }
+
+      .resonance-bar {
+        height: 4px;
+        background: rgba(106, 0, 244, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 4px;
+      }
+
+      .resonance-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #6a00f4, #00d5c4);
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+
+      .resonance-value {
+        font-size: 0.8rem;
+        color: #00d5c4;
+      }
+
+      /* Scroll */
+      .card-panel::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .card-panel::-webkit-scrollbar-track {
+        background: rgba(106, 0, 244, 0.1);
+      }
+
+      .card-panel::-webkit-scrollbar-thumb {
+        background: rgba(106, 0, 244, 0.3);
+        border-radius: 3px;
+      }
+
+      .card-panel::-webkit-scrollbar-thumb:hover {
+        background: rgba(106, 0, 244, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="canvas"></canvas>
+      <div class="card-panel">
+        <div id="card-info">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading CODEX...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="logo">TEC — The Elidoras Codex</div>
+    </div>
+
+    <div class="resonance-meter">
+      <div class="resonance-label">Resonance Index</div>
+      <div class="resonance-bar">
+        <div class="resonance-fill" id="resonance-fill"></div>
+      </div>
+      <div class="resonance-value">
+        <span id="resonance-value">0.0</span> / 10.0
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="resonance-viewer.js"></script>
+  </body>
+</html>

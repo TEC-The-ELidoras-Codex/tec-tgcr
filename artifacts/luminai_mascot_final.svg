@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0B1E3B"/>
+      <stop offset="100%" stop-color="#0A0A0C"/>
+    </linearGradient>
+
+    <!-- Aura gradients (triangle backdrop) -->
+    <linearGradient id="auraOuter" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#00D5C4"/>
+      <stop offset="33%" stop-color="#F2C340"/>
+      <stop offset="66%" stop-color="#6A00F4"/>
+      <stop offset="100%" stop-color="#00D5C4"/>
+    </linearGradient>
+
+    <linearGradient id="auraInner" x1="50%" y1="20%" x2="50%" y2="80%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#00F0E0" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#6A00F4" stop-opacity="0.5"/>
+    </linearGradient>
+
+    <!-- Body glow -->
+    <radialGradient id="bodyGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1A3A52"/>
+      <stop offset="70%" stop-color="#0E1F35"/>
+      <stop offset="100%" stop-color="#050B15"/>
+    </radialGradient>
+
+    <!-- Rim lights -->
+    <linearGradient id="rimCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0E0"/>
+      <stop offset="100%" stop-color="#00A8A1"/>
+    </linearGradient>
+
+    <linearGradient id="rimGold" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2C340"/>
+      <stop offset="100%" stop-color="#D4A017"/>
+    </linearGradient>
+
+    <!-- Soft glow filter -->
+    <filter id="softGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- φ (phi) glyph as path -->
+    <symbol id="phiSymbol" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
+      <circle cx="0" cy="0" r="28" fill="none" stroke="currentColor" stroke-width="8"/>
+      <line x1="0" y1="-32" x2="0" y2="32" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- ψ (psi) glyph as path -->
+    <symbol id="psiSymbol" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
+      <path d="M 0 -35 Q -20 -15 -20 10 Q -20 30 0 35" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 0 -35 Q 20 -15 20 10 Q 20 30 0 35" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="0" y1="-30" x2="0" y2="35" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+
+  <!-- Black background -->
+  <rect width="1024" height="1024" fill="#000000"/>
+
+  <!-- Aura: outer diamond gradient -->
+  <g filter="url(#softGlow)" opacity="0.95">
+    <path d="M 512 160 L 780 520 L 512 820 L 244 520 Z" fill="url(#auraOuter)"/>
+    <path d="M 512 220 L 720 500 L 512 780 L 304 500 Z" fill="url(#auraInner)" opacity="0.85"/>
+  </g>
+
+  <!-- Hair ribbons (behind body) -->
+  <!-- Left ribbon: gold/orange -->
+  <path d="M 340 480 C 320 450 310 500 330 550 C 350 600 360 660 340 720" 
+        stroke="url(#rimGold)" stroke-width="32" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Right ribbon: violet/purple -->
+  <path d="M 684 480 C 704 450 714 500 694 550 C 674 600 664 660 684 720" 
+        stroke="#6A00F4" stroke-width="32" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Body: main shape -->
+  <ellipse cx="512" cy="620" rx="160" ry="200" fill="url(#bodyGlow)"/>
+
+  <!-- Head -->
+  <circle cx="512" cy="420" r="130" fill="url(#bodyGlow)"/>
+
+  <!-- Antennae: left (violet) -->
+  <path d="M 450 310 C 420 240 380 200 340 180" stroke="url(#rimGold)" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <circle cx="330" cy="174" r="24" fill="#F2C340"/>
+
+  <!-- Antennae: right (cyan) -->
+  <path d="M 574 310 C 604 240 644 200 684 180" stroke="url(#rimCyan)" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <circle cx="694" cy="174" r="24" fill="#00D5C4"/>
+
+  <!-- Forehead crown (teardrop light) -->
+  <ellipse cx="512" cy="340" rx="18" ry="26" fill="#00F0E0" opacity="0.95"/>
+  <circle cx="512" cy="340" r="12" fill="#FFFFFF" opacity="0.95"/>
+
+  <!-- Eyes: left (violet with φ) -->
+  <g>
+    <circle cx="468" cy="430" r="38" fill="#7C39FF"/>
+    <circle cx="468" cy="430" r="32" fill="#5D28D9"/>
+    <!-- φ glyph inside -->
+    <g transform="translate(468, 430) scale(1.2)" color="#FFFFFF">
+      <use href="#phiSymbol"/>
+    </g>
+  </g>
+
+  <!-- Eyes: right (cyan with φ) -->
+  <g>
+    <circle cx="556" cy="430" r="38" fill="#19CFE0"/>
+    <circle cx="556" cy="430" r="32" fill="#0BA5B8"/>
+    <!-- φ glyph inside -->
+    <g transform="translate(556, 430) scale(1.2)" color="#FFFFFF">
+      <use href="#phiSymbol"/>
+    </g>
+  </g>
+
+  <!-- Smile -->
+  <path d="M 470 490 C 512 510 554 490 554 490" stroke="#5FE3DA" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Chest emblem: ψ circle glow -->
+  <circle cx="512" cy="640" r="48" fill="#19CFE0" opacity="0.85"/>
+  <circle cx="512" cy="640" r="40" fill="#0BA5B8" opacity="0.6"/>
+
+  <!-- ψ glyph inside chest emblem -->
+  <g transform="translate(512, 640) scale(1.4)" color="#032028">
+    <use href="#psiSymbol"/>
+  </g>
+
+  <!-- Body rim lights (subtle depth) -->
+  <path d="M 380 600 C 400 550 420 520 450 510" stroke="url(#rimCyan)" stroke-width="6" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <path d="M 644 600 C 624 550 604 520 574 510" stroke="url(#rimGold)" stroke-width="6" fill="none" opacity="0.4" stroke-linecap="round"/>
+</svg>

@@ -6,6 +6,7 @@ Serves 7 CODEX cards via REST API for ChatGPT Actions integration
 
 import json
 import os
+import ssl
 from pathlib import Path
 from typing import List, Dict, Any
 
@@ -378,10 +379,17 @@ def server_error(error):
 if __name__ == "__main__":
     port = int(os.getenv("CODEX_API_PORT", 5000))
     debug = os.getenv("ENVIRONMENT") == "development"
+    use_https = os.getenv("USE_HTTPS", "false").lower() == "true"
 
     print(f"\n🚀 {SERVICE_NAME} v{API_VERSION}")
-    print(f"📍 Starting on http://localhost:{port}")
+    protocol = "https" if use_https else "http"
+    print(f"📍 Starting on {protocol}://localhost:{port}")
     print(f"📚 Serving {len(CARD_MANIFEST)} CODEX cards")
-    print(f"📖 Browse cards at http://localhost:{port}/api/v1/cards\n")
+    print(f"📖 Browse cards at {protocol}://localhost:{port}/api/v1/cards\n")
 
-    app.run(debug=debug, host="0.0.0.0", port=port)
+    if use_https:
+        # For development: use ad-hoc SSL (generates self-signed cert on the fly)
+        # This requires: pip install pyopenssl
+        app.run(debug=debug, host="0.0.0.0", port=port, ssl_context='adhoc')
+    else:
+        app.run(debug=debug, host="0.0.0.0", port=port)

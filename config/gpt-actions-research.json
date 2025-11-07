@@ -11,16 +11,8 @@
   },
   "servers": [
     {
-      "url": "https://localhost:5000/api/v1",
-      "description": "CODEX Knowledge Service (Local - HTTPS)"
-    },
-    {
-      "url": "http://localhost:5000/api/v1",
-      "description": "CODEX Knowledge Service (Local - HTTP)"
-    },
-    {
-      "url": "https://codex-api.local/api/v1",
-      "description": "CODEX Knowledge Service (Production)"
+      "url": "https://elidorascodex.com",
+      "description": "CODEX Knowledge Service (WordPress REST API at elidorascodex.com)"
     }
   ],
   "security": [
@@ -47,7 +39,7 @@
     }
   ],
   "paths": {
-    "/cards": {
+    "/wp-json/tec-tgcr/v1/cards": {
       "get": {
         "tags": [
           "Cards"
@@ -328,7 +320,7 @@
         }
       }
     },
-    "/guidance/map": {
+    "/wp-json/tec-tgcr/v1/guidance/map": {
       "post": {
         "tags": [
           "Guidance"
@@ -406,7 +398,7 @@
         }
       }
     },
-    "/knowledge/manifest": {
+    "/wp-json/tec-tgcr/v1/knowledge/manifest": {
       "get": {
         "tags": [
           "Knowledge"
@@ -463,7 +455,7 @@
         }
       }
     },
-    "/knowledge/quickstart": {
+    "/wp-json/tec-tgcr/v1/knowledge/quickstart": {
       "get": {
         "tags": [
           "Knowledge"
@@ -519,7 +511,7 @@
         }
       }
     },
-    "/refinements": {
+    "/wp-json/tec-tgcr/v1/refinements": {
       "get": {
         "tags": [
           "Refinements"
