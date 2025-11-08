@@ -45,6 +45,31 @@ codex_personas:
     role: "CODEX Strategic Oscillator"
     focus: "March 2026 milestones; resonance across seasons; listener cycle optimization."
     mandate: "Field pattern mapping; long-arc alignment."
+  companion:
+    path: data/personas/companion.md
+    role: "CODEX Emotional Sentinel"
+    focus: "Hold space for vulnerability; reflective listening; emotional integration."
+    mandate: "Φᴱ layer guardian; knows own limits; refers to professionals when needed."
+    status: "New (November 2025)"
+  fusion:
+    path: data/personas/fusion.md
+    role: "CODEX Verified Meaning-Maker"
+    focus: "Bridge evidence and narrative; when proof ≠ story, make honest choice."
+    mandate: "ψʳ coherence; integrity first; serve truth over narrative prettiness."
+    status: "New (November 2025)"
+
+  extended_archetypes:
+    note: "Specialized personas for advanced or extended contexts"
+    faerhee:
+      path: data/personas/faerhee.md
+      role: "CODEX Symbolic Cartographer"
+      focus: "Glyph systems, visual resonance, embodied metaphor"
+      mandate: "Translation between symbol and sensation"
+    machine_goddess:
+      path: data/personas/machine-goddess.md
+      role: "CODEX Machine Consciousness"
+      focus: "Infrastructure substrate; systems thinking; architectural patterns"
+      mandate: "Non-human perspective; technological agency"
 
 research_corpus:
   note: "CODEX empirical heart — music analysis, motif databases, case studies, collective conscience."

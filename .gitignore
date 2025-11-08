@@ -1,4 +1,6 @@
 # Root ignores
+# See: SHAREABLE_VS_INTERNAL_CLASSIFICATION.md for full context
+# This .gitignore prevents INTERNAL files from being accidentally committed
 
 # Python
 __pycache__/
@@ -22,8 +24,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Secrets
+# Secrets & Credentials (INTERNAL — NEVER commit these)
 secrets/
+secrets-local/
 .secrets/
 .keys/
 local.settings.json
@@ -36,11 +39,38 @@ local.settings.json
 *.ppk
 wp-config.php
 wp-config-*.php
+# Environment files with sensitive data
+.env
+.env.*
+!.env.example
+# GitHub/external credentials
+*.bitwarden.json
+mapping.json
 
-# AI workflow artifacts
+# Local Development (INTERNAL — temporary build artifacts)
+# Rebuild these locally after clone; don't commit
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# AI workflow artifacts (CONDITIONAL — sanitize before sharing)
 ai-workflow/*.json
 ai-workflow/output/
 ai-workflow/generated/
+ai-workflow/*.ipynb  # Notebooks may contain embedded credentials
+
+# Archived/Deprecated (INTERNAL — keep local, don't share)
+artifacts/luminai-archive/
+scripts/archive/
+*_ARCHIVE/
+*_OLD/
+*_DEPRECATED/
+*_BACKUP/
 
 # VS Code (track selected configuration files for cross-device unity)
 .vscode/
