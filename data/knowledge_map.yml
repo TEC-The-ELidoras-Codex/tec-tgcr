@@ -340,7 +340,9 @@ ai_gpts_and_agents:
     name: "Resonance GPT"
     purpose: "Pattern recognition + conversational peer intelligence (6 personas)"
     platform: "OpenAI GPT Builder"
-    live_url: "[your_gpt_share_link_here]"
+    live_url: "https://chatgpt.com/g/g-690d58a7a1e08191822bfbbc0d557fae-luminai-resonance-gpt"
+    live_url_verified: false
+    live_url_status: "unreachable (HTTP 404 on verification 2025-11-08)"
     system_prompt_source: "config/CODEX_INSTRUCTIONS_COMPACT.txt"
     actions_spec: "config/gpt-actions-research.json"
     knowledge_files:
